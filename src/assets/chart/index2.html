@@ -1,0 +1,111 @@
+
+<!doctype HTML>
+<html>
+<head>
+
+
+<style>
+  * {
+    width: 100%;
+    hjeight: 100%;
+    background-color: red;
+  }
+</style>
+
+</head>
+<body>
+  <div>
+    hahaha
+  </div>
+  <script>
+    //目前实现了 三个方法
+    (function(undefined){
+      const clientMethod = {
+        getCookies: function (params) {
+          alert(JSON.stringify(params))
+          ///alert(JSON.stringify(params))
+          //我不知道你怎么拿cookie的 我就不写了
+
+        }
+      }
+
+      document.addEventListener('message',
+        function({data}){
+          data = JSON.parse(data);
+          if(typeof(clientMethod[data.method]) == 'function'){
+            clientMethod[data.method](data.parameters);
+          }
+        }
+      )
+      window.IOS = {
+        //可以接受cookie的通讯
+        clientLoad: function(){
+          window.postMessage(JSON.stringify({
+            method: 'clientLoad',
+            parameters: ''
+          }))
+        },
+        //去交易 currencyPair 币对
+        toDeal: function (currencyPair) {
+          if(currencyPair){
+            window.postMessage(JSON.stringify({
+              method: 'toDeal',
+              parameters: currencyPair
+            }));
+          }
+        },
+        //去充值 currency 币种
+        toRecharge: function(currency){
+          if(currency){
+            window.postMessage(JSON.stringify({
+              method: 'toRecharge',
+              parameters: currency
+            })
+            );
+          }
+        },
+        toLogin: function(){
+          window.postMessage(JSON.stringify({
+            method: 'toLogin'
+          }))
+        }
+      }
+    })()
+
+    let i = 0;
+    window.ontouchstart = function(){
+      //window.IOS.clientLoad()
+      // window.postMessage(JSON.stringify({
+      //   method: 'toRegister'
+      // }))
+
+      window.postMessage(JSON.stringify({
+        method: 'transparentHeader',
+        parameters: JSON.stringify({
+          color: 'green',
+          hiddenRight:i == 0
+        })
+      }))
+      i = (i + 1) % 2
+      // setTimeout(function(){
+      //
+      //   window.postMessage(JSON.stringify({
+      //     method: 'revertHeader',
+      //     parameters: ''
+      //   }))
+      // },3000)
+    }
+
+    // document.addEventListener('message',
+    //   ({data})=>
+    //     data=JSON.parse(data)
+    //       &&
+    //       window[data.method]
+    //       &&
+    //       typeof window[data.method] === 'function'
+    //       &&
+    //       window[data.method](...data.parameters ));
+    //postMessage( JSON.stringify({method:'reciveData',parameters:[ json , para1,para2 ] } ) );
+  </script>
+</body>
+</html>

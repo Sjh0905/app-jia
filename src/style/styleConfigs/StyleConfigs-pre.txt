@@ -1,0 +1,85 @@
+const root = {}
+
+root.btnBlue = '#54CEED'
+root.txtBlue = '#54CEED'
+root.btnGreen = '#00A62A'
+root.txtGreen = '#00A62A'
+root.btnRed = '#D83838'
+root.txtRed = '#D83838'
+root.btnRed2 = '#E13B3B'
+root.txtRed2 = '#E13B3B'
+root.btnDisabled = '#BFBFBF';
+root.txtDisabled = '#BFBFBF';
+
+root.btnBlack = '#202126'
+root.txtBlack = '#202126'
+root.txt333333 = '#333333'
+root.txt666666 = '#666666'
+root.txt999999 = '#999999'
+
+root.btnWhite = '#fff'
+root.txtWhite = '#fff'
+root.txtWhiteOpacity = '#rgba(255,255,255,0.8)'
+root.txtWhiteLittleOpacity = '#rgba(255,255,255,0.6)'
+root.txtWhiteMoreOpacity = '#rgba(255,255,255,0.4)'
+
+root.bgColor = '#10151B'
+root.modalBg = '#rgba(0,0,0,0.5)'
+root.modalBgWhite = '#fff'
+root.navBgColor = '#202126'
+root.navBgColor0602 = '#1C2632'
+root.twoNavBgColor = '#1C2632'
+root.sectTitleColor = '#141C25'
+
+root.borderColor = '#3F414A'
+root.borderColorLight = '#131316'
+root.lineColor = '#202126'
+root.lineBlue = '#54CEED'
+root.lineColorLight = '#E3E3E3'
+root.listSplitlineColor = '#20252E'
+
+root.activeOpacity = 0.8
+
+root.activeOpacityDulled = 0.5
+
+root.placeholderTextColor = 'rgba(255,255,255,0.4)'
+root.placeholderTextColorHui = 'rgba(102,102,102,0.4)'
+
+root.borderRadius = 4
+
+root.inputBackgroundColor = '#181819'
+root.inputBorderColor = '#3A3A3A'
+root.inputBorderRadius = 4
+
+root.btnRadius = 4
+
+root.blockBg = '#151515'
+root.blockNewBg = '#181C22'
+
+root.signLoginBackColor = '#141a22';
+
+root.whiteBtnColor = '#666';
+
+root.fontSize10 = 10
+root.fontSize11 = 11
+root.fontSize12 = 12
+root.fontSize13 = 13
+root.fontSize14 = 14
+root.fontSize15 = 15
+root.fontSize16 = 16
+root.fontSize17 = 17
+root.fontSize18 = 18
+root.fontSize19 = 19
+root.fontSize20 = 20
+root.fontSize21 = 21
+root.fontSize22 = 22
+root.fontSize23 = 23
+root.fontSize24 = 24
+root.fontSize25 = 25
+root.fontSize26 = 26
+root.fontSize27 = 27
+root.fontSize28 = 28
+root.fontSize29 = 29
+root.fontSize30 = 30
+
+export default root

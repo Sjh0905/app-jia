@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--取消ios识别手机号码-->
+  <meta name="format-detection" content="telephone=no">
+  <title id="title">K line graph</title>
+  <style type="text/css">
+    body{
+      background: #10151B;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    html{
+      width:100%;
+      height:100%;
+      background: #10151B;
+    }
+    #chart_container{
+      background: #10151B;
+      width: 100%;
+      height: 100%;
+      margin:  0;
+      padding: 0;
+    }
+    #bg{
+      background: #10151B;
+      width:100%;
+      height:100%;
+      position: absolute;
+      top:0;
+      left:0;
+      background-image:url(./gif/gif.gif);
+      background-size: 10%;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  </style>
+  <script type="text/javascript" src="static/chart/charting_library.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<div id="log" style="color:#fff;"></div>
+<div id="chart_container"></div>
+<div id="bg"></div>
+<script type="text/javascript">
+  const mapJson = {
+    '1': 0,
+    '5': 1,
+    '15': 2,
+    '30': 3,
+    '60': 4,
+    '240': 5,
+    'D': 6
+  }
+  function log(data) {
+    document.getElementById('log').innerHTML = document.getElementById('log').innerHTML + '<br>' + data;
+  }
+
+  (function(){
+    let fireButton = function (){
+    }
+    function render(){
+      try {
+        if (window.history && window.symbol) {
+          window.widget = new TradingView.widget({
+            symbol: window.symbol,
+            interval: 'D',
+            // width: '100%',
+            // height: '100%',
+            fullscreen: true,
+            container_id: "chart_container",
+            //	BEWARE: no trailing slash is expected in feed URL
+            datafeed: new BitexDataFeed(),
+            //datafeed: [],
+            //datafeed: data.data,
+            library_path: "static/chart/",
+            locale: "zh",
+            timezone: 'Asia/Shanghai',
+            // 引入第三方样式
+            custom_css_url: 'css/chart_mobile.css',
+            //	Regression Trend-related functionality is not implemented yet, so it's hidden for a while
+            drawings_access: {type: 'black', tools: [{name: "Regression Trend"}]},
+            disabled_features: [
+              '' +
+            'use_localstorage_for_settings',
+              'left_toolbar',
+              'header_symbol_search',
+              'timeframes_toolbar',
+              'header_interval_dialog_button',
+              'header_chart_type',
+              'header_settings',
+              'header_indicators',
+              'header_screenshot',
+              'volume_force_overlay',
+              'border_around_the_chart',
+              'pane_context_menu',
+              'chart_zoom',
+              'header_widget_dom_node'
+            ],
+            enabled_features:[
+            ],
+            // preset: "mobile",
+            toolbar_bg: '#10151B',
+            favorites: {
+              intervals: ["1S", "1", "5", "15", "30", "60", "240", "D"],
+              chartTypes: ["Candles"]
+            },
+            overrides: {
+              "mainSeriesProperties.style": 1,
+              "paneProperties.background": "#10151B",
+              "paneProperties.vertGridProperties.color": "transparent",
+              "paneProperties.horzGridProperties.color": "transparent",
+              "symbolWatermarkProperties.transparency": 90,
+              "scalesProperties.textColor": "#AAA",
+              "mainSeriesProperties.lineStyle.color": "#02c0cc",
+              "mainSeriesProperties.lineStyle.linewidth": 2,
+              "paneProperties.legendProperties.showLegend": false,
+              "scalesProperties.showRightScale" : false,  //隐藏右侧刻度
+              "mainSeriesProperties.showPriceLine": true, // 展示价格线
+              "mainSeriesProperties.priceLineWidth": 1, //价格线
+              "timeScale.rightOffset": 5, // 距离右侧距离
+
+              //"paneProperties.legendProperties.showSeriesOHLC": false, // 显示开高低收四个值
+
+              // 蜡烛样式
+              "mainSeriesProperties.candleStyle.upColor": "#4fc230",
+              "mainSeriesProperties.candleStyle.downColor": "#ff5a4e",
+              "mainSeriesProperties.candleStyle.drawWick": true,
+              "mainSeriesProperties.candleStyle.drawBorder": true,
+              "mainSeriesProperties.candleStyle.borderColor": "#378658",
+              "mainSeriesProperties.candleStyle.borderUpColor": "#4fc230",
+              "mainSeriesProperties.candleStyle.borderDownColor": "#ff5a4e",
+              "mainSeriesProperties.candleStyle.wickUpColor": '#4fc230',
+              "mainSeriesProperties.candleStyle.wickDownColor": '#ff5a4e',
+              "mainSeriesProperties.candleStyle.barColorsOnPrevClose": false,
+
+              // 边际（百分比）。 用于自动缩放。
+              "paneProperties.topMargin": 13,
+              "paneProperties.bottomMargin": 5,
+            },
+            studies_overrides: {
+              "volume.volume.color.0": "#ff5a4e",
+              "volume.volume.color.1": "#4fc230",
+              "volume.volume.transparency": 20,
+              "volume.volume ma.color": "#FF0000",
+              "volume.volume ma.transparency": 100,
+              "volume.volume ma.linewidth": 5,
+              // "volume.show ma": true,
+              "volume.options.showStudyArguments": false,
+              "bollinger bands.median.color": "#33FF88",
+              "bollinger bands.upper.linewidth": 7
+            },
+          })
+          window.widget.onChartReady(function(){
+            let iframe = document.getElementById(window.widget.id);
+            let btns = iframe.contentWindow.document.querySelector('.left').querySelector('.header-group-intervals').querySelector('.quick').querySelectorAll('.apply-common-tooltip');
+            fireButton = function(value){
+                btns[mapJson[value]].click();
+            }
+            window.widget.chart().createStudy('MACD', false, true, [12, 26],null, {}
+            );
+            window.widget.chart().createStudy('Moving Average', true, true, [7], null,
+              {
+                'Plot.color': '#e8f663',
+                'Plot.linewidth': 3
+              })
+            window.widget.chart().createStudy('Moving Average', true, true, [30], null ,
+              {
+                'Plot.color': '#56e1db',
+                'Plot.linewidth': 3
+              })
+            window.widget.chart().crossHairMoved(()=>{
+              return false;
+            })
+          })
+        }
+      }catch(ex){
+        //alert(ex);
+      }
+    }
+    window.render = render;
+
+    document.addEventListener('message',function(e){
+      let data = {};
+      e.data && (data = JSON.parse(e.data))
+      switch (data.type){
+        case 'symbol':
+          //启动渲染
+          window.symbol = data.data;
+          render();
+          break;
+        case 'history':
+          window.historyData = data.data;
+          render();
+          break;
+        case 'historyChange':
+          //这里就收到了 需要做一些事情
+          //1 修改历史数据
+          window.historyData = data.data;
+          //2 点击被隐藏的图标
+          fireButton(data.barType);
+          //3 修改一些状态
+          //a修改chartTypes
+          window.widget && window.widget.chart().setChartType(data.lineType);
+          //interval 不需要我去修改 而是去点击相应的按钮就可以了
+          break;
+        case 'reloadHistory':
+          //修改symbol
+          window.historyData = data.data;
+          window.symbol = data.symbol;
+          window.widget && window.widget.setSymbol(window.symbol, data.barType);
+          break;
+        case 'networkStateChange':
+          //log(data.data);
+          window.historyData = [];
+            window.isClear = true;
+            window.widget && window.widget.chart().resetData();
+          break;
+      }
+    }, false);
+
+
+
+    function BitexDataFeed() {};
+    BitexDataFeed.prototype.onReady = function (callback) {
+      setTimeout(function () {
+        callback({
+          exchanges: [],
+          symbols_types: [],
+          supports_marks: false,
+          supports_time: true,
+          supported_resolutions: ['1', '5', '15', '30', '60', '240', 'D']
+          // supported_resolutions: ["1S","1","60","D", "2D", "3D"]
+        });
+      }, 0);
+    };
+
+    BitexDataFeed.prototype.searchSymbols = function (userInput, exchange, symbolType, onResultReadyCallback) {
+      // console.error('[searchSymbols]');
+      setTimeout(function () {
+        onResultReadyCallback([]);
+      }, 0);
+    };
+    BitexDataFeed.prototype.resolveSymbol = function (symbolName, onSymbolResolvedCallback, onResolveErrorCallback) {
+      // console.error('[resolveSymbol]',symbolName);
+      var symbol = {
+        ticker: symbolName,
+        name: symbolName.replace('_', '/'),
+        description: symbolName.replace('_', '/'),
+        type: 'bitcoin',
+        session: '24x7',
+        timezone: 'Asia/Shanghai',
+        minmov: 1,
+        pricescale: 100000000,
+        MinimalPossiblePriceChange: 9,
+        has_intraday: true, // has minutes data?
+        has_seconds: true,
+        intraday_multipliers: ['1', '5', '15', '30', '60', '240', 'D'],
+        seconds_multipliers: ['1', '5', '15', '30', '60', '240', 'D'],
+        has_daily: true,
+        has_weekly_and_monthly: false,
+        has_empty_bars: true,
+        has_no_volume: false,
+        volume_precision: 8,
+        supported_resolutions: ['1', '5', '15', '30', '60', '240', 'D'],
+        data_status: 'streaming',
+      };
+      setTimeout(function () {
+        onSymbolResolvedCallback(symbol);
+      }, 0);
+    };
+
+    BitexDataFeed.prototype._send = function (url, params) {
+      var request = url;
+      if (params) {
+        for (var i = 0; i < Object.keys(params).length; ++i) {
+          var key = Object.keys(params)[i];
+          var value = encodeURIComponent(params[key]);
+          request += (i === 0 ? '?' : '&') + key + '=' + value;
+        }
+      }
+      return $.ajax({
+        type: 'GET',
+        url: request,
+        contentType: 'text/plain'
+      });
+    };
+
+    // 获取服务器时间
+    BitexDataFeed.prototype.getServerTime = function(callback) {
+      return;
+      // this._send('/apis/v1/common/timestamp')
+      //   .done(function(response) {
+      //     // console.log('getServerTime====',response)
+      //     var time = +response.timestamp;
+      //     if (!isNaN(time)) {
+      //       // callback(time);
+      //     }
+      //   })
+      //   .fail(function() {
+      //   });
+    };
+
+    let bars = [];
+    BitexDataFeed.prototype.getBars = function (symbolInfo, resolution, fromTime, toTime, onHistoryCallback, onErrorCallback, firstDataRequest) {
+      // console.error('[getBars: symbolInfo = ' + symbolInfo.ticker + ', resolution = ' + resolution
+      // 	+ ', from = ' + fromTime + ' (' + new Date(fromTime).toUTCString() + '), to = ' + toTime + ' ('
+      // 	+ new Date(toTime).toUTCString() + '), firstDataRequest = ' + firstDataRequest);
+      // setTimeout(function () {
+      //   onHistoryCallback(window.historyData);
+      // }, 0);
+      //return
+    window.xxx=  onHistoryCallback;
+     if(!firstDataRequest)  {
+       onHistoryCallback([],{noData: true, nextTime: undefined})
+       return
+     }
+        window.isload || (document.getElementById('bg').style.display = 'none');
+        window.isload = true;
+        onHistoryCallback(window.historyData,{noData: true, nextTime: undefined});
+      return;
+      // var i;
+      // var n = 1;
+      // var start = parseInt(new Date().getTime() / 1000) - 2 * 24 * 3600;
+      // var end = firstDataRequest ? parseInt(new Date().getTime() / 1000) : toTime;
+      // var p = 1500.01;
+      // for (i = start / 60; i<toTime / 60; i++) {
+      //   var c = p + Math.random() * 100 - 50;
+      //   if (c < 1000) {
+      //     c = 1000;
+      //   }
+      //   bars.push({
+      //     time: i * 60 * 1000,
+      //     open: p,
+      //     high: p + Math.random() * 10,
+      //     low: c - Math.random() * 10,
+      //     close: c,
+      //     volume: Math.random() * 10
+      //   });
+      //   p = c;
+      // }
+      // setTimeout(function () {
+      //   onHistoryCallback(bars);
+      // }, 0);
+      // return;
+      //
+      // if (!firstDataRequest) {
+      //   setTimeout(function () {
+      //     onHistoryCallback([], { noData: true });
+      //   }, 0);
+      // }
+      // var resolution_mapping = {
+      //   '1S': 'K_1_SEC',
+      //   '1': 'K_1_MIN',
+      //   '5': 'K_1_MIN',
+      //   '15': 'K_1_MIN',
+      //   '30': 'K_1_MIN',
+      //   '60': 'K_1_HOUR',
+      //   '240': 'K_1_HOUR',
+      //   'D': 'K_1_DAY'
+      // };
+      // this._send('/apis/v1/market/bars/' + symbolInfo.ticker + '/' + resolution_mapping[resolution], {
+      // 	start: fromTime * 1000,
+      // 	end: toTime * 1000
+      // })
+      // .done(function (response) {
+      // 	if (response) {
+      // 		var data = response.bars;
+      // 		var i, b;
+      // 		bars.length > 0 && (bars = []);
+      // 		for(var i = 0; i < data.length; ++i) {
+      // 			// t, OHLC, V
+      // 			b = data[i];
+      // 			bars.push({
+      // 				time: b[0],
+      // 				open: b[1],
+      // 				high: b[2],
+      // 				low: b[3],
+      // 				close: b[4],
+      // 				volume: b[5]
+      // 			});
+      // 		}
+      // 		onHistoryCallback(bars);
+      // 	}
+      // })
+    };
+
+
+    BitexDataFeed.prototype.subscribeBars = function (symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback) {
+      // console.error('[subscribeBars: symbolInfo = ' + symbolInfo.ticker + ', resolution = ' + resolution
+      // 	+ ', subscriberUID = ' + subscriberUID);
+
+      // window.historyData = window.historyData.concat([
+      //   {"time":1526860800000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":994},
+      //   {"time":1526947200000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":200},
+      //   {"time":1527033600000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":246},
+      //   {"time":1527465600000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":348},
+      //   {"time":1527552000000,"open":0.00013999,"high":1.00014,"low":0.00013999,"close":0.00013999,"volume":4402},
+      //   {"time":1528156800000,"open":0.02000001,"high":1.00014,"low":0.00013999,"close":0.00013999,"volume":4604}])
+      // console.log(window.historyData)
+      // alert(1)
+      // setTimeout(()=>{
+      //   console.log(window.historyData)
+      //   window.widget.chart().resetData();
+      // },1000)
+      // return;
+      setTimeout(function(){
+
+        let arr =[
+          // {"time":1526860800000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":994},
+          // {"time":1526947200000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":200},
+          // {"time":1527033600000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":246},
+          // {"time":1527465600000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":348},
+
+          {"time":1527552000000,"open":0.00013999,"high":1.00014,"low":0.00013999,"close":0.00013999,"volume":4402},
+          {"time":1528156800000,"open":0.02000001,"high":1.00014,"low":0.00013999,"close":0.00013999,"volume":4604},
+
+          {"time":1526860800000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":994},
+          {"time":1526947200000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":200},
+          {"time":1527033600000,"open":0.00014,"high":0.00014,"low":0.00014,"close":0.00014,"volume":246},
+          {"time":1527465600000,"open":0.00013999,"high":0.00013999,"low":0.00013999,"close":0.00013999,"volume":348}
+          ]
+        let i = 0;
+        let a = setInterval(function(){
+          if(arr[i]){
+            onRealtimeCallback(arr[i]);
+          }else{
+            clearInterval(a)
+          }
+          i++;
+        })
+
+      },2000)
+      return;
+      document.addEventListener('message', function(e){
+        let b = {};
+        e.data && (b = JSON.parse(e.data));
+
+        if(window.isClear){
+          onResetCacheNeededCallback();
+          window.isClear = false;
+        }
+        if(window.historyData && window.symbol && b.type == 'socket'){
+          onRealtimeCallback(b);
+          // onRealtimeCallback({
+          //   time: b[0],
+          //     open: b[1],
+          //     high: b[2],
+          //     low: b[3],
+          //     close: b[4],
+          //     volume: b[5]
+          // })
+        }
+      }, false)
+      //return;
+
+      // setInterval(function () {
+      //   var t = parseInt(new Date().getTime() / 1000 / 60) * 60 * 1000;
+      //   console.log('onRealtimeCallback: t = ' + t + ', ' + new Date(t).toUTCString());
+      //   onRealtimeCallback({
+      //     time: t,
+      //     open: 100,
+      //     high: 200 + Math.random() * 10,
+      //     low: 300 - Math.random() * 10,
+      //     close: 100,
+      //     volume: 10
+      //   })
+      // }, 1000);
+      // return;
+      //
+      // // 获取k线数据
+      // self.$socket.on({
+      //     key: 'topic_bar',
+      //     bind: self,
+      //     callBack: (message) => {
+      //     	let b = message.data;
+      //     	if (!b) return;
+      //     	onRealtimeCallback({
+      // 			time: b[0],
+      // 			open: b[1],
+      // 			high: b[2],
+      // 			low: b[3],
+      // 			close: b[4],
+      // 			volume: b[5]
+      // 		});
+      //     }
+      //  	})
+
+    };
+
+    BitexDataFeed.prototype.unsubscribeBars = function (subscriberUID) {
+      // console.error('[unsubscribeBars: subscriberUID = ' + subscriberUID);
+    };
+
+  })()
+
+</script>
+
+</body>
+
+</html>
+
+

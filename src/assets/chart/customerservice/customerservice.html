@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>欧联2.0-客服中心</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      //引入第三方客服
+      window.zESettings = {
+        webWidget: {
+          offset: { horizontal: '0px', vertical: '0px' }
+        }
+      };
+
+      let script = document.createElement('script');
+      script.id = 'ze-snippet';
+      script.src = "https://static.zdassets.com/ekr/snippet.js?key=5c4c59bb-6d4c-4a02-8683-4b820de3ab15";
+      document.head.appendChild(script);
+
+      setTimeout(()=>{
+        zE('webWidget', 'setLocale', 'zh-cn');
+        zE('webWidget', 'open');
+        zE('webWidget:on', 'close', function() {
+          zE('webWidget', 'open');
+        });
+        // $("#Embed").trigger("select");
+      },1500)
+    </script>
+    <!--<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=5c4c59bb-6d4c-4a02-8683-4b820de3ab15"/>-->
+</head>
+
+<body style="width:375px;height:600px;">
+</body>
+
+</html>

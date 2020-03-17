@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "react-native"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    //   , "transform-decorators",
+    //    [
+    "transform-inline-environment-variables"
+    //      ,{
+    //        "include": [
+    //          "NODE_ENV"
+    //        ]
+    //      }
+    //    ]
+  ]
+}
