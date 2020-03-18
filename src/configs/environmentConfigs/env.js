@@ -3,9 +3,10 @@ const env = {}
 // app.eunex.group
 env.networkConfigs = {}
 // env.networkConfigs.baseUrl = process.env.URL || 'https://android.eunex.group/'//生产环境
-env.networkConfigs.baseUrl = process.env.URL || 'https://app.eunex.group/'//生产环境2
-// env.networkConfigs.baseUrl = process.env.URL || 'https://www.highdefi.com/'//测试环境
-// env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.11.89:8000/'//王琪
+// env.networkConfigs.baseUrl = process.env.URL || 'http://18.163.24.239:8000/'//如果写IP地址，需要有专用的登录接口，否则不能set-cookie
+// env.networkConfigs.baseUrl = process.env.URL || 'http://app-zpy.highdefi.com:8000/'//测试环境
+env.networkConfigs.baseUrl = process.env.URL || 'https://2020.highdefi.com/'//测试环境
+// env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.11.89:8000/'//王琪s
 // env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.11.20:8000/'//cuifan
 // env.networkConfigs.currencyLogoUrl = process.env.LOGOURL || 'http://logo.eunex.group/'//币种logo地址
 env.networkConfigs.c2cUrl = process.env.C2CURL || 'https://otc.eunex.group/'
@@ -38,8 +39,8 @@ env.socketConfigs = {}
 
 // socket请求地址
 
-env.socketConfigs.url = process.env.SOCKET || 'wss://appwss.eunex.group/v1/market/notification' //node生产地址2
-// env.socketConfigs.url = process.env.SOCKET || 'wss://wss.highdefi.com/v1/market/notification' //test地址
+// env.socketConfigs.url = process.env.SOCKET || 'wss://appwss.eunex.group/v1/market/notification' //node生产地址2
+env.socketConfigs.url = process.env.SOCKET || 'wss://wss.highdefi.com/v1/market/notification' //test地址
 
 env.socketConfigs.options = {}
 env.socketConfigs.options.path = '/v1/market/notification'  //请求路径

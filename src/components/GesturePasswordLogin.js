@@ -85,7 +85,7 @@ export default class GesturePasswordLogin extends RNComponent {
                         // gestureAreaTop={48}
                         isWarning={this.state.isWarning}
                         color={'#2d2d2d'}
-                        activeColor={'#C43E4E'}
+                        activeColor={'#3576F5'}
                         warningColor={StyleConfigs.txtRed}
                         warningDuration={500}
                         allowCross={true}
@@ -220,7 +220,7 @@ export default class GesturePasswordLogin extends RNComponent {
                     key={'thumb-' + i}
                     style={[
                         { width: 8, height: 8, margin: 2, borderRadius: 8, backgroundColor: '#2D2D2D'},
-                        active ? { backgroundColor: '#C43E4E' } : { borderWidth: 0, borderColor: '#A9A9A9' }
+                        active ? { backgroundColor: '#3576F5' } : { borderWidth: 0, borderColor: '#A9A9A9' }
                     ]}
                 />
             ))
@@ -248,7 +248,7 @@ export default class GesturePasswordLogin extends RNComponent {
                 {/* Forget password */}
                 <BaseButton
                     style={{ margin: 10, height: 40, justifyContent: 'center', }}
-                    textStyle={{ fontSize: 14, color: '#C43E4E' }}
+                    textStyle={{ fontSize: 14, color: '#3576F5' }}
                     onPress={this.forgotPassword}
                     text={'忘记密码？'}
                 />

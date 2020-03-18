@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         color: StyleConfigs.txt131F30
     },
     tblue:{
-        color:'#C43E4E'
+        color:'#3576F5'
     },
     f14:{
         fontSize: getWidth(28)

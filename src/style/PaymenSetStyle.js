@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
 	},
 	addText: {
         fontSize: 14,
-		color:'#C43E4E',
+		color:'#3576F5',
 		fontWeight: '600',
 		fontFamily:'System'
 	},
@@ -311,13 +311,13 @@ const styles = StyleSheet.create({
 	radioSelect:{
 		width:getWidth(14),
 		height:getWidth(14),
-		backgroundColor:'#C43E4E'
+		backgroundColor:'#3576F5'
 	},
 
 
 	text14Red:{
 		fontSize:14,
-		color:'#C43E4E'
+		color:'#3576F5'
 	},
 	text14Gray:{
 		fontSize:14,

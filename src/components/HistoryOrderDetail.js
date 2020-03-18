@@ -272,7 +272,7 @@ export default class HistoryOrderDetail extends RNComponent {
 								style={[styles.color9FA7B8, styles.size15]}>{this.$params.order.symbol.split('_')[0] + ' / ' + this.$params.order.symbol.split('_')[1]}</Text>
 						</View>
 						<View style={{marginTop: 10}}>
-							<Text  allowFontScaling={false} style={{color: '#C43E4E', fontSize: 12}}>{this.getStatus(this.$params.order)}</Text>
+							<Text  allowFontScaling={false} style={{color: '#3576F5', fontSize: 12}}>{this.getStatus(this.$params.order)}</Text>
 						</View>
 					</View>
 
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
 		height: getHeight(40),
 		borderRadius: 4,
 		borderWidth: 1,
-		borderColor: '#C43E4E',
+		borderColor: '#3576F5',
 		borderStyle: 'solid',
 		alignItems: 'center',
 		justifyContent: 'center'

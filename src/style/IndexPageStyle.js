@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         height:80/2,
         borderRadius:4,
         backgroundColor:StyleConfigs.btnBlue,
-        borderColor:StyleConfigs.borderC43E4E,
+        borderColor:StyleConfigs.border3576F5,
         borderWidth:StyleSheet.hairlineWidth,
         justifyContent:'center',
         alignItems:'center'

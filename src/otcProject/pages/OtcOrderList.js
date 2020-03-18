@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#C43E4E',
+		color: '#3576F5',
 	},
 	text14Black:{
 		padding: 0,
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#C43E4E',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},

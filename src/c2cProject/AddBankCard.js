@@ -561,7 +561,7 @@ const styles = new StyleSheet.create({
 		width: '100%',
 		height: getHeight(88),
 		borderRadius: StyleConfigs.borderRadius1o5,
-		backgroundColor: '#C43E4E',
+		backgroundColor: '#3576F5',
 		// fontWeight:'600',
 		// fontFamily:'System',
 	},

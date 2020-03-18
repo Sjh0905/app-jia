@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     // },
     // 文字选中样式
     selectedStyle: {
-        color: StyleConfigs.txtC43E4E
+        color: StyleConfigs.txt3576F5
     },
     // 文字样式
     textStyle: {

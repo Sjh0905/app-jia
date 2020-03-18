@@ -812,7 +812,7 @@ export default class TraddingHall extends RNComponent {
                             {/*activeOpacity={StyleConfigs.activeOpacity}*/}
                             {/*onPress={this.showBar}*/}
                             {/*style={styles.showBarBtn}>*/}
-                            {/*<Text allowFontScaling={false} style={[styles.size15, {color: '#C43E4E'}]}>{this.barArray[this.currentBar]['name']}</Text>*/}
+                            {/*<Text allowFontScaling={false} style={[styles.size15, {color: '#3576F5'}]}>{this.barArray[this.currentBar]['name']}</Text>*/}
                             {/*<View style={styles.triangle}></View>*/}
                         {/*</TouchableOpacity>*/}
                         {
@@ -1112,9 +1112,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        // borderBottomColor: '#C43E4E',
+        // borderBottomColor: '#3576F5',
         height: '100%',
-	    // borderBottomColor: '#C43E4E',
+	    // borderBottomColor: '#3576F5',
 
 	    // borderBottomWidth: 2
     },
@@ -1122,7 +1122,7 @@ const styles = StyleSheet.create({
         marginLeft: getWidth(10),
         marginTop: getHeight(10),
         height: 0,
-        borderTopColor: '#C43E4E',
+        borderTopColor: '#3576F5',
         borderWidth: getHeight(10),
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
@@ -1154,7 +1154,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     barBtnActive: {
-        color: '#C43E4E'
+        color: '#3576F5'
     },
     listTitleWrap: {
         flexDirection:'row',

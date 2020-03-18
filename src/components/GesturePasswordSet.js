@@ -89,7 +89,7 @@ export default class GestureUnlock extends RNComponent {
                         gestureAreaTop={areaTop}
                         isWarning={this.state.isWarning}
                         color={'#2d2d2d'}
-                        activeColor={'#C43E4E'}
+                        activeColor={'#3576F5'}
                         warningColor={StyleConfigs.txtRed}
                         warningDuration={500}
                         allowCross={true}
@@ -134,7 +134,7 @@ export default class GestureUnlock extends RNComponent {
                     key={'thumb-' + i}
                     style={[
                         { width: 8, height: 8, margin: 2, borderRadius: 8, backgroundColor: StyleConfigs.btnE7EBEE},
-                        active ? { backgroundColor: '#C43E4E' } :
+                        active ? { backgroundColor: '#3576F5' } :
                             { borderWidth: 0, borderColor: '#A9A9A9' }
                     ]}
                 />
@@ -180,7 +180,7 @@ export default class GestureUnlock extends RNComponent {
         if (password == this._cachedPassword) {
             let isWarning = false
             let message = '恭喜，密码设置成功'
-            let messageColor = '#C43E4E'
+            let messageColor = '#3576F5'
             this.setState({
                 isWarning,
                 password,

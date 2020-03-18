@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         // backgroundColor:'red'
     },
     forgetPsw: {
-        color: StyleConfigs.txtC43E4E,
+        color: StyleConfigs.txt3576F5,
         fontSize: StyleConfigs.fontSize14,
     },
 
@@ -127,10 +127,10 @@ const styles = StyleSheet.create({
     selectedTab:{
         // height:getHeight(66),
         // borderBottomWidth: getHeight(4),
-        // borderBottomColor: '#C43E4E',
+        // borderBottomColor: '#3576F5',
     },
     selectedTabText:{
-        color: '#C43E4E',
+        color: '#3576F5',
         opacity:1
     },
     tabUnderlineStyle:{
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         borderRadius:getHeight(4)
     },
     selectedTBLine:{
-        backgroundColor:'#C43E4E'
+        backgroundColor:'#3576F5'
     }
 
 })

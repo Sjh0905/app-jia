@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     testAnimated: {
-        backgroundColor: '#C43E4E',
+        backgroundColor: '#3576F5',
         width: getWidth(50),
         height: getHeight(50)
     }

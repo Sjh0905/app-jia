@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
         height: getDealHeight(40),
         borderRadius: StyleConfigs.borderRadius1o5,
         borderWidth: 1,
-        borderColor: '#C43E4E',
+        borderColor: '#3576F5',
         borderStyle: 'solid',
         alignItems: 'center',
         justifyContent: 'center'
@@ -450,12 +450,12 @@ const styles = StyleSheet.create({
     },
     selectedTitleBar:{
         backgroundColor:StyleConfigs.bgColor,
-        borderColor:StyleConfigs.borderC43E4E,
+        borderColor:StyleConfigs.border3576F5,
         borderWidth:StyleSheet.hairlineWidth,
     },
     selectedTBText:{
         opacity:1,
-        color:StyleConfigs.txtC43E4E
+        color:StyleConfigs.txt3576F5
     },
     titleBarBoxAndroid:{
         width:'100%',

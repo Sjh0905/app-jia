@@ -240,11 +240,11 @@ const styles = StyleSheet.create({
     },
     selectedTitleBar:{
         // backgroundColor:'red',
-        // borderColor:'#C43E4E'
+        // borderColor:'#3576F5'
     },
     selectedTBText:{
         opacity:1,
-        color:'#C43E4E'
+        color:'#3576F5'
     },
     titleBarUnderLine:{
         position:'absolute',
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
         width:getWidth(152),
     },
     selectedTBLine:{
-        backgroundColor:'#C43E4E'
+        backgroundColor:'#3576F5'
     },
     titleBarVLine:{
         height:getHeight(40),

@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
 	avator: {
 		width: getWidth(40),
 		height: getWidth(40),
-		backgroundColor: '#C43E4E',
+		backgroundColor: '#3576F5',
 		marginRight: getWidth(10),
 		justifyContent: 'center',
 		alignItems:'center',
@@ -714,7 +714,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#c43e4e',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},
@@ -755,7 +755,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 18,
-		color: '#c43e4e',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},
@@ -783,7 +783,7 @@ const styles = StyleSheet.create({
 	btnBuyWrap:{
 		width:getWidth(180),
 		height:getHeight(56),
-		backgroundColor:'#c43e4e',
+		backgroundColor:'#3576F5',
 		borderRadius:getWidth(4),
 		alignItems:'center',
 		justifyContent:'center'
@@ -837,7 +837,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#c43e4e',
+		color: '#3576F5',
 	},
 
 	text15BlackBold:{
@@ -854,7 +854,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 18,
-		color: '#c43e4e',
+		color: '#3576F5',
 	},
 
 	drawerBtnWrap:{
@@ -867,7 +867,7 @@ const styles = StyleSheet.create({
 	drawerBtn:{
 		width:'100%',
 		height:getHeight(88),
-		backgroundColor:'#C43E4E',
+		backgroundColor:'#3576F5',
 		borderRadius:getWidth(4),
 		alignItems:'center',
 		justifyContent:'center'
@@ -946,7 +946,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 20,
-		color: '#c43e4e',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},
@@ -980,7 +980,7 @@ const styles = StyleSheet.create({
 	},
 	borderBottomRed:{
 		borderStyle:'solid',
-		borderBottomColor:'#c43e4e',
+		borderBottomColor:'#3576F5',
 		borderBottomWidth:getHeight(4),
 		height:getHeight(76),
 		justifyContent:'center'
@@ -1058,7 +1058,7 @@ const styles = StyleSheet.create({
 		height:getHeight(80),
 		justifyContent:'center',
 		alignItems:'center',
-		backgroundColor:'#c43e4e',
+		backgroundColor:'#3576F5',
 		borderRadius:3
 	},
 

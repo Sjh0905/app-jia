@@ -176,11 +176,11 @@ export default class Market extends RNComponent {
                 	}
                     initialPage={0}
                     /*tabBarBackgroundColor='#FFFFFF'
-                    tabBarActiveTextColor='#C43E4E'
+                    tabBarActiveTextColor='#3576F5'
                     tabBarInactiveTextColor='#fff'
                     tabBarTextStyle={{fontSize: 14,marginBottom:getHeight(-26)}}
                     tabBarUnderlineStyle={{
-                        backgroundColor: '#C43E4E',
+                        backgroundColor: '#3576F5',
                         height:getHeight(4),
                         // width:getHeight(DeviceWidth*3/14),
                         // marginLeft:getHeight(DeviceWidth*4/23)
@@ -357,8 +357,8 @@ const styles = StyleSheet.create({
         opacity:0.8
     },
     selectedTitleBar:{
-        backgroundColor:'#C43E4E',
-        borderColor:'#C43E4E'
+        backgroundColor:'#3576F5',
+        borderColor:'#3576F5'
     },
     selectedTBText:{
         opacity:1

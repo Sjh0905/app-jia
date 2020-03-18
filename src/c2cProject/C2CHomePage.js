@@ -204,11 +204,11 @@ export default class C2CHomePage extends RNComponent {
                     initialPage={0}
                     // page={1}
                     tabBarBackgroundColor='#FFFFFF'
-                    tabBarActiveTextColor='#C43E4E'
+                    tabBarActiveTextColor='#3576F5'
                     tabBarInactiveTextColor='#fff'
                     tabBarTextStyle={{fontSize: 14,marginBottom:getHeight(-22)}}
                     tabBarUnderlineStyle={{
-                        backgroundColor: '#C43E4E',
+                        backgroundColor: '#3576F5',
                         height:getDealHeight(4),
                         // width:getDealHeight(DeviceWidth*2/5),
                         // marginLeft:getDealHeight(DeviceWidth*2/13)

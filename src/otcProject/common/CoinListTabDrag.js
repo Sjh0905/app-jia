@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#c43e4e',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	}

@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
 		height: getHeight(40),
 		borderRadius: 4,
 		borderWidth: 1,
-		borderColor: '#C43E4E',
+		borderColor: '#3576F5',
 		borderStyle: 'solid',
 		alignItems: 'center',
 		justifyContent: 'center'

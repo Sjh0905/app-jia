@@ -110,11 +110,11 @@ export default class App extends RNComponent {
                     }
                     initialPage={0}
                     /*tabBarBackgroundColor='#FFFFFF'
-                    tabBarActiveTextColor='#C43E4E'
+                    tabBarActiveTextColor='#3576F5'
                     tabBarInactiveTextColor='#fff'
                     tabBarTextStyle={{fontSize: 14,marginBottom:getHeight(-26)}}
                     tabBarUnderlineStyle={{
-                        backgroundColor: '#C43E4E',
+                        backgroundColor: '#3576F5',
                         height:getHeight(4),
                         marginLeft: DeviceWidth / 4 - (5 * 14 / 2),
                         width: (5 * 14),

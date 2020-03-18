@@ -990,11 +990,11 @@ export default class DealPage extends RNComponent {
                     {/*initialPage={0}*/}
                     {/*// page={1}*/}
                     {/*tabBarBackgroundColor='#FFFFFF'*/}
-                    {/*tabBarActiveTextColor='#C43E4E'*/}
+                    {/*tabBarActiveTextColor='#3576F5'*/}
                     {/*tabBarInactiveTextColor='#9FA7B8'*/}
                     {/*tabBarTextStyle={{fontSize: 14,marginBottom:getHeight(-22),color:'#9FA7B8'}}*/}
                     {/*tabBarUnderlineStyle={{*/}
-                        {/*backgroundColor: '#C43E4E',*/}
+                        {/*backgroundColor: '#3576F5',*/}
                         {/*height:getDealHeight(4),*/}
                         {/*// width:getDealHeight(DeviceWidth*2/5),*/}
                         {/*// marginLeft:getDealHeight(DeviceWidth*2/13)*/}
@@ -2423,7 +2423,7 @@ class DealItem extends RNComponent {
                             marginBottom:getDealHeight(30),
                             // marginVertical:getDealHeight(15),
                         }}>
-                            <Text allowFontScaling={false} style={{'color': '#C43E4E',fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
+                            <Text allowFontScaling={false} style={{'color': '#3576F5',fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
                         </View>
 
                     }
@@ -2536,7 +2536,7 @@ class DealItem extends RNComponent {
                             marginVertical:(getDeviceTop() != 0) && getDealHeight(19) || getDealHeight(14)
                             // paddingTop:(getDeviceTop() != 0) && getDealHeight(17) || getDealHeight(14)
                         }}>
-                            <Text allowFontScaling={false} style={[{'color': '#C43E4E'},styles.size10]}>{this.transCont}</Text>
+                            <Text allowFontScaling={false} style={[{'color': '#3576F5'},styles.size10]}>{this.transCont}</Text>
                         </View>
 
                     }

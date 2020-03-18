@@ -378,11 +378,11 @@ export default class Deal extends RNComponent {
                     initialPage={0}
                     // page={1}
                     tabBarBackgroundColor='#FFFFFF'
-                    tabBarActiveTextColor='#C43E4E'
+                    tabBarActiveTextColor='#3576F5'
                     tabBarInactiveTextColor='#9FA7B8'
                     tabBarTextStyle={{fontSize: 14,marginBottom:getHeight(-22),color:'#9FA7B8'}}
                     tabBarUnderlineStyle={{
-                        backgroundColor: '#C43E4E',
+                        backgroundColor: '#3576F5',
                         height:getDealHeight(4),
                         // width:getDealHeight(DeviceWidth*2/5),
                         // marginLeft:getDealHeight(DeviceWidth*2/13)
@@ -1621,7 +1621,7 @@ class DealItem extends RNComponent {
                             flexDirection: 'row',
                             marginVertical:getDealHeight(15)
                         }}>
-                            <Text allowFontScaling={false} style={{'color': '#C43E4E'}}>{this.priceCont}</Text>
+                            <Text allowFontScaling={false} style={{'color': '#3576F5'}}>{this.priceCont}</Text>
                         </View>
 
                     }
@@ -1718,7 +1718,7 @@ class DealItem extends RNComponent {
                             // marginVertical:(getDeviceTop() != 0) && getDealHeight(18) || getDealHeight(14)
                             paddingTop:(getDeviceTop() != 0) && getDealHeight(17) || getDealHeight(14)
                         }}>
-                            <Text allowFontScaling={false} style={{'color': '#C43E4E'}}>{this.transCont}</Text>
+                            <Text allowFontScaling={false} style={{'color': '#3576F5'}}>{this.transCont}</Text>
                         </View>
 
                     }
@@ -2136,7 +2136,7 @@ class CurrentOrder extends RNComponent {
                 <View style={styles.rowV4}>
                     <TouchableOpacity style={styles.chedan} onPress={() => this.cancelOrder(rowData, index)}
                                       /*disabled={rowData.chedan === '撤单中'}*/>
-                        <Text allowFontScaling={false} style={{color: '#C43E4E', fontSize: 12}}>{rowData.chedan}</Text>
+                        <Text allowFontScaling={false} style={{color: '#3576F5', fontSize: 12}}>{rowData.chedan}</Text>
 
 
                     </TouchableOpacity>
@@ -2596,7 +2596,7 @@ const styles = StyleSheet.create({
         height: getDealHeight(40),
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: '#C43E4E',
+        borderColor: '#3576F5',
         borderStyle: 'solid',
         alignItems: 'center',
         justifyContent: 'center'

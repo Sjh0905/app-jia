@@ -468,7 +468,7 @@ const styles = StyleSheet.create({
         borderRadius: getWidth(30)
     },
     alertTitle:{
-        color:'#C43E4E',
+        color:'#3576F5',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: getHeight(44),

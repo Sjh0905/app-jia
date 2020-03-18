@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
 	border5: {
 		borderWidth: 1,
 		borderStyle: 'solid',
-		borderColor: '#c43e4e',
+		borderColor: '#3576F5',
 	},
 
 	text24White: {
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 12,
-		color: '#c43e4e',
+		color: '#3576F5',
 	},
 
 

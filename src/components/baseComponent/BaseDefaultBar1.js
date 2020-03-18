@@ -22,7 +22,7 @@ export default class TabBar extends Component {
         tabLabels:['tab1','tab2','tab3'],
         tabImageShow:[0,1,1],
         tabBarBackgroundColor:'#141C25',
-        tabActiveColor:'#C43E4E',
+        tabActiveColor:'#3576F5',
         tabInActiveColor:'#fff',
         tabUnderlineWidth:[getWidth(75),getWidth(55),getWidth(55)]
     }
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     tabTextStyle:{
         // width:'50%',
         // height:50
-        // borderBottomColor:"#C43E4E"
+        // borderBottomColor:"#3576F5"
     },
     tabImageStyle:{
         width:getWidth(44),
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         // bottom:0,
         width:getWidth(90),
         height:getHeight(3),
-        // backgroundColor:'#C43E4E',
+        // backgroundColor:'#3576F5',
         borderRadius:getHeight(3)
     },
     titleBarULineBox:{
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     titleBarULine:{
         width:getWidth(100),
         height:getHeight(4),
-        backgroundColor:'#C43E4E',
+        backgroundColor:'#3576F5',
     }
 })
 

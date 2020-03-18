@@ -176,7 +176,7 @@ export default class CurrentOrder extends RNComponent {
                 {/*<View style={styles.rowV4}>*/}
                     {/*<TouchableOpacity style={styles.chedan} onPress={() => this.cancelOrder(rowData, index)}*/}
                                       {/*/*disabled={rowData.chedan === '撤销中'}>*/}
-                        {/*<Text allowFontScaling={false} style={{color: '#C43E4E', fontSize: 12}}>{rowData.chedan}</Text>*/}
+                        {/*<Text allowFontScaling={false} style={{color: '#3576F5', fontSize: 12}}>{rowData.chedan}</Text>*/}
 
 
                     {/*</TouchableOpacity>*/}

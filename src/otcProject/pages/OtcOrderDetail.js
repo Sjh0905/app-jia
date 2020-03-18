@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 11,
-		color: '#c43e4e',
+		color: '#3576F5',
 	},
 
 	text14BlackBold:{
@@ -580,7 +580,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#C43E4E',
+		color: '#3576F5',
 	},
 	text14Black:{
 		padding: 0,
@@ -604,7 +604,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#C43E4E',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},
@@ -614,7 +614,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 26,
-		color: '#C43E4E',
+		color: '#3576F5',
 		fontWeight:'600',
 		fontFamily:'System'
 	},
@@ -668,9 +668,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getHeight(20),
 		borderStyle: 'solid',
-		borderColor:'#c43e4e50',
+		borderColor:'#3576F550',
 		borderWidth:StyleSheet.hairlineWidth,
-		backgroundColor:'#c43e4e06',
+		backgroundColor:'#3576F506',
 		borderRadius:3
 	},
 
@@ -697,7 +697,7 @@ const styles = StyleSheet.create({
 		borderRadius:2,
 		justifyContent:'center',
 		alignItems:'center',
-		backgroundColor: '#c43e4e',
+		backgroundColor: '#3576F5',
 	},
 	btnConfirm2:{
 		width:'100%',
@@ -705,7 +705,7 @@ const styles = StyleSheet.create({
 		borderRadius:2,
 		justifyContent:'center',
 		alignItems:'center',
-		backgroundColor: '#c43e4e',
+		backgroundColor: '#3576F5',
 	},
 
 
@@ -736,7 +736,7 @@ const styles = StyleSheet.create({
 	verifyLine4:{
 		justifyContent:'center',
 		alignItems:'center',
-		backgroundColor:'#c43e4e',
+		backgroundColor:'#3576F5',
 		height:getHeight(88),
 		marginBottom:getHeight(30),
 		borderRadius:3

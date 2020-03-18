@@ -104,7 +104,7 @@ export default class Advertisement extends RNComponent {
                     fontSize: getWidth(30),
                     // color: '#fff',
                     lineHeight:getHeight(34),
-                    color: '#C43E4E',
+                    color: '#3576F5',
                 }}>{this.FEE_DIVIDEND} USDT</Text>
             </View>
             <View style={[styles.item,styles.arrowBox]}>
