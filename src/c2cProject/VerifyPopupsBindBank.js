@@ -448,7 +448,7 @@ const styles = StyleSheet.create({
     inputField:{
         lineHeight:getWidth(64),
         // width:getWidth(128),
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize13
     },
     pickedInputField:{

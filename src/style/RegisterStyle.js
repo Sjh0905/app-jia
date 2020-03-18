@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         // backgroundColor:'red'
     },
     haveAccountText: {
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         fontSize: 16,
 
     },

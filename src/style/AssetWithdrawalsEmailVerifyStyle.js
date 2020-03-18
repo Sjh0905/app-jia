@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     verifyTitle: {
         fontSize: 13,
         fontWeight: 'bold',
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         marginTop: getHeight(54),
     },
     inputBox: {

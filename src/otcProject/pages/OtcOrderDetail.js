@@ -565,14 +565,14 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 	text16Gray:{
 		padding: 0,
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 
 	text14Red:{
@@ -623,7 +623,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 13,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 	text13Black:{
 		padding: 0,

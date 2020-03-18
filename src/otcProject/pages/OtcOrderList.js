@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 	text14Red:{
 		padding: 0,

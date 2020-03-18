@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 	text16Gray:{
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 
@@ -587,7 +587,7 @@ const styles = StyleSheet.create({
     color100: {color: StyleConfigs.txt172A4D},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorWhite: {color: StyleConfigs.txtWhite},
     color40: {color: StyleConfigs.txt9FA7B8},
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
@@ -666,7 +666,7 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start'
     },
     deleteText:{
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         fontSize: 15,
     },
     tipsBox:{
@@ -676,7 +676,7 @@ const styles = StyleSheet.create({
         borderBottomWidth:StyleSheet.hairlineWidth
     },
     tipsText:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12,
     },
 });

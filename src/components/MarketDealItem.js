@@ -219,7 +219,7 @@ export default class MarketDealItem extends RNComponent {
 					<View style={[styles.rowBase, styles.row1]}>
 						<View style={{flexDirection: 'row'}}><Text  allowFontScaling={false}
 																					   style={[styles.size16, styles.color172A4D]}>{item.name || ''}</Text>
-							<Text  allowFontScaling={false} style={[styles.size12, styles.color8994A5,{marginTop:2}]}> / {item.denominator || 'ETH'}</Text></View>
+							<Text  allowFontScaling={false} style={[styles.size12, styles.color6B7DA2,{marginTop:2}]}> / {item.denominator || 'ETH'}</Text></View>
 					</View>
 					<View style={[styles.rowBase,styles.row2]}>
 						<View>
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
 	size16: {fontSize: StyleConfigs.fontSize16},
 	color100: {color: StyleConfigs.txt172A4D},
 	color172A4D: {color: StyleConfigs.txt172A4D},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
 	colorWhite: {color: StyleConfigs.txtWhite},
 	color40: {color: StyleConfigs.txt9FA7B8},
 	colorC5CFD5: {color: StyleConfigs.txtC5CFD5},

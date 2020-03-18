@@ -222,7 +222,7 @@ const styles = new StyleSheet.create({
         paddingLeft: getWidth(24),
         paddingRight: getWidth(24),
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         width:'100%',
         marginBottom:12,
         // textAlign:'center',
@@ -239,7 +239,7 @@ const styles = new StyleSheet.create({
         alignItems:'center'
     },
     idCardItemTips:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12,
         textAlign:'center',
         marginTop:getWidth(12),

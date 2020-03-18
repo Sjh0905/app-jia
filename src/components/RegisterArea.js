@@ -110,7 +110,7 @@ export default class RegisterArea extends RNComponent {
 				<View style={[styles.IOSStatusBar, !isIOS && styles.androidStatusBar]}></View>
 				<View style={styles.headerWrap}>
 					<View style={styles.iptWrap}><Image style={styles.img} source={search_png}/>
-					<TextInput style={styles.input} placeholder={'请选择国家和地区'} maxLength={16} placeholderTextColor={'#8994A5'} underlineColorAndroid={'transparent'} onChangeText={this.textChange} value={this.traditionInputText} /></View>
+					<TextInput style={styles.input} placeholder={'请选择国家和地区'} maxLength={16} placeholderTextColor={'#6B7DA2'} underlineColorAndroid={'transparent'} onChangeText={this.textChange} value={this.traditionInputText} /></View>
 					<TouchableOpacity onPress={this.goBack}><Text style={styles.text14Gray}>取消</Text></TouchableOpacity>
 				</View>
 				{this.hadInit ?<FlatList data={this.textInput?this.result:this.listData} renderItem={this.listItem} keyExtractor={(item, index) => index.toString()}/> :<ActivityIndicator animating={!this.hadInit} style={styles.loading}/>}
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 	text16Gray:{
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 

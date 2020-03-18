@@ -738,14 +738,14 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 	text12Gray:{
 		padding: 0,
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 12,
-		color: '#8994A5',
+		color: '#6B7DA2',
 	},
 	margin5H:{
 		marginHorizontal:getWidth(6)
@@ -823,7 +823,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994A5'
+		color: '#6B7DA2'
 	},
 	text14Black:{
 		padding: 0,
@@ -886,7 +886,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 13,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 
@@ -916,7 +916,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994a5',
+		color: '#6B7DA2',
 		fontWeight:'600',
 		fontFamily:'System'
 	},

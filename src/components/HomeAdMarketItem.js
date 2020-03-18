@@ -160,7 +160,7 @@ export default class MarketItem extends RNComponent {
                     {item.value[1] === 0 && '0.00%' || Math.abs((item.value[4]-item.value[1])/item.value[1]*100).toFixed(2) + '%'}
                 </Text>
 
-                <Text  allowFontScaling={false} style={[styles.size12,{color:StyleConfigs.txt8994A5,marginTop:2.5}]}>≈{this.$globalFunc.accFixed2(item.value[4]*(this.marketUseRate[item.denominator] || '0' )*this.exchangRateDollar || 0,2)}CNY</Text>
+                <Text  allowFontScaling={false} style={[styles.size12,{color:StyleConfigs.txt6B7DA2,marginTop:2.5}]}>≈{this.$globalFunc.accFixed2(item.value[4]*(this.marketUseRate[item.denominator] || '0' )*this.exchangRateDollar || 0,2)}CNY</Text>
             </TouchableOpacity>
 		)
 	}

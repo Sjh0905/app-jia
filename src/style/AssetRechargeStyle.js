@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     rechargeAddressTitle: {
         marginTop:getHeight(40),
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         fontSize: StyleConfigs.fontSize14,
         // fontWeight: 'bold',
     },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         height:45,
         lineHeight:45,
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         // backgroundColor:StyleConfigs.txt131F30,
         // marginBottom:-20
     },
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     selectCurrency:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12
     },
     chainNameText:{
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         borderColor:StyleConfigs.btnBlue,
     },
     usdtTypeText:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12
     },
     usdtTypeTextSel:{

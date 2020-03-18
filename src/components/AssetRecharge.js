@@ -329,7 +329,7 @@ export default class App extends RNComponent {
                                 this.copyAddress(this.address)
                             }}
                         >
-                            <Text allowFontScaling={false} style={[baseStyles.text8994A5, baseStyles.size12]}>复制地址</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, baseStyles.size12]}>复制地址</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -433,7 +433,7 @@ export default class App extends RNComponent {
                                     this.copyAddress(this.memoAddress)
                                 }}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.text8994A5, baseStyles.size12]}>复制memo</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, baseStyles.size12]}>复制memo</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -462,7 +462,7 @@ export default class App extends RNComponent {
                                     this.copyAddress(this.publicKey)
                                 }}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.text8994A5, baseStyles.size12]}>复制publicKey</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, baseStyles.size12]}>复制publicKey</Text>
                             </TouchableOpacity>
 
                         </View>

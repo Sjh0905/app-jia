@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     leftTitleBox: {},
     leftTitle: {
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         fontSize: StyleConfigs.fontSize14,
     },
     goBackIcon: {

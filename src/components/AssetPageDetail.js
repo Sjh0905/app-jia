@@ -807,7 +807,7 @@ export default class AssetPageDetail extends RNComponent {
                             <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>折合(CNY)</Text>
                             <Text
                                 allowFontScaling={false}
-                                style={[baseStyles.textWhite, styles.itemSectionNum,{color:StyleConfigs.txt8994A5,textAlign:'right'}]}>{this.$globalFunc.accFixed2(appraisementToRMB, 2)}</Text>
+                                style={[baseStyles.textWhite, styles.itemSectionNum,{color:StyleConfigs.txt6B7DA2,textAlign:'right'}]}>{this.$globalFunc.accFixed2(appraisementToRMB, 2)}</Text>
                         </View>
                     </View>
 

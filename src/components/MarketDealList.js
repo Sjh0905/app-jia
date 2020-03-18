@@ -166,7 +166,7 @@ export default class MarketDealList extends RNComponent {
                                value={this.searchText}
                                onChangeText={v=>this.searchText=v}
                                underlineColorAndroid='transparent' //设置下划线背景色透明 达到去掉下划线的效果
-                               placeholderTextColor={StyleConfigs.txt8994A5}
+                               placeholderTextColor={StyleConfigs.txt6B7DA2}
 							   placeholder='搜索币种'/>
                     <TouchableOpacity
                         activeOpacity={StyleConfigs.activeOpacity}

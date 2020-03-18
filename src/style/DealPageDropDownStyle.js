@@ -38,7 +38,7 @@ const ModalDropdownStyle = StyleSheet.create({
             paddingHorizontal: 3,
             paddingVertical: 5,
             fontSize: StyleConfigs.fontSize13,
-            color: StyleConfigs.txt8994A5,
+            color: StyleConfigs.txt6B7DA2,
             // lineHeight:10,
             borderWidth:0
         },
@@ -51,7 +51,7 @@ const ModalDropdownStyle = StyleSheet.create({
             paddingHorizontal: 3,
             paddingVertical: 1,
             fontSize: StyleConfigs.fontSize13,
-            color: StyleConfigs.txt8994A5,
+            color: StyleConfigs.txt6B7DA2,
             textAlignVertical: 'center'
         },
 

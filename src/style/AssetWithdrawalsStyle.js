@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     selectCurrency:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12
     },
     chainNameText:{
@@ -439,7 +439,7 @@ const styles = StyleSheet.create({
         borderColor:StyleConfigs.btnBlue,
     },
     usdtTypeText:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12
     },
     usdtTypeTextSel:{

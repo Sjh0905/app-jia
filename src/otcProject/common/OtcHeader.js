@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 15,
-		color: '#8994a5',
+		color: '#6B7DA2',
 		fontWeight: '600',
 		fontFamily: 'System'
 	},
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 12,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 	text12Red: {
 		padding: 0,

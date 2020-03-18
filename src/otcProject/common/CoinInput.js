@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 11,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 	switchWrap:{
 		flexDirection:'row',

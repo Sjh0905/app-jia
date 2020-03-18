@@ -906,7 +906,7 @@ export default class App extends RNComponent {
 							onPress={this.clickAgreement}
 						>
 							<Text allowFontScaling={false}
-							      style={[baseStyles.text8994A5, styles.agreeAgreement]}>我已阅读并同意</Text>
+							      style={[baseStyles.text6B7DA2, styles.agreeAgreement]}>我已阅读并同意</Text>
 						</TouchableOpacity>
 						<TouchableOpacity
 							activeOpacity={StyleConfigs.activeOpacity}

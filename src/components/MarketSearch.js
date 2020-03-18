@@ -186,7 +186,7 @@ export default class MarketSearch extends RNComponent {
 				<View style={[styles.IOSStatusBar, !isIOS && styles.androidStatusBar]}></View>
 				<View style={styles.headerWrap}>
 					<View style={styles.iptWrap}><Image style={styles.img} source={searchpng}/>
-					<TextInput style={styles.input} placeholder={'搜索币种'} maxLength={16} placeholderTextColor={'#8994A5'} underlineColorAndroid={'transparent'} onChangeText={this.textChange} value={this.traditionInputText} /></View>
+					<TextInput style={styles.input} placeholder={'搜索币种'} maxLength={16} placeholderTextColor={'#6B7DA2'} underlineColorAndroid={'transparent'} onChangeText={this.textChange} value={this.traditionInputText} /></View>
 					<TouchableOpacity onPress={this.goBack}><Text style={styles.text14Gray}>取消</Text></TouchableOpacity>
 				</View>
                 {/*不明白为什么换成FlatList就不能触发renderItem重新渲染了*/}
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 14,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 	text16Gray:{
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 16,
-		color: '#8994a5',
+		color: '#6B7DA2',
 	},
 
 
@@ -374,7 +374,7 @@ const styles = StyleSheet.create({
     color100: {color: StyleConfigs.txt172A4D},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorWhite: {color: StyleConfigs.txtWhite},
     color40: {color: StyleConfigs.txt9FA7B8},
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},

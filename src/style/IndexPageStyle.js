@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         // lineHeight:20,
         // textAlign:'center',
         fontSize: StyleConfigs.fontSize11,
-        color: StyleConfigs.txt8994A5
+        color: StyleConfigs.txt6B7DA2
     },
     updateInstructionsTitle:{
         // marginTop:getHeight(120),

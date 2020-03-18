@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
         // fontWeight:'600'
     },
     activiteisBoxLeftDesc:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12,
         lineHeight:17
     },

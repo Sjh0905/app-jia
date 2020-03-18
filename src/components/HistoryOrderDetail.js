@@ -747,7 +747,7 @@ const styles = StyleSheet.create({
 
 	listItemTxt1:{
 		fontSize:StyleConfigs.fontSize14,
-		color:StyleConfigs.txt8994A5
+		color:StyleConfigs.txt6B7DA2
 	},
 	listItemTxt2:{
 		fontSize:StyleConfigs.fontSize14,

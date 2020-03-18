@@ -305,7 +305,7 @@ export default class HistoryOrder extends RNComponent {
 		return (
 			<View style={{flexDirection:'row',alignItems:'center',paddingHorizontal:getWidth(30),paddingVertical:getHeight(18),
 				backgroundColor:'#fff'}}>
-				{/*<Text style={{fontSize:StyleConfigs.fontSize16,color:StyleConfigs.txt8994A5, marginRight:getWidth(40),fontWeight:'600',fontFamily:'System'}}>全部委托</Text>*/}
+				{/*<Text style={{fontSize:StyleConfigs.fontSize16,color:StyleConfigs.txt6B7DA2, marginRight:getWidth(40),fontWeight:'600',fontFamily:'System'}}>全部委托</Text>*/}
 				<Text style={{fontSize:StyleConfigs.fontSize28,color:StyleConfigs.txt172A4D,fontWeight:'600',fontFamily:'System'}}>历史记录</Text>
 			</View>
 		)
@@ -754,7 +754,7 @@ const styles = StyleSheet.create({
 	},
 	itemLine1Txt3:{
 		fontSize:StyleConfigs.fontSize13,
-		color:StyleConfigs.txt8994A5
+		color:StyleConfigs.txt6B7DA2
 	},
 
 	tableWrap:{

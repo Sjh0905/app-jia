@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     textWhite: {
         color: StyleConfigs.txtWhite,
     },
-    text8994A5: {
-        color: StyleConfigs.txt8994A5,
+    text6B7DA2: {
+        color: StyleConfigs.txt6B7DA2,
     },
     btnBlue: {
         backgroundColor: StyleConfigs.btnBlue,

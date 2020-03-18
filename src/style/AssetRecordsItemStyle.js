@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         marginTop:getWidth(28),
     },
     itemSectionTitle:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12,
         lineHeight:getHeight(32),
     },

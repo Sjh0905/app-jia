@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     color40: {color: 'rgba(255,255,255,0.4)'},
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
     colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorGreen: {color: '#34A753'},
     colorRed: {color: '#EF5656'},
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     iptUnit:{
         height: getDealHeight(80),
         lineHeight: getDealHeight(80),
-        color: StyleConfigs.txt8994A5,
+        color: StyleConfigs.txt6B7DA2,
         paddingRight:getWidth(30),
     },
     img: {
@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
 
     },
     titleBarText:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize: StyleConfigs.fontSize13,
     },
     selectedTitleBar:{
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
     },
     buyTypeBtnText:{
         fontSize:StyleConfigs.fontSize14,
-        color:StyleConfigs.txt8994A5
+        color:StyleConfigs.txt6B7DA2
     },
     btnTextSelected:{
         color:StyleConfigs.txtWhite
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
     alltext:{
         marginLeft:getWidth(4),
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txt8994A5
+        color:StyleConfigs.txt6B7DA2
     },
     itemLineTop:{
         marginBottom:getHeight(37)
@@ -632,7 +632,7 @@ const styles = StyleSheet.create({
 
     },
     itemSectionTitle:{
-        color:StyleConfigs.txt8994A5,
+        color:StyleConfigs.txt6B7DA2,
         fontSize:StyleConfigs.fontSize12,
         lineHeight:getHeight(32)
     },

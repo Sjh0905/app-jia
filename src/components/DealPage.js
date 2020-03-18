@@ -2365,7 +2365,7 @@ class DealItem extends RNComponent {
                             ref={'ipt'}
                             style={styles.ipt}
                             placeholder={this.placeholderPrice}
-                            placeholderTextColor={StyleConfigs.txt8994A5}
+                            placeholderTextColor={StyleConfigs.txt6B7DA2}
                             underlineColorAndroid={'transparent'}
                             keyboardType="numeric"
                             returnKeyType={'done'}
@@ -2411,7 +2411,7 @@ class DealItem extends RNComponent {
                         }}>
                             {/*<Text allowFontScaling={false} style={{color:StyleConfigs.txtC5CFD5,fontSize:StyleConfigs.fontSize12}}>估值</Text>*/}
                             <Text allowFontScaling={false}
-                                  style={[{flex: 1,textAlign:'left',color:StyleConfigs.txt8994A5,fontSize:StyleConfigs.fontSize12}]}
+                                  style={[{flex: 1,textAlign:'left',color:StyleConfigs.txt6B7DA2,fontSize:StyleConfigs.fontSize12}]}
                                   ellipsizeMode='tail'
                                   numberOfLines={1}
                             >≈{this.price && this.marketUseRate && this.$globalFunc.accFixed2(this.price * this.marketUseRate * this.exchangRateDollar || 0, 2) || '0.00'}CNY</Text>
@@ -2442,7 +2442,7 @@ class DealItem extends RNComponent {
 
                             style={styles.ipt}
                             placeholder={this.placeholderAmount}
-                            placeholderTextColor={StyleConfigs.txt8994A5}
+                            placeholderTextColor={StyleConfigs.txt6B7DA2}
                             underlineColorAndroid={'transparent'}
                             keyboardType={"numeric"}
                             returnKeyType={'done'}
@@ -2475,8 +2475,8 @@ class DealItem extends RNComponent {
                             marginTop:getDealHeight(4),
                             marginBottom:getDealHeight(28)
                         }}>
-                            <Text allowFontScaling={false} style={[styles.color8994A5, styles.size12]}>可用</Text>
-                            <Text allowFontScaling={false} style={[styles.color8994A5, styles.size12]}>
+                            <Text allowFontScaling={false} style={[styles.color6B7DA2, styles.size12]}>可用</Text>
+                            <Text allowFontScaling={false} style={[styles.color6B7DA2, styles.size12]}>
                                 {(this.$store.state.authMessage.userId && this.getCurrAsset.available || '0') + ' ' + (this.props.type && this.symbol.split('_')[0] || this.symbol.split('_')[1])}
                             </Text>
                         </View>
@@ -2547,7 +2547,7 @@ class DealItem extends RNComponent {
                         !this.transAmount &&
                         <View style={styles.totalMoney}>
                             <Text allowFontScaling={false}
-                                  style={[{color:StyleConfigs.txt8994A5}, styles.size14]}>交易额</Text>
+                                  style={[{color:StyleConfigs.txt6B7DA2}, styles.size14]}>交易额</Text>
                             <Text allowFontScaling={false}
                                   style={[{color:StyleConfigs.txt172A4D,marginLeft:4}, styles.size14]}>--</Text>
                         </View>
@@ -2555,7 +2555,7 @@ class DealItem extends RNComponent {
                         ||
                         <View style={styles.totalMoney}>
                             <Text allowFontScaling={false}
-                                  style={[{color:StyleConfigs.txt8994A5}, styles.size14]}>交易额</Text>
+                                  style={[{color:StyleConfigs.txt6B7DA2}, styles.size14]}>交易额</Text>
                             <Text allowFontScaling={false}
                                   style={[{color:StyleConfigs.txt172A4D,marginLeft:4}, styles.size14]}>{this.transAmount + this.$store.state.symbol.split('_')[1]}</Text>
                         </View>
@@ -2689,8 +2689,8 @@ class DealItem extends RNComponent {
                                             top: 1.5,
                                             left: 0
                                         }}/>
-                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt8994A5}]}>{this.$globalFunc.accFixed(o.amount,this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
-                                        <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt8994A5}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
+                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount,this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
+                                        <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
                                         <Text allowFontScaling={false}
                                               style={[styles.size12, styles.colorRed]}>{this.$globalFunc.accFixed(o.price, this.tradeLObj.quoteScale || 8)}</Text>
 
@@ -2709,7 +2709,7 @@ class DealItem extends RNComponent {
                             {this.priceNow.price && this.$globalFunc.accFixed(this.priceNow.price || 0, this.tradeLObj.quoteScale || 8) || ''}
                         </Text>
                         <Text allowFontScaling={false}
-                              style={[styles.color8994A5,styles.size10]}>
+                              style={[styles.color6B7DA2,styles.size10]}>
                             ≈{this.priceNow.price && this.marketUseRate && (this.priceNow.price * this.marketUseRate * this.exchangRateDollar) && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate * this.exchangRateDollar) || 0, 2) || '' }CNY
                         </Text>
 
@@ -2746,8 +2746,8 @@ class DealItem extends RNComponent {
 
                                         <Text allowFontScaling={false}
                                               style={[styles.size12, styles.colorGreen]}>{this.$globalFunc.accFixed(o.price,this.tradeLObj.quoteScale || 8)}</Text>
-                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt8994A5}]}>{this.$globalFunc.accFixed(o.amount, this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
-                                        <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt8994A5}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
+                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount, this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
+                                        <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
 
 
                                     </TouchableOpacity>
@@ -2760,7 +2760,7 @@ class DealItem extends RNComponent {
                     {/*买卖盘操作按钮*/}
                     <TouchableOpacity onPress={this.props.showDepthModalFunc} activeOpacity={StyleConfigs.activeOpacity} style={styles.depthOperBox}>
                         <TouchableOpacity onPress={this.props.showDepthModalFunc} activeOpacity={StyleConfigs.activeOpacity} style={styles.depthOperLeft}>
-                            <Text style={[styles.txt8994A5,styles.size12]}>{this.depthShowTypeObj[this.props.depthShowType]}</Text>
+                            <Text style={[styles.txt6B7DA2,styles.size12]}>{this.depthShowTypeObj[this.props.depthShowType]}</Text>
                             {/*<Image source={triangleDown} style={{width:7, height:5,marginLeft:getWidth(20)}}/>*/}
                         </TouchableOpacity>
                         <TouchableOpacity onPress={this.props.showDepthModalFunc} activeOpacity={StyleConfigs.activeOpacity}>

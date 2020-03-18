@@ -442,7 +442,7 @@ export default class App extends RNComponent {
                         style={styles.loginLogo}
                         resizeMode={'contain'}
                     />
-                    <Text allowFontScaling={false} style={[baseStyles.text8994A5,baseStyles.size16]}>登录欧联</Text>
+                    <Text allowFontScaling={false} style={[baseStyles.text6B7DA2,baseStyles.size16]}>登录欧联</Text>
                     {/*登录logo end*/}
                     {/*<View style={styles.tabBox}>*/}
                         {/*<TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectMobile} style={[styles.loginTab,this.selectedTab === 'mobile' && styles.selectedTab || {}]}>*/}
@@ -611,7 +611,7 @@ export default class App extends RNComponent {
                                       activeOpacity={StyleConfigs.activeOpacity}
                                       onPress={this.goToRegister}
                     >
-                        <Text allowFontScaling={false} style={[baseStyles.text8994A5, styles.haveNoAccount]}>还没有欧联账号？</Text>
+                        <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, styles.haveNoAccount]}>还没有欧联账号？</Text>
                         <TouchableOpacity
                             activeOpacity={StyleConfigs.activeOpacity}
                             onPress={this.goToRegister}

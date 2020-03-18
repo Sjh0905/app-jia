@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
 	},
 	realText: {
         fontSize: 16,
-        color: '#8994A5',
+        color: '#6B7DA2',
 	},
 	addBtn:{
 		width: getWidth(26),
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
 	},
 	lineName:{
         fontSize:14,
-		color:'#8994A5',
+		color:'#6B7DA2',
 		fontFamily: 'PingFangSC-Regular',
 	},
 	itemLine3:{
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
 	},
 	text14Gray:{
 		fontSize:14,
-		color:'#8994A5'
+		color:'#6B7DA2'
 	}
 
 

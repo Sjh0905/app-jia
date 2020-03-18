@@ -275,13 +275,13 @@ export default class MarketItem extends RNComponent {
 																					   style={[styles.size16, styles.color172A4D]}>{item.name || ''}</Text><Text  allowFontScaling={false}
 																																							   style={[styles.size10, styles.colorB5BCC6,{marginTop:6}]}> / {item.denominator || 'ETH'}</Text></View>
 						<View style={{marginTop: 2.5}}><Text  allowFontScaling={false}
-															  style={[styles.size12, styles.color8994A5]}>24H {Math.floor(item.value[5])}</Text></View>
+															  style={[styles.size12, styles.color6B7DA2]}>24H {Math.floor(item.value[5])}</Text></View>
 
 					</View>
 					<View style={[styles.rowBase,styles.row2]}>
 						<View>
 							<Text  allowFontScaling={false} style={[styles.fontWeight,styles.size16,((item.value[4]-item.value[1])/item.value[1]*100>-0.005 || item.value[1]===0 )&& styles.color172A4D|| styles.color172A4D,{marginBottom:2.5}]}>{this.$globalFunc.accFixed(item.value[4],quoteScale)}</Text>
-							<Text  allowFontScaling={false} style={[styles.size12,styles.color8994A5,{marginTop:2.5}]}>¥{this.$globalFunc.accFixed2(item.value[4]*(this.marketUseRate[item.denominator] || '0' )*this.exchangRateDollar || 0,2)}</Text>
+							<Text  allowFontScaling={false} style={[styles.size12,styles.color6B7DA2,{marginTop:2.5}]}>¥{this.$globalFunc.accFixed2(item.value[4]*(this.marketUseRate[item.denominator] || '0' )*this.exchangRateDollar || 0,2)}</Text>
 						</View>
 					</View>
 					<View style={[styles.rowBase,styles.row3]}>
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
 	color100: {color: StyleConfigs.txt172A4D},
 	color172A4D: {color: StyleConfigs.txt172A4D},
     colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorWhite: {color: StyleConfigs.txtWhite},
 	color40: {color: StyleConfigs.txt9FA7B8},
 	colorC5CFD5: {color: StyleConfigs.txtC5CFD5},

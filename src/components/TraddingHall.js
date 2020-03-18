@@ -729,15 +729,15 @@ export default class TraddingHall extends RNComponent {
 								      marginTop:-getHeight(12)}]}>{this.$globalFunc.accFixed(this.priceNow.price||0, this.tradeLObj.quoteScale || 8)}</Text>
 							<View style={{flexDirection:'row', marginTop:getHeight(14)}}>
 								<Text allowFontScaling={false}
-								      style={[{color:StyleConfigs.txt8994A5,fontSize: StyleConfigs.fontSize14,marginTop: 0,marginLeft: 3}]}>≈{this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate[this.symbol.split('_')[1]] * this.exchangRateDollar) || 0,2)}CNY</Text>
+								      style={[{color:StyleConfigs.txt6B7DA2,fontSize: StyleConfigs.fontSize14,marginTop: 0,marginLeft: 3}]}>≈{this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate[this.symbol.split('_')[1]] * this.exchangRateDollar) || 0,2)}CNY</Text>
 								<Text allowFontScaling={false} style={[this.priceNow.price - this.marketPriceMerge[1]>=0 && styles.colorGreen || styles.colorRed, {fontSize: StyleConfigs.fontSize14,marginTop: 0,marginLeft:getWidth(12)}]}>{((((this.priceNow.price - this.marketPriceMerge[1]) / this.marketPriceMerge[1])*100)||0).toFixed(2)}%</Text>
 							</View>
 
 						</View>
 						<View>
-							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color8994A5,styles.size12,{marginRight:getWidth(48)}]}>高</Text><Text allowFontScaling={false} style={[styles.color172A4D, styles.size12]}>{this.$globalFunc.accFixed(Math.max(this.marketPriceMerge[2],this.priceNow.price),this.tradeLObj.quoteScale || 8)}</Text></View>
-							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color8994A5,styles.size12,{marginRight:getWidth(48),marginVertical:getHeight(20)}]}>低</Text><Text allowFontScaling={false}	style={[styles.color172A4D, styles.size12]}>{this.$globalFunc.accFixed(Math.min(this.marketPriceMerge[3],this.priceNow.price||99999),this.tradeLObj.quoteScale || 8)}</Text></View>
-							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color8994A5,styles.size12,{marginRight:getWidth(30)}]}>24H</Text><Text allowFontScaling={false} style={[styles.color172A4D, styles.size12]}>{ ( this.marketPriceMerge[5]||0.00000000)}</Text></View>
+							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color6B7DA2,styles.size12,{marginRight:getWidth(48)}]}>高</Text><Text allowFontScaling={false} style={[styles.color172A4D, styles.size12]}>{this.$globalFunc.accFixed(Math.max(this.marketPriceMerge[2],this.priceNow.price),this.tradeLObj.quoteScale || 8)}</Text></View>
+							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color6B7DA2,styles.size12,{marginRight:getWidth(48),marginVertical:getHeight(20)}]}>低</Text><Text allowFontScaling={false}	style={[styles.color172A4D, styles.size12]}>{this.$globalFunc.accFixed(Math.min(this.marketPriceMerge[3],this.priceNow.price||99999),this.tradeLObj.quoteScale || 8)}</Text></View>
+							<View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}><Text style={[styles.color6B7DA2,styles.size12,{marginRight:getWidth(30)}]}>24H</Text><Text allowFontScaling={false} style={[styles.color172A4D, styles.size12]}>{ ( this.marketPriceMerge[5]||0.00000000)}</Text></View>
 
 						</View>
 	                </View>
@@ -821,7 +821,7 @@ export default class TraddingHall extends RNComponent {
                                 activeOpacity={StyleConfigs.activeOpacity}
                                 onPress={this.setBar.bind(this, i)}
                                 style={[styles.showBarBtn,{borderStyle: 'solid',borderBottomWidth: 2,borderBottomColor:this.currentBar === i &&  '#172A4d' || 'transparent'}]}>
-                                <Text allowFontScaling={false} style={[styles.size12, {color: this.currentBar === i && '#172A4d'|| '#8994A5',fontWeight:this.currentBar === i && 'bold'|| 'normal'}]}>{v.name}</Text>
+                                <Text allowFontScaling={false} style={[styles.size12, {color: this.currentBar === i && '#172A4d'|| '#6B7DA2',fontWeight:this.currentBar === i && 'bold'|| 'normal'}]}>{v.name}</Text>
                             </TouchableOpacity>)
                         }
                         {/*<Text allowFontScaling={false} style={[styles.size14, styles.color172A4D]}></Text>*/}
@@ -914,7 +914,7 @@ export default class TraddingHall extends RNComponent {
                                                     alignItems:'center'
                                                 }} key={'market' + i}>
                                                     <View style={styles.listLineWrap}>
-                                                        <Text allowFontScaling={false} style={[{color:'#8994a5',marginRight:getWidth(30)}, styles.size13]}>{i+1}</Text>
+                                                        <Text allowFontScaling={false} style={[{color:'#6B7DA2',marginRight:getWidth(30)}, styles.size13]}>{i+1}</Text>
                                                         <Text allowFontScaling={false} style={[styles.color172A4D, styles.size13]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
 
                                                     </View>
@@ -967,7 +967,7 @@ export default class TraddingHall extends RNComponent {
                                                     <View style={styles.listLineWrap}>
                                                         {/*<Text allowFontScaling={false} style={[styles.color172A4D, styles.size13]}>{o.amount}</Text>*/}
                                                         <Text allowFontScaling={false} style={[styles.color172A4D, styles.size13]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
-                                                        <Text allowFontScaling={false} style={[{color:'#8994a5',marginLeft:getWidth(30)}, styles.size13]}>{i+1}</Text>
+                                                        <Text allowFontScaling={false} style={[{color:'#6B7DA2',marginLeft:getWidth(30)}, styles.size13]}>{i+1}</Text>
                                                     </View>
 
 
@@ -1090,7 +1090,7 @@ const styles = StyleSheet.create({
     size15: {fontSize: StyleConfigs.fontSize15},
     color100: {color: '#fff'},
     color172A4D: {color: StyleConfigs.txt172A4D},
-    color8994A5: {color: StyleConfigs.txt8994A5},
+    color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
     color9FA7B8: {color: StyleConfigs.txt9FA7B8},
     colorGreen: {color: StyleConfigs.txtGreen},

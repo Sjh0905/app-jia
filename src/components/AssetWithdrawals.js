@@ -972,7 +972,7 @@ export default class App extends RNComponent {
 			                    // onFocus = {this.onFocus_dizhi}
 		                    />
 		                    <View style={{flexDirection: 'row'}}>
-			                    <Text style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt8994A5}}>{this.currency}</Text>
+			                    <Text style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt6B7DA2}}>{this.currency}</Text>
 			                    <View style={{height:getHeight(30), width:1,backgroundColor:'#B5BCC6',marginLeft:getWidth(30),marginRight:getWidth(24)}}/>
 			                    <Text onPress={this.withdrawalsAll} style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt1F3F59,
 				                    fontWeight:'600',fontFamily:'System'}} hitSlop={{top:15,left:15,bottom:15, right:15}}>全部</Text>
@@ -1039,7 +1039,7 @@ export default class App extends RNComponent {
 	                    <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>手续费</Text></View>
 	                    <View style={styles.inputBoxMiddle2}>
 		                   <Text style={{fontSize:StyleConfigs.fontSize16,color:StyleConfigs.txt172A4D, fontWeight:'600',fontFamily:'System'}}>{fee}</Text>
-		                   <Text style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt8994A5}}>{this.currency}</Text>
+		                   <Text style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt6B7DA2}}>{this.currency}</Text>
 	                    </View>
 
 
@@ -1053,7 +1053,7 @@ export default class App extends RNComponent {
 
 
 	                    <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:getHeight(104)}}>
-		                    <Text style={{color:StyleConfigs.txt8994A5,fontSize:StyleConfigs.fontSize16}}>到账数量</Text>
+		                    <Text style={{color:StyleConfigs.txt6B7DA2,fontSize:StyleConfigs.fontSize16}}>到账数量</Text>
 		                    <Text style={{color:StyleConfigs.txt172A4D,fontSize:StyleConfigs.fontSize16}}>{realAmount} {this.currency}</Text>
 	                    </View>
 
