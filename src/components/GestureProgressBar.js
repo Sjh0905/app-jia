@@ -51,7 +51,7 @@ export default class GestureProgressBar extends RNComponent {
 
     static defaultProps = {
         // navStyle:{}
-        color:'#02987D',
+        color:'#34A753',
         onProgress:()=>{}
     }
 
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
         marginBottom:5,
         width:30,
         height:20,
-        // backgroundColor:'#02987D',
+        // backgroundColor:'#34A753',
         alignItems:'center',
         justifyContent:'center',
         borderRadius: 2,
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 5,
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
-        borderTopColor: '#02987D'
+        borderTopColor: '#34A753'
     },
     touchViewStyle:{
         paddingTop:getDealHeight(15),
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
         top:getDealHeight(15) + circleHeight/2 -inActiveBarHeight/2,
         // top:(touchViewHeight-inActiveBarHeight)/2,
         left:circleWidth/2,
-        backgroundColor:'#02987D'
+        backgroundColor:'#34A753'
     },
     circleItem:{
         width:circleWidth,
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
         // top:(touchViewHeight - circleWidth)/2
     },
     circleSelected:{
-        backgroundColor:'#02987D',
+        backgroundColor:'#34A753',
     },
     margin2:{
         margin:2
