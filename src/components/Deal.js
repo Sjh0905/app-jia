@@ -1674,7 +1674,7 @@ class DealItem extends RNComponent {
                         // zIndex:999安卓加上了这个属性小提示框不会显示的
                     },PlatformOS == 'ios' && {zIndex:999} || {}]}>
                         <GestureProgressBar
-                            color={this.props.type == 0 ? '#02987D' : '#C73F4F'}
+                            color={this.props.type == 0 ? '#02987D' : '#EF5656'}
                             onProgress={(progress)=>{
 
                                 // console.log('this is progress',progress/100);
@@ -1815,7 +1815,7 @@ class DealItem extends RNComponent {
                                         width: o.perAmount && ((o.perAmount / (this.sellOrders.totalAmount)) * 100 + '%') || '0%',
                                         // width:'100%',
                                         height: getDealHeight(38),
-                                        backgroundColor: '#C73F4F',
+                                        backgroundColor: '#EF5656',
                                         opacity: 0.12,
                                         position: 'absolute',
                                         top: 1.5,
@@ -2401,9 +2401,9 @@ const styles = StyleSheet.create({
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorGreen: {color: '#02987D'},
-    colorRed: {color: '#C73F4F'},
+    colorRed: {color: '#EF5656'},
     bgGreen: {backgroundColor: '#02987D'},
-    bgRed: {backgroundColor: '#C73F4F'},
+    bgRed: {backgroundColor: '#EF5656'},
     row3Btn: {
         width: getWidth(156),
         height: getDealHeight(58),
@@ -2529,7 +2529,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     dealBtnRed: {
-        backgroundColor: '#C73F4F',
+        backgroundColor: '#EF5656',
         borderRadius: 4,
         height: getDealHeight(72),
         alignItems: 'center',
@@ -2573,7 +2573,7 @@ const styles = StyleSheet.create({
     ballRed: {
         width: getWidth(32),
         height: getDealHeight(32),
-        backgroundColor: '#C73F4F',
+        backgroundColor: '#EF5656',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: getDealHeight(16),

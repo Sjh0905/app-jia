@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     ballRed: {
         width: getWidth(32),
         height: getDealHeight(32),
-        backgroundColor: '#C73F4F',
+        backgroundColor: '#EF5656',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: getDealHeight(16),
@@ -140,9 +140,9 @@ const styles = StyleSheet.create({
     color60: {color: 'rgba(255,255,255,0.6)'},
     color40: {color: 'rgba(255,255,255,0.4)'},
     colorGreen: {color: '#02987D'},
-    colorRed: {color: '#C73F4F'},
+    colorRed: {color: '#EF5656'},
     bgGreen: {backgroundColor: '#02987D'},
-    bgRed: {backgroundColor: '#C73F4F'},
+    bgRed: {backgroundColor: '#EF5656'},
 
 });
 

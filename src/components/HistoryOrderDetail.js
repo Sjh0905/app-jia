@@ -443,9 +443,9 @@ const styles = StyleSheet.create({
 	// color80: {color: 'rgba(255,255,255,0.8)'},
 	colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
 	colorGreen: {color: '#02987D'},
-	colorRed: {color: '#C73F4F'},
+	colorRed: {color: '#EF5656'},
 	bgGreen: {backgroundColor: '#02987D'},
-	bgRed: {backgroundColor: '#C73F4F'},
+	bgRed: {backgroundColor: '#EF5656'},
 	row3Btn: {
 		width: getWidth(156),
 		height: getHeight(58),
@@ -532,7 +532,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	dealBtnRed: {
-		backgroundColor: '#C73F4F',
+		backgroundColor: '#EF5656',
 		borderRadius: 4,
 		height: getHeight(72),
 		alignItems: 'center',
@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
 	ballRed: {
 		width: getWidth(32),
 		height: getWidth(32),
-		backgroundColor: '#C73F4F',
+		backgroundColor: '#EF5656',
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: getWidth(16),

@@ -200,10 +200,10 @@ const styles = StyleSheet.create({
     color60: {color: 'rgba(255,255,255,0.6)'},
     color40: {color: 'rgba(255,255,255,0.4)'},
     colorGreen: {color: '#02987D'},
-    colorRed: {color: '#C73F4F'},
+    colorRed: {color: '#EF5656'},
 
     bgGreen: {backgroundColor: '#02987D'},
-    bgRed: {backgroundColor: '#C73F4F'},
+    bgRed: {backgroundColor: '#EF5656'},
 
 
 

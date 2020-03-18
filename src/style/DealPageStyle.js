@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     color8994A5: {color: StyleConfigs.txt8994A5},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorGreen: {color: '#02987D'},
-    colorRed: {color: '#C73F4F'},
+    colorRed: {color: '#EF5656'},
     bgGreen: {backgroundColor: '#02987D'},
-    bgRed: {backgroundColor: '#C73F4F'},
+    bgRed: {backgroundColor: '#EF5656'},
     row3Btn: {
         width: getWidth(156),
         height: getDealHeight(58),
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
         // marginBottom:getHeight(6)
     },
     dealBtnRed: {
-        backgroundColor: '#C73F4F',
+        backgroundColor: '#EF5656',
         borderRadius: StyleConfigs.borderRadius1o5,
         height: getDealHeight(80),
         alignItems: 'center',
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     ballRed: {
         width: getWidth(32),
         height: getDealHeight(32),
-        backgroundColor: '#C73F4F',
+        backgroundColor: '#EF5656',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: getDealHeight(16),

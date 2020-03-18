@@ -2505,7 +2505,7 @@ class DealItem extends RNComponent {
                         // zIndex:999安卓加上了这个属性小提示框不会显示的
                     },PlatformOS == 'ios' && {zIndex:999} || {}]}>
                         <GestureProgressBar
-                            color={this.props.type == 0 ? '#02987D' : '#C73F4F'}
+                            color={this.props.type == 0 ? '#02987D' : '#EF5656'}
                             type={this.props.type}
                             onProgress={(progress)=>{
 
@@ -2683,7 +2683,7 @@ class DealItem extends RNComponent {
                                             width: o.perAmount && ((o.perAmount / (this.sellOrders.totalAmount)) * 100 + '%') || '0%',
                                             // width:'100%',
                                             height: getDealHeight(50),
-                                            backgroundColor: '#C73F4F',
+                                            backgroundColor: '#EF5656',
                                             opacity: 0.08,
                                             position: 'absolute',
                                             top: 1.5,
