@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 12,
-		color: '#B5BCC6',
+		color: '#A2B5D9',
 	},
 	text14Gray:{
 		padding: 0,

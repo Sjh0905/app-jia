@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
 	},
 	listTitleBase: {
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txtB5BCC6
+        color:StyleConfigs.txtA2B5D9
 	},
 	listTitle1: {
 		width: '34%'

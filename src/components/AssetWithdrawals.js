@@ -937,7 +937,7 @@ export default class App extends RNComponent {
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
 			                    placeholder={'输入提币地址'}
-			                    placeholderTextColor={'#B5BCC6'}
+			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    // value={this.address}
 			                    onChangeText={(text) => {
@@ -962,7 +962,7 @@ export default class App extends RNComponent {
 			                    allowFontScaling={false}
 			                    style={[styles.input22]}
 			                    placeholder={'最小提币数量'+minimumAmount}
-			                    placeholderTextColor={'#B5BCC6'}
+			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    value={this.amount}
 			                    onChangeText={(text) => {
@@ -973,12 +973,12 @@ export default class App extends RNComponent {
 		                    />
 		                    <View style={{flexDirection: 'row'}}>
 			                    <Text style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt6B7DA2}}>{this.currency}</Text>
-			                    <View style={{height:getHeight(30), width:1,backgroundColor:'#B5BCC6',marginLeft:getWidth(30),marginRight:getWidth(24)}}/>
+			                    <View style={{height:getHeight(30), width:1,backgroundColor:'#A2B5D9',marginLeft:getWidth(30),marginRight:getWidth(24)}}/>
 			                    <Text onPress={this.withdrawalsAll} style={{fontSize:StyleConfigs.fontSize14,color:StyleConfigs.txt1F3F59,
 				                    fontWeight:'600',fontFamily:'System'}} hitSlop={{top:15,left:15,bottom:15, right:15}}>全部</Text>
 		                    </View>
 	                    </View>
-	                    <View style={{marginBottom:getHeight(30)}}><Text style={{color:StyleConfigs.txtB5BCC6,fontSize:StyleConfigs.fontSize12}}>可用 {available+this.currency}</Text></View>
+	                    <View style={{marginBottom:getHeight(30)}}><Text style={{color:StyleConfigs.txtA2B5D9,fontSize:StyleConfigs.fontSize12}}>可用 {available+this.currency}</Text></View>
 						{/*备注*/}
 	                    <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>备注</Text></View>
 	                    <View style={styles.inputBoxMiddle2}>
@@ -986,7 +986,7 @@ export default class App extends RNComponent {
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
 			                    placeholder={'输入备注'}
-			                    placeholderTextColor={'#B5BCC6'}
+			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
 				                    this.description = text
@@ -1004,7 +1004,7 @@ export default class App extends RNComponent {
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
 			                    placeholder={'添加memo'}
-			                    placeholderTextColor={'#B5BCC6'}
+			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
 				                    this.memoAddress = text
@@ -1021,7 +1021,7 @@ export default class App extends RNComponent {
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
 			                    placeholder={'添加publicKey'}
-			                    placeholderTextColor={'#B5BCC6'}
+			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
 				                    this.publicKey = text

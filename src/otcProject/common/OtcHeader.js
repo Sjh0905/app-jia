@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
 	border4: {
 		borderWidth: 1,
 		borderStyle: 'solid',
-		borderColor: '#b5bcc6',
+		borderColor: '#A2B5D9',
 	},
 	border5: {
 		borderWidth: 1,

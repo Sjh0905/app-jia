@@ -10,8 +10,8 @@ root.btnRed008 = '#rgba(199,63,79,0.08)'
 root.txtRed = '#EF5656'
 root.btnRed2 = '#E13B3B'
 root.txtRed2 = '#E13B3B'
-root.btnDisabled = '#B5BCC6';
-root.txtDisabled = '#B5BCC6';
+root.btnDisabled = '#A2B5D9';
+root.txtDisabled = '#A2B5D9';
 
 root.btnE7EBEE = '#E7EBEE'
 root.btnBlack = '#202126'
@@ -28,7 +28,7 @@ root.txt4D4D4D  = '#4D4D4D'
 root.txt3576F5  = '#3576F5'
 root.txt6B7DA2  = '#6B7DA2'
 root.txt172A4D  = '#172A4D'
-root.txtB5BCC6  = '#B5BCC6'
+root.txtA2B5D9  = '#A2B5D9'
 root.txt1F3F59  = '#1F3F59'
 
 root.btnWhite = '#fff'
@@ -45,7 +45,7 @@ root.bgF6F6F6 = '#F6F6F6'
 root.bgFFF1F0 = '#FFF1F0'
 root.bgF7F7FB = '#F7F7FB'
 root.bgF7F8FA = '#F7F8FA'
-root.bgB5BCC6 = '#B5BCC6'
+root.bgA2B5D9 = '#A2B5D9'
 root.bg172A4D  = '#172A4D'
 root.modalBg = '#rgba(0,0,0,0.5)'
 root.modalBgWhite = '#fff'
@@ -67,7 +67,7 @@ root.borderE8EBEE = '#E8EBEE'
 root.borderBottomColor = '#E7EBEE'
 root.borderColorLight = '#131316'
 root.borderShadowColor = '#EAECF2'
-root.borderB5BCC6  = '#B5BCC6'
+root.borderA2B5D9  = '#A2B5D9'
 
 root.lineColor = '#202126'
 // root.lineBlue = '#3576F5'
@@ -82,7 +82,7 @@ root.activeOpacity = 0.8
 
 root.activeOpacityDulled = 0.5
 
-root.placeholderTextColor = '#B5BCC6'
+root.placeholderTextColor = '#A2B5D9'
 // root.placeholderTextColor = '#C5CFD5'
 root.placeholderTextColorHui = 'rgba(102,102,102,0.4)'
 

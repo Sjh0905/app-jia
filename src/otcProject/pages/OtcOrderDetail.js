@@ -422,7 +422,7 @@ export default class OtcOrderDetail extends RNComponent {
 						</View> : null}
 						<View style={styles.verifyLine2}><Text style={styles.text14Black}>{this.verifyType?'手机验证':'谷歌验证'}</Text></View>
 						<View style={styles.verifyLine3}>
-							<TextInput style={styles.ipt} placeholder={'请输入验证码'} maxLength={6} placeholderTextColor={'#b5bcc6'} underlineColorAndroid={'transparent'} onChangeText={this.changeText} value={this.textInput} keyboardType={'numeric'}/>
+							<TextInput style={styles.ipt} placeholder={'请输入验证码'} maxLength={6} placeholderTextColor={'#A2B5D9'} underlineColorAndroid={'transparent'} onChangeText={this.changeText} value={this.textInput} keyboardType={'numeric'}/>
 							{this.verifyType?<View style={styles.mobbileCode}>{!this.sended?<Text style={styles.text14Red} onPress={this.sendVerifyRequest}>发送验证码</Text>: <Text style={styles.text14Red}>{this.timer}</Text>}</View>:null}
 						</View>
 						<TouchableOpacity style={styles.verifyLine4} onPress={this.sendGaRequest}><Text style={styles.text16WhiteBold}>确认</Text></TouchableOpacity>
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
 		includeFontPadding: false,
 		textAlignVertical: 'center',
 		fontSize: 12,
-		color: '#B5BCC6',
+		color: '#A2B5D9',
 	},
 	text14Gray:{
 		padding: 0,

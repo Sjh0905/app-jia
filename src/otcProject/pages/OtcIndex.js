@@ -545,7 +545,7 @@ export default class OtcIndex extends RNComponent {
 					</View>
 					<View style={styles.traditionIptWrap}>
 						<TextInput style={styles.traditionInput} placeholder={this.traditionOrderType?'请输入数量':'请输入金额'}
-						           maxLength={16} placeholderTextColor={'#b5bcc6'} underlineColorAndroid={'transparent'}
+						           maxLength={16} placeholderTextColor={'#A2B5D9'} underlineColorAndroid={'transparent'}
 						           onChangeText={this.changeTraditionText} value={this.traditionInputText} keyboardType={'numeric'}/>
 			           <View style={styles.traditionPosition}>
 				           <Text style={styles.text14Black}>{this.traditionOrderType?'USDT':'CNY'}</Text>

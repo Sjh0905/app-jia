@@ -690,7 +690,7 @@ const styles = StyleSheet.create({
 	},
 	tableTxt1:{
 		fontSize:StyleConfigs.fontSize12,
-		color:StyleConfigs.txtB5BCC6,
+		color:StyleConfigs.txtA2B5D9,
 		marginBottom:getHeight(14)
 	},
 	tableTxt2:{
@@ -700,7 +700,7 @@ const styles = StyleSheet.create({
 	},
 	tableTxt3:{
 		fontSize:StyleConfigs.fontSize12,
-		color:StyleConfigs.txtB5BCC6,
+		color:StyleConfigs.txtA2B5D9,
 		marginBottom:getHeight(14)
 	},
 	tableTxt4:{

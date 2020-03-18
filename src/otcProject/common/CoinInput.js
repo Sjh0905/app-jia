@@ -77,7 +77,7 @@ export default class CoinInput extends RNComponent {
 							maxLength={16}
 							secureTextEntry={false}
 							style={styles.input}
-							placeholderTextColor={'#b5bcc6'}
+							placeholderTextColor={'#A2B5D9'}
 							underlineColorAndroid={'transparent'}
 							onChangeText={this.changeText}
 							value = {this.inputText}

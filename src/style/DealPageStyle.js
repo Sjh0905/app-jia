@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     color9FA7B8: {color: StyleConfigs.txt9FA7B8},
     color40: {color: 'rgba(255,255,255,0.4)'},
     colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
-    colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
+    colorA2B5D9: {color: StyleConfigs.txtA2B5D9},
     color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     color172A4D: {color: StyleConfigs.txt172A4D},
     colorGreen: {color: '#34A753'},
@@ -705,7 +705,7 @@ const styles = StyleSheet.create({
         width:58,
         height:25,
         borderWidth:StyleSheet.hairlineWidth,
-        borderColor:StyleConfigs.borderB5BCC6,
+        borderColor:StyleConfigs.borderA2B5D9,
         borderRadius:StyleConfigs.borderRadius1o5,
         paddingHorizontal:7
     },

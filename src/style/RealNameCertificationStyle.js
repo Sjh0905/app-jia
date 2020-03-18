@@ -80,7 +80,7 @@ const styles = new StyleSheet.create({
     },
     placeholderSelf:{
         fontSize:StyleConfigs.fontSize16,
-        color: StyleConfigs.txtB5BCC6,
+        color: StyleConfigs.txtA2B5D9,
     },
     inputView:{
         borderColor: StyleConfigs.borderBottomColor,
@@ -136,7 +136,7 @@ const styles = new StyleSheet.create({
         borderBottomWidth: 6.4,
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
-        borderBottomColor: StyleConfigs.borderB5BCC6,
+        borderBottomColor: StyleConfigs.borderA2B5D9,
         position: 'absolute'
     },
     arrowUp:{
@@ -149,7 +149,7 @@ const styles = new StyleSheet.create({
         borderTopWidth: 6.4,
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
-        borderTopColor: StyleConfigs.borderB5BCC6,
+        borderTopColor: StyleConfigs.borderA2B5D9,
         position: 'absolute'
     },
     imageBox:{

@@ -492,7 +492,7 @@ const styles = StyleSheet.create({
     textNumber:{
         fontSize: 72,
         // marginTop: getHeight(38),
-        color: StyleConfigs.txtB5BCC6,
+        color: StyleConfigs.txtA2B5D9,
         fontWeight: 'bold',
         fontFamily: 'PingFangSC-Semibold'
     },

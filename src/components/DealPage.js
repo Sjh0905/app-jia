@@ -2524,8 +2524,8 @@ class DealItem extends RNComponent {
                             justifyContent: 'space-between',
                             marginVertical:(getDeviceTop() != 0) && getDealHeight(19) || getDealHeight(14)
                         }}>
-                            <Text allowFontScaling={false} style={[styles.colorB5BCC6, styles.size10]}>0</Text>
-                            <Text allowFontScaling={false} style={[styles.colorB5BCC6, styles.size10]}>
+                            <Text allowFontScaling={false} style={[styles.colorA2B5D9, styles.size10]}>0</Text>
+                            <Text allowFontScaling={false} style={[styles.colorA2B5D9, styles.size10]}>
                                 {(this.$store.state.authMessage.userId && this.getCurrAsset.available || '0') + ' ' + (this.props.type && this.symbol.split('_')[0] || this.symbol.split('_')[1])}
                             </Text>
                         </View>
@@ -2660,9 +2660,9 @@ class DealItem extends RNComponent {
                         paddingRight: getWidth(30)
                     }}>
                         <Text allowFontScaling={false}
-                              style={[styles.colorB5BCC6, styles.size12]}>价格</Text>
+                              style={[styles.colorA2B5D9, styles.size12]}>价格</Text>
                         <Text allowFontScaling={false}
-                              style={[styles.colorB5BCC6, styles.size12]}>数量</Text>
+                              style={[styles.colorA2B5D9, styles.size12]}>数量</Text>
                     </View>
                     {/*买卖盘标题结束*/}
 

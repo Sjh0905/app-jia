@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
     size16: {fontSize: StyleConfigs.fontSize16},
     color100: {color: StyleConfigs.txt172A4D},
     color172A4D: {color: StyleConfigs.txt172A4D},
-    colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
+    colorA2B5D9: {color: StyleConfigs.txtA2B5D9},
     color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorWhite: {color: StyleConfigs.txtWhite},
     color40: {color: StyleConfigs.txt9FA7B8},

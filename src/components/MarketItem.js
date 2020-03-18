@@ -239,7 +239,7 @@ export default class MarketItem extends RNComponent {
 					<View style={[styles.rowBase, styles.row1]}>
 						<View style={{flexDirection: 'row'}}><Text  allowFontScaling={false}
 							style={[styles.size15, styles.color172A4D]}>{item.name || ''}</Text><Text  allowFontScaling={false}
-							style={[styles.size10, styles.colorB5BCC6,{marginTop:5}]}> / {item.denominator || 'ETH'}</Text></View>
+							style={[styles.size10, styles.colorA2B5D9,{marginTop:5}]}> / {item.denominator || 'ETH'}</Text></View>
 						{/*<View style={{marginTop: 2.5}}><Text  allowFontScaling={false}*/}
 							{/*style={[styles.size13, styles.color40]}>成交量 {Math.floor(item.value[5])}</Text></View>*/}
 
@@ -273,7 +273,7 @@ export default class MarketItem extends RNComponent {
 					<View style={[styles.rowBase, styles.row1]}>
 						<View style={{flexDirection: 'row', marginBottom: 2.5}}><Text  allowFontScaling={false}
 																					   style={[styles.size16, styles.color172A4D]}>{item.name || ''}</Text><Text  allowFontScaling={false}
-																																							   style={[styles.size10, styles.colorB5BCC6,{marginTop:6}]}> / {item.denominator || 'ETH'}</Text></View>
+																																							   style={[styles.size10, styles.colorA2B5D9,{marginTop:6}]}> / {item.denominator || 'ETH'}</Text></View>
 						<View style={{marginTop: 2.5}}><Text  allowFontScaling={false}
 															  style={[styles.size12, styles.color6B7DA2]}>24H {Math.floor(item.value[5])}</Text></View>
 
@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
 	},
 	listTitleBase: {
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txtB5BCC6
+        color:StyleConfigs.txtA2B5D9
 	},
 	listTitle1: {
 		width: '38%'
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
 	size16: {fontSize: StyleConfigs.fontSize16},
 	color100: {color: StyleConfigs.txt172A4D},
 	color172A4D: {color: StyleConfigs.txt172A4D},
-    colorB5BCC6: {color: StyleConfigs.txtB5BCC6},
+    colorA2B5D9: {color: StyleConfigs.txtA2B5D9},
     color6B7DA2: {color: StyleConfigs.txt6B7DA2},
     colorWhite: {color: StyleConfigs.txtWhite},
 	color40: {color: StyleConfigs.txt9FA7B8},
@@ -492,7 +492,7 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     moreBarText:{
-        color:StyleConfigs.txtB5BCC6,
+        color:StyleConfigs.txtA2B5D9,
         fontSize: 14
     }
 });

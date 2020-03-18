@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     listTitleBase:{
         fontSize:StyleConfigs.fontSize12,
-        color:StyleConfigs.txtB5BCC6
+        color:StyleConfigs.txtA2B5D9
     },
     listTitle1:{
         width: '38%'
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     },
     moreText:{
         fontSize:StyleConfigs.fontSize13,
-        color:StyleConfigs.txtB5BCC6,
+        color:StyleConfigs.txtA2B5D9,
         marginRight:5
     },
     moreImg:{

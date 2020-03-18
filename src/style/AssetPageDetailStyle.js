@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 10,
     },
     itemSectionTitle:{
-        color:StyleConfigs.txtB5BCC6,
+        color:StyleConfigs.txtA2B5D9,
         fontSize:StyleConfigs.fontSize12,
         lineHeight:getHeight(32),
     },

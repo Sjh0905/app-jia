@@ -1173,11 +1173,11 @@ const styles = StyleSheet.create({
     },
     titleText:{
         marginRight: getWidth(20),
-        color:'#b5bcc6',
+        color:'#A2B5D9',
     },
     titleText2:{
         marginLeft: getWidth(20),
-        color:'#b5bcc6',
+        color:'#A2B5D9',
     },
     listLineWrap:{
         flexDirection:'row',

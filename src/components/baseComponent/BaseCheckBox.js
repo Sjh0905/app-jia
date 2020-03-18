@@ -34,7 +34,7 @@ export default class App extends RNComponent {
 
     static defaultProps = {
         width: 28,
-        unCheckedBorderColor: StyleConfigs.borderB5BCC6,
+        unCheckedBorderColor: StyleConfigs.borderA2B5D9,
         unCheckedBorderWidth: 1,
         borderRadius: 2,
         checkedBg: StyleConfigs.btnBlue,
