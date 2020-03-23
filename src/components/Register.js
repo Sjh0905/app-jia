@@ -893,7 +893,7 @@ export default class App extends RNComponent {
 					}
 
 
-					{/*已阅读并同意欧联用户协议*/}
+					{/*已阅读并同意二零二零用户协议*/}
 					<View style={[styles.agreementBox, signBaseStyles.inputItemBoxPaddingTop]}>
 						<CheckBox
 							style={{width: 14, height: 14}}

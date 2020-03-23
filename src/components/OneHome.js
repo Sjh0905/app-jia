@@ -68,9 +68,6 @@ export default class OneHome extends RNComponent {
 	]
     @observable	textData = [
         // {title:'正式开放注册启事( 10-12 )',url:'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360034740012-正式开放注册启事'},
-        // {title:'欧联交易所验证邮件延迟( 10-12 )',url:'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360035114331-欧联交易所验证邮件延迟公告'},
-        // {title:'关于欧联交易所( 10-12 )',url:'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360035121071-关于欧联交易所'},
-        // {title:'欧联交易所实名认证延迟( 10-12 )',url:'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360034740072-欧联交易所实名认证延迟公告'},
     ]
 	// @observable	moreNoticeUrl = 'index/mobileNotice/?isApp=true'
 	@observable	moreNoticeUrl = 'https://customerservice8872.zendesk.com/hc/zh-cn/categories/360002253311-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'

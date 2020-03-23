@@ -669,7 +669,7 @@ export default class RealNameCertification extends RNComponent {
         }).catch((err)=>{
             console.log('err',err,err.code);
             if(err && (err.code === 'E_PERMISSION_MISSING')){
-                PlatformOS === 'ios' && Alert.alert('无法上传','请在iPhone的“设置-隐私-照片”选项中，允许欧联读取和写入你的照片。');
+                PlatformOS === 'ios' && Alert.alert('无法上传','请在iPhone的“设置-隐私-照片”选项中，允许二零二零读取和写入你的照片。');
                 PlatformOS === 'android' && Alert.alert(
                     '无法上传',
                     '当前状态无法上传图片或保存图片，请在设置中打开存储权限。',
@@ -681,10 +681,10 @@ export default class RealNameCertification extends RNComponent {
                 return;
             }
             if(err && (err.code === 'E_PICKER_NO_CAMERA_PERMISSION')){
-                PlatformOS === 'ios' && Alert.alert('无法拍摄','请在iPhone的“设置-隐私-相机”选项中，开启欧联相机权限。');
+                PlatformOS === 'ios' && Alert.alert('无法拍摄','请在iPhone的“设置-隐私-相机”选项中，开启二零二零相机权限。');
                 PlatformOS === 'android' && Alert.alert(
                     '无法拍摄',
-                    '当前状态无法拍摄，开启欧联相机权限。',
+                    '当前状态无法拍摄，开启二零二零相机权限。',
                     [
                         {text: '不允许', style: 'cancel'},
                         {text: '去设置', onPress: this.androidSetting}

@@ -193,7 +193,7 @@ export default class App extends RNComponent {
         }).catch((err)=>{
             console.log('err',err);
             if(err && err.code === 'E_PERMISSION_MISSING'){
-                PlatformOS === 'ios' && Alert.alert('无法上传','请在iPhone的“设置-隐私-照片”选项中，允许欧联读取和写入你的照片。');
+                PlatformOS === 'ios' && Alert.alert('无法上传','请在iPhone的“设置-隐私-照片”选项中，允许二零二零读取和写入你的照片。');
                 PlatformOS === 'android' && Alert.alert(
                     '无法上传',
                     '当前状态无法上传图片或保存图片，请在设置中打开存储权限。'  ,
@@ -241,11 +241,11 @@ export default class App extends RNComponent {
         }
 
         if(result && this.userEmail.trim() === ''){
-            errMessage = '请输入您的欧联注册手机号/邮箱地址';
+            errMessage = '请输入您的二零二零注册手机号/邮箱地址';
             result = false;
         }
         if(result && !(globalFunc.testEmail(this.userEmail) || globalFunc.testMobile(this.userEmail) )){
-            errMessage = '欧联注册手机号/邮箱地址格式错误';
+            errMessage = '二零二零注册手机号/邮箱地址格式错误';
             result = false;
         }
 
@@ -455,10 +455,10 @@ export default class App extends RNComponent {
                                 keyboardType={"numeric"}
                             />
                         </View>}
-                        {/*请输入您的欧联注册账号 begin*/}
+                        {/*请输入您的二零二零注册账号 begin*/}
                         <View style={[styles.inputItemBox]}>
                             <View style={styles.inputTitleBoxRow}>
-                                <Text allowFontScaling={false} style={styles.inputStar}>*</Text><Text allowFontScaling={false} style={styles.inputTitle}>请输入您的欧联注册手机号/邮箱地址</Text>
+                                <Text allowFontScaling={false} style={styles.inputStar}>*</Text><Text allowFontScaling={false} style={styles.inputTitle}>请输入您的二零二零注册手机号/邮箱地址</Text>
                             </View>
                             <TextInput
                                 allowFontScaling={false}

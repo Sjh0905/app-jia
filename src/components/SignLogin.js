@@ -260,7 +260,7 @@ export default class App extends RNComponent {
                 case 7:
                     this.userNameWrong = '请检查cookie配置'
                 case 10000:
-                    this.userNameWrong = '欧联用户登录，请通过"忘记密码?"方式重置密码后再登录'
+                    this.userNameWrong = '请通过"忘记密码?"方式重置密码后再登录'
                     break;
                 default:
                     this.userNameWrong = '登录异常'
@@ -442,7 +442,7 @@ export default class App extends RNComponent {
                         style={styles.loginLogo}
                         resizeMode={'contain'}
                     />
-                    <Text allowFontScaling={false} style={[baseStyles.text6B7DA2,baseStyles.size16]}>登录欧联</Text>
+                    <Text allowFontScaling={false} style={[baseStyles.text6B7DA2,baseStyles.size16]}>登录二零二零</Text>
                     {/*登录logo end*/}
                     {/*<View style={styles.tabBox}>*/}
                         {/*<TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectMobile} style={[styles.loginTab,this.selectedTab === 'mobile' && styles.selectedTab || {}]}>*/}
@@ -611,7 +611,7 @@ export default class App extends RNComponent {
                                       activeOpacity={StyleConfigs.activeOpacity}
                                       onPress={this.goToRegister}
                     >
-                        <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, styles.haveNoAccount]}>还没有欧联账号？</Text>
+                        <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, styles.haveNoAccount]}>还没有二零二零账号？</Text>
                         <TouchableOpacity
                             activeOpacity={StyleConfigs.activeOpacity}
                             onPress={this.goToRegister}

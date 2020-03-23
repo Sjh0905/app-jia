@@ -97,7 +97,7 @@ export default class App extends RNComponent {
         }).catch(function(error) {
             console.log(error)
             if(error.message == 'User denied access'){
-                Alert.alert('无法保存','请在iPhone的“设置-隐私-照片”选项中，允许欧联访问你的照片。')
+                Alert.alert('无法保存','请在iPhone的“设置-隐私-照片”选项中，允许二零二零访问你的照片。')
                 return;
             }
             me.$globalFunc.toast('请重试');

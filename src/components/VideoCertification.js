@@ -335,7 +335,7 @@ export default class App extends RNComponent {
     onAuthError = ()=>{
         this.$router.goBack()
         setTimeout(()=>{
-            PlatformOS === 'ios' && Alert.alert('相setT机和麦克风权限','当前状态无法拍摄和录制声音，请在设置-隐私-相机/麦克风中，开启欧联相机和麦克风权限');
+            PlatformOS === 'ios' && Alert.alert('相setT机和麦克风权限','当前状态无法拍摄和录制声音，请在设置-隐私-相机/麦克风中，开启二零二零相机和麦克风权限');
             PlatformOS === 'android' && Alert.alert(
                 '相机和麦克风权限',
                 '当前状态无法拍摄和录制声音，请在设置中打开相机和麦克风权限。'  ,

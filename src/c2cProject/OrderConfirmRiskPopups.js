@@ -36,7 +36,7 @@ export default class OrderConfirmRiskPopups extends RNComponent {
     static defaultProps = {
         data:{},
         type:'SELL_ORDER',//'SELL_ORDER'  'BUY_ORDER' 用来判断区分颜色类型
-        title: '欧联C2C交易区风险提示',
+        title: '二零二零C2C交易区风险提示',
         tips:'',
         close: true,
         cancelText: '暂不交易，离开',

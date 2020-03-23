@@ -219,7 +219,7 @@ export default class TransactionBuy extends RNComponent {
         // 没有身份认证 并 没有绑定手机或没有绑定邮箱 并 没有绑定银行卡
         if((!this.authStateForC2C.identity) && (!(this.authStateForC2C.sms && this.authStateForC2C.mail)) && (!this.authStateForC2C.method)) {
             this.popWindowTitle = '提示';
-            this.popWindowContent = ['参与C2C交易需要满足以下条件：','1、注册欧联，并完成实名认证', '2、绑定您本人手机号', '3、至少绑定一张本人银行卡'];
+            this.popWindowContent = ['参与C2C交易需要满足以下条件：','1、注册二零二零，并完成实名认证', '2、绑定您本人手机号', '3、至少绑定一张本人银行卡'];
             this.popWindowBtnText = '去设置';
             this.popWindowOpen = true
             return

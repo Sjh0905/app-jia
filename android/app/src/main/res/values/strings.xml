@@ -1,6 +1,6 @@
 <resources>
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
-    <string name="app_name_1">欧联2.0</string>
+    <string name="app_name_1">二零二零</string>
 
     <string name="downloading">正在下载</string>
     <string name="waiting">请稍候...</string>

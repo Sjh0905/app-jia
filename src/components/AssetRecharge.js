@@ -88,8 +88,8 @@ export default class App extends RNComponent {
         this.showAlert = this.isEOS;
         this.isWCG = currencyObj && (currencyObj.addressAliasTo == 'WCG' || this.currency == 'WCG')
 
-        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '上的合约币到欧联须同时具备充值地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
-        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '上的合约币到欧联须同时具备充值地址、' + this.currency + ' memo (备注)、'+ this.currency +' publicKey, 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
+        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '上的合约币到二零二零须同时具备充值地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
+        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '上的合约币到二零二零须同时具备充值地址、' + this.currency + ' memo (备注)、'+ this.currency +' publicKey, 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
 
         this.getRecharge()
         this.changeCurrency1 = this.$beforeParams && this.$beforeParams.changeCurrency1
@@ -230,8 +230,8 @@ export default class App extends RNComponent {
         this.showAlert = this.isEOS;
         this.isWCG = currencyObj && (currencyObj.addressAliasTo == 'WCG' || this.currency == 'WCG')
 
-        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '上的合约币到欧联须同时具备充值地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
-        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '上的合约币到欧联须同时具备充值地址、' + this.currency + ' memo (备注)、'+ this.currency +' publicKey, 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
+        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '上的合约币到二零二零须同时具备充值地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
+        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '上的合约币到二零二零须同时具备充值地址、' + this.currency + ' memo (备注)、'+ this.currency +' publicKey, 未遵守' + this.currency + '充值规则将导致资产无法找回。'))
         this.getRecharge()
 
         //调用资产详情页的方法

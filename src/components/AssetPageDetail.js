@@ -924,7 +924,7 @@ export default class AssetPageDetail extends RNComponent {
                     </ScrollView>
                 }
 
-                {/*{!!this.showAlert && <MyConfirm okText={'我知道了'} title={'提现提示'} message={['您尚未通过身份验证','请前往欧联官网','(www.2020.exchange)进行认证']} onSure={this.onCancel} onClose={this.onCancel}/>}*/}
+                {/*{!!this.showAlert && <MyConfirm okText={'我知道了'} title={'提现提示'} message={['您尚未通过身份验证','请前往二零二零官网','(www.2020.exchange)进行认证']} onSure={this.onCancel} onClose={this.onCancel}/>}*/}
 
                 {/*去认证模态框 begin*/}
                 <Modal
