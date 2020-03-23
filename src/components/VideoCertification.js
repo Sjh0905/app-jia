@@ -183,7 +183,7 @@ export default class App extends RNComponent {
                 quality:RNCamera.Constants.VideoQuality["4:3"],
                 maxFileSize: 3097152
                 // path: `${RNFS.ExternalStorageDirectoryPath}/download`,
-                // uri: `${RNFS.ExternalStorageDirectoryPath}/com.eunex.exchange/download/test.mp4`
+                // uri: `${RNFS.ExternalStorageDirectoryPath}/com.xxx.exchange/download/test.mp4`
             }).then((data)=>{
                 // this.disabledBtnState = 0;
                 // this.recording = false;

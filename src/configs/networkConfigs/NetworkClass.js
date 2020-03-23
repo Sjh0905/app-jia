@@ -57,7 +57,7 @@ export default class NetworkClass {
 
     constructor(configs, urlConfigs) {
         console.log(configs);
-        this.baseUrl = configs.baseUrl || 'www.eunex.com'
+        this.baseUrl = configs.baseUrl || 'xx.xx.xx'
         this.port = configs.port || ''
         this.credentials = configs.credentials || 'same-origin'
         this.timeout = configs.timeout || 15000

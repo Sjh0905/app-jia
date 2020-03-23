@@ -36,7 +36,7 @@ if(env.networkConfigs.baseUrl.indexOf('app.2020.exchange') > -1){
 env.socketConfigs = {}
 // socket请求地址
 // env.socketConfigs.url = process.env.SOCKET || 'wss://wss.2020.exchange/v1/market/notification' //node生产地址2
-env.socketConfigs.url = process.env.SOCKET || 'wss://wss.2020-ex.com/v1/market/notification' //test地址
+env.socketConfigs.url = process.env.SOCKET || 'ws://appwss.2020-ex.com/v1/market/notification' //test地址
 
 //如果用socket.io-client框架需要放开以下配置
 // env.socketConfigs.options = {}

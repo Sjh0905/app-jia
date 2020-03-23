@@ -162,11 +162,11 @@ android {
 
     buildTypes {
         debug{
-//            buildConfigField "String", "BASE_URL", "\"https://www.2020.exchange\""//注意：必须要有反斜杠，不能直接写成"http://192.168.2.109:8080"，否咋会报错
-//            buildConfigField "String", "SOCKET_URL", "\"wss://wss.eunex.group/v1/market/notification\""
+//            buildConfigField "String", "BASE_URL", "\"https://app.2020.exchange\""//注意：必须要有反斜杠，不能直接写成"http://192.168.2.109:8080"，否咋会报错
+//            buildConfigField "String", "SOCKET_URL", "\"wss://wss.2020.exchange/v1/market/notification\""
 
             buildConfigField "String", "BASE_URL", "\"http://app.2020-ex.com\""
-            buildConfigField "String", "SOCKET_URL", "\"wss://wss.2020-ex.com/v1/market/notification\""
+            buildConfigField "String", "SOCKET_URL", "\"ws://appwss.2020-ex.com/v1/market/notification\""
 
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -207,7 +207,7 @@ android {
     //指定我们包的输出文件名与我们的渠道名字有关
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "eunex-" + "${variant.name}-${variant.versionName}-${buildTime()}.apk"
+            outputFileName = "twentytwenty-" + "${variant.name}-${variant.versionName}-${buildTime()}.apk"
         }
     }
 

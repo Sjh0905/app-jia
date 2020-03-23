@@ -735,7 +735,7 @@ export default class App extends RNComponent {
 
         console.log('点击更新啦');
         if(Platform.OS === 'ios'){
-            let downloadUrl = 'https://download.eunex.group/';
+            let downloadUrl = 'https://download.2020.exchange/';
             Linking.openURL(downloadUrl).catch((error)=>{
                 console.log('出错了', error);
             });

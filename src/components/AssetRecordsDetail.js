@@ -602,7 +602,7 @@ export default class App extends RNComponent {
                 <View style={[styles.boxPadding, styles.container,{backgroundColor:StyleConfigs.bgColor}]}>
                     {/*币种title begin*/}
                     <View style={styles.titleBox}>
-                        <Image source={{uri: 'http://logo.eunex.group/' + this.recordsItem.currency + '.png'}}
+                        <Image source={{uri: 'http://logo.2020.exchange/' + this.recordsItem.currency + '.png'}}
                                style={styles.currencyIcon}
                         />
                         <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTitle]}>{this.recordsItem.currency}</Text>

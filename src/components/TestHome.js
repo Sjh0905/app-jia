@@ -71,7 +71,7 @@ export default class App extends RNComponent {
                 />
 
                 <Text allowFontScaling={false} style={styles.welcome}>
-                    This is EUNEX
+                    This is App
                     版本：1 v0.0.1
                 </Text>
                 <Text allowFontScaling={false} style={styles.welcome}>

@@ -12,8 +12,8 @@ import Toast from "react-native-root-toast";
 //俩个参数 第一个manager名字 第二个view名字
 const JiYanView = requireNativeComponent('JiYanView')//,JiYanView);
 
-// "http://ui.eunex.org/user/getGeetest"//http://www.geetest.com/demo/gt/register-slide"
-// "http://www.geetest.com/demo/gt/validate-slide"//"http://ui.eunex.org/user/getGeetest"//"
+// "http://ui.xxx.org/user/getGeetest"//http://www.geetest.com/demo/gt/register-slide"
+// "http://www.geetest.com/demo/gt/validate-slide"//"http://ui.xxx.org/user/getGeetest"//"
 export default class JiYan extends Component {
     static propTypes = {
         API1: PropTypes.string.isRequired,

@@ -345,7 +345,7 @@ export default class App extends RNComponent {
                                     4.活动如有调整以平台公告为准，本活动最终解释
                                 </Text>
                                 <Text allowFontScaling={false} style={styles.alertContent}>
-                                    权归eunex.group所有。
+                                    权归本平台所有。
                                 </Text>
                             </View>
                         </View>

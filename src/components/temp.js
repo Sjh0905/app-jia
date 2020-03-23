@@ -29,7 +29,7 @@ this.$http.send('GET_COOKIES_C2C', {
                         let socket_url = 'wss://' + socket.url + '?key=' + socket.data.key + '&unid=' + socket.data.unid + '&time=' + socket.data.time;
                         // that.socket = io(socket_url);
                         console.log('this is socket.url',socket_url);
-                        // that.socket = io('wss://onli-quotation.eunex.group',{
+                        // that.socket = io('wss://onli-quotation.xx.xx',{
                         //     transports : ['websocket'],
                         //     path : '/v1/market'
                         // });
