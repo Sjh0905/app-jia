@@ -59,7 +59,7 @@ export default class App extends RNComponent {
         this.$http.send('GET_FACE_TOKEN', {
             bind: this,
             params:{
-                return_url: "https://www.eunex.group",
+                return_url: "https://www.2020.exchange",
                 biz_no: new Date().getTime().toString()
             },
             callBack: this.re_getFaceToken,

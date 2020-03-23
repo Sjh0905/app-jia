@@ -872,7 +872,7 @@ export default class RealNameCertification extends RNComponent {
                 </View>
 
                 <Text style={styles.idCardTips}>
-                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.eunex.group）
+                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.2020.exchange）
                 </Text>
                 <View style={styles.idCardHoldBox}>
                     {/*手持证件照*/}
@@ -1106,7 +1106,7 @@ export default class RealNameCertification extends RNComponent {
                 </View>
 
                 <Text style={styles.idCardTips}>
-                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.eunex.group）
+                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.2020.exchange）
                 </Text>
                 <View style={styles.idCardHoldBox}>
                     {/*手持证件照*/}

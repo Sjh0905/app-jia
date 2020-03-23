@@ -333,7 +333,7 @@ export default class App extends RNComponent {
                             4.Using internet-based trading systems also involves risks, including but not limited to failures in software, hardware or Internet links, etc. Since we cannot control the reliability and availability of the Internet, we will not be responsible for any distortion, delay and link failure.
                         </Text>
                         <Text allowFontScaling={false} style={styles.twoLevelArticleText}>
-                            5.https://www.eunex.group/ is the sole official external information release platform for EUNEX;
+                            5.https://www.2020.exchange/ is the sole official external information release platform for EUNEX;
                         </Text>
                         <Text allowFontScaling={false} style={styles.twoLevelArticleText}>
                             6.No service on eunex.group may be paid for by credit card;

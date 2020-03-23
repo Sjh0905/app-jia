@@ -68,7 +68,7 @@ export default class App extends RNComponent {
                     <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.articleText]}>
                         EUNEX是香港的创新型区块链资产交易平台
                         EUNEX 隶属于HongKong Digital Currency And Token Clearing Trading Co . , Limited
-                         网址为 www.eunex.group。
+                         网址为 www.2020.exchange。
                     </Text>
                     <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.articleText]}>
                         EUNEX致力于为全球区块链资产爱好者提供安全、稳定、流畅的区块链资产兑换服务。

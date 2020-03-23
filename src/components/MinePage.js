@@ -975,7 +975,7 @@ export default class App extends RNComponent {
                     <View style={styles.verifyModalBox}>
                         <View style={styles.modalArticleBox}>
                             {/*<Text  allowFontScaling={false} style={styles.modalArticleText}>请前往欧联官网</Text>*/}
-                            {/*<Text  allowFontScaling={false} style={styles.modalArticleText}>(www.eunex.group)进行</Text>*/}
+                            {/*<Text  allowFontScaling={false} style={styles.modalArticleText}>(www.2020.exchange)进行</Text>*/}
                             <Text  allowFontScaling={false} style={styles.modalArticleText}>{this.modalMsg}</Text>
                             {this.modalMsg2 != '' && <Text  allowFontScaling={false} style={styles.modalArticleText}>{this.modalMsg2}</Text>}
                         </View>

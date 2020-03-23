@@ -162,7 +162,7 @@ android {
 
     buildTypes {
         debug{
-//            buildConfigField "String", "BASE_URL", "\"https://www.eunex.group\""//注意：必须要有反斜杠，不能直接写成"http://192.168.2.109:8080"，否咋会报错
+//            buildConfigField "String", "BASE_URL", "\"https://www.2020.exchange\""//注意：必须要有反斜杠，不能直接写成"http://192.168.2.109:8080"，否咋会报错
 //            buildConfigField "String", "SOCKET_URL", "\"wss://wss.eunex.group/v1/market/notification\""
 
             buildConfigField "String", "BASE_URL", "\"https://www.highdefi.com\""

@@ -74,7 +74,7 @@ export default class OneHome extends RNComponent {
     ]
 	// @observable	moreNoticeUrl = 'index/mobileNotice/?isApp=true'
 	@observable	moreNoticeUrl = 'https://customerservice8872.zendesk.com/hc/zh-cn/categories/360002253311-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'
-	// @observable	moreNoticeUrl = 'https://www.eunex.group/index/notice/noticeDetail?id=100620'
+	// @observable	moreNoticeUrl = 'https://www.2020.exchange/index/notice/noticeDetail?id=100620'
 		// 'https://customerTouchservice8872.zendesk.com/hc/zh-cn/categories/360002253311-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'
 	@observable	customerServiceUrl = 'https://customerservice8872.zendesk.com/hc/zh-cn/categories/360002244832-%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%BF%83'
 	@observable	market_list = []
@@ -192,7 +192,7 @@ export default class OneHome extends RNComponent {
 	re_getBanner(res){
 		console.log('imgresponse=======',res)
 		this.imgData = res;//TODO:调试接口要放开哦
-		// this.imgData = res.map(val=>'https://www.eunex.group' + val.imageUrl.replace(/\\/g, '/'));
+		// this.imgData = res.map(val=>'https://www.2020.exchange' + val.imageUrl.replace(/\\/g, '/'));
 		// this.imgData = ['https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png','https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png','https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png']
 		this.imgDataReady = true
 	}

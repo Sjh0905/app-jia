@@ -25,10 +25,10 @@ env.networkConfigs.credentials = 'include'
 env.networkConfigs.downloadUrl  = '';
 //注意拼接downloadUrl的时候最后一定要加"/"
 if(env.networkConfigs.baseUrl.indexOf('android.eunex.group') > -1){
-    env.networkConfigs.downloadUrl = 'https://www.eunex.group/';
+    env.networkConfigs.downloadUrl = 'https://www.2020.exchange/';
 }
 if(env.networkConfigs.baseUrl.indexOf('app.eunex.group') > -1){
-    env.networkConfigs.downloadUrl = 'https://www.eunex.group/';
+    env.networkConfigs.downloadUrl = 'https://www.2020.exchange/';
 }
 //跳转到app下载页面所需地址
 // env.networkConfigs.testUrl =   //测试环境

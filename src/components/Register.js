@@ -273,7 +273,7 @@ export default class App extends RNComponent {
 			last = Date.now();
 			// this.$router.push('UserAgreement')
 			this.goWebView({
-				url: 'https://www.eunex.group/index/help/userAgreement',
+				url: 'https://www.2020.exchange/index/help/userAgreement',
 				// url: 'index/help/userAgreement',
 				loading: false,
 				navHide: false,
