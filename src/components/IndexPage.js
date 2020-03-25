@@ -1710,27 +1710,27 @@ export default class App extends RNComponent {
                         style={styles.loadingImg}
                         resizeMode={'contain'}
                     >
-                        {
-                            // this.state.AnimateFinished &&
-                            // <Image
-                            //     fadeDuration={0}
-                            //     source={loadingFinish}
-                            //     style={styles.loadingImg}
-                            //     resizeMode={'contain'}
-                            // />
-                            // || null
+                        {/*{*/}
+                            {/*// this.state.AnimateFinished &&*/}
+                            {/*// <Image*/}
+                            {/*//     fadeDuration={0}*/}
+                            {/*//     source={loadingFinish}*/}
+                            {/*//     style={styles.loadingImg}*/}
+                            {/*//     resizeMode={'contain'}*/}
+                            {/*// />*/}
+                            {/*// || null*/}
 
-                            this.$store.state.webviewUrl.map((v,i)=>
-                                <WebView
-                                    key={i}
-                                    source={{uri: v}}
-                                    style={[{
-                                        opacity:0
-                                    }]}
-                                    mixedContentMode={'always'}
-                                />
-                            )
-                        }
+                            {/*this.$store.state.webviewUrl.map((v,i)=>*/}
+                                {/*<WebView*/}
+                                    {/*key={i}*/}
+                                    {/*source={{uri: v}}*/}
+                                    {/*style={[{*/}
+                                        {/*opacity:0*/}
+                                    {/*}]}*/}
+                                    {/*mixedContentMode={'always'}*/}
+                                {/*/>*/}
+                            {/*)*/}
+                        {/*}*/}
                         {/*<WebView*/}
                             {/*ref={'win'}*/}
                             {/*source={{uri: ''}}*/}

@@ -252,8 +252,8 @@ export default class OneHome extends RNComponent {
     getNoticeDetail = (res,title)=>{
     	// return
         this.goWebView({
-            url: res.url && res.url || '',
-            // url: res.id && ('index/mobileNoticeDetail?isApp=true&id=' + res.id) || '',
+            // url: res.url && res.url || '',
+            url: res.id && ('index/mobileNoticeDetail?isApp=true&id=' + res.id) || '',
             loading: false,
             navHide: false,
             title: '公告详情'
@@ -261,7 +261,8 @@ export default class OneHome extends RNComponent {
 	}
     goToMoreNotice = () =>{
         this.goWebView({
-            url: this.moreNoticeUrl || '',
+            // url: this.moreNoticeUrl || '',
+            url: 'index/mobileNotice?isApp=true',
             loading: false,
             navHide: false,
             title: '公告中心'
@@ -656,7 +657,7 @@ export default class OneHome extends RNComponent {
                     headerLeft={
 							<View style={{flexDirection: 'row'}}>
 							   <Image source={require('../assets/OneHome/logo.png')}
-									  style={{width: 90,height:24,marginLeft:68}}
+									  style={{width: 120,height:24,marginLeft:98}}
                                       resizeMode={'contain'}
 							   />
 						   </View>

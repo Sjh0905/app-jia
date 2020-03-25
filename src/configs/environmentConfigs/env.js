@@ -2,8 +2,8 @@ const env = {}
 // wss.2020.exchange
 // app.2020.exchange
 env.networkConfigs = {}
-// env.networkConfigs.baseUrl = process.env.URL || 'https://app.2020.exchange/'//生产环境
-env.networkConfigs.baseUrl = process.env.URL || 'http://app.2020-ex.com/'//测试环境
+env.networkConfigs.baseUrl = process.env.URL || 'https://app.2020.exchange/'//生产环境
+// env.networkConfigs.baseUrl = process.env.URL || 'http://app.2020-ex.com/'//测试环境
 
 // env.networkConfigs.baseUrl = process.env.URL || 'http://18.163.24.239:8000/'//如果写IP地址，需要有专用的登录接口，否则不能set-cookie
 // env.networkConfigs.baseUrl = process.env.URL || 'http://app-zpy.highdefi.com:8000/'//测试环境

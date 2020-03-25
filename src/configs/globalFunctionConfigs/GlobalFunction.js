@@ -431,6 +431,20 @@ globalFunc.removeArray = function (item, arr) {
     return [...newSet]
 }
 
+//将< > & " '转成字符实体
+globalFunc.escapeUrl = function(url){
+    if(typeof url != "string")return ""
+    url = "" + url;
+    return url.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+
+//将字符实体转成< > & " '
+globalFunc.unescapeUrl = function(url){
+    if(typeof url != "string")return ""
+    url = "" + url;
+    return url.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+}
+
 export default globalFunc
 
 

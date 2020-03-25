@@ -4,7 +4,7 @@ import StyleConfigs from "./styleConfigs/StyleConfigs";
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-	    backgroundColor:'#000'
+	    backgroundColor:'#0b4ed0'
     },
     barStyle: {
         backgroundColor:'#202126',

@@ -75,12 +75,12 @@ export default class App extends RNComponent {
         this.title = this.$beforeParams && this.$beforeParams.title || ''
         // this.url = 'http://192.168.2.173:8082/static/H5RechargeActivity';
         // this.url = 'http://192.168.2.173:8082/index/mobileCombinedVotePage';
-        // this.url = 'https://www.2020.exchange/';
-        this.renderUrl = this.url
-        /*this.renderUrl = (this.url.indexOf('?') > -1)
+        // this.url = 'http://zpy.2020.exchange:8084/index/mobileNotice';
+        this.renderUrl = (this.url.indexOf('?') > -1)
             && (this.url + '&isIOS=true&iosLogin=' + !!this.$store.state.authMessage.userId + '&isIPhoneX=' + isIPhoneX())
-            || (this.url + '?isIOS=true&iosLogin=' + !!this.$store.state.authMessage.userId + '&isIPhoneX=' + isIPhoneX());*/
+            || (this.url + '?isIOS=true&iosLogin=' + !!this.$store.state.authMessage.userId + '&isIPhoneX=' + isIPhoneX());
         //this.url = 'http://localhost:8080/static/H5BiShiJieActivity'
+        this.renderUrl = this.$globalFunc.unescapeUrl(this.renderUrl)
         console.log('this is renderUrl',this.renderUrl);
     }
 
