@@ -336,18 +336,18 @@ const styles = StyleSheet.create({
         borderTopWidth:10,
         borderBottomWidth:10,
         borderColor: StyleConfigs.borderF7F7FB,
-        paddingTop:getWidth(12),
-        paddingBottom:getWidth(28),
+        paddingTop:getWidth(30),
+        paddingBottom:getWidth(26),
         // height: getHeight(140+10)
     },
     activityText2:{
         color:StyleConfigs.txt9FA7B8,
-        fontSize: StyleConfigs.fontSize12
+        fontSize: StyleConfigs.fontSize13
     },
     activityImage2:{
-        height: getWidth(96),
-        width: getWidth(96),
-        marginBottom:getWidth(3)
+        height: getWidth(72),
+        width: getWidth(72),
+        marginBottom:getWidth(16)
     },
     customerServiceIcon:{
         marginRight:getWidth(15),
@@ -422,6 +422,33 @@ const styles = StyleSheet.create({
         color: StyleConfigs.txtBlue,
 
     },
+    joinGroupTouch:{
+        borderBottomWidth:10,
+        borderColor: StyleConfigs.borderF7F7FB,
+        marginHorizontal:getWidth(30),
+    },
+    joinGroupBox:{
+        // width:'100%',
+        // height:'100%',
+        // alignItems: 'center',
+        paddingHorizontal:getWidth(20),
+        paddingVertical:getWidth(28),
+        backgroundColor:'#3592F6',
+        // paddingBottom:getWidth(26),
+    },
+    joinGroupTitle:{
+        color:StyleConfigs.txtFFFB6A,
+        fontSize:StyleConfigs.fontSize18,
+        fontWeight:"500",
+        lineHeight:25
+    },
+    joinGroupDesc:{
+        fontSize:StyleConfigs.fontSize12,
+        fontWeight:"400",
+        color:StyleConfigs.txtWhite,
+        lineHeight:17
+    }
+
 });
 
 export default styles

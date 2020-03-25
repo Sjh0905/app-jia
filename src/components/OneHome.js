@@ -11,7 +11,8 @@ import {
     TouchableOpacity,
     FlatList,
     SectionList,
-    WebView
+    WebView,
+    ImageBackground
 } from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable,computed} from 'mobx'
@@ -73,7 +74,8 @@ export default class OneHome extends RNComponent {
 	@observable	moreNoticeUrl = 'https://customerservice8872.zendesk.com/hc/zh-cn/categories/360002253311-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'
 	// @observable	moreNoticeUrl = 'https://www.2020.exchange/index/notice/noticeDetail?id=100620'
 		// 'https://customerTouchservice8872.zendesk.com/hc/zh-cn/categories/360002253311-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'
-	@observable	customerServiceUrl = 'https://customerservice8872.zendesk.com/hc/zh-cn/categories/360002244832-%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%BF%83'
+	@observable	customerServiceUrl = ''
+	@observable	helpCenterUrl = 'index/mobileNotice?columnId=1&isApp=true'
 	@observable	market_list = []
     //法币交易弹窗
 	@observable	legalModalShow = false
@@ -99,38 +101,65 @@ export default class OneHome extends RNComponent {
         //     },
         //     badgeImg:null
         // },
-        {
-            text: '邀请好友',
-            img: require('../assets/OneHome/invite-rebate-icon.png'),
-            action: 'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360035041312-%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B%E6%B3%A8%E5%86%8C'
-            // action: (() => {
-            //     let last = 0;
-            //     return () => {
-            //         if (Date.now() - last < 1000) return;
-            //         last = Date.now();
-            //         this.$router.push('WorkOrder')
-            //         // this.$store.state.authMessage.userId && !this.$router.push('MyRecommend') ;
-            //         // this.$store.state.authMessage.userId || this.$router.push('Login');
-            //     }
-            // })()
-        },
         // {
-        //     text: 'GRC',
+        //     text: '邀请好友',
         //     img: require('../assets/OneHome/invite-rebate-icon.png'),
-        //     action: (() => {
-        //         let last = 0;
-        //         return () => {
-        //             if (Date.now() - last < 1000) return;
-        //             last = Date.now();
-        //             // this.$store.state.authMessage.userId || this.$router.push('Login');
-			// 		this.goGRC();
-        //         }
-        //     })()
+        //     action: 'https://customerservice8872.zendesk.com/hc/zh-cn/articles/360035041312-%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B%E6%B3%A8%E5%86%8C'
+        //     // action: (() => {
+        //     //     let last = 0;
+        //     //     return () => {
+        //     //         if (Date.now() - last < 1000) return;
+        //     //         last = Date.now();
+        //     //         this.$router.push('WorkOrder')
+        //     //         // this.$store.state.authMessage.userId && !this.$router.push('MyRecommend') ;
+        //     //         // this.$store.state.authMessage.userId || this.$router.push('Login');
+        //     //     }
+        //     // })()
         // },
 		{
+			text: '充币',
+			img: require('../assets/OneHome/trade_mining.png'),
+			action: ()=>{
+				// this.notify({key: 'CHANGE_TAB'}, 3);
+                if(!this.$store.state.authMessage.userId) {
+                	this.$router.push('Login');
+                	return
+                }
+                this.$router.push('AssetPageSearch')
+			}
+		},
+		{
+			text: '提币',
+			img: require('../assets/OneHome/help_center.png'),
+            action: ()=>{
+                // this.notify({key: 'CHANGE_TAB'}, 3);
+                if(!this.$store.state.authMessage.userId) {
+                    this.$router.push('Login');
+                    return
+                }
+                this.$router.push('AssetPageSearch')
+            }
+			// action: 'https://jinshuju.net/f/jhg65X'
+		},
+        {
+            text: '交易挖矿',
+            img: require('../assets/OneHome/trade_mining.png'),
+            action: (() => {
+                let last = 0;
+                return () => {
+                    if (Date.now() - last < 1000) return;
+                    last = Date.now();
+                    // this.$store.state.authMessage.userId || this.$router.push('Login');
+        		// this.goGRC();
+
+					this.$globalFunc.toast('敬请期待')
+                }
+            })()
+        },
+        {
             text: '帮助中心',
-            img: require('../assets/OneHome/help-center.png'),
-            action: this.customerServiceUrl
+            img: require('../assets/OneHome/help_center.png'),
+            action: this.helpCenterUrl
             // action: (() => {
             //     let last = 0;
             //     return () => {
@@ -142,31 +171,6 @@ export default class OneHome extends RNComponent {
             //     }
             // })()
         },
-		// {
-		// 	text: '充值',
-		// 	img: require('../assets/OneHome/recharge.png'),
-		// 	action: ()=>{
-		// 		// this.notify({key: 'CHANGE_TAB'}, 3);
-         //        if(!this.$store.state.authMessage.userId) {
-         //        	this.$router.push('Login');
-         //        	return
-         //        }
-         //        this.$router.push('AssetPageSearch')
-		// 	}
-		// },
-		// {
-		// 	text: '提现',
-		// 	img: require('../assets/OneHome/withdrawals.png'),
-         //    action: ()=>{
-         //        // this.notify({key: 'CHANGE_TAB'}, 3);
-         //        if(!this.$store.state.authMessage.userId) {
-         //            this.$router.push('Login');
-         //            return
-         //        }
-         //        this.$router.push('AssetPageSearch')
-         //    }
-		// 	// action: 'https://jinshuju.net/f/jhg65X'
-		// },
 
 	]
 
@@ -532,95 +536,109 @@ export default class OneHome extends RNComponent {
 
 					</View>
 
+                    {/*广告位行情*/}
+                    <HomeAdMarketItem page={'OneHome'} goRouter={'TraddingHall'}/>
                     {/*首页四个导航*/}
-                    {/*<View>*/}
-                        {/*<View style={styles.activiteisBox2}>{*/}
-                            {/*this.activiteisData.map((v,i)=>*/}
-                                {/*{return v && <View key={i}>*/}
-                                    {/*<TouchableOpacity*/}
-                                        {/*activeOpacity={0.85}*/}
-                                        {/*// key={i}*/}
-										{/*style={styles.activitiesButton}*/}
-                                        {/*onPress={typeof v.action === 'function'&&*/}
-                                        {/*v.action*/}
-                                        {/*||*/}
-                                        {/*this.goWebView.bind(this,{*/}
-                                            {/*url: v.action,*/}
-                                            {/*loading: false,*/}
-                                            {/*navHide: false,*/}
-                                            {/*title: v.text*/}
-                                        {/*})*/}
-                                        {/*}*/}
-                                    {/*>*/}
+                    <View>
+                        <View style={styles.activiteisBox2}>{
+                            this.activiteisData.map((v,i)=>
+                                {return v && <View key={i}>
+                                    <TouchableOpacity
+                                        activeOpacity={0.85}
+                                        // key={i}
+										style={styles.activitiesButton}
+                                        onPress={typeof v.action === 'function'&&
+                                        v.action
+                                        ||
+                                        this.goWebView.bind(this,{
+                                            url: v.action,
+                                            loading: false,
+                                            navHide: false,
+                                            title: v.text
+                                        })
+                                        }
+                                    >
 
-                                        {/*<Image*/}
-                                            {/*source={v.img}*/}
-                                            {/*style={styles.activityImage2}*/}
-                                        {/*/>*/}
-                                        {/*<Text*/}
-                                            {/*style={styles.activityText2}*/}
-                                            {/*allowFontScaling={false}*/}
-                                        {/*>{v.text}</Text>*/}
+                                        <Image
+                                            source={v.img}
+                                            style={styles.activityImage2}
+                                        />
+                                        <Text
+                                            style={styles.activityText2}
+                                            allowFontScaling={false}
+                                        >{v.text}</Text>
 
-                                    {/*</TouchableOpacity>*/}
+                                    </TouchableOpacity>
 
-                                    {/*{v.badgeImg &&*/}
-                                        {/*<Image*/}
-                                            {/*source={v.badgeImg}*/}
-                                            {/*style={styles.badgeImg}*/}
-                                        {/*/>}*/}
-                                    {/*</View>*/}
-                                    {/*||*/}
-                                    {/*null*/}
-                                {/*}*/}
-                            {/*)*/}
-                        {/*}</View>*/}
-                    {/*</View>*/}
-					{/*广告位行情*/}
-					<HomeAdMarketItem page={'OneHome'} goRouter={'TraddingHall'}/>
-					{/*首页导航*/}
-					<View style={styles.activiteisBox}>
-						<TouchableOpacity activeOpacity={1} onPress={this.goOtcPage} style={styles.activiteisBoxLeft}>
-							<View>
-								<Text style={styles.activiteisBoxLeftTitle}>法币交易</Text>
-								<Text style={styles.activiteisBoxLeftDesc}>支持申请成为币商</Text>
-							</View>
-							<Image source={legalCurrencyTransaction} style={styles.activiteisBoxLeftImg}></Image>
-						</TouchableOpacity>
+                                    {v.badgeImg &&
+                                        <Image
+                                            source={v.badgeImg}
+                                            style={styles.badgeImg}
+                                        />}
+                                    </View>
+                                    ||
+                                    null
+                                }
+                            )
+                        }</View>
+                    </View>
 
-						<View style={styles.activiteisBoxRight}>{
-							this.activiteisData.map((v,i)=>
-								{return v && <TouchableOpacity
-										style={[styles.activiteisRightItem,i == 1 && {marginTop:getWidth(16)}]}
-										activeOpacity={0.9}
-										key={i}
-										// style={styles.activitiesButton}
-										onPress={typeof v.action === 'function'&&
-										v.action
-										||
-										this.goWebView.bind(this,{
-											url: v.action,
-											loading: false,
-											navHide: false,
-											title: v.text
-										})
-										}
-									>
-										<Image
-											source={v.img}
-											style={styles.activityImage}
-										/>
-										<Text
-											style={styles.activityText}
-											allowFontScaling={false}
-										>{v.text}</Text>
-									</TouchableOpacity>
-									||
-									null
-								}
-							)
-						}</View>
-					</View>
+					{/*首页三个导航*/}
+					{/*<View style={styles.activiteisBox}>*/}
+						{/*<TouchableOpacity activeOpacity={1} onPress={this.goOtcPage} style={styles.activiteisBoxLeft}>*/}
+							{/*<View>*/}
+								{/*<Text style={styles.activiteisBoxLeftTitle}>法币交易</Text>*/}
+								{/*<Text style={styles.activiteisBoxLeftDesc}>支持申请成为币商</Text>*/}
+							{/*</View>*/}
+							{/*<Image source={legalCurrencyTransaction} style={styles.activiteisBoxLeftImg}></Image>*/}
+						{/*</TouchableOpacity>*/}
+
+						{/*<View style={styles.activiteisBoxRight}>{*/}
+							{/*this.activiteisData.map((v,i)=>*/}
+								{/*{return v && <TouchableOpacity*/}
+										{/*style={[styles.activiteisRightItem,i == 1 && {marginTop:getWidth(16)}]}*/}
+										{/*activeOpacity={0.9}*/}
+										{/*key={i}*/}
+										{/*// style={styles.activitiesButton}*/}
+										{/*onPress={typeof v.action === 'function'&&*/}
+										{/*v.action*/}
+										{/*||*/}
+										{/*this.goWebView.bind(this,{*/}
+											{/*url: v.action,*/}
+											{/*loading: false,*/}
+											{/*navHide: false,*/}
+											{/*title: v.text*/}
+										{/*})*/}
+										{/*}*/}
+									{/*>*/}
+										{/*<Image*/}
+											{/*source={v.img}*/}
+											{/*style={styles.activityImage}*/}
+										{/*/>*/}
+										{/*<Text*/}
+											{/*style={styles.activityText}*/}
+											{/*allowFontScaling={false}*/}
+										{/*>{v.text}</Text>*/}
+									{/*</TouchableOpacity>*/}
+									{/*||*/}
+									{/*null*/}
+								{/*}*/}
+							{/*)*/}
+						{/*}</View>*/}
+					{/*</View>*/}
+
+                    {/*跳转拼团详情*/}
+                    <TouchableOpacity
+                        onPress={()=>_}
+                        activeOpacity={StyleConfigs.activeOpacity}
+						style={styles.joinGroupTouch}
+                    >
+                        <ImageBackground source={null} style={styles.joinGroupBox}>
+                            <Text style={styles.joinGroupTitle}>参与拼团</Text>
+                            <Text style={styles.joinGroupDesc}>拼团获取交易手续费折扣</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+
 
 			</View>
         );
