@@ -30,6 +30,11 @@ if(env.networkConfigs.baseUrl.indexOf('app.2020.exchange') > -1){
     env.networkConfigs.downloadUrl = 'https://www.2020.exchange/';
 }
 
+if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
+    // env.networkConfigs.downloadUrl = 'http://zpy.2020-ex.com:8084/';
+    env.networkConfigs.downloadUrl = 'http://www.2020-ex.com/';
+}
+
 //跳转到app下载页面所需地址
 // env.networkConfigs.testUrl =   //测试环境
 
