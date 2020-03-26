@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     text6B7DA2: {
         color: StyleConfigs.txt6B7DA2,
     },
+    textError: {
+        color: StyleConfigs.txtError,
+    },
     btnBlue: {
         backgroundColor: StyleConfigs.btnBlue,
         borderRadius: StyleConfigs.borderRadius1o5,

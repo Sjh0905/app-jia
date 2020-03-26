@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     countingDownText: {
-        color: StyleConfigs.txtRed,
+        color: StyleConfigs.txtBlue,
         fontSize: 12,
     },
 })

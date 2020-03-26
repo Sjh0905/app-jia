@@ -12,6 +12,7 @@ root.btnRed2 = '#E13B3B'
 root.txtRed2 = '#E13B3B'
 root.btnDisabled = '#A2B5D9';
 root.txtDisabled = '#A2B5D9';
+root.txtError = '#EF5656';
 
 root.btnE7EBEE = '#E7EBEE'
 root.btnBlack = '#202126'

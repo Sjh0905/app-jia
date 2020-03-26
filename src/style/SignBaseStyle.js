@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         // marginLeft: getWidth(60),
         paddingTop: getHeight(15),
         fontSize: 12,
-        color: StyleConfigs.txtBlue,
+        color: StyleConfigs.txtError,
 
     },
 
