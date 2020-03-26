@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
         // height: getHeight(140+10)
     },
     activityText2:{
-        color:StyleConfigs.txt9FA7B8,
+        color:StyleConfigs.txt6B7DA2,
         fontSize: StyleConfigs.fontSize13
     },
     activityImage2:{

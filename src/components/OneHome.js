@@ -39,6 +39,8 @@ import moreIcon from '../assets/OneHome/more.png'
 import Modal from 'react-native-modal'
 import Toast from "react-native-root-toast";
 
+const groupBanner = require('../assets/OneHome/group_banner.png')
+
 @observer
 export default class OneHome extends RNComponent {
 
@@ -118,7 +120,7 @@ export default class OneHome extends RNComponent {
         // },
 		{
 			text: '充币',
-			img: require('../assets/OneHome/trade_mining.png'),
+			img: require('../assets/OneHome/recharge.png'),
 			action: ()=>{
 				// this.notify({key: 'CHANGE_TAB'}, 3);
                 if(!this.$store.state.authMessage.userId) {
@@ -130,7 +132,7 @@ export default class OneHome extends RNComponent {
 		},
 		{
 			text: '提币',
-			img: require('../assets/OneHome/help_center.png'),
+			img: require('../assets/OneHome/withdrawals.png'),
             action: ()=>{
                 // this.notify({key: 'CHANGE_TAB'}, 3);
                 if(!this.$store.state.authMessage.userId) {
@@ -633,7 +635,7 @@ export default class OneHome extends RNComponent {
                         activeOpacity={StyleConfigs.activeOpacity}
 						style={styles.joinGroupTouch}
                     >
-                        <ImageBackground source={null} style={styles.joinGroupBox}>
+                        <ImageBackground source={groupBanner} style={styles.joinGroupBox}>
                             <Text style={styles.joinGroupTitle}>参与拼团</Text>
                             <Text style={styles.joinGroupDesc}>拼团获取交易手续费折扣</Text>
                         </ImageBackground>
