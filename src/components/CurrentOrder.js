@@ -128,7 +128,7 @@ export default class CurrentOrder extends RNComponent {
                         <Text style={[styles.size12,styles.color6B7DA2,{marginLeft:5}]}>{this.$globalFunc.formatDateUitl(rowData.createdAt, 'MM-DD hh:mm')}</Text>
                     </View>
                     <TouchableOpacity  style={styles.chedanTouch} onPress={() => this.cancelOrder(rowData, index)}>
-                        <Text style={[styles.colorRed,styles.size12]}>撤销</Text>
+                        <Text style={[{color:StyleConfigs.txtBlue},styles.size12]}>撤单</Text>
                     </TouchableOpacity>
                 </View>
 

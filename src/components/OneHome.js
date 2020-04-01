@@ -286,24 +286,51 @@ export default class OneHome extends RNComponent {
 		//'/index/mobileNoticeDetail?id=' +items.id
 	}
 
+	//跳转拼团，TODO：还没改完
+    goToJoinGroup = () =>{
+        this.goWebView({
+            // url: this.moreNoticeUrl || '',
+            url: 'index/mobileAsset/mobileAssetRechargeAndWithdrawals?isApp=true',
+            loading: false,
+            navHide: false,
+            title: '拼团详情',
+            requireLogin:true
+        })
+    }
+
+
 	goWebView = (()=>{
 		let last = 0;
 		return (params={
 			url: '',
 			loading: false,
 			navHide: false,
-			title: ''
-		},type) => {
-			if (Date.now() - last < 1000) return;
-			last = Date.now();
-			if(!params.url){
-				return;
-			}
-			params.url.length && (params.url.indexOf('http') === -1) && (params.url = env.networkConfigs.downloadUrl + params.url.replace(/^\//,''));
-			console.log('this is webpage type',type);
-			// if(!type)
-				return this.$router.push('WebPage',params)
+			title: '',
+            requireLogin:false
+		},type='') => {
+            if (Date.now() - last < 1000) return;
+            last = Date.now();
+            if (!params.url) {
+                return;
+            }
+            params.url.length && (params.url.indexOf('http') === -1) && (params.url = env.networkConfigs.downloadUrl + params.url.replace(/^\//, ''));
+            console.log('this is webpage type', type);
+            //非客服页跳转
+            if(type != 'customerService'){
+                let userId = this.$store.state.authMessage.userId;
 
+                if (params.requireLogin && !userId){
+                    return this.$router.push('Login');
+                }
+                if (params.requireLogin && userId){
+                    // TODO:由于主域名相同，RN此版本Webview的cookie正好与APP互通，暂时不做处理
+                    // let _bitsession_ = this.$store.state.cookie._bitsession_;
+                    // params.url += params.url.indexOf('?')>-1 ? ('&_bitsession_='+_bitsession_) : ('?_bitsession_='+_bitsession_)
+                    //"https://xxx.xxx?_bitsession_=xxx"
+                }
+
+                return this.$router.push('WebPage', params)
+            }
             // return this.$router.push('CustomerServiceWebPage',params)
         }
 	})()
@@ -631,7 +658,7 @@ export default class OneHome extends RNComponent {
 
                     {/*跳转拼团详情*/}
                     <TouchableOpacity
-                        onPress={()=>_}
+                        onPress={this.goToJoinGroup}
                         activeOpacity={StyleConfigs.activeOpacity}
 						style={styles.joinGroupTouch}
                     >
