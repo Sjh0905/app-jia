@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         // borderRadius:8,
         paddingTop:getWidth(12),
         overflow:'hidden',
-        backgroundColor:StyleConfigs.bg172A4D
+        backgroundColor:StyleConfigs.bgAssetPageTop
     },
     totalAssetTitleTouch: {
         marginLeft:getWidth(40),
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     rechargeTouch:{
         height:'100%',
-        width:'50%',
+        width:'24.7%',
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     },
     hideText:{
         fontSize:StyleConfigs.fontSize14,
-        color:StyleConfigs.txtC5CFD5
+        color:StyleConfigs.txt6B7DA2
     },
     searchBox: {
         width:'100%',
@@ -230,9 +230,14 @@ const styles = StyleSheet.create({
         lineHeight:getHeight(32),
     },
     itemSectionNum:{
-        color:StyleConfigs.txt172A4D,
+        color:StyleConfigs.txt0D0E23,
         fontSize:StyleConfigs.fontSize14,
         marginTop:getHeight(6)
+    },
+    itemSectionNumToRMB:{
+        color:StyleConfigs.txt6B7DA2,
+        // opacity:0.8,
+        textAlign:'right'
     },
     baseColumn1:{
         width:'36%'

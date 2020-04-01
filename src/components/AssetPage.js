@@ -18,6 +18,8 @@ import ShowAssets from '../assets/AssetPage/show-assets.png'
 import HideAssets from '../assets/AssetPage/hide-assets.png'
 import rechargeIcon from '../assets/AssetPage/recharge.png'
 import withdrawalsIcon from '../assets/AssetPage/withdrawals.png'
+import internalTransferIcon from '../assets/AssetPage/internal_transfer.png'
+import lockHouseIcon from '../assets/AssetPage/lock_house.png'
 import HistoricalRecordsIcon from '../assets/AssetPage/historical-records.png'
 import device from "../configs/device/device";
 import Env from  '../configs/environmentConfigs/env.js'
@@ -366,11 +368,11 @@ export default class App extends RNComponent {
                                     this.totalAssetShow ?
                                         <Text
                                             allowFontScaling={false}
-                                            style={[baseStyles.textWhite, styles.itemSectionNum,{opacity:0.8,textAlign:'right'}]}>{this.totalAssetShow ? this.$globalFunc.accFixed2(appraisementToRMB, 2) : '----'}</Text>
+                                            style={[baseStyles.textWhite, styles.itemSectionNum,styles.itemSectionNumToRMB]}>{this.totalAssetShow ? this.$globalFunc.accFixed2(appraisementToRMB, 2) : '----'}</Text>
                                         :
                                         <Text
                                             allowFontScaling={false}
-                                            style={[baseStyles.textWhite, styles.itemSectionNum,{opacity:0.8,textAlign:'right'},styles.totalAssetRMBHide]}>{''}</Text>
+                                            style={[baseStyles.textWhite, styles.itemSectionNum,styles.itemSectionNumToRMB,styles.totalAssetRMBHide]}>{''}</Text>
 
                                 }
                             </View>
@@ -403,7 +405,7 @@ export default class App extends RNComponent {
             <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.bg172A4D},PlatformOS == 'ios' && styles.containerMargin || {}]}>
                 <NavHeader
                     headerTitle={'资产'}
-                    navStyle={{backgroundColor:StyleConfigs.bg172A4D}}
+                    navStyle={{backgroundColor:StyleConfigs.bgAssetPageTop}}
                     headerTitleStyle={{color:StyleConfigs.txtWhite}}
                     touchCompRight={<Image style={{width: getWidth(56), height: getWidth(56)}}
                                            source={HistoricalRecordsIcon}
@@ -490,6 +492,40 @@ export default class App extends RNComponent {
                                 style={styles.rechargeText}
                                 allowFontScaling={false}
                             >提币</Text>
+                        </TouchableOpacity>
+                        <View style={styles.rechargeLine}/>
+                        <TouchableOpacity
+                            style={[styles.rechargeTouch,styles.withdrawalsTouch]}
+                            activeOpacity={StyleConfigs.activeOpacity}
+                            onPress={()=>{
+                                this.$router.push('AssetPageSearch')
+                            }}
+                        >
+                            <Image
+                                source={internalTransferIcon}
+                                style={styles.rechargeImage}
+                            />
+                            <Text
+                                style={styles.rechargeText}
+                                allowFontScaling={false}
+                            >内转</Text>
+                        </TouchableOpacity>
+                        <View style={styles.rechargeLine}/>
+                        <TouchableOpacity
+                            style={[styles.rechargeTouch,styles.withdrawalsTouch]}
+                            activeOpacity={StyleConfigs.activeOpacity}
+                            onPress={()=>{
+                                this.$router.push('AssetPageSearch')
+                            }}
+                        >
+                            <Image
+                                source={lockHouseIcon}
+                                style={styles.rechargeImage}
+                            />
+                            <Text
+                                style={styles.rechargeText}
+                                allowFontScaling={false}
+                            >锁仓</Text>
                         </TouchableOpacity>
                     </View>
 
