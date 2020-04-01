@@ -38,7 +38,7 @@ const reachedThreshold = Platform.select({
 
 const ORDER_STATUS = {
 	FULLY_FILLED:'已成交',
-	FULLY_CANCELLED:'已撤销',
+	FULLY_CANCELLED:'已撤单',
 	PARTIAL_CANCELLED:'部分成交'
 }
 

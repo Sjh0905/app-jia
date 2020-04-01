@@ -200,7 +200,7 @@ export default class HistoryOrderDetail extends RNComponent {
 						<View style={styles.tableItem1}>
 							<Text style={styles.tableTxt1}>成交总额({this.$params.order.symbol.split('_')[1]})</Text>
 							<Text style={styles.tableTxt2}>{this.$globalFunc.accFixed(this.filledPrice, 8)}</Text>
-							<Text style={styles.tableTxt3}>单价({this.$params.order.symbol.split('_')[1]})</Text>
+							<Text style={styles.tableTxt3}>价格({this.$params.order.symbol.split('_')[1]})</Text>
 							<Text style={styles.tableTxt4}>{this.$globalFunc.accFixed(this.$params.order.price, this.$params.order.quoteScale)}</Text>
 						</View>
 						<View style={styles.tableItem2}>
