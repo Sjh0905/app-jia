@@ -19,6 +19,8 @@ import filterDefault from '../assets/AssetPageDetail/filter-default.png'
 import dealIcon from '../assets/AssetPageDetail/deal-icon.png'
 import withdrawalsIcon from '../assets/AssetPageDetail/withdrawals-icon.png'
 import rechargeIcon from '../assets/AssetPageDetail/recharge-icon.png'
+import internalTransferIcon from '../assets/AssetPageDetail/internal-transfer-icon.png'
+import lockHouseIcon from '../assets/AssetPageDetail/lock-house-icon.png'
 
 import MyConfirm from './baseComponent/MyConfirm'
 import Env from "../configs/environmentConfigs/env";
@@ -468,7 +470,7 @@ export default class AssetPageDetail extends RNComponent {
                 return
             }
 
-            // 如果没有绑定谷歌或手机，不允许打开充值
+            /*// 如果没有绑定谷歌或手机，不允许打开充值
             if (!this.$store.state.authState.ga && !this.$store.state.authState.sms) {
                 // this.$globalFunc.toast('请进行手机认证或谷歌认证')
                 this.modalMsg = '请先进行手机认证或谷歌认证'
@@ -483,7 +485,7 @@ export default class AssetPageDetail extends RNComponent {
                 // 打开到认证窗口
                 this.showAlert = true;
                 return
-            }
+            }*/
 
 
             this.$router.push('Recharge', {currency: this.currency,changeCurrency1:this.changeCurrency})
@@ -871,11 +873,27 @@ export default class AssetPageDetail extends RNComponent {
                         <TouchableOpacity
                             activeOpacity={StyleConfigs.activeOpacity}
                             style={styles.itembtnView}
-                            onPress={() => this.gotoTrade(this.dataList[0])}//默认显示第一个
+                            onPress={() => {}}
                         >
-                            <Image source={dealIcon} style={[styles.itemIcon]}/>
-                            <Text style={[styles.itemIconTxt,baseStyles.textRed]}>交易</Text>
+                            <Image source={internalTransferIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
+                            <Text style={styles.itemIconTxt}>内部转账</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={StyleConfigs.activeOpacity}
+                            style={styles.itembtnView}
+                            onPress={() => {}}
+                        >
+                            <Image source={lockHouseIcon} style={[styles.itemIcon]}/>
+                            <Text style={styles.itemIconTxt}>锁仓</Text>
+                        </TouchableOpacity>
+                        {/*<TouchableOpacity*/}
+                            {/*activeOpacity={StyleConfigs.activeOpacity}*/}
+                            {/*style={styles.itembtnView}*/}
+                            {/*onPress={() => this.gotoTrade(this.dataList[0])}//默认显示第一个*/}
+                        {/*>*/}
+                            {/*<Image source={dealIcon} style={[styles.itemIcon]}/>*/}
+                            {/*<Text style={[styles.itemIconTxt,baseStyles.textRed]}>交易</Text>*/}
+                        {/*</TouchableOpacity>*/}
                     </View>
                     {/*充值和提现按钮 end*/}
 

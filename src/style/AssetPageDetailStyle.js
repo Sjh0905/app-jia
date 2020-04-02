@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
         height:18
     },
     currencyName:{
-        color:StyleConfigs.txtRed,
+        color:StyleConfigs.txtBlue,
         fontSize:StyleConfigs.fontSize24,
         lineHeight: 36,
         marginTop:getHeight(27),
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
         lineHeight:getHeight(32),
     },
     itemSectionNum:{
-        color:StyleConfigs.txt172A4D,
+        color:StyleConfigs.txt0D0E23,
         fontSize:StyleConfigs.fontSize14,
         marginTop:getHeight(9)
     },

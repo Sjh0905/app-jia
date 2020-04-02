@@ -325,7 +325,7 @@ export default class App extends RNComponent {
                         <View style={[styles.currencyItemBox, index == 0 && styles.currencyItemFirstBox]}>
                             <View style={styles.currencyItemLeft}>
                                 {/*<Image source={{uri: Env.networkConfigs.currencyLogoUrl + item.currency + '.png'}} style={styles.currencyIcon}/>*/}
-                                <Text allowFontScaling={false} style={[baseStyles.textRed, styles.currencyText]}>
+                                <Text allowFontScaling={false} style={[baseStyles.textBlue, styles.currencyText]}>
                                     {item.currency}
                                 </Text>
                             </View>
