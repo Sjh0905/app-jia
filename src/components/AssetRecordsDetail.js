@@ -184,7 +184,7 @@ export default class App extends RNComponent {
                 <View style={[styles.itemDetailBox]}>
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>数量</Text>
                     <Text allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
                 </View>
                 {/*数量 begin*/}
 
@@ -193,7 +193,7 @@ export default class App extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>状态</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{status}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{status}</Text>
                 </View>
                 {/*状态 end*/}
 
@@ -208,7 +208,7 @@ export default class App extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>地址</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor, styles.toAddress]}>{item.toAddress}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.toAddress}</Text>
                 </View>
                 {/*地址 end*/}
 
@@ -217,7 +217,7 @@ export default class App extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>memo(备注）</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor, styles.toAddress]}>{item.memoAddress}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
                 </View>}
                 {/*memo end*/}
 
@@ -227,7 +227,7 @@ export default class App extends RNComponent {
                     <View style={[styles.itemDetailBox]}>
                         <Text allowFontScaling={false} style={[styles.itemTitle]}>Txid</Text>
                         <Text allowFontScaling={false}
-                            style={[styles.itemDetail, baseStyles.textColor, styles.txid]}>{item.uniqueId}</Text>
+                            style={[styles.itemDetail, baseStyles.text0D0E23, styles.txid]}>{item.uniqueId}</Text>
                     </View>
                 }
                 {/*Txid end*/}
@@ -236,7 +236,7 @@ export default class App extends RNComponent {
                 <View style={[styles.itemDetailBox]}>
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>日期</Text>
                     <Text allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{this.$globalFunc.formatDateUitl(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.formatDateUitl(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
                 </View>
                 {/*日期 end*/}
 
@@ -422,7 +422,7 @@ export default class App extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>数量</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
                 </View>
                 {/*数量 begin*/}
 
@@ -431,7 +431,7 @@ export default class App extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>状态</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{status}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{status}</Text>
                 </View>
                 {/*状态 end*/}
 
@@ -445,7 +445,7 @@ export default class App extends RNComponent {
                 <View style={[styles.itemDetailBox]}>
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>地址</Text>
                     <Text allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor, styles.toAddress]}>{item.toAddress}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.toAddress}</Text>
                 </View>
                 {/*地址 end*/}
                 {/*memo begin*/}
@@ -453,7 +453,7 @@ export default class App extends RNComponent {
                     !!item.memoAddress && <View style={[styles.itemDetailBox]}>
                         <Text allowFontScaling={false} style={[styles.itemTitle]}>memo(备注）</Text>
                         <Text allowFontScaling={false}
-                          style={[styles.itemDetail, baseStyles.textColor, styles.toAddress]}>{item.memoAddress}</Text>
+                          style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
                     </View>
                 }
                 {/*memo end*/}
@@ -463,7 +463,7 @@ export default class App extends RNComponent {
                     <View style={[styles.itemDetailBox]}>
                         <Text allowFontScaling={false} style={[styles.itemTitle]}>Txid</Text>
                         <Text allowFontScaling={false}
-                            style={[styles.itemDetail, baseStyles.textColor, styles.txid]}>{item.tx}</Text>
+                            style={[styles.itemDetail, baseStyles.text0D0E23, styles.txid]}>{item.tx}</Text>
                     </View>
                 }
                 {/*Txid end*/}
@@ -472,7 +472,7 @@ export default class App extends RNComponent {
                 <View style={[styles.itemDetailBox]}>
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>日期</Text>
                     <Text allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.textColor]}>{this.$globalFunc.formatDateUitl(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.formatDateUitl(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
                 </View>
                 {/*日期 end*/}
 
@@ -481,7 +481,7 @@ export default class App extends RNComponent {
                     !!item.errorMessage && <View style={[styles.itemDetailBox]}>
                         <Text allowFontScaling={false} style={[styles.itemTitle]}>{this.status === '被驳回' && '驳回理由' || '失败理由'}</Text>
                         <Text allowFontScaling={false}
-                            style={[styles.itemDetail, baseStyles.textColor, styles.errorMessage]}>{item.errorMessage}</Text>
+                            style={[styles.itemDetail, baseStyles.text0D0E23, styles.errorMessage]}>{item.errorMessage}</Text>
                     </View>
                 }
                 {/*驳回理由 end*/}
@@ -591,8 +591,9 @@ export default class App extends RNComponent {
     /*----------------------- 挂载 -------------------------*/
 
     render() {
-        let headerTitle = this.recordsItem.currency
-        this.type === typeArr[0] ? headerTitle += '充值详情' : headerTitle += '提现详情'
+        // let headerTitle = this.recordsItem.currency
+        let headerTitle = ''
+        this.type === typeArr[0] ? headerTitle += '充币详情' : headerTitle += '提币详情'
 
 
         return (
@@ -602,9 +603,9 @@ export default class App extends RNComponent {
                 <View style={[styles.boxPadding, styles.container,{backgroundColor:StyleConfigs.bgColor}]}>
                     {/*币种title begin*/}
                     <View style={styles.titleBox}>
-                        <Image source={{uri: 'http://logo.2020.exchange/' + this.recordsItem.currency + '.png'}}
-                               style={styles.currencyIcon}
-                        />
+                        {/*<Image source={{uri: 'http://logo.2020.exchange/' + this.recordsItem.currency + '.png'}}*/}
+                               {/*style={styles.currencyIcon}*/}
+                        {/*/>*/}
                         <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTitle]}>{this.recordsItem.currency}</Text>
                     </View>
                     {/*币种title end*/}
