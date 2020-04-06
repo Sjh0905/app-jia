@@ -2,8 +2,8 @@
 import React, {Component} from "react"
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native"
 import PropTypes from "prop-types"
-
-
+// import /Users/zuopengyu/ex-2020/ex-2020-app/src/style/styleConfigs/StyleConfigs.js
+import StyleConfigs from "../../style/styleConfigs/StyleConfigs"
 export default class TabBar extends Component {
 
 
@@ -14,6 +14,7 @@ export default class TabBar extends Component {
         tabBarBackgroundColor:PropTypes.string,
         tabActiveColor:PropTypes.string,
         tabInActiveColor:PropTypes.string,
+        tabUnderlineActiveColor:PropTypes.string,
         tabUnderlineWidth:PropTypes.array
 
     }
@@ -21,8 +22,9 @@ export default class TabBar extends Component {
         tabLabels:['tab1','tab2','tab3'],
         tabImageShow:[0,0,0],
         tabBarBackgroundColor:'#fff',
-        tabActiveColor:'#3576F5',
-        tabInActiveColor:'#333',
+        tabActiveColor:StyleConfigs.txt0D0E23,
+        tabInActiveColor:StyleConfigs.txtA2B5D9,
+        tabUnderlineActiveColor:StyleConfigs.lineBlue,
         tabUnderlineWidth:[getWidth(75),getWidth(55),getWidth(55),getWidth(75)]
     }
 
@@ -45,7 +47,7 @@ export default class TabBar extends Component {
     renderTabItem(tab, i) {
         const tabTextColor = this.props.activeTab == i? this.props.tabActiveColor : this.props.tabInActiveColor;
         const textMarginLeft = this.props.tabImageShow[i] ? getWidth(50) : getWidth(0);
-        const tabUnderlineColor = this.props.activeTab == i ? this.props.tabActiveColor : 'transparent';
+        const tabUnderlineColor = this.props.activeTab == i ? this.props.tabUnderlineActiveColor : 'transparent';
 
         // console.log('this.tabImageShow================',this.props.tabImageShow[i]);
         return (

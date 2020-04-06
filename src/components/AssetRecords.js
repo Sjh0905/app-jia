@@ -102,10 +102,10 @@ export default class App extends RNComponent {
                 <ScrollableTabView
                     renderTabBar={() =>
                         <BaseDefaultBar
-                        tabLabels={['充值记录','提现记录','奖励记录']}
-                        tabUnderlineWidth={[getWidth(108),getWidth(108)]}
+                        tabLabels={['充币','提币','奖励']}
+                        tabUnderlineWidth={[getWidth(54),getWidth(54),getWidth(54)]}
                         tabBarBackgroundColor={StyleConfigs.navBgColor0602}
-                        tabInActiveColor={'#9FA7B8'}
+                        // tabInActiveColor={'#9FA7B8'}
                         />
                     }
                     initialPage={0}
@@ -124,9 +124,9 @@ export default class App extends RNComponent {
                         this.onIndexChange(asd.i);
                     }}
                 >
-                    <AssetRecordsItem tabLabel={' 充值记录 '} type={'recharge'}/>
-                    <AssetRecordsItem tabLabel={' 提现记录 '} type={'withdrawals'}/>
-                    <RewardRecordsItem tabLabel={' 奖励记录 '} type={'withdrawals'}/>
+                    <AssetRecordsItem tabLabel={' 充币 '} type={'recharge'}/>
+                    <AssetRecordsItem tabLabel={' 提币 '} type={'withdrawals'}/>
+                    <RewardRecordsItem tabLabel={' 奖励 '} type={'withdrawals'}/>
                 </ScrollableTabView>
 
 

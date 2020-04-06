@@ -338,9 +338,9 @@ export default class App extends RNComponent {
                     <View style={styles.itemTop}>
                         {
                             this.props.currency &&
-                            <Text allowFontScaling={false} style={[baseStyles.textColor, baseStyles.size16]}>{typeTextObj[this.props.type]}</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.text0D0E23, baseStyles.size16]}>{typeTextObj[this.props.type]}</Text>
                             ||
-                            <Text allowFontScaling={false} style={[baseStyles.textRed, styles.currency]}>{item.currency}</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.textCurrencyTitle, styles.currency]}>{item.currency}</Text>
                         }
                     </View>
                     <View style={[baseStyles.flexRowBetween,styles.itemLineBot]}>
@@ -496,9 +496,9 @@ export default class App extends RNComponent {
                     <View style={styles.itemTop}>
                         {
                             this.props.currency &&
-                            <Text allowFontScaling={false} style={[baseStyles.textColor, baseStyles.size16]}>{typeTextObj[this.props.type]}</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.text0D0E23, baseStyles.size16]}>{typeTextObj[this.props.type]}</Text>
                             ||
-                            <Text allowFontScaling={false} style={[baseStyles.textRed, styles.currency]}>{item.currency}</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.textCurrencyTitle, styles.currency]}>{item.currency}</Text>
                         }
                     </View>
                     <View style={[baseStyles.flexRowBetween,styles.itemLineBot]}>

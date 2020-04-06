@@ -2,6 +2,7 @@ const root = {}
 
 root.btnBlue = '#3576F5'
 root.txtBlue = '#3576F5'
+root.txtCurrencyTitle = '#3576F5'
 root.btnGreen = '#34A753'
 root.btnGreen008 = '#rgba(2,152,125,0.08)'
 root.txtGreen = '#34A753'

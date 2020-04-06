@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
 
     headerTitleStyle: {
-        color:StyleConfigs.txt172A4D,
+        color:StyleConfigs.txt0D0E23,
         marginLeft: 'auto',
         marginRight: 'auto',
         fontSize: 17,
