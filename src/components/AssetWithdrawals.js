@@ -472,13 +472,13 @@ export default class App extends RNComponent {
                 {
                     this.isEOS &&
                     <View>
-                        <Text allowFontScaling={false} style={[styles.withdrawalsAddressTitle, baseStyles.textColor]}>memo（备注）</Text>
+                        <Text allowFontScaling={false} style={[styles.withdrawalsAddressTitle, baseStyles.textColor]}>提现备注</Text>
                         <View
                             style={[styles.addressInputItem, styles.addressInputItemMarginTop, styles.addNewAddressInputItem]}>
                             <TextInput
                                 allowFontScaling={false}
                                 style={[styles.addressInput]}
-                                placeholder={'添加memo'}
+                                placeholder={'添加提现备注'}
                                 placeholderTextColor={StyleConfigs.txtC5CFD5}
                                 underlineColorAndroid={'transparent'}
                                 // value={this.memoAddress}
@@ -998,12 +998,12 @@ export default class App extends RNComponent {
 
 
 	                    {/*memo 备注*/}
-	                    {this.isEOS && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>memo</Text></View>}
+	                    {this.isEOS && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>提现备注</Text></View>}
 	                    {this.isEOS &&  <View style={styles.inputBoxMiddle2}>
 		                    <TextInput
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
-			                    placeholder={'添加memo'}
+			                    placeholder={'输入提现备注'}
 			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
@@ -1015,12 +1015,12 @@ export default class App extends RNComponent {
 	                    </View>}
 
 	                    {/*publicKey*/}
-	                    {this.isWCG && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>publicKey</Text></View>}
+	                    {this.isWCG && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>PublicKey</Text></View>}
 	                    {this.isWCG &&  <View style={styles.inputBoxMiddle2}>
 		                    <TextInput
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
-			                    placeholder={'添加publicKey'}
+			                    placeholder={'输入PublicKey'}
 			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
@@ -1289,20 +1289,20 @@ export default class App extends RNComponent {
             </Modal>*/}
 
 
-                {this.showAlert && <MyAlert
-                    // content={'提现' + this.currency + '原力上的合约币须同时具备提现地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '提现规则将导致资产无法找回。'}
-                    content={this.myAlertContent}
-                    contentStyle={{
-                        color: '#e13b3b'
-                    }}
-                    checkboxText={'我已知晓'+this.currency+'提现规则'}
-                    onClose={this.onCloseAlert}
-                    onPress={this.onPressAlert}
-                    buttonText={'继续提现'}
-                    buttonDisabledStyle={{
-                        backgroundColor: '#B1B3B4'
-                    }}
-                />}
+                {/*{this.showAlert && <MyAlert*/}
+                    {/*// content={'提现' + this.currency + '原力上的合约币须同时具备提现地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '提现规则将导致资产无法找回。'}*/}
+                    {/*content={this.myAlertContent}*/}
+                    {/*contentStyle={{*/}
+                        {/*color: '#e13b3b'*/}
+                    {/*}}*/}
+                    {/*checkboxText={'我已知晓'+this.currency+'提现规则'}*/}
+                    {/*onClose={this.onCloseAlert}*/}
+                    {/*onPress={this.onPressAlert}*/}
+                    {/*buttonText={'继续提现'}*/}
+                    {/*buttonDisabledStyle={{*/}
+                        {/*backgroundColor: '#B1B3B4'*/}
+                    {/*}}*/}
+                {/*/>}*/}
 
                 {/*加载中*/}
                 {
