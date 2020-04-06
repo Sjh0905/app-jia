@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginTop: getHeight(10),
         backgroundColor: StyleConfigs.btnWhite,
         width: '100%',
-        borderRadius: 8,
+        borderRadius: 2,
         paddingLeft: getWidth(38),
         paddingRight: getWidth(38),
         justifyContent: 'space-between',

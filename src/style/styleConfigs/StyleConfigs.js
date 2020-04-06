@@ -101,7 +101,7 @@ root.inputBackgroundF7F7FB = '#F7F7FB'
 root.inputBorderColor = '#E7EBEE'
 root.inputBorderRadius = 4
 
-root.btnRadius = 4
+root.btnRadius = 1.5
 
 root.blockBg = '#F7F7FB'
 root.blockNewBg = '#181C22'

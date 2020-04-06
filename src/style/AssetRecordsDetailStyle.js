@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
     },
 
     currencyTitle: {
-        fontSize: 16,
+        fontSize: 24,
         fontWeight: 'bold',
         paddingLeft: getWidth(10),
+        color: StyleConfigs.txtCurrencyTitle
     },
 
 
@@ -52,21 +53,21 @@ const styles = StyleSheet.create({
     },
 
     itemDetailBox: {
-        marginTop: getHeight(10),
-        marginBottom: getHeight(10),
+        marginTop: getHeight(13),
+        marginBottom: getHeight(13),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     itemTitle: {
         color: StyleConfigs.txt6B7DA2,
-        fontSize: 13,
-        fontWeight: 'bold',
+        fontSize: 14,
+        fontWeight: '400',
 
     },
     itemDetail: {
-        fontSize: 13,
-        fontWeight: 'bold',
+        fontSize: 14,
+        fontWeight: '400',
     },
 
     line: {
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
         borderColor: StyleConfigs.btnBlue,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderRadius: StyleConfigs.borderRadius,
+        borderRadius: StyleConfigs.btnRadius,
         width: getWidth(344),
         height: getHeight(80),
     },

@@ -214,7 +214,7 @@ export default class App extends RNComponent {
 
                 {/*memo begin*/}
                 {!!item.memoAddress && <View style={[styles.itemDetailBox]}>
-                    <Text allowFontScaling={false} style={[styles.itemTitle]}>memo(备注）</Text>
+                    <Text allowFontScaling={false} style={[styles.itemTitle]}>充值备注</Text>
                     <Text
                         allowFontScaling={false}
                         style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
@@ -451,7 +451,7 @@ export default class App extends RNComponent {
                 {/*memo begin*/}
                 {
                     !!item.memoAddress && <View style={[styles.itemDetailBox]}>
-                        <Text allowFontScaling={false} style={[styles.itemTitle]}>memo(备注）</Text>
+                        <Text allowFontScaling={false} style={[styles.itemTitle]}>提现备注</Text>
                         <Text allowFontScaling={false}
                           style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
                     </View>
@@ -606,7 +606,7 @@ export default class App extends RNComponent {
                         {/*<Image source={{uri: 'http://logo.2020.exchange/' + this.recordsItem.currency + '.png'}}*/}
                                {/*style={styles.currencyIcon}*/}
                         {/*/>*/}
-                        <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTitle]}>{this.recordsItem.currency}</Text>
+                        <Text allowFontScaling={false} style={[styles.currencyTitle]}>{this.recordsItem.currency}</Text>
                     </View>
                     {/*币种title end*/}
                     {/*如果是充值*/}
