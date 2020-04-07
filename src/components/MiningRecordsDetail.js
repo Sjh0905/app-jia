@@ -98,7 +98,7 @@ export default class InternalTransferRecordsDetail extends RNComponent {
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>类型</Text>
                     <Text
                         allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{item.descritption}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{transferType}</Text>
                 </View>
                 {/*类型 begin*/}
 
@@ -134,7 +134,7 @@ export default class InternalTransferRecordsDetail extends RNComponent {
 
     render() {
         // let headerTitle = this.recordsItem.currency
-        let headerTitle = '挖矿奖励详情'
+        let headerTitle = '奖励详情'
 
         return (
             <View style={[styles.container]}>

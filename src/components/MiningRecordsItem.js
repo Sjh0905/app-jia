@@ -148,7 +148,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
         console.log('获取挖矿记录', data)
         this.ActivityRecord = data.dataMap.kkActivityRewardList || []
 
-        // if (this.internalTransferLists.length < this.internalTransferLimit){
+        // if (this.ActivityRecord.length < this.internalTransferLimit){
         //     this.isShowGetMoreInternalTransfer = false
         // } else {
         //
@@ -162,14 +162,14 @@ export default class InternalTransferRecordsItem extends RNComponent {
     // 渲染footer组件
     @action
     _internalTransferFooterComponent = () => {
-        if (this.internalTransferLists.length == 0) {
+        if (this.ActivityRecord.length == 0) {
             return null
         }
 
 
         let canLoadingMore = true
 
-        if (this.internalTransferLists.length < this.internalTransferLimit) {
+        if (this.ActivityRecord.length < this.internalTransferLimit) {
             canLoadingMore = false
         }
 
@@ -189,23 +189,23 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
     // 去挖矿记录详情页
     @action
-    goToInternalTransferDetail = (item) => {
+    goToInternalTransferDetail = (item,transferType) => {
         let transferStatus = (this.statusObj[item.status] || "")
 
-        this.$router.push('MiningRecordsDetail', {item ,transferStatus})
+        this.$router.push('MiningRecordsDetail', {item ,transferType ,transferStatus})
 
     }
 
     // 挖矿记录item
     @action
     _renderInternalTransferRecordsItem = ({item, index}) => {
-
-        item.currency == 'USDT2' && (item.currency == 'USDT')
+        let transferType = item.descritption
+        item.currency == 'USDT2' && (item.currency = 'USDT')
 
         return (
             <TouchableOpacity
                 onPress={() => {
-                    this.goToInternalTransferDetail(item)
+                    this.goToInternalTransferDetail(item,transferType)
                 }}
                 activeOpacity={StyleConfigs.activeOpacity}
             >
@@ -224,7 +224,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
                         </View>
                         <View style={[styles.baseColumn2,{width:'30%'}]}>
                             <Text style={styles.itemSectionTitle}>类型</Text>
-                            <Text style={styles.itemSectionNum}>{item.descritption}</Text>
+                            <Text style={styles.itemSectionNum}>{transferType}</Text>
                         </View>
                         <View style={[styles.baseColumn3,{width:'30%'}]}>
                             <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>日期</Text>
@@ -245,7 +245,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
     @action
     _internalTransferLoadingMore = () => {
         if (this.ajaxInternalTransferFlag) return
-        if (this.internalTransferLists.length < this.internalTransferLimit) return
+        if (this.ActivityRecord.length < this.internalTransferLimit) return
         this.internalTransferLimit += this.internalTransferLimitNum
         this.getInternalTransferList()
         console.warn("挖矿记录触底啦")

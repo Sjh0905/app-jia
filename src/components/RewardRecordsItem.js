@@ -85,6 +85,12 @@ export default class App extends RNComponent {
     withdrawalsRecordsReady = false
 
 
+    //奖励状态
+    statusObj = {
+        "SUCCESS":"已发放",
+    }
+
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -95,15 +101,12 @@ export default class App extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
-        if (this.props.type === typeArr[0]) {
-            this.getRechargeRecords()
-            // this.$event.listen({bind: this, key: 'GET_RECHARGE_RECORDS', func: this.getRechargeRecords})
-        }
-        if (this.props.type === typeArr[1]) {
+
+        // if (this.props.type === typeArr[1]) {
             this.getWithdrawalsRecord()
             // this.$event.listen({bind: this, key: 'GET_WITHDRAWALS_RECORDS', func: this.getWithdrawalsRecord})
 
-        }
+        // }
     }
 
     // 卸载
@@ -141,12 +144,12 @@ export default class App extends RNComponent {
         })
 
 
-        this.$http.send("REWARDS_LOG", {
+        this.$http.send("INITIAL_REWARD", {
             bind: this,
-            params: {
-                rewardId:this.lastId,
-                pageSize:this.withdrawalsLimit
-            },
+            // params: {
+            //     rewardId:this.lastId,
+            //     pageSize:this.withdrawalsLimit
+            // },
             callBack: this.re_getWithdrawalsRecord,
             errorHandler: this.error_getWithdrawalsRecord
         })
@@ -157,7 +160,7 @@ export default class App extends RNComponent {
         console.log('----------记录',data)
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.dataMap) return
-        this.withdrawalsRecords = data.dataMap.grcActivityRewardList
+        this.withdrawalsRecords = data.dataMap.registerInviteRewards
 
         this.lastId = this.withdrawalsRecords[this.withdrawalsRecords.length-1].id || 0
 
@@ -171,23 +174,6 @@ export default class App extends RNComponent {
     @action
     error_getWithdrawalsRecord = (err) => {
         console.warn("获取记录出错！", err)
-    }
-
-
-    // 获取充值记录
-    @action
-    getRechargeRecords = () => {
-
-    }
-    // 获取充值记录返回
-    @action
-    re_getRechargeRecords = (data) => {
-
-    }
-    // 获取充值记录出错
-    @action
-    error_getRechargeRecords = (err) => {
-        console.warn("获取充值记录出错！", err)
     }
 
     // 渲染footer组件
@@ -219,8 +205,11 @@ export default class App extends RNComponent {
 
     // 去奖励记录详情页
     @action
-    goToWithdrawalsDetail = (item) => {
-        this.$router.push('RechargeAndWithdrawalsRecordsDetail', {item: item, type: typeArr[1]})
+    goToWithdrawalsDetail = (item,sourceType) => {
+
+        let transferStatus = (this.statusObj[item.status] || "")
+
+        this.$router.push('MiningRecordsDetail', {item ,transferType:sourceType ,transferStatus})
 
     }
 
@@ -228,50 +217,22 @@ export default class App extends RNComponent {
     @action
     _renderWithdrawalsRecordsItem = ({item, index}) => {
 
+        item.currency == 'USDT2' && (item.currency = 'USDT')
 
-        let status = '已发放'
-
-        switch (item.status) {
-            case 'CREATED':
-                status = '已创建'
-                break;
-            // case 'WAITING_FOR_APPROVAL':
-            //     status = '待审核'
-            //     break;
-            // case 'WAITING_FOR_WALLET':
-            //     status = '待处理'
-            //     break;
-            // case 'DENIED':
-            //     status = '被驳回'
-            //     break;
-            // case 'PROCESSING':
-            //     status = '已处理'
-            //     break;
-            // case 'FAILED':
-            //     status = '失败'
-            //     break;
-            // case 'CANCELLED':
-            //     status = '已撤销'
-            //     break;
-            // case 'DONE':
-            //     status = '已汇出'
-            //     break;
-            default:
-                status = '----'
-        }
+        let sourceType = item.source =='EXCHANGE'?'首次交易':'实名认证'
 
         return (
             <TouchableOpacity
                 onPress={() => {
-                    return
-                    // this.goToWithdrawalsDetail(item)
+                    // return
+                    this.goToWithdrawalsDetail(item,sourceType)
                 }}
                 activeOpacity={StyleConfigs.activeOpacity}
             >
                 <View style={styles.rechargeRecordsItemBox2}>
                     <View style={styles.itemTop}>
                         {
-                            <Text allowFontScaling={false} style={[baseStyles.textRed, styles.currency]}>GRC量化</Text>
+                            <Text allowFontScaling={false} style={[baseStyles.textCurrencyTitle, styles.currency]}>{item.currency}</Text>
                         }
                     </View>
                     <View style={[baseStyles.flexRowBetween,styles.itemLineBot]}>
@@ -282,8 +243,8 @@ export default class App extends RNComponent {
                             </Text>
                         </View>
                         <View style={[styles.baseColumn2,{width:'30%'}]}>
-                            <Text style={styles.itemSectionTitle}>状态</Text>
-                            <Text style={styles.itemSectionNum}>已发放</Text>
+                            <Text style={styles.itemSectionTitle}>类型</Text>
+                            <Text style={styles.itemSectionNum}>{sourceType}</Text>
                         </View>
                         <View style={[styles.baseColumn3,{width:'30%'}]}>
                             <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>发放日期</Text>
@@ -310,7 +271,7 @@ export default class App extends RNComponent {
         console.warn("奖励记录触底啦")
     }
 
-    // 渲染充值记录
+    // 渲染奖励记录
     @action
     _renderWithdrawals = (records) => {
         // records = [
@@ -334,164 +295,6 @@ export default class App extends RNComponent {
     }
 
 
-    // 渲染充值footer组件
-    @action
-    _rechargeListFooterComponent = () => {
-
-        if (this.rechargeRecords.length == 0) {
-            return null
-        }
-
-        let canLoadingMore = true
-
-        if (this.rechargeLimit > this.rechargeRecords.length) {
-            canLoadingMore = false
-        }
-
-        return (
-            <View style={styles.loadingMore}>
-                {this.rechargeLoadingMore ?
-                    <Text allowFontScaling={false} style={[styles.loadingMoreText]}>加载中</Text>
-                    :
-                    canLoadingMore ?
-                        <Text allowFontScaling={false} style={[styles.loadingMoreText]}>上拉加载更多</Text>
-                        :
-                        <Text allowFontScaling={false} style={[styles.loadingMoreText]}>已经全部加载完毕</Text>
-                }
-            </View>
-        )
-    }
-
-    // 跳转到充值详情
-    @action
-    goToRechargeDetail = (item) => {
-        this.$router.push('RechargeAndWithdrawalsRecordsDetail', {item: item, type: typeArr[0]})
-    }
-
-    // 奖励记录item
-    @action
-    _renderRechargeRecordsItem = ({item, index}) => {
-
-        let status = ''
-
-        switch (item.status) {
-            case 'PENDING':
-                status = '等待区块确认' + `(${item.confirms}/${item.minimumConfirms})`
-                break;
-            case 'DEPOSITED':
-                status = '充值成功'
-                break;
-            case 'CANCELLED':
-                status = '废弃区块'
-                break;
-            case 'WAITING_FOR_APPROVAL':
-                status = '等待审核'
-                break;
-            case 'DENIED':
-                status = '审核未通过'
-                break;
-            default:
-                status = '---'
-        }
-
-        // return (
-        //     <TouchableOpacity
-        //         onPress={() => {
-        //             this.goToRechargeDetail(item)
-        //         }}
-        //         activeOpacity={StyleConfigs.activeOpacity}
-        //     >
-        //         <View style={styles.rechargeRecordsItemBox}>
-        //             <View style={styles.itemTop}>
-        //                 <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currency]}>{item.currency}</Text>
-        //                 <Text allowFontScaling={false}
-        //                     style={[baseStyles.textColor, styles.total]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
-        //             </View>
-        //             <View style={styles.itemBottom}>
-        //                 <Text allowFontScaling={false}
-        //                     style={[baseStyles.textColor, styles.time]}>{this.$globalFunc.formatDateUitl(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
-        //                 <Text allowFontScaling={false} style={[baseStyles.textColor, styles.status]}>{status}</Text>
-        //             </View>
-        //         </View>
-        //     </TouchableOpacity>
-        // )
-
-        return (
-            <TouchableOpacity
-                onPress={() => {
-                    this.goToRechargeDetail(item)
-                }}
-                activeOpacity={StyleConfigs.activeOpacity}
-            >
-                <View style={styles.rechargeRecordsItemBox2}>
-                    <View style={styles.itemTop}>
-                        {
-                            this.props.currency &&
-                            <Text allowFontScaling={false} style={[baseStyles.textColor, baseStyles.size16]}>{typeTextObj[this.props.type]}</Text>
-                            ||
-                            <Text allowFontScaling={false} style={[baseStyles.textRed, styles.currency]}>{item.currency}</Text>
-                        }
-                    </View>
-                    <View style={[baseStyles.flexRowBetween,styles.itemLineBot]}>
-                        <View style={styles.baseColumn1}>
-                            <Text style={styles.itemSectionTitle}>数量</Text>
-                            <Text style={styles.itemSectionNum}>
-                                {this.$globalFunc.accFixed(item.amount, this.currencyJingDU[item.currency] || 3)}
-                            </Text>
-                        </View>
-                        <View style={styles.baseColumn2}>
-                            <Text style={styles.itemSectionTitle}>状态</Text>
-                            <Text style={styles.itemSectionNum}>{status}</Text>
-                        </View>
-                        <View style={styles.baseColumn3}>
-                            <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>日期</Text>
-                            <Text
-                                allowFontScaling={false}
-                                style={[baseStyles.textWhite, styles.itemSectionNum,{textAlign:'right'}]}>
-                                {this.$globalFunc.formatDateUitl(item.createdAt, 'hh:mm MM/DD')}
-                            </Text>
-                        </View>
-                    </View>
-
-                </View>
-            </TouchableOpacity>
-        )
-    }
-
-    // 加载更多
-    @action
-    _rechargeLoadingMore = () => {
-        if (!this.rechargeRecordsReady) return
-        if (this.rechargeLimit > this.rechargeRecords.length) return
-        this.rechargeLimit += this.rechargeLimitNum
-        this.getRechargeRecords()
-        console.warn('充值记录触底啦')
-    }
-
-    // 渲染充值记录
-    @action
-    _renderRecharge = (records) => {
-        // records = [
-        //     {currency:100000000,amount:12012.1211,createdAt:1533532114758},
-        //
-        // ]
-
-        return (
-            <View style={styles.flatBox}>
-                <FlatList
-                    style={styles.container}
-                    data={records}
-                    renderItem={this._renderRechargeRecordsItem}
-                    ListFooterComponent={this._rechargeListFooterComponent}
-                    keyExtractor={(item, index) => index.toString()}
-                    onEndReachedThreshold={reachedThreshold}
-                    onEndReached={this._rechargeLoadingMore}
-                    ListEmptyComponent={this._renderEmptyComponent}
-
-                />
-            </View>
-        )
-    }
 
 
     /*----------------------- 挂载 -------------------------*/
@@ -502,16 +305,9 @@ export default class App extends RNComponent {
         return (
             <View style={[styles.container, baseStyles.container]}>
 
-                {/*渲染充值记录 begin*/}
-                {
-                    this.props.type == typeArr[0] && this._renderRecharge(this.rechargeRecords)
-                }
-                {/*渲染充值记录 end*/}
-
-
                 {/*渲染奖励记录 begin*/}
                 {
-                    this.props.type == typeArr[1] && this._renderWithdrawals(this.withdrawalsRecords)
+                    this._renderWithdrawals(this.withdrawalsRecords)
                 }
                 {/*渲染奖励记录 end*/}
 
