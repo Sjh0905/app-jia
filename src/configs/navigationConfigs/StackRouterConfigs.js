@@ -22,6 +22,7 @@ import Recharge from '../../components/AssetRecharge'
 import RechargeAndWithdrawalsRecords from '../../components/AssetRecords'
 import RechargeAndWithdrawalsRecordsDetail from '../../components/AssetRecordsDetail'
 import InternalTransferRecordsDetail from '../../components/InternalTransferRecordsDetail'
+import MiningRecordsDetail from '../../components/MiningRecordsDetail'
 import WebPage from '../../components/WebPage'
 import MyRecommend from '../../components/MineMyRecommend'
 import Demo from '../../components/Demo'
@@ -161,6 +162,11 @@ router.RechargeAndWithdrawalsRecordsDetail = {
 // 内部转账记录详情页
 router.InternalTransferRecordsDetail = {
     screen: InternalTransferRecordsDetail
+}
+
+// 挖矿记录详情页
+router.MiningRecordsDetail = {
+    screen: MiningRecordsDetail
 }
 
 // 网页
