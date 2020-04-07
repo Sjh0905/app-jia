@@ -65,7 +65,11 @@ store.state.currencyJingDU = {
     KFC:5,
     LTC:4,
     MFC:4,
-    USDT:2
+    USDT:2,
+    TT:4,
+    YY:4,
+    KK:4,
+    FF:4
 }
 
 /**

@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
         paddingTop: getDeviceTop()
     },
     boxPadding: {
-        paddingLeft: getWidth(20),
-        paddingRight: getWidth(20),
+        paddingLeft: getWidth(30),
+        paddingRight: getWidth(30),
     },
 
     titleBox: {

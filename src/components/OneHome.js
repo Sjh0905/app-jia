@@ -290,10 +290,10 @@ export default class OneHome extends RNComponent {
     goToJoinGroup = () =>{
         this.goWebView({
             // url: this.moreNoticeUrl || '',
-            url: 'index/mobileAsset/mobileAssetRechargeAndWithdrawals?isApp=true',
+            url: 'index/assembleARegiment?isApp=true',
             loading: false,
             navHide: false,
-            title: '拼团详情',
+            title: '拼团',
             requireLogin:true
         })
     }

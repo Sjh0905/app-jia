@@ -87,6 +87,8 @@ requestAddress.RECHARGE_LOG = {url: '/user/depositLog', method: 'post'} //充值
 
 requestAddress.WITHDRAWS_LOG = {url: '/user/withdrawLog', method: 'post'}  //提现记录
 
+requestAddress.GET_TRANSFER_LIST = {url: '/user/inner/transfer/list', method: 'get'}  //内部转账记录
+
 requestAddress.REWARDS_LOG = {url: '/user/getGrcActivityRewards', method: 'post'}  //奖励记录
 
 requestAddress.POST_MY_RECOMMEND = {url: '/user/myinvitees', method: 'post'} // 获取我的推荐奖励
