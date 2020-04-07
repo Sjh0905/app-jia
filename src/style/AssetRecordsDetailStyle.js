@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: StyleConfigs.btnRadius,
-        width: getWidth(344),
+        width: getWidth(330),
         height: getHeight(80),
     },
     cancelWithdrawalsText: {

@@ -198,9 +198,9 @@ export default class App extends RNComponent {
                 {/*状态 end*/}
 
                 {/*分割线 begin*/}
-                <View style={styles.line}>
+                {/*<View style={styles.line}>*/}
 
-                </View>
+                {/*</View>*/}
                 {/*分割线 end*/}
 
                 {/*地址 begin*/}
@@ -436,9 +436,9 @@ export default class App extends RNComponent {
                 {/*状态 end*/}
 
                 {/*分割线 begin*/}
-                <View style={styles.line}>
+                {/*<View style={styles.line}>
 
-                </View>
+                </View>*/}
                 {/*分割线 end*/}
 
                 {/*地址 begin*/}
