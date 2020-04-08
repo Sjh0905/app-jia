@@ -81,10 +81,11 @@ export default class App extends RNComponent {
             // this.$router.push('UserAgreement')
             this.goWebView({
                 // url: 'https://www.2020.exchange/index/help/userAgreement',
-                url: 'index/help/userAgreement',
+                url: 'index/mobileNotice?columnId=4&isApp=true',
                 loading: false,
                 navHide: false,
-                title: '用户协议'
+                title: '用户协议',
+                rightCloseBtn:true
             })
         }
     })()

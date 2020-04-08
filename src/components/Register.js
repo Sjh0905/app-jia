@@ -277,7 +277,8 @@ export default class App extends RNComponent {
 				url: 'index/mobileNotice?columnId=4&isApp=true',
 				loading: false,
 				navHide: false,
-				title: '用户协议'
+				title: '用户协议',
+                rightCloseBtn:true
 			})
 		}
 	})()
@@ -871,7 +872,7 @@ export default class App extends RNComponent {
 							allowFontScaling={false}
 							style={signBaseStyles.input}
 							value={this.referee}
-							placeholder={'邀请码 (选填)'}
+							placeholder={'邀请码 (邀请人UID不可修改，选填)'}
 							placeholderTextColor={StyleConfigs.placeholderTextColor}
 							underlineColorAndroid={'transparent'}
 							onBlur={this.testReferee}
