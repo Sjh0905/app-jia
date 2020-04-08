@@ -1167,9 +1167,9 @@ export default class App extends RNComponent {
     // 获取grc交易价格区间成功
     re_getGRCPriceRange = (data)=> {
         console.log('获取grc交易价格区间成功',data);
-        if(!data || !data.grcPriceRange)return
+        if(!data || !data.kkPriceRange)return
 
-        this.$store.commit('SET_GRC_PRICE_RANGE',data.grcPriceRange)
+        this.$store.commit('SET_GRC_PRICE_RANGE',data.kkPriceRange)
     }
     // 获取grc交易价格区间报错
     error_getGRCPriceRange = function () {
