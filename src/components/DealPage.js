@@ -1155,7 +1155,7 @@ class DealItem extends RNComponent {
 
     getPriceChangeOrders = (transactionData)=> {
 
-        if(this.symbol == 'GRC_USDT' && this.GRCPriceRange.length >0){
+        if(this.symbol == 'KK_USDT' && this.GRCPriceRange.length >0){
             let minPrice = this.GRCPriceRange[0] || 0;
             let maxPrice = this.GRCPriceRange[this.GRCPriceRange.length -1] || 10;
 
@@ -1449,7 +1449,7 @@ class DealItem extends RNComponent {
 
         var pnum = this.$globalFunc.accFixed(1*Math.pow(10,-tp.quoteScale), tp.quoteScale);
 
-        if (/*text != '' &&*/this.symbol !='GRC_USDT' && Number(text) < Number(pnum)) {
+        if (/*text != '' &&*/this.symbol !='KK_USDT' && Number(text) < Number(pnum)) {
             Alert.alert("提示", '价格不能低于' + pnum, [
                 {
                     text: "我知道了", onPress: () => {
@@ -1461,7 +1461,7 @@ class DealItem extends RNComponent {
             return;
         }
 
-        if (this.symbol == 'GRC_USDT' && !this.checkPriceRange(2)) {
+        if (this.symbol == 'KK_USDT' && !this.checkPriceRange(2)) {
             return;
         }
 
@@ -2122,14 +2122,14 @@ class DealItem extends RNComponent {
         // console.log('************最小金额******************',tp.quoteScale);
 
 
-        if (text != '' && this.symbol !='GRC_USDT' && Number(text) < Number(num)) {
+        if (text != '' && this.symbol !='KK_USDT' && Number(text) < Number(num)) {
             this.priceFlag = false;
             this.priceCont = '价格不能低于' + num + '!';
             this.transAmount = 0;
             return;
         }
 
-        if (text != '' && this.symbol == 'GRC_USDT' && !this.checkPriceRange(1)) {
+        if (text != '' && this.symbol == 'KK_USDT' && !this.checkPriceRange(1)) {
             return;
         }
 
@@ -2689,7 +2689,7 @@ class DealItem extends RNComponent {
                                             top: 1.5,
                                             left: 0
                                         }}/>
-                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount,this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
+                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount,this.symbol == 'KK_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
                                         <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
                                         <Text allowFontScaling={false}
                                               style={[styles.size12, styles.colorRed]}>{this.$globalFunc.accFixed(o.price, this.tradeLObj.quoteScale || 8)}</Text>
@@ -2746,7 +2746,7 @@ class DealItem extends RNComponent {
 
                                         <Text allowFontScaling={false}
                                               style={[styles.size12, styles.colorGreen]}>{this.$globalFunc.accFixed(o.price,this.tradeLObj.quoteScale || 8)}</Text>
-                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount, this.symbol == 'GRC_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
+                                        {/*<Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.accFixed(o.amount, this.symbol == 'KK_USDT' ? 2 : (this.tradeLObj.baseScale || 2))}</Text>*/}
                                         <Text allowFontScaling={false} style={[styles.size12, {color:StyleConfigs.txt6B7DA2}]}>{this.$globalFunc.formatDealAmount(this.symbol,o.amount,this.tradeLObj.baseScale)}</Text>
 
 

@@ -1158,7 +1158,7 @@ export default class App extends RNComponent {
 
     // 获取grc交易价格区间
     getGRCPriceRange = ()=> {
-        this.$http.send('GRC_PRICE_RANGE', {
+        this.$http.send('KK_PRICE_RANGE', {
             bind: this,
             callBack: this.re_getGRCPriceRange,
             errorHandler: this.error_getGRCPriceRange

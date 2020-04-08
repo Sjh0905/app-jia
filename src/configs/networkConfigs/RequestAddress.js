@@ -70,7 +70,10 @@ requestAddress.POST_CHANGE_PASSWORD = {url: '/user/alterLoginPassword', method: 
 
 
 requestAddress.TRADE_ORDERS = {url: '/v1/trade/orders', method: 'post'} // 买卖/撤单
+
 requestAddress.GRC_PRICE_RANGE = {url: '/user/grc/symbol/priceRange', method: 'get'} // 获取grcPriceRange 的接口
+
+requestAddress.KK_PRICE_RANGE = {url: '/user/kk/symbol/priceRange', method: 'get'} // 获取KKPriceRange 的接口
 
 requestAddress.GET_CURRENCY = {url: '/user/currencys', method: 'get'}   //获取币种
 
