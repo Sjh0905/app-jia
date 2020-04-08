@@ -239,8 +239,8 @@ console.warn('this is height and width', global.DeviceHeight, global.DeviceWidth
 console.ignoredYellowBox = ['Setting a timer']
 
 global.__VERSION__ = {
-    ios: 18,
-    android: 18
+    ios: 1,
+    android: 1
 }
 
 // 全局控制是否显示引导页
