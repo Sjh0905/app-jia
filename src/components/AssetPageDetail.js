@@ -873,7 +873,7 @@ export default class AssetPageDetail extends RNComponent {
                         <TouchableOpacity
                             activeOpacity={StyleConfigs.activeOpacity}
                             style={styles.itembtnView}
-                            onPress={() => {}}
+                            onPress={this.$globalFunc.lookForward}
                         >
                             <Image source={internalTransferIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
                             <Text style={styles.itemIconTxt}>内部转账</Text>
@@ -881,7 +881,7 @@ export default class AssetPageDetail extends RNComponent {
                         <TouchableOpacity
                             activeOpacity={StyleConfigs.activeOpacity}
                             style={styles.itembtnView}
-                            onPress={() => {}}
+                            onPress={this.$globalFunc.lookForward}
                         >
                             <Image source={lockHouseIcon} style={[styles.itemIcon]}/>
                             <Text style={styles.itemIconTxt}>锁仓</Text>

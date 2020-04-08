@@ -498,7 +498,8 @@ export default class App extends RNComponent {
                             style={[styles.rechargeTouch,styles.withdrawalsTouch]}
                             activeOpacity={StyleConfigs.activeOpacity}
                             onPress={()=>{
-                                this.$router.push('AssetPageSearch')
+                                this.$globalFunc.lookForward()
+                                // this.$router.push('AssetPageSearch')
                             }}
                         >
                             <Image
@@ -515,7 +516,8 @@ export default class App extends RNComponent {
                             style={[styles.rechargeTouch,styles.withdrawalsTouch]}
                             activeOpacity={StyleConfigs.activeOpacity}
                             onPress={()=>{
-                                this.$router.push('AssetPageSearch')
+                                this.$globalFunc.lookForward()
+                                // this.$router.push('AssetPageSearch')
                             }}
                         >
                             <Image

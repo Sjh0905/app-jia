@@ -445,6 +445,11 @@ globalFunc.unescapeUrl = function(url){
     return url.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
 }
 
+//敬请期待
+globalFunc.lookForward = function(desc){
+    globalFunc.toast('敬请期待')
+}
+
 export default globalFunc
 
 
