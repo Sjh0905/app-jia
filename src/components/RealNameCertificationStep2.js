@@ -114,7 +114,7 @@ export default class RealNameCertification extends RNComponent {
     @observable idNumber = this.$beforeParams.idNumber;
     @observable idNumberWA = this.$beforeParams.idNumberWA;
 
-    // 名字，国外
+    // 姓名，国外
     @observable firstName = this.$beforeParams.firstName;
     @observable firstNameWA = this.$beforeParams.firstNameWA;
 
@@ -317,14 +317,14 @@ export default class RealNameCertification extends RNComponent {
             }
 
             if(result && this.firstName.trim() === ''){
-                errMessage = '请输入名字';
+                errMessage = '请输入姓名';
                 result = false;
             }
 
-            if(result && this.lastName.trim() === ''){
-                errMessage = '请输入姓氏';
-                result = false;
-            }
+            // if(result && this.lastName.trim() === ''){
+            //     errMessage = '请输入姓氏';
+            //     result = false;
+            // }
 
             if(result && this.passportID.trim() === ''){
                 errMessage = '请输入护照ID';
@@ -441,7 +441,7 @@ export default class RealNameCertification extends RNComponent {
         if(this.selected == 1){
             let params = {
                 'name': this.firstName,
-                'surname': this.lastName,//姓氏
+                // 'surname': this.lastName,//姓氏
                 'idCode': this.passportID,
                 // 'area': 'other',
                 'area': this.areaNameCn,
@@ -872,7 +872,7 @@ export default class RealNameCertification extends RNComponent {
                 </View>
 
                 <Text style={styles.idCardTips}>
-                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.2020.exchange）
+                    * 本人手持证件和手写签名合照（手写内容包含二零二零、认证人签名、认证当天时间）
                 </Text>
                 <View style={styles.idCardHoldBox}>
                     {/*手持证件照*/}
@@ -932,13 +932,13 @@ export default class RealNameCertification extends RNComponent {
     renderOtherCountry = (passportFront,passportBack,passportHold,currImgType,firstName,lastName,passportID)=>{
         return(
             <View>
-                {/*名字 begin*/}
+                {/*姓名 begin*/}
                 {/*<View style={[styles.inputItemBox]}>*/}
-                    {/*<Text style={styles.inputTitleBoxTitle}>名字</Text>*/}
+                    {/*<Text style={styles.inputTitleBoxTitle}>姓名</Text>*/}
                     {/*<BaseTextInput*/}
                         {/*maxLength={30}*/}
                         {/*allowFontScaling={false}*/}
-                        {/*placeholder={'请输入名字'}*/}
+                        {/*placeholder={'请输入姓名'}*/}
                         {/*placeholderTextColor={StyleConfigs.placeholderTextColor}*/}
                         {/*style={styles.input}*/}
                         {/*underlineColorAndroid={'transparent'}*/}
@@ -1106,7 +1106,7 @@ export default class RealNameCertification extends RNComponent {
                 </View>
 
                 <Text style={styles.idCardTips}>
-                    * 本人手持证件和手写签名合照（手写内容包含姓名、日期和 www.2020.exchange）
+                    * 本人手持证件和手写签名合照（手写内容包含二零二零、认证人签名、认证当天时间）
                 </Text>
                 <View style={styles.idCardHoldBox}>
                     {/*手持证件照*/}

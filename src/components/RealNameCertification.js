@@ -114,7 +114,7 @@ export default class RealNameCertification extends RNComponent {
     @observable idNumber = '';
     @observable idNumberWA = undefined;
 
-    // 名字，国外
+    // 姓名，国外
     @observable firstName = '';
     @observable firstNameWA = undefined;
 
@@ -330,14 +330,14 @@ export default class RealNameCertification extends RNComponent {
             }
 
             if(result && this.firstName.trim() === ''){
-                errMessage = '请输入名字';
+                errMessage = '请输入姓名';
                 result = false;
             }
 
-            if(result && this.lastName.trim() === ''){
-                errMessage = '请输入姓氏';
-                result = false;
-            }
+            // if(result && this.lastName.trim() === ''){
+            //     errMessage = '请输入姓氏';
+            //     result = false;
+            // }
 
             if(result && this.passportID.trim() === ''){
                 errMessage = '请输入护照ID';
@@ -392,13 +392,13 @@ export default class RealNameCertification extends RNComponent {
 
         if(this.selected == 1){
             if(result && this.firstNameWA != undefined){
-                errMessage = '名字'
+                errMessage = '姓名'
                 result = false;
             }
-            if(result && this.lastNameWA != undefined){
-                errMessage = '姓氏'
-                result = false;
-            }
+            // if(result && this.lastNameWA != undefined){
+            //     errMessage = '姓氏'
+            //     result = false;
+            // }
             if(result && this.passportIDWA != undefined){
                 errMessage = '护照ID'
                 result = false;
@@ -1002,13 +1002,13 @@ export default class RealNameCertification extends RNComponent {
     renderOtherCountry = (passportFront,passportBack,passportHold,currImgType,firstName,lastName,passportID)=>{
         return(
             <View>
-                {/*名字 begin*/}
+                {/*姓名 begin*/}
                 <View style={[styles.inputItemBox]}>
-                    <Text style={styles.inputTitleBoxTitle}>名字</Text>
+                    <Text style={styles.inputTitleBoxTitle}>姓名</Text>
                     <BaseTextInput
                         maxLength={30}
                         allowFontScaling={false}
-                        placeholder={'请输入名字'}
+                        placeholder={'请输入姓名'}
                         placeholderTextColor={StyleConfigs.placeholderTextColor}
                         style={styles.input}
                         underlineColorAndroid={'transparent'}
@@ -1026,25 +1026,25 @@ export default class RealNameCertification extends RNComponent {
                 </View>
 
                 {/*姓氏 begin*/}
-                <View style={[styles.inputItemBox]}>
-                    <Text style={styles.inputTitleBoxTitle}>姓氏</Text>
-                    <BaseTextInput
-                        maxLength={30}
-                        allowFontScaling={false}
-                        placeholder={'请输入姓氏'}
-                        placeholderTextColor={StyleConfigs.placeholderTextColor}
-                        style={styles.input}
-                        underlineColorAndroid={'transparent'}
-                        onChangeText={(text) => {
-                            this.lastName = text
-                            this.lastNameWA && (this.lastNameWA = undefined)
-                        }}
-                        returnKeyType={'done'}
-                        value={lastName}
-                    />
-                    {/*<Text style={styles.inputTitleBoxRow}>{this.lastNameWA && this.authResultText[this.lastNameWA]}</Text>*/}
-                    <Text style={styles.inputTitleBoxRow}>{''}</Text>
-                </View>
+                {/*<View style={[styles.inputItemBox]}>*/}
+                    {/*<Text style={styles.inputTitleBoxTitle}>姓氏</Text>*/}
+                    {/*<BaseTextInput*/}
+                        {/*maxLength={30}*/}
+                        {/*allowFontScaling={false}*/}
+                        {/*placeholder={'请输入姓氏'}*/}
+                        {/*placeholderTextColor={StyleConfigs.placeholderTextColor}*/}
+                        {/*style={styles.input}*/}
+                        {/*underlineColorAndroid={'transparent'}*/}
+                        {/*onChangeText={(text) => {*/}
+                            {/*this.lastName = text*/}
+                            {/*this.lastNameWA && (this.lastNameWA = undefined)*/}
+                        {/*}}*/}
+                        {/*returnKeyType={'done'}*/}
+                        {/*value={lastName}*/}
+                    {/*/>*/}
+                    {/*/!*<Text style={styles.inputTitleBoxRow}>{this.lastNameWA && this.authResultText[this.lastNameWA]}</Text>*!/*/}
+                    {/*<Text style={styles.inputTitleBoxRow}>{''}</Text>*/}
+                {/*</View>*/}
 
                 {/*护照ID begin*/}
                 <View style={[styles.inputItemBox]}>
