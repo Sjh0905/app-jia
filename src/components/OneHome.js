@@ -273,7 +273,8 @@ export default class OneHome extends RNComponent {
             url: 'index/mobileNotice?isApp=true',
             loading: false,
             navHide: false,
-            title: '公告中心'
+            title: '公告中心',
+            rightCloseBtn:true
         })
 	}
 
@@ -340,7 +341,8 @@ export default class OneHome extends RNComponent {
             loading: false,
             navHide: false,
             title: '挖矿',
-            requireLogin:true
+            requireLogin:true,
+            rightCloseBtn:true
         })
     }
 
@@ -389,7 +391,8 @@ export default class OneHome extends RNComponent {
             loading: false,
             navHide: false,
             title: '拼团',
-            requireLogin:true
+            requireLogin:true,
+            rightCloseBtn:true
         })
     }
 
@@ -403,7 +406,8 @@ export default class OneHome extends RNComponent {
 			loading: false,
 			navHide: false,
 			title: '',
-            requireLogin:false
+            requireLogin:false,
+            rightCloseBtn:false
 		},type='') => {
             if (Date.now() - last < 1000) return;
             last = Date.now();
@@ -680,7 +684,8 @@ export default class OneHome extends RNComponent {
                                             url: v.action,
                                             loading: false,
                                             navHide: false,
-                                            title: v.text
+                                            title: v.text,
+                                            rightCloseBtn:true
                                         })
                                         }
                                     >

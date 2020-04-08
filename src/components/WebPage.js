@@ -74,6 +74,7 @@ export default class App extends RNComponent {
         this.url = this.$beforeParams && this.$beforeParams.url || '';
         this.navHide = this.$beforeParams && this.$beforeParams.navHide || false
         this.title = this.$beforeParams && this.$beforeParams.title || ''
+        this.rightCloseBtn = this.$beforeParams && this.$beforeParams.rightCloseBtn || false
         // this.url = 'http://192.168.2.173:8082/static/H5RechargeActivity';
         // this.url = 'http://192.168.2.173:8082/index/mobileCombinedVotePage';
         // this.url = 'http://zpy.2020.exchange:8084/index/mobileNotice';
@@ -349,24 +350,38 @@ export default class App extends RNComponent {
                         // TODO: 这里不知道为什么 如果只有以上两个 会导致overflow在安卓失效 所以就有了这个东西 如果有影响 可以随便换成什么别的东西
                         borderWidth :0
                     }}>
-                        <NavHeader
-                            navStyle={{
-                                width: DeviceWidth,
-                                marginTop:this.navMarginTop
-                            }}
-                            navColor={this.navColor}
-                            ref={'nav'}
-                            headerTitle={this.title}
-                            goBack={this.goBack}
-                            touchCompRight={<Image style={{width: getWidth(28), height: getWidth(28)}}
-                                                   source={NavHeaderCloseIcon}
-                                                   resizeMode={'contain'}
-                            />}
-                            touchCompRightClick={this.goHome}
-                        >
-
-                            <Text>{this.navColor}</Text>
-                        </NavHeader>
+                        {this.rightCloseBtn &&
+                            <NavHeader
+                                navStyle={{
+                                    width: DeviceWidth,
+                                    marginTop:this.navMarginTop
+                                }}
+                                navColor={this.navColor}
+                                ref={'nav'}
+                                headerTitle={this.title}
+                                goBack={this.goBack}
+                                touchCompRight={<Image style={{width: getWidth(28), height: getWidth(28)}}
+                                                       source={NavHeaderCloseIcon}
+                                                       resizeMode={'contain'}
+                                                />}
+                                touchCompRightClick={this.goHome}
+                            >
+                                <Text>{this.navColor}</Text>
+                            </NavHeader>
+                            ||
+                            <NavHeader
+                                navStyle={{
+                                    width: DeviceWidth,
+                                    marginTop:this.navMarginTop
+                                }}
+                                navColor={this.navColor}
+                                ref={'nav'}
+                                headerTitle={this.title}
+                                goBack={this.goHome}
+                            >
+                                <Text>{this.navColor}</Text>
+                            </NavHeader>
+                        }
                     </View>
                 }
             </View>
