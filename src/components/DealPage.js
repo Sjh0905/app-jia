@@ -574,34 +574,35 @@ export default class DealPage extends RNComponent {
     @action
     renderHeaderBox = () => {
         return <NavHeader
-            headerTitle={this.$store.state.symbol.split('_')[0] + ' / ' + this.$store.state.symbol.split('_')[1]}
+            headerTitle={'交易'}
+            // headerTitle={this.$store.state.symbol.split('_')[0] + ' / ' + this.$store.state.symbol.split('_')[1]}
             navStyle={[PlatformOS == 'ios' && {marginTop:-getHeight(40)} || {}]}
             // goBack={this.goBack}
-            touchComp={
-                PlatformOS === 'ios' &&
-                <View style={styles.titleBarBox}>
-                    {/*{/!*由于直接控制TouchableOpacity的样式在iOS真机上会出现样式错乱，所以外边包一层view通过长度截取达到效果*!/}*/}
-                    <View style={[styles.titleMainBoardBarView,this.selectedTitleBar === 'BIBI' && {marginRight:-getHeight(3),zIndex:999} || {}]}>
-                        <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectBIBI} style={[styles.titleBar,styles.titleMainBoardBar,this.selectedTitleBar === 'BIBI' && styles.selectedTitleBar || {}]}>
-                            <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'BIBI' && styles.selectedTBText || {}]}>币币</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={[styles.titleWeiMiBarView,this.selectedTitleBar === 'OTC' && {marginLeft:-getHeight(3)} || {}]}>
-                        <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectOTC} style={[styles.titleBar,styles.titleWeiMiBar,this.selectedTitleBar === 'OTC' && styles.selectedTitleBar || {}]}>
-                            <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'OTC' && styles.selectedTBText || {}]}>法币</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                ||
-                <View style={styles.titleBarBoxAndroid}>
-                    <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectBIBI} style={[styles.titleBarAndroid,styles.titleMainBoardBarAndroid,this.selectedTitleBar === 'BIBI' && styles.selectedTitleBar || {}]}>
-                        <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'BIBI' && styles.selectedTBText || {}]}>币币</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectOTC} style={[styles.titleBarAndroid,styles.titleWeiMiBarAndroid,this.selectedTitleBar === 'OTC' && styles.selectedTitleBar || {}]}>
-                        <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'OTC' && styles.selectedTBText || {}]}>法币</Text>
-                    </TouchableOpacity>
-                </View>
-            }
+            // touchComp={
+            //     PlatformOS === 'ios' &&
+            //     <View style={styles.titleBarBox}>
+            //         {/*{/!*由于直接控制TouchableOpacity的样式在iOS真机上会出现样式错乱，所以外边包一层view通过长度截取达到效果*!/}*/}
+            //         <View style={[styles.titleMainBoardBarView,this.selectedTitleBar === 'BIBI' && {marginRight:-getHeight(3),zIndex:999} || {}]}>
+            //             <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectBIBI} style={[styles.titleBar,styles.titleMainBoardBar,this.selectedTitleBar === 'BIBI' && styles.selectedTitleBar || {}]}>
+            //                 <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'BIBI' && styles.selectedTBText || {}]}>币币</Text>
+            //             </TouchableOpacity>
+            //         </View>
+            //         <View style={[styles.titleWeiMiBarView,this.selectedTitleBar === 'OTC' && {marginLeft:-getHeight(3)} || {}]}>
+            //             <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectOTC} style={[styles.titleBar,styles.titleWeiMiBar,this.selectedTitleBar === 'OTC' && styles.selectedTitleBar || {}]}>
+            //                 <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'OTC' && styles.selectedTBText || {}]}>法币</Text>
+            //             </TouchableOpacity>
+            //         </View>
+            //     </View>
+            //     ||
+            //     <View style={styles.titleBarBoxAndroid}>
+            //         <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectBIBI} style={[styles.titleBarAndroid,styles.titleMainBoardBarAndroid,this.selectedTitleBar === 'BIBI' && styles.selectedTitleBar || {}]}>
+            //             <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'BIBI' && styles.selectedTBText || {}]}>币币</Text>
+            //         </TouchableOpacity>
+            //         <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.onSelectOTC} style={[styles.titleBarAndroid,styles.titleWeiMiBarAndroid,this.selectedTitleBar === 'OTC' && styles.selectedTitleBar || {}]}>
+            //             <Text allowFontScaling={false} style={[styles.titleBarText,this.selectedTitleBar === 'OTC' && styles.selectedTBText || {}]}>法币</Text>
+            //         </TouchableOpacity>
+            //     </View>
+            // }
             // touchCompClick={this.clickTitle}
 
         />

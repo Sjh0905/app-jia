@@ -113,7 +113,7 @@ store.state.deviceHeightState = {
 };
 store.state.marketListDefault = {
     area:'mainBoard',
-    tab:0//默认USDT市场
+    tab:2//默认挖矿区
 };
 //存储币对汇率
 store.state.price = {};
@@ -156,10 +156,10 @@ store.state.userPushArray = [];
 store.state.mainPageSymbol = ['QST_USDT','BDB_USDT','BTC_USDT','ETH_USDT','EOS_ETH'];
 
 /**
- * 创新区币对
+ * 挖矿区币对
  * @type {string[]}
  */
-store.state.innovationZoneSymbol = ['WB_USDT'];
+store.state.innovationZoneSymbol = ['KK_USDT'];
 
 /**
  * 身份信息 运行过程中cookie失效后需要初始化
@@ -242,7 +242,7 @@ store.state.recommendGesture = false
 // store.state.recommendGesture = true
 
 
-store.state.symbol = 'ETH_USDT'
+store.state.symbol = 'KK_USDT'
 
 /**
  * 直接存储接口返回的所有币对，格式不做处理

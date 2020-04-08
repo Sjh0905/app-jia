@@ -45,11 +45,11 @@ export default async function ($http, $store) {
             // if (!!user_id && !!user_symbol && user_symbol.split('-')[0] == user_id) {
             // 	$store.commit('SET_SYMBOL', user_symbol.split('-')[1]);
             // } else {
-            // 	// 如果没有用户登录选择币对，则为ETH_USDT币对
-            // 	$store.commit('SET_SYMBOL', 'ETH_USDT');
+            // 	// 如果没有用户登录选择币对，则为KK_USDT币对
+            // 	$store.commit('SET_SYMBOL', 'KK_USDT');
             // }
 
-            $store.commit('SET_SYMBOL', 'ETH_USDT');
+            $store.commit('SET_SYMBOL', 'KK_USDT');
             // 精度
             $store.commit('SET_QUOTECONFIG', quoteConfig);
             // 存储当前比对最小交易额和深度满值

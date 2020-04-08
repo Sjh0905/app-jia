@@ -65,7 +65,7 @@ export default class App extends RNComponent {
                 if(Object.keys(this.symbols).length == 0){
                     this.notify({key: 'RE_INIT_ONEHOME'});
                     this.initConstructor();
-                    this.$store.commit('SET_SYMBOL','ETH_USDT');//刷新后显示默认的币对
+                    this.$store.commit('SET_SYMBOL','KK_USDT');//刷新后显示默认的币对
                     this.initDidMount();
                 }
             },1500)
@@ -380,7 +380,7 @@ export default class App extends RNComponent {
 
         	if(this.refreshFlag){
                 this.initConstructor();
-                this.$store.commit('SET_SYMBOL','ETH_USDT');//刷新后显示默认的币对
+                this.$store.commit('SET_SYMBOL','KK_USDT');//刷新后显示默认的币对
                 // this.initDidMount();
                 if(this.$store.state.symbol == 'KK_USDT'){
                     this.getGRCPriceRange()

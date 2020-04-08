@@ -56,12 +56,12 @@ export default class MarketItem extends RNComponent {
         return this.$store.state.newPrice || this.$store.state.depthMerge || {}
     }
 
-    //创新区
+    //挖矿区
     @computed get innovationZoneSymbol() {
     	return this.$store.state.innovationZoneSymbol || []
 	}
 
-	//整理成线性数据字典，供处理收藏区、创新区使用
+	//整理成线性数据字典，供处理收藏区、挖矿区使用
     @computed get handleMarketObj() {
     	let obj = {};
         Object.keys(this.marketList).forEach(key=>{
@@ -72,7 +72,7 @@ export default class MarketItem extends RNComponent {
         		obj[symbol] = v
 
                 // if(this.innovationZoneSymbol.indexOf(symbol) > -1){
-                // 	//目的是剔除marketList中一条要在创新区展示的数据
+                // 	//目的是剔除marketList中一条要在挖矿区展示的数据
                 //     arr.splice(i,1)
                 // }
         	})
@@ -149,7 +149,7 @@ export default class MarketItem extends RNComponent {
 			data  = [...a1, ...a2]
 
             this.props.index === 7 && (data = this.collectionSymbolsMarketList);//收藏的币对
-            this.props.index === 8 && (data = this.innovationZoneSymbolMarketList);//创新区币对
+            this.props.index === 8 && (data = this.innovationZoneSymbolMarketList);//挖矿区币对
         }
 
 
@@ -402,8 +402,8 @@ const styles = StyleSheet.create({
         backgroundColor: StyleConfigs.bgColor,
         flexDirection: 'row',
 		alignItems: 'center',
-		paddingLeft: getWidth(20),
-		paddingRight: getWidth(20)
+		paddingLeft: getWidth(30),
+		paddingRight: getWidth(30)
 	},
 	listTitleBase: {
         fontSize:StyleConfigs.fontSize12,
@@ -426,8 +426,8 @@ const styles = StyleSheet.create({
 		borderBottomColor: StyleConfigs.listSplitlineColor,
 		flexDirection: 'row',
 		alignItems: 'center',
-		paddingLeft: getWidth(20),
-		paddingRight: getWidth(20)
+		paddingLeft: getWidth(30),
+		paddingRight: getWidth(30)
 	},
 	rowBase: {},
 	row1: {

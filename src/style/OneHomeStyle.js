@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         //paddingTop:getHeight(42),
         // paddingTop: getHeight(13),
-        paddingLeft:getHeight(20),
-        paddingRight:getHeight(20),
+        paddingLeft:getHeight(30),
+        paddingRight:getHeight(30),
         // paddingBottom:getHeight(13),
         // marginLeft:getWidth(20),
         // marginRight:getWidth(20)
@@ -423,17 +423,22 @@ const styles = StyleSheet.create({
 
     },
     joinGroupTouch:{
-        borderBottomWidth:10,
-        borderColor: StyleConfigs.borderF7F7FB,
-        marginHorizontal:getWidth(30),
+        width:'100%',
+        // borderBottomWidth:10,
+        // borderColor: StyleConfigs.borderF7F7FB,
+        backgroundColor: StyleConfigs.borderF7F7FB,
+        paddingHorizontal:getWidth(30),
+        // marginHorizontal:getWidth(30),
+        paddingBottom:getWidth(20),
     },
     joinGroupBox:{
         // width:'100%',
         // height:'100%',
         // alignItems: 'center',
+
         paddingHorizontal:getWidth(20),
         paddingVertical:getWidth(28),
-        backgroundColor:'#3592F6',
+        // backgroundColor:'#3592F6',
         // paddingBottom:getWidth(26),
     },
     joinGroupTitle:{

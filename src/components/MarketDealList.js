@@ -209,7 +209,7 @@ export default class MarketDealList extends RNComponent {
                     <ScrollableTabView
                         renderTabBar={() =>
                             <BaseDefaultBar
-                                tabLabels={['自选区','USDT','ENX','创新区']}//要么都加空格，要么都不加空格，否则有了"免"字后会影响居中效果
+                                tabLabels={['自选区','USDT','挖矿区']}//要么都加空格，要么都不加空格，否则有了"免"字后会影响居中效果
                                 tabImageShow={[this.feeDiscount.USDT,this.feeDiscount.BTC,this.feeDiscount.ETH]}
                                 tabImage={null}
 								// tabImageShow={[1,1,1]}
@@ -233,8 +233,8 @@ export default class MarketDealList extends RNComponent {
                     >
 	                    <MarketDealItem tabLabel={' 自选区 '} searchText={this.searchText} index={7}/>
 	                    <MarketDealItem tabLabel={' USDT '} searchText={this.searchText} index={0}/>
-	                    <MarketDealItem tabLabel={' ENX '} searchText={this.searchText} index={6}/>
-	                    <MarketDealItem tabLabel={' 创新区 '} searchText={this.searchText} index={8}/>
+	                    {/*<MarketDealItem tabLabel={' ENX '} searchText={this.searchText} index={6}/>*/}
+	                    <MarketDealItem tabLabel={' 挖矿区 '} searchText={this.searchText} index={8}/>
 
 	                    {/*<MarketItem tabLabel={' USDT '} index={0}/>*/}
                         {/*<MarketItem tabLabel={' BTC '} index={1}/>*/}
