@@ -478,10 +478,10 @@ export default class SecurityCenter extends RNComponent {
                                         <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>邮箱认证</Text>
                                     </View>
                                     <View style={[styles.itemRight]}>
-                                        {
-                                            (this.$store.state.authState && this.$store.state.authState.email) ||
-                                            <Image source={unstate} style={styles.unstateIcon}/>
-                                        }
+                                        {/*{*/}
+                                            {/*(this.$store.state.authState && this.$store.state.authState.email) ||*/}
+                                            {/*<Image source={unstate} style={styles.unstateIcon}/>*/}
+                                        {/*}*/}
                                         {
                                             this.$store.state.authState && this.$store.state.authState.email &&
                                             <Text  allowFontScaling={false}
@@ -513,10 +513,10 @@ export default class SecurityCenter extends RNComponent {
                                         <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>手机认证</Text>
                                     </View>
                                     <View style={[styles.itemRight]}>
-                                        {
-                                            (this.$store.state.authState && this.$store.state.authState.sms) ||
-                                            <Image source={unstate} style={styles.unstateIcon}/>
-                                        }
+                                        {/*{*/}
+                                            {/*(this.$store.state.authState && this.$store.state.authState.sms) ||*/}
+                                            {/*<Image source={unstate} style={styles.unstateIcon}/>*/}
+                                        {/*}*/}
                                         {this.$store.state.authState && this.$store.state.authState.sms
                                             &&
                                         <Text  allowFontScaling={false}
@@ -547,10 +547,10 @@ export default class SecurityCenter extends RNComponent {
                                         <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>谷歌认证</Text>
                                     </View>
                                     <View style={[styles.itemRight]}>
-                                        {
-                                            (this.$store.state.authState && this.$store.state.authState.ga) ||
-                                            <Image source={unstate} style={styles.unstateIcon}/>
-                                        }
+                                        {/*{*/}
+                                            {/*(this.$store.state.authState && this.$store.state.authState.ga) ||*/}
+                                            {/*<Image source={unstate} style={styles.unstateIcon}/>*/}
+                                        {/*}*/}
 
                                         {this.$store.state.authState && this.$store.state.authState.ga
                                         &&

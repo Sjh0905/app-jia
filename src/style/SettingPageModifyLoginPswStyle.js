@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     wrongAns: {
         fontSize: 12,
         paddingTop: getHeight(20),
-        paddingLeft: getWidth(20),
+        // paddingLeft: getWidth(20),
     },
     btn: {
         position:'absolute',

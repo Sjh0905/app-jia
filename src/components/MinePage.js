@@ -686,26 +686,26 @@ export default class App extends RNComponent {
 
                         </View>
                         {/*跳转到C2C支付设置*/}
-                        <View>
-                            <TouchableOpacity
-                                activeOpacity={StyleConfigs.activeOpacity}
-                                onPress={this.goToBindBank}
-                            >
-                                <View style={[styles.itemBox, styles.boxPadding]}>
-                                    <View style={[styles.itemLeft]}>
-                                        <View style={styles.iconBox}>
+                        {/*<View>*/}
+                            {/*<TouchableOpacity*/}
+                                {/*activeOpacity={StyleConfigs.activeOpacity}*/}
+                                {/*onPress={this.goToBindBank}*/}
+                            {/*>*/}
+                                {/*<View style={[styles.itemBox, styles.boxPadding]}>*/}
+                                    {/*<View style={[styles.itemLeft]}>*/}
+                                        {/*<View style={styles.iconBox}>*/}
 
-                                            <Image source={bankcard} style={[styles.bindcardIcon, styles.icon]} resizeMode={'contain'}/>
-                                        </View>
-                                        <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>支付设置</Text>
-                                    </View>
-                                    <View style={[styles.itemRight]}>
-                                        <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.verifyText]}></Text>
-                                        <Image source={IntoIcon} style={styles.intoIcon}/>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                                            {/*<Image source={bankcard} style={[styles.bindcardIcon, styles.icon]} resizeMode={'contain'}/>*/}
+                                        {/*</View>*/}
+                                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>支付设置</Text>*/}
+                                    {/*</View>*/}
+                                    {/*<View style={[styles.itemRight]}>*/}
+                                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.verifyText]}></Text>*/}
+                                        {/*<Image source={IntoIcon} style={styles.intoIcon}/>*/}
+                                    {/*</View>*/}
+                                {/*</View>*/}
+                            {/*</TouchableOpacity>*/}
+                        {/*</View>*/}
 
                         {/*邀请返佣*/}
                         {/*<View>*/}

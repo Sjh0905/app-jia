@@ -291,7 +291,7 @@ export default class App extends RNComponent {
                                 <BaseButton
                                     onPress={this.copy}
                                     text={'复制'}
-                                    textStyle={[baseStyles.textRed, styles.copyText]}
+                                    textStyle={[baseStyles.textBlue, styles.copyText]}
                                     style={[baseStyles.btnBlue, styles.copyBtn]}
                                 />
                             </View>

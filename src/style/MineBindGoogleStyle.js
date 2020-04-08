@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
         width:PlatformOS == 'ios' && getWidth(160) || getWidth(145),
         height: getHeight(60),
         marginLeft:PlatformOS == 'ios' && 2 || 5,
-        backgroundColor:'#rgba(196,62,78,0.04)',
-        borderColor:'#rgba(196,62,78,0.15)',
+        backgroundColor:'#rgba(53,118,245,0.04)',
+        borderColor:'#rgba(53,118,245,0.15)',
         borderWidth:StyleSheet.hairlineWidth,
     },
     copyText: {

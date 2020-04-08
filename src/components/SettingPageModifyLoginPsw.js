@@ -234,7 +234,7 @@ export default class App extends RNComponent {
                             <View
                                 style={[styles.wrongAnsBox]}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.textBlue, styles.wrongAns]}>{this.oldPswWA}</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.textRed, styles.wrongAns]}>{this.oldPswWA}</Text>
                             </View>
                         )
                     }
@@ -269,7 +269,7 @@ export default class App extends RNComponent {
                             <View
                                 style={[styles.wrongAnsBox]}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.textBlue, styles.wrongAns]}>{this.pswWA}</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.textRed, styles.wrongAns]}>{this.pswWA}</Text>
                             </View>
                         )
                     }
@@ -303,7 +303,7 @@ export default class App extends RNComponent {
                             <View
                                 style={[styles.wrongAnsBox]}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.textBlue, styles.wrongAns]}>{this.pswConfirmWA}</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.textRed, styles.wrongAns]}>{this.pswConfirmWA}</Text>
                             </View>
                         )
                     }
