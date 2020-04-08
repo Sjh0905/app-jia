@@ -66,6 +66,10 @@ requestAddress.FIND_FEE_BDB_INFO = {url: '/user/findfeebdbinfo', method: 'get'} 
 
 requestAddress.CHANGE_FEE_BDB = {url: '/user/feebdbchange', method: 'post'} //修改BDB抵扣策略
 
+requestAddress.FIND_FEE_DEDUCTION_INFO = {url: '/user/findFeeDeductionInfo', method: 'get'} //查询TT是否抵扣
+
+requestAddress.FEE_CHANGE = {url: '/user/feechange', method: 'post'} //修改TT抵扣策略
+
 requestAddress.POST_CHANGE_PASSWORD = {url: '/user/alterLoginPassword', method: 'post'} //修改密码接口
 
 

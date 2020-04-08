@@ -143,6 +143,8 @@ export default class App extends RNComponent {
 		//获取首页币种入口导航
 		this.getHomeSymbolsApp()
 
+        this.getBDBInfo()
+
         this.getAccountInterval && clearInterval(this.getAccountInterval)
         // 循环请求账户信息
         this.getAccountInterval = setInterval(() => {
@@ -380,7 +382,7 @@ export default class App extends RNComponent {
                 this.initConstructor();
                 this.$store.commit('SET_SYMBOL','ETH_USDT');//刷新后显示默认的币对
                 // this.initDidMount();
-                if(this.$store.state.symbol == 'GRC_USDT'){
+                if(this.$store.state.symbol == 'KK_USDT'){
                     this.getGRCPriceRange()
                 }
 
@@ -625,7 +627,7 @@ export default class App extends RNComponent {
 		this.initSocket()
 		this.getDepth()
 
-        if(this.$store.state.symbol == 'GRC_USDT'){
+        if(this.$store.state.symbol == 'KK_USDT'){
             this.getGRCPriceRange()
         }
 	}
@@ -753,37 +755,37 @@ export default class App extends RNComponent {
         }
     }
 
-    // BDB是否抵扣
+    // 平台币是否抵扣
     getBDBInfo = function () {
-        this.$http.send('FIND_FEE_BDB_INFO', {
+        this.$http.send('FIND_FEE_DEDUCTION_INFO', {
             bind: this,
             callBack: this.re_getBDBInfo,
             errorHandler: this.error_getBDBInfo
         })
     }
 
-    // BDB是否抵扣回调
+    // 平台币是否抵扣回调
     re_getBDBInfo = function (data) {
         typeof (data) === 'string' && (data = JSON.parse(data))
         if (!data) return
         if (data.errorCode) {
             return
         }
-        if (data.dataMap.BDBFEE === 'yes') {
+        if (data.dataMap.TTFEE === 'yes') {
             this.$store.commit('SET_FEE_BDB_STATE',1);
             console.log('feeBdbState 首页初始化为',this.$store.state.feeBdbState);
 
         }
-        if (data.dataMap.BDBFEE === 'no') {
+        if (data.dataMap.TTFEE === 'no') {
             this.$store.commit('SET_FEE_BDB_STATE',0);
             console.log('feeBdbState 首页初始化为',this.$store.state.feeBdbState);
 
         }
     }
 
-    // BDB是否抵扣出错
+    // 平台币是否抵扣出错
     error_getBDBInfo = function (err) {
-        console.log('BDB抵扣信息 首页调取出错', err)
+        console.log('平台币抵扣信息 首页调取出错', err)
     }
 
 

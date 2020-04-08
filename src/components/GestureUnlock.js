@@ -32,6 +32,12 @@ export default class GestureUnlock extends RNComponent {
     @observable
     gestureState = false
 
+    @observable
+    BDBInfo = true
+
+    @observable
+    BDBInfoAnimating = false
+
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -52,6 +58,7 @@ export default class GestureUnlock extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
+        this.getBDBInfo()
     }
 
 
@@ -138,6 +145,90 @@ export default class GestureUnlock extends RNComponent {
 
     }
 
+    // 平台币是否抵扣
+    @action
+    getBDBInfo = () => {
+        this.$http.send('FIND_FEE_DEDUCTION_INFO', {
+            bind: this,
+            callBack: this.re_getBDBInfo,
+            errorHandler: this.error_getBDBInfo
+        })
+    }
+
+    // 平台币是否抵扣回调
+    @action
+    re_getBDBInfo = (data) => {
+        typeof (data) === 'string' && (data = JSON.parse(data))
+        if (!data) return
+        console.log('this is tt', data)
+        if (data.errorCode) {
+
+            return
+        }
+        if (data.dataMap.TTFEE === 'yes') {
+            this.BDBInfo = true
+            this.$store.commit('SET_FEE_BDB_STATE',1);
+            console.log('feeBdbState初始化为',this.$store.state.feeBdbState);
+
+        }
+        if (data.dataMap.TTFEE === 'no') {
+            this.BDBInfo = false
+            this.$store.commit('SET_FEE_BDB_STATE',0);
+            console.log('feeBdbState初始化为',this.$store.state.feeBdbState);
+
+        }
+        // BDB状态
+        // this.BDBReady = true
+        // this.loading = !(this.BDBReady)
+    }
+
+    // 平台币是否抵扣出错
+    @action
+    error_getBDBInfo = (err) => {
+        console.warn('抵扣出错', err)
+        // this.BDBReady = true
+        // this.loading = !(this.BDBReady)
+    }
+
+
+    // 抵扣开关
+    @action
+    BDBFeeChange = (value) => {
+        if (this.BDBInfoAnimating) return
+        this.BDBInfoAnimating = true
+        this.BDBInfo = value
+        this.$http.send('FEE_CHANGE', {
+            bind: this,
+            params: {
+                // 'feebdb': this.BDBInfo ? 'yes' : 'no'
+                'deduction': this.BDBInfo ? 'yes' : 'no'
+            },
+            callBack: this.re_clickToggle,
+            errorHandler: this.error_clickToggle
+        })
+    }
+
+    // 点击切换手续费折扣
+    @action
+    re_clickToggle = (data) => {
+        typeof (data) === 'string' && (data = JSON.parse(data))
+        this.BDBInfoAnimating = false
+
+        this.$store.commit('SET_FEE_BDB_STATE',this.$store.state.feeBdbState === 1?0:1);
+        console.log('feeBdbState改变后为',this.$store.state.feeBdbState);
+
+
+
+    }
+
+    // 点击切换手续费折扣失败
+    @action
+    error_clickToggle = (err) => {
+        console.warn('点击切换手续费折扣失败', err)
+        this.BDBInfo = !this.BDBInfo
+        this.BDBInfoAnimating = false
+    }
+
     /*----------------------- 挂载 -------------------------*/
 
     render() {
@@ -213,6 +304,29 @@ export default class GestureUnlock extends RNComponent {
                     {/*</View>*/}
                     {/*<View style={[styles.descBox, styles.boxPadding]}>*/}
                         {/*<Text style={[styles.descText]}>离开软件10分钟后再进入，需要使用手势解锁</Text>*/}
+                    {/*</View>*/}
+
+                    {/*使用TT支付手续费*/}
+                    <View style={[styles.itemBox,styles.itemBox2, styles.boxPadding]}>
+                        <View style={[styles.itemLeft]}>
+                            <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>使用TT支付手续费</Text>
+                            <Text style={[styles.descText]}>设置TT抵扣手续费，享受抵扣优惠</Text>
+                        </View>
+                        <View style={[styles.itemRight]}>
+                            <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.intoText]}></Text>
+                            <Switch
+                                value={this.BDBInfo}
+                                onValueChange={this.BDBFeeChange}
+                                circleBorderWidth={0}
+                                backgroundActive={StyleConfigs.btnBlue}
+                                backgroundInactive={StyleConfigs.borderC5CFD5}
+                                circleSize={20}
+                            />
+                        </View>
+
+                    </View>
+                    {/*<View style={[styles.descBox, styles.boxPadding]}>*/}
+                        {/*<Text style={[styles.descText]}>设置TT抵扣手续费，享受抵扣优惠</Text>*/}
                     {/*</View>*/}
 
                     <BaseButton

@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
         borderColor: StyleConfigs.listSplitlineColor
 
     },
+    itemBox2: {
+        alignItems: 'flex-start',
+        height: getHeight(138),
+        paddingTop:getHeight(30),
+    },
     iconBox: {
         width: getWidth(50),
         justifyContent: 'center',
@@ -38,13 +43,15 @@ const styles = StyleSheet.create({
     },
     intoText: {
         fontSize: 14,
-        color: StyleConfigs.txtC5CFD5,
+        color: StyleConfigs.txtA2B5D9,
         // paddingRight: getWidth(15)
 
     },
     itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
+
+        // height:'100%',
+        // flexDirection: 'row',
+        justifyContent: 'center',
 
     },
     itemRight: {
@@ -65,12 +72,13 @@ const styles = StyleSheet.create({
         opacity:1
     },
     descBox:{
-        height: getHeight(70),
+        height: getHeight(38),
         // alignItems: 'center',
         justifyContent: 'center',
     },
     descText:{
-        color:StyleConfigs.txtC5CFD5,
+        marginTop:getHeight(15),
+        color:StyleConfigs.txtA2B5D9,
         fontSize: 14,
     },
     intoIcon: {

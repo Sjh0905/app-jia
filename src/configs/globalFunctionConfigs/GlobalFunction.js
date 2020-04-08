@@ -225,7 +225,7 @@ globalFunc.timeCountdown = function (nowTime = 0,beginTime = 0) {
 
 //处理买卖盘精度
 globalFunc.formatDealAmount = function(symbol,amount,baseScale = 2){
-    if(symbol == 'GRC_USDT' && amount >= 1000){
+    if(symbol == 'KK_USDT' && amount >= 1000){
         return globalFunc.accFixed(globalFunc.accDiv(amount,1000),2) + 'k'
     }
     return globalFunc.accFixed(amount,baseScale || 2)
