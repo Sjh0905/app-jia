@@ -215,6 +215,8 @@ requestAddress.GET_GETREG_DATA = {url: '/quant/getRegData/', method: 'get'}
 //获取用户组等级信息
 requestAddress.GET_ASSEMBLE_GET = {url: '/assemble/getMem/', method: 'get'}
 
+// 是否是会员
+requestAddress.GET_CHECK_MEMBER = {url: '/memberCard/checkMember/', method: 'get'}
 
 
 

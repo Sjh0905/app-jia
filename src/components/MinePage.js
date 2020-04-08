@@ -28,6 +28,7 @@ import EmailIcon from '../assets/MinePage/email-icon.png'
 import GoogleIcon from '../assets/MinePage/google-icon.png'
 import bankcard from '../assets/C2cAssets/bankcard.png'
 import HeaderIcon from '../assets/MinePage/header-icon.png'
+import HeaderMemberIcon from '../assets/MinePage/header-member-icon.png'
 import GestureIconOff from '../assets/MinePage/gesture-off.png';
 
 import BaseButton from './baseComponent/BaseButton'
@@ -44,6 +45,10 @@ export default class App extends RNComponent {
 
 
     /*----------------------- data -------------------------*/
+
+    @computed get userId() {
+        return this.$store.state.authMessage.userId
+    }
 
     @observable
     loading = true
@@ -74,13 +79,18 @@ export default class App extends RNComponent {
     @observable
     modalMsg2 = ''
 
+    @observable
+    isMember = false
+
+    @observable
+    memberExpiresTime = 0
+
 
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
     constructor() {
         super()
-
         // console.warn("我的组件开始挂载")
 
 
@@ -92,6 +102,9 @@ export default class App extends RNComponent {
 
         // 获取认证状态
         this.getAuthState()
+
+        // 获取会员状态
+        this.getCheckMember()
 
         // 获取BDB抵扣
         // this.getBDBInfo()
@@ -318,6 +331,35 @@ export default class App extends RNComponent {
     closeVerifyModal = () => {
         this.verifyModalShow = false
     }
+
+
+    //是否是会员get (query:{})
+    getCheckMember= function () {
+
+        this.$http.send('GET_CHECK_MEMBER', {
+            bind: this,
+            urlFragment: this.userId,
+            // query:{
+            //   gname: this.gname
+            // },
+            callBack: this.re_getCheck,
+            errorHandler: this.error_getCheck
+        })
+    }
+    re_getCheck = function (data) {
+        //检测data数据是JSON字符串转换JS字符串
+        typeof data === 'string' && (data = JSON.parse(data))
+
+        // this.expires = data.data.expires
+        this.memberExpiresTime = data.data.expires_timestamp
+        this.isMember = data.data.flag
+        console.log('是否是会员get-----',this.data)
+
+    }
+    error_getCheck = function (err) {
+        console.log("是否是会员get .err=====",err)
+    }
+
 
 
     // 跳到实名认证
@@ -566,13 +608,33 @@ export default class App extends RNComponent {
 
                     {/*头像部分 begin*/}
                     <View style={[styles.headerIconBox, styles.boxPadding]}>
-                        <Image source={HeaderIcon} style={styles.headerIcon}/>
+                        {
+                            this.isMember &&
+                            <Image source={HeaderMemberIcon} style={styles.headerIcon}/>
+                            ||
+                            <Image source={HeaderIcon} style={styles.headerIcon}/>
+                        }
                         <View style={styles.userNameBox}>
                             <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.headerIconText]}>{userName}</Text>
                             <Text  allowFontScaling={false} style={[styles.headerUIDText,baseStyles.text9FA7B8 ]}>UID:{UID}</Text>
                         </View>
                     </View>
                     {/*头像部分 end*/}
+
+                    {/*会员卡 begin*/}
+                    {this.isMember &&
+                        <View style={[styles.headerIconBox, styles.boxPadding, styles.memberBox]}>
+                            <Text  allowFontScaling={false} style={[styles.memberTitle]}>我的2020会员</Text>
+                            <Text  allowFontScaling={false} style={[styles.memberExpiresTime ]}>{this.$globalFunc.formatDateUitl(this.memberExpiresTime, 'YYYY-MM-DD')}到期</Text>
+                        </View>
+                        ||
+                        null
+                    }
+                    {/*会员卡 end*/}
+
+
+                    {/*线条*/}
+                    <View style={styles.headerLine}/>
 
                     {/*使用BDB支付交易手续费 begin*/}
                     {/*<View style={[styles.BDBFeeBox, styles.boxPadding, {*/}

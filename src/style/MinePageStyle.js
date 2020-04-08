@@ -19,13 +19,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // paddingTop: getHeight(106),
         // paddingBottom: getHeight(106),
-        height: getHeight(206),
+        height: getHeight(160),
         backgroundColor:StyleConfigs.bgColor,
-        borderBottomWidth:10,
-        borderBottomColor:StyleConfigs.borderF7F7FB
     },
     headerIcon: {
-        height: getWidth(60),
+        height: getWidth(72),
         width: getWidth(60),
         marginBottom:3
     },
@@ -39,6 +37,24 @@ const styles = StyleSheet.create({
         marginTop:getWidth(16),
         // fontWeight: 'bold',
         fontSize: 12,
+    },
+    memberBox:{
+        height:getHeight(80),
+        justifyContent: 'space-between',
+    },
+    memberTitle:{
+        fontSize:StyleConfigs.fontSize15,
+        fontWeight:'500',
+        color:StyleConfigs.txtB9894A
+    },
+    memberExpiresTime:{
+        fontSize:StyleConfigs.fontSize12,
+        fontWeight:'400',
+        color:StyleConfigs.txtA2B5D9
+    },
+    headerLine:{
+        borderBottomWidth:10,
+        borderBottomColor:StyleConfigs.borderF7F7FB
     },
     BDBFeeBox: {
         // paddingTop: getHeight(15),
