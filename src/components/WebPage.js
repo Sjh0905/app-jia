@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {View, WebView,Text} from 'react-native';
+import {View, WebView, Text, Image} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -15,6 +15,7 @@ import Recharge from "./AssetRecharge";
 import device from "../configs/device/device";
 import StyleConfigs from "../style/styleConfigs/StyleConfigs";
 import router from "../configs/navigationConfigs/StackRouterConfigs";
+import NavHeaderCloseIcon from '../assets/BaseAssets/navheader-close.png'
 
 
 const patchPostMessageFunction = function() {
@@ -105,11 +106,17 @@ export default class App extends RNComponent {
     goBack = () => {
 
         //webview内部H5页面的返回跳转
-        if(this.canGoBack){
+        // if(this.canGoBack){
             this.refs.win.goBack();
             return;
-        }
-        this.initAndroidStatusBar();
+        // }
+        // this.initAndroidStatusBar();
+        // this.$router.goBack()
+    }
+
+    // 后退
+    @action
+    goHome = () => {
         this.$router.goBack()
     }
 
@@ -305,10 +312,11 @@ export default class App extends RNComponent {
         },
         // 退回首页
         toHomePage: function(...arg){
-            this.initAndroidStatusBar();
+            // this.initAndroidStatusBar();
             this.$router.goBack();
         },
     }
+
 
     /*----------------------- 挂载 -------------------------*/
 
@@ -341,10 +349,24 @@ export default class App extends RNComponent {
                         // TODO: 这里不知道为什么 如果只有以上两个 会导致overflow在安卓失效 所以就有了这个东西 如果有影响 可以随便换成什么别的东西
                         borderWidth :0
                     }}>
-                        <NavHeader navStyle={{
-                            width: DeviceWidth,
-                            marginTop:this.navMarginTop
-                        }} navColor={this.navColor} ref={'nav'} headerTitle={this.title} goBack={this.goBack} ><Text>{this.navColor}</Text></NavHeader>
+                        <NavHeader
+                            navStyle={{
+                                width: DeviceWidth,
+                                marginTop:this.navMarginTop
+                            }}
+                            navColor={this.navColor}
+                            ref={'nav'}
+                            headerTitle={this.title}
+                            goBack={this.goBack}
+                            touchCompRight={<Image style={{width: getWidth(28), height: getWidth(28)}}
+                                                   source={NavHeaderCloseIcon}
+                                                   resizeMode={'contain'}
+                            />}
+                            touchCompRightClick={this.goHome}
+                        >
+
+                            <Text>{this.navColor}</Text>
+                        </NavHeader>
                     </View>
                 }
             </View>

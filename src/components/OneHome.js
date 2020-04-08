@@ -63,6 +63,9 @@ export default class OneHome extends RNComponent {
 	@computed get exchange_rate() {
 		return this.$store.state.exchange_rate.ethExchangeRate
 	}
+	@computed get userId() {
+		return this.$store.state.authMessage.userId
+	}
 
 
 	@observable	otherTestNum = 0
@@ -151,10 +154,9 @@ export default class OneHome extends RNComponent {
                 return () => {
                     if (Date.now() - last < 1000) return;
                     last = Date.now();
-                    // this.$store.state.authMessage.userId || this.$router.push('Login');
-        		// this.goGRC();
+                    this.$store.state.authMessage.userId || this.$router.push('Login');
 
-					this.$globalFunc.toast('敬请期待')
+                    this.$store.state.authMessage.userId && this.getRegistrationRecord();
                 }
             })()
         },
@@ -286,17 +288,112 @@ export default class OneHome extends RNComponent {
 		//'/index/mobileNoticeDetail?id=' +items.id
 	}
 
-	//跳转拼团，TODO：还没改完
-    goToJoinGroup = () =>{
+    //量化查询报名记录get
+    getRegistrationRecord = () =>{
+
+        this.$http.send('GET_GETREG_DATA', {
+            bind: this,
+            urlFragment:this.userId,
+            // query:{
+            //   userId:this.uuid
+            // },
+            callBack: this.re_getRegistrationRecord,
+            errorHandler: this.error_getRegistrationRecord
+        })
+    }
+    re_getRegistrationRecord = (data) =>{
+
+        typeof data === 'string' && (data = JSON.parse(data))
+        if (!data) {return}
+        console.log("this.re_getRegistrationRecord查询报名记录get=====",data)
+        this.records = data.data
+
+        if (this.records == 0) {
+            this.goToMining('officialQuantitativeRegistration')
+            return;
+        }
+
+        let E2 = this.records[0]
+        this.fstatus = E2.fstatus
+
+        if (this.fstatus !== '已报名') {
+            // this.goGroupLevel()
+            console.log("this.re_getRegistrationRecord查询报名记录get=====",this.records.fstatus)
+            this.goToMining('officialQuantitativeRegistration')
+            return;
+        }
+        if (this.fstatus == '已报名') {
+            this.goToMining('officialQuantitativeDetails')
+            return;
+        }
+
+    }
+    error_getRegistrationRecord = (err) =>{
+        console.log("this.re_getRegistrationRecord查询报名记录err=====",err)
+    }
+    
+    //跳转挖矿
+    goToMining = (routerName) =>{
         this.goWebView({
             // url: this.moreNoticeUrl || '',
-            url: 'index/assembleARegiment?isApp=true',
+            url: 'index/'+routerName+'?isApp=true&isWhite=true',
+            loading: false,
+            navHide: false,
+            title: '挖矿',
+            requireLogin:true
+        })
+    }
+
+
+    // 登陆用户组等级信息get (query:{})
+    getGroupLevel = () =>{
+        if(!this.userId) {
+            this.$router.push('Login');
+            return
+        }
+        this.$http.send('GET_ASSEMBLE_GET', {
+            bind: this,
+            urlFragment:this.userId,
+            // query:{
+            //   userId:this.uuid
+            // },
+            callBack: this.re_getGroupLevel,
+            errorHandler: this.error_getGroupLevel
+        })
+    }
+    re_getGroupLevel = (data) =>{
+
+        console.log("this.re_getGroupLevel登陆用户组等级信息 + data=====",data)
+        typeof data === 'string' && (data = JSON.parse(data))
+        this.isExist = data.data.isExist
+
+        if (this.isExist == false) {
+            // this.goGroupLevel()
+            this.goToJoinGroup('assembleARegiment')
+        }
+
+        if (this.isExist == true) {
+            // this.goGroupLevelss=true
+            this.goToJoinGroup('detailsOfTheGroup')
+        }
+
+    }
+    error_getGroupLevel = (err) =>{
+        console.log("this.re_getGroupLevel登陆用户组等级信息 err=====",err)
+    }
+
+	//跳转拼团
+    goToJoinGroup = (routerName) =>{
+        this.goWebView({
+            url: 'index/'+routerName+'?isApp=true&isWhite=true',
             loading: false,
             navHide: false,
             title: '拼团',
             requireLogin:true
         })
     }
+
+    
 
 
 	goWebView = (()=>{
@@ -658,7 +755,7 @@ export default class OneHome extends RNComponent {
 
                     {/*跳转拼团详情*/}
                     <TouchableOpacity
-                        onPress={this.goToJoinGroup}
+                        onPress={this.getGroupLevel}
                         activeOpacity={StyleConfigs.activeOpacity}
 						style={styles.joinGroupTouch}
                     >

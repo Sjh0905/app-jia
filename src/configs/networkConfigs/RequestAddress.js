@@ -210,6 +210,10 @@ requestAddress.POST_COLLECTION_SYMBOL = {url: '/user/collectSymbol', method: 'po
 // 自选区币对排序
 requestAddress.POST_ORDER_SYMBOL = {url: '/user/orderSymbol', method: 'post'}
 
+//查询报名记录
+requestAddress.GET_GETREG_DATA = {url: '/quant/getRegData/', method: 'get'}
+//获取用户组等级信息
+requestAddress.GET_ASSEMBLE_GET = {url: '/assemble/getMem/', method: 'get'}
 
 
 
