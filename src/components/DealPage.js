@@ -1603,9 +1603,9 @@ class DealItem extends RNComponent {
         }
 
 
-        // if (this.$store.state.feeBdbState) {
-        //     Object.assign(params, {customFeatures: 65536});
-        // }
+        if (this.$store.state.feeBdbState) {
+            Object.assign(params, {customFeatures: 65536});
+        }
 
 
 
@@ -2423,7 +2423,7 @@ class DealItem extends RNComponent {
                             marginBottom:getDealHeight(30),
                             // marginVertical:getDealHeight(15),
                         }}>
-                            <Text allowFontScaling={false} style={{'color': '#3576F5',fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
+                            <Text allowFontScaling={false} style={{'color': StyleConfigs.txtRed,fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
                         </View>
 
                     }
