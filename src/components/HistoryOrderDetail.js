@@ -53,7 +53,7 @@ export default class HistoryOrderDetail extends RNComponent {
 
 	componentDidMount() {
 		this.getDetail()
-		// this.getFeeDetail()
+		this.getFeeDetail()
 	}
 
 
@@ -206,8 +206,19 @@ export default class HistoryOrderDetail extends RNComponent {
 						<View style={styles.tableItem2}>
 							<Text style={styles.tableTxt1}>成交均价({this.$params.order.symbol.split('_')[1]})</Text>
 							<Text style={styles.tableTxt2}>{(this.orderDetail.length === 0) && (this.$params.order.status !== 'FULLY_CANCELLED') && this.$globalFunc.accFixed(this.$params.order.price, this.$params.order.quoteScale) || this.$globalFunc.accFixed(this.avargePrice, this.$params.order.quoteScale)}</Text>
-							<Text style={styles.tableTxt3}>手续费({this.$params.order.type !== 'BUY_LIMIT' ? this.$params.order.symbol.split('_')[1] : this.$params.order.symbol.split('_')[0]})</Text>
-							<Text style={styles.tableTxt4}>{this.$globalFunc.accFixed(this.totalFee, 8)} </Text>
+
+							{this.replacedFee !== 0 &&
+								<Text style={styles.tableTxt3}>手续费({this.replacedCurrency})</Text>
+								||
+								<Text style={styles.tableTxt3}>手续费({this.$params.order.type !== 'BUY_LIMIT' ? this.$params.order.symbol.split('_')[1] : this.$params.order.symbol.split('_')[0]})</Text>
+							}
+
+							{this.replacedFee !== 0 &&
+                            	<Text style={styles.tableTxt4}>{this.$globalFunc.accFixed(this.replacedFee, 8)} </Text>
+								||
+                            	<Text style={styles.tableTxt4}>{this.$globalFunc.accFixed(this.totalFee, 8)} </Text>
+							}
+
 						</View>
 						<View style={styles.tableItem3}>
 							<Text style={styles.tableTxt1}>成交量({this.$params.order.symbol.split('_')[0]})</Text>

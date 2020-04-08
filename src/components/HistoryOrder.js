@@ -62,7 +62,7 @@ export default class HistoryOrder extends RNComponent {
     }
 
 	//分页步长,固定值
-	pageLimit = 10
+	pageLimit = 20
 
     //当前请求数据中最后一条数据的ID作为下一次分页请求的offsetId
     @observable

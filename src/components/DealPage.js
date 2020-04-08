@@ -2789,7 +2789,7 @@ class DealItem extends RNComponent {
                 <Text style={styles.secItemHeaderText}>当前委托</Text>
                 <TouchableOpacity style={styles.secItemHeaderRight} onPress={this.goHistory} hitSlip={{top:10,left:10,right:10,bottom:10}} activeOpacity={0.8}>
                     <Image source={allOrderIcon} style={styles.allOrderIcon}/>
-                    <Text style={styles.alltext}>全部</Text>
+                    <Text style={styles.alltext}>历史</Text>
                 </TouchableOpacity>
             </View>
         )
