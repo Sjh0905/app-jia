@@ -17,7 +17,7 @@ store.state.testNum = 1
  * @type {*[]}
  */
 store.state.webviewUrl = [
-    'https://customerservice8872.zendesk.com/hc/zh-cn/requests/new',//customerServiceUrl
+    // 'https://customerservice8872.zendesk.com/hc/zh-cn/requests/new',//customerServiceUrl
     // '',//邀请好友
     // '',//帮助中心
     // env.networkConfigs.downloadUrl+'index/mobileNotice/?isApp=true'
