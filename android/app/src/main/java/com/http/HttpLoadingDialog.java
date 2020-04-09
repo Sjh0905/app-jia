@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.midautumnzhongqiu.exchange.R;
+import com.twentytwenty.exchange.R;
 
 public class HttpLoadingDialog extends Dialog {
     private ImageView imageView;

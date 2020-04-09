@@ -1,4 +1,4 @@
-package com.midautumnzhongqiu.exchange;
+package com.twentytwenty.exchange;
 
 import android.app.Activity;
 import android.app.ActivityManager;

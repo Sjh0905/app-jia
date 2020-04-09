@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.midautumnzhongqiu.exchange.AppConfig;
+import com.twentytwenty.exchange.AppConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

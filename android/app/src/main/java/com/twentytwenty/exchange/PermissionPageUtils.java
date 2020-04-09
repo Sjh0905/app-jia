@@ -1,4 +1,4 @@
-package com.midautumnzhongqiu.exchange;
+package com.twentytwenty.exchange;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -23,7 +23,7 @@ public class PermissionPageUtils {
     private final String TAG = "PermissionPageManager";
     private Context mContext;
     //自己的项目包名
-    private String packageName="com.midautumnzhongqiu.exchange";
+    private String packageName="com.twentytwenty.exchange";
 
     public PermissionPageUtils(Context context) {
         this.mContext = context;

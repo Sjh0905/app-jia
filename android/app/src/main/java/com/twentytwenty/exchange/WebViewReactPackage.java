@@ -1,4 +1,4 @@
-package com.midautumnzhongqiu.exchange;
+package com.twentytwenty.exchange;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;

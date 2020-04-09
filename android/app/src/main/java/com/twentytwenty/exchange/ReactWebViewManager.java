@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.midautumnzhongqiu.exchange;
+package com.twentytwenty.exchange;
 
 import android.Manifest;
 import android.app.Activity;

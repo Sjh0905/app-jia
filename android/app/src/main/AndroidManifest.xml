@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.midautumnzhongqiu.exchange">
+          package="com.twentytwenty.exchange">
 
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -31,7 +31,7 @@
 
     <application
             tools:replace="android:allowBackup,android:label"
-            android:name="com.midautumnzhongqiu.exchange.MainApplication"
+            android:name="com.twentytwenty.exchange.MainApplication"
             android:label="@string/app_name_1"
             android:icon="@mipmap/ic_launcher"
 
@@ -40,7 +40,7 @@
         >
         <activity
                 tools:replace="android:label"
-                android:name="com.midautumnzhongqiu.exchange.MainActivity"
+                android:name="com.twentytwenty.exchange.MainActivity"
                 android:launchMode="singleTask"
                 android:label="@string/app_name_1"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -53,7 +53,7 @@
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
         <!--<activity-->
-            <!--android:name="com.midautumnzhongqiu.exchange.MipushTestActivity"-->
+            <!--android:name="com.twentytwenty.exchange.MipushTestActivity"-->
             <!--android:launchMode="singleTask"-->
             <!--android:exported="true" />-->
 
@@ -71,7 +71,7 @@
 
         <!--<provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.midautumnzhongqiu.exchange..fileprovider"
+            android:authorities="com.twentytwenty.exchange..fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

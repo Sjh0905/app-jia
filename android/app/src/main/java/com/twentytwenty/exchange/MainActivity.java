@@ -1,4 +1,4 @@
-package com.midautumnzhongqiu.exchange;
+package com.twentytwenty.exchange;
 
 import android.os.Bundle;
 import android.webkit.CookieSyncManager;

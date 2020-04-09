@@ -1,6 +1,6 @@
 package com.http;
 
-import com.midautumnzhongqiu.exchange.MainApplication;
+import com.twentytwenty.exchange.MainApplication;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

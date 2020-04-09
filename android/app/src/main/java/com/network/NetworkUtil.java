@@ -9,7 +9,7 @@ import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.midautumnzhongqiu.exchange.MainApplication;
+import com.twentytwenty.exchange.MainApplication;
 
 import java.net.HttpURLConnection;
 import java.net.InetAddress;

@@ -105,11 +105,11 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.midautumnzhongqiu.exchange"
+        applicationId "com.twentytwenty.exchange"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 18
-        versionName "1.0.18"
+        versionCode 1
+        versionName "1.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -207,7 +207,7 @@ android {
     //指定我们包的输出文件名与我们的渠道名字有关
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "twentytwenty-" + "${variant.name}-${variant.versionName}-${buildTime()}.apk"
+            outputFileName = "2020-" + "${variant.name}-${variant.versionName}-${buildTime()}.apk"
         }
     }
 
