@@ -81,11 +81,10 @@ export default class App extends RNComponent {
             // this.$router.push('UserAgreement')
             this.goWebView({
                 // url: 'https://www.2020.exchange/index/help/userAgreement',
-                url: 'index/mobileNotice?columnId=4&isApp=true',
+                url: 'index/mobileNoticeDetail?id=100626&isApp=true',
                 loading: false,
                 navHide: false,
-                title: '用户协议',
-                rightCloseBtn:true
+                title: '用户协议'
             })
         }
     })()
@@ -183,14 +182,14 @@ export default class App extends RNComponent {
                 <Text style={baseStyles.securityCenterTitle}>关于我们</Text>
                 <View style={{flex:1,backgroundColor:StyleConfigs.bgColor}}>
 
-                    {/*服务协议 begin*/}
+                    {/*用户协议 begin*/}
                     <TouchableOpacity
                         activeOpacity={StyleConfigs.activeOpacity}
                         onPress={this.goToUserAgreement}
                     >
                         <View style={[styles.itemBox, styles.itemPadding]}>
                             <View style={styles.itemLeft}>
-                                <Text allowFontScaling={false} style={[styles.itemText, baseStyles.textColor]}>服务协议</Text>
+                                <Text allowFontScaling={false} style={[styles.itemText, baseStyles.textColor]}>用户协议</Text>
                             </View>
                             <View style={styles.itemRight}>
                                 {/*<Text allowFontScaling={false} style={[styles.intoText, baseStyles.textColor]}>{this.$store.state.version}</Text>*/}
@@ -198,7 +197,7 @@ export default class App extends RNComponent {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    {/*服务协议 end*/}
+                    {/*用户协议 end*/}
 
                     {/*版本 begin*/}
                     <TouchableOpacity

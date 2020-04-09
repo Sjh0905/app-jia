@@ -107,12 +107,12 @@ export default class App extends RNComponent {
     goBack = () => {
 
         //webview内部H5页面的返回跳转
-        // if(this.canGoBack){
+        if(this.canGoBack){
             this.refs.win.goBack();
             return;
-        // }
+        }
         // this.initAndroidStatusBar();
-        // this.$router.goBack()
+        this.$router.goBack()
     }
 
     // 后退
@@ -350,7 +350,7 @@ export default class App extends RNComponent {
                         // TODO: 这里不知道为什么 如果只有以上两个 会导致overflow在安卓失效 所以就有了这个东西 如果有影响 可以随便换成什么别的东西
                         borderWidth :0
                     }}>
-                        {this.rightCloseBtn &&
+                        {false &&
                             <NavHeader
                                 navStyle={{
                                     width: DeviceWidth,
@@ -377,7 +377,7 @@ export default class App extends RNComponent {
                                 navColor={this.navColor}
                                 ref={'nav'}
                                 headerTitle={this.title}
-                                goBack={this.goHome}
+                                goBack={this.goBack}
                             >
                                 <Text>{this.navColor}</Text>
                             </NavHeader>
