@@ -83,9 +83,25 @@ export default class RegisterArea extends RNComponent {
 	textChange = text =>{
 		Sleep(200);
 		this.textInput = text;
-		if(this.textInput){
-			this.result = this.listData.filter(v=>generReg(text).test(v.nameCn))
-		}
+		//这个方法输入+会闪退
+		// if(this.textInput){
+		// 	this.result = this.listData.filter(v=>generReg(text).test(v.nameCn))
+		// }
+
+		let searchInput = text.replace(/\+/g,"")
+
+        //不是数字的时候搜索nameCn nameEn
+        if(isNaN(searchInput)){
+            this.result = this.listData.filter(v=>v.nameCn.includes(searchInput)
+                || v.nameEn.includes(searchInput)
+                || v.nameEn.includes(searchInput.toUpperCase())
+            )
+        }
+
+        //是数字的时候搜索areaCode
+        if(!isNaN(searchInput)){
+            this.result = this.listData.filter(v=>v.areaCode.includes(searchInput))
+        }
 	}
 
 
