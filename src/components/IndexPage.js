@@ -1762,7 +1762,7 @@ export default class App extends RNComponent {
                         backdropOpacity={0.5}
                     >
 
-                            {PlatformOS == 'ios' &&
+                            {true &&
                                 <ImageBackground source={updateBackImg} style={styles.updateBox}>
                                     <View style={styles.updateVersionBox}>
                                         <Text style={styles.updateVersionText}>{this.updateVersionName != '' && this.updateVersionName || ''}</Text>

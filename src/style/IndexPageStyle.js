@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     updateBox:{
         marginLeft:'auto',
         marginRight:'auto',
-        width:566/2,
-        height:585/2,
+        width:480/2,
+        height:440/2,
         alignItems:'center'
         // backgroundColor:StyleConfigs.bgColor,
         // marginTop:-17,//减去小火箭头多出来的部分，让整个框看起来居中
@@ -82,22 +82,22 @@ const styles = StyleSheet.create({
         // marginTop:getHeight(14),
         // width:getWidth(120),
         // height:getHeight(40),
-        // borderRadius:getHeight(20),
-        marginTop:197,
-        width:101/2,
-        height:38/2,
-        borderRadius:StyleConfigs.borderRadius1o5,
+        borderRadius:33/2,
+        marginTop:128/2,
+        width:81/2,
+        height:33/2,
+        // borderRadius:StyleConfigs.borderRadius1o5,
         // backgroundColor:'#rgba(255,255,255,0.22)',
         justifyContent:'center',
         alignItems:'center',
         borderWidth:StyleSheet.hairlineWidth,
-        borderColor:StyleConfigs.borderBottomColor
+        borderColor:StyleConfigs.lineWhite
     },
     updateVersionText:{
         // lineHeight:20,
         // textAlign:'center',
-        fontSize: StyleConfigs.fontSize11,
-        color: StyleConfigs.txt6B7DA2
+        fontSize: StyleConfigs.fontSize12,
+        color: StyleConfigs.txtWhite
     },
     updateInstructionsTitle:{
         // marginTop:getHeight(120),
@@ -120,17 +120,17 @@ const styles = StyleSheet.create({
         // marginTop:getHeight(60),
         // width:getWidth(235 * 2),
         // height:getHeight(88),
-        marginTop:15,
-        width:370/2,
+        marginTop:174/2,
+        width:360/2,
         height:80/2,
-        borderRadius:4,
+        borderRadius:20,
         backgroundColor:StyleConfigs.btnBlue,
         justifyContent:'center',
         alignItems:'center'
     },
     updateBtnText:{
         fontSize:StyleConfigs.fontSize14,
-        color:StyleConfigs.txtWhite
+        color:StyleConfigs.txtWhite,
     },
     updateBtnBox:{
         marginTop:15,
