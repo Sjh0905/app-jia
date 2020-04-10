@@ -12,7 +12,7 @@ env.networkConfigs.baseUrl = process.env.URL || 'https://app.2020.exchange/'//�
 
 // env.networkConfigs.currencyLogoUrl = process.env.LOGOURL || 'http://logo.2020.exchange/'//币种logo地址
 env.networkConfigs.c2cUrl = process.env.C2CURL || 'https://otc.2020.exchange/'
-env.networkConfigs.GRCURL = process.env.GRCURL || 'https://build.2020.exchange/events/grc-token-mining'//GRC活动页
+env.networkConfigs.GRCURL = process.env.GRCURL || 'https://xxx'//活动页
 
 env.networkConfigs.port = process.env.PORT || ''
 env.networkConfigs.timeout = 15000

@@ -206,10 +206,10 @@ export default class OneHome extends RNComponent {
 		// return
 		console.log(res)
 
-        if(res.url.indexOf('events/grc-token-mining') > -1){
-            this.goGRC(res);
-            return;
-        }
+        // if(res.url.indexOf('xxx') > -1){
+        //     this.goGRC(res);
+        //     return;
+        // }
 
 		this.goWebView({
 			url: res.url && res.url || '',
@@ -246,7 +246,7 @@ export default class OneHome extends RNComponent {
         let isApp = true;
         let lang = 'CH';
         let GRC_URL = res.url+'?'+'isApp='+isApp+'&_bitsession_='+_bitsession_+'&userId='+userId+'&lang='+lang;
-        // let GRC_URL = "https://build.2020.exchange/events/grc-token-mining?isApp=false&_bitsession_=AAAADBW3010000016eeac11962WEB7c7c5ae06dc794bd823d890734a0f69714f3ea63c81bfbd63565398800422a56&userId=100001&lang=CH"
+        // let GRC_URL = "https://xxx?isApp=false&_bitsession_=AAAADBW3010000016eeac11962WEB7c7c5ae06dc794bd823d890734a0f69714f3ea63c81bfbd63565398800422a56&userId=100001&lang=CH"
 
         this.goWebView({
             url: GRC_URL,
