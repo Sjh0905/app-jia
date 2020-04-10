@@ -40,7 +40,10 @@ import Modal from 'react-native-modal'
 import Toast from "react-native-root-toast";
 
 const groupBanner = require('../assets/OneHome/group_banner.png')
-
+const WEBVIEWRESOURCE = Platform.select({
+    ios: require('../assets/chart/customerservice/customerservice.html'),
+    android: __DEV__ && require('../assets/chart/customerservice/customerservice.html') || {uri:"file:///android_asset/chart/customerservice/customerservice.html"},
+});
 @observer
 export default class OneHome extends RNComponent {
 
@@ -879,17 +882,17 @@ export default class OneHome extends RNComponent {
                     bottom:-300,
                     opacity:0
                 }]}>
-                    {this.$store.state.webviewUrl.map((v,i)=>
+                    {/*{this.$store.state.webviewUrl.map((v,i)=>*/}
                         <WebView
-                            key={i}
-                            source={{uri: v}}
+                            // key={i}
+                            source={WEBVIEWRESOURCE}
                             style={[{
                                 height:1
                                 // opacity:0
                             }]}
                             mixedContentMode={'always'}
                         />
-                    )}
+                    {/*)}*/}
                 </View>
 
 			</View>
