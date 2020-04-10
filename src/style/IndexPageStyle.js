@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         // height:getHeight(40),
         borderRadius:33/2,
         marginTop:128/2,
-        width:81/2,
+        width:91/2,
         height:33/2,
         // borderRadius:StyleConfigs.borderRadius1o5,
         // backgroundColor:'#rgba(255,255,255,0.22)',

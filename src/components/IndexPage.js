@@ -730,15 +730,16 @@ export default class App extends RNComponent {
 
     //国内下载
     onPressUpdate = ()=>{
-    	if(Env.networkConfigs.downloadUrl === ''){
-            console.log('Env.networkConfigs.downloadUrl 不能为空');
-            return;
-		}
 
         console.log('点击更新啦');
         if(Platform.OS === 'ios'){
-            let downloadUrl = 'https://download.2020.exchange/';
-            Linking.openURL(downloadUrl).catch((error)=>{
+            if(Env.networkConfigs.downloadPageUrl === ''){
+                console.log('Env.networkConfigs.downloadPageUrl 不能为空');
+                return;
+            }
+
+            let downloadPageUrl = Env.networkConfigs.downloadPageUrl;
+            Linking.openURL(downloadPageUrl).catch((error)=>{
                 console.log('出错了', error);
             });
 		}
