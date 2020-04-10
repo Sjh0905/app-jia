@@ -107,10 +107,10 @@ export default class App extends RNComponent {
     goBack = () => {
 
         //webview内部H5页面的返回跳转
-        if(this.canGoBack){
-            this.refs.win.goBack();
-            return;
-        }
+        // if(this.canGoBack){
+        //     this.refs.win.goBack();
+        //     return;
+        // }
         // this.initAndroidStatusBar();
         this.$router.goBack()
     }
