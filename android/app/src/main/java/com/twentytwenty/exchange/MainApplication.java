@@ -138,7 +138,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
          */
         UMConfigure.setLogEnabled(true);
         // 必须在调用任何统计SDK接口之前调用初始化函数
-        RNUMConfigure.init(this, "5dae806c3fc195f378000ba8", "H5", UMConfigure.DEVICE_TYPE_PHONE,"");//,
+        RNUMConfigure.init(this, "5e8c42c80cafb2ad5e0003ec", "H5", UMConfigure.DEVICE_TYPE_PHONE,"");//,
         UMConfigure.setEncryptEnabled(true);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_DUM_NORMAL);
 

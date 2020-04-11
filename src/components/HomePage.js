@@ -148,12 +148,14 @@ export default class App extends RNComponent {
         //2 , 5 , 8 , 11 , 14 , 17 , 20 , 23 targetMinutes.indexOf((minute+1)%60) > -1
         if(targetHours.indexOf((hour+1)%24) > -1 && (targetMinutes.indexOf((minute+1)%60) > -1) && second >= 57){
             console.log("当前服务器时间需要掉接口");
+            this.notify({key:'RE_FEE_BDB_STATE'});//及时更新抵扣状态
             this.notify({key: 'GET_GRC_PRICE_RANGE'});
         }
 
         //3 , 6 , 9 , 12 , 15 , 18 , 21 , 0 targetMinutes.indexOf(minute%60) > -1
         if(targetHours.indexOf(hour) > -1 && (targetMinutes.indexOf(minute%60) > -1) && second < 3){
             console.log("当前服务器时间需要掉接口");
+            this.notify({key:'RE_FEE_BDB_STATE'});//及时更新抵扣状态
             this.notify({key: 'GET_GRC_PRICE_RANGE'});
         }
 
@@ -287,7 +289,6 @@ export default class App extends RNComponent {
             }
 
             if(index == 4){
-                this.notify({key:'RE_FEE_BDB_STATE'});
                 this.notify({key: 'GET_AUTH_STATE'});
                 // this.notify({key:'GET_FEE_DIVIDEND'});
                 this.notify({key: 'GET_IDENTITY_INFO'});
@@ -304,6 +305,7 @@ export default class App extends RNComponent {
             }
 
             if(index == 2){
+                this.notify({key:'RE_FEE_BDB_STATE'});
                 this.notify({key: 'GET_GRC_PRICE_RANGE'});
             }
 

@@ -85,6 +85,8 @@ export default class App extends RNComponent {
 
 		// this.listen({key: 'GET_FEE_DIVIDEND', func: this.getFeeDividend})
 
+        this.listen({key:'RE_FEE_BDB_STATE',func:this.getBDBInfo});
+
         this.listen({key: 'GET_IDENTITY_INFO', func: this.getIdentityInfo})
 
         this.listen({key: 'GET_COLLECTION_MARKET', func: this.getCollectionMarket})

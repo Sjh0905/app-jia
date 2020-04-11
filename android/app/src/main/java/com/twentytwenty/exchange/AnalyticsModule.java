@@ -41,7 +41,7 @@ public class AnalyticsModule extends ReactContextBaseJavaModule {
 //        参数3:友盟 channel
 //        参数4:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
 //        参数5:Push推送业务的secret
-        UMConfigure.init(context, "5dae806c3fc195f378000ba8", "H5", UMConfigure.DEVICE_TYPE_PHONE,"");//,
+        UMConfigure.init(context, "5e8c42c80cafb2ad5e0003ec", "H5", UMConfigure.DEVICE_TYPE_PHONE,"");//,
 //        UMConfigure.init(this, 0, null);
         UMConfigure.setEncryptEnabled(true);
 //        MobclickAgent.enableEncrypt(true);
