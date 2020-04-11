@@ -100,6 +100,7 @@ export default class App extends RNComponent {
                 this.$store.commit('CLEAR_CURRENCY')
                 this.getCurrency()
                 this.getCookies()
+                this.getBDBInfo()//账号登录及时获取抵扣状态
             }
         })
 
@@ -760,6 +761,9 @@ export default class App extends RNComponent {
 
     // 平台币是否抵扣
     getBDBInfo = function () {
+        // 如果不登录则不请求
+        if (!this.$store.state.authMessage.userId) return
+
         this.$http.send('FIND_FEE_DEDUCTION_INFO', {
             bind: this,
             callBack: this.re_getBDBInfo,
