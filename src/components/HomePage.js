@@ -106,7 +106,7 @@ export default class App extends RNComponent {
 		this.props.navigation.addListener('didFocus',payload => {
 		    this.notify({key:'CONTROL_NOTICE'},1);
 		    // 此处需要调用一下
-            this.notify({key:'GET_FEE_DIVIDEND'});
+            // this.notify({key:'GET_FEE_DIVIDEND'});
             this.notify({key: 'GET_AUTH_STATE'});
 		})
 
@@ -289,7 +289,7 @@ export default class App extends RNComponent {
             if(index == 4){
                 this.notify({key:'RE_FEE_BDB_STATE'});
                 this.notify({key: 'GET_AUTH_STATE'});
-                this.notify({key:'GET_FEE_DIVIDEND'});
+                // this.notify({key:'GET_FEE_DIVIDEND'});
                 this.notify({key: 'GET_IDENTITY_INFO'});
             }
 

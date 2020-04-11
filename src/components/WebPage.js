@@ -296,13 +296,13 @@ export default class App extends RNComponent {
 
         //去推荐
         goMyRecommend: function(...arg){
-            this.initAndroidStatusBar();
-            this.$router.push('MyRecommend')
+            // this.initAndroidStatusBar();
+            // this.$router.push('MyRecommend')
         },
 
         goBDBBurnReward: function(...arg){
-            this.initAndroidStatusBar();
-            this.$router.push('AdditionalRewards')
+            // this.initAndroidStatusBar();
+            // this.$router.push('AdditionalRewards')
         },
 
         @action

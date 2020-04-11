@@ -144,7 +144,7 @@ export default class App extends RNComponent {
                      style={styles.img}
                     />
 
-                    <Text allowFontScaling={false} style={[styles.imgTextSmall,styles.tfff]}>总计获得BT</Text>
+                    <Text allowFontScaling={false} style={[styles.imgTextSmall,styles.tfff]}>总计获得</Text>
                     <Text allowFontScaling={false} style={[styles.imgTextBig,styles.tfff]}>{this.reward}</Text>
                 </View>
             )
@@ -157,11 +157,11 @@ export default class App extends RNComponent {
                         <Text allowFontScaling={false} style={[styles.listTextRight,styles.tfff]}>{item.date}</Text>
                     </View>
                     <View style={styles.listItemRow}>
-                        <Text allowFontScaling={false} style={[styles.listTextLeft,styles.tfff]}>使用BDB燃烧数量</Text>
+                        <Text allowFontScaling={false} style={[styles.listTextLeft,styles.tfff]}>使用KK燃烧数量</Text>
                         <Text allowFontScaling={false} style={[styles.listTextRight,styles.tfff]}>{item.feeRefunded}</Text>
                     </View>
                     <View style={styles.listItemRow}>
-                        <Text allowFontScaling={false} style={[styles.listTextLeft,styles.tfff]}>奖励(BT)</Text>
+                        <Text allowFontScaling={false} style={[styles.listTextLeft,styles.tfff]}>奖励()</Text>
                         <Text allowFontScaling={false} style={[styles.listTextRight,styles.tfff]}>{item.bonus}</Text>
                     </View>
                 </View>
@@ -287,7 +287,7 @@ export default class App extends RNComponent {
     render() {
         return (
             <View style={[styles.container, baseStyles.container]}>
-                <NavHeader headerTitle={'使用BDB燃烧额外奖励'} goBack={this.goBack}/>
+                <NavHeader headerTitle={'使用KK燃烧额外奖励'} goBack={this.goBack}/>
                 <SectionList
                     style={[styles.container,baseStyles.bgColor,styles.Section]}
                     stickySectionHeadersEnabled={true}
@@ -307,7 +307,7 @@ export default class App extends RNComponent {
                     loadingMore ={this.loadingMore}
                 />
                 <View style={styles.footer}>
-                    <Text allowFontScaling={false} style={[styles.tfff]}>使用BDB支付交易手续费（7折）</Text>
+                    <Text allowFontScaling={false} style={[styles.tfff]}>使用KK支付交易手续费（）</Text>
                     <Switch
                     value={this.BDBInfo}
                     onValueChange={this.BDBFeeChange}
@@ -330,13 +330,13 @@ export default class App extends RNComponent {
                                     奖励规则说明
                                 </Text>
                                 <Text allowFontScaling={false} style={styles.alertContent}>
-                                    1.使用BDB支付交易手续费(7折)，即可参与该活动。
+                                    1.使用KK支付交易手续费()，即可参与该活动。
                                 </Text>
                                 <Text allowFontScaling={false} style={styles.alertContent}>
-                                    2.使用BDB燃烧支付的手续费部分，可获得额外的{this.$store.state.reward * 100}%BT奖励。
+                                    2.使用KK燃烧支付的手续费部分，可获得额外奖励。
                                 </Text>
                                 <Text allowFontScaling={false} style={styles.alertContent}>
-                                    3.当天获得的奖励，于次日1 3：00(香港时间)开始
+                                    3.当天获得的奖励
                                 </Text>
                                 <Text allowFontScaling={false} style={styles.alertContent}>
                                     发放。

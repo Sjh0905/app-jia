@@ -83,7 +83,7 @@ export default class App extends RNComponent {
 
         this.listen({key: 'GET_REGULATION_CONFIG', func: this.getRegulationConfig})
 
-		this.listen({key: 'GET_FEE_DIVIDEND', func: this.getFeeDividend})
+		// this.listen({key: 'GET_FEE_DIVIDEND', func: this.getFeeDividend})
 
         this.listen({key: 'GET_IDENTITY_INFO', func: this.getIdentityInfo})
 
@@ -661,7 +661,7 @@ export default class App extends RNComponent {
         })
     }
     error_getExchangeRateDollar = (err)=>{
-        console.warn("获取火币汇率出错！", err)
+        console.log("获取火币汇率出错！", err)
     }
 
     // 获取最新版本号

@@ -84,7 +84,7 @@ export default class SecurityCenter extends RNComponent {
         // 获取BDB抵扣
         // this.getBDBInfo()
 
-        this.listen({key:'RE_FEE_BDB_STATE',func:this.getBDBInfo});
+        // this.listen({key:'RE_FEE_BDB_STATE',func:this.getBDBInfo});
 
         this.$event.listen({bind: this, key: 'NEW_LOGIN', func: this.getAuthState})
     }
@@ -121,7 +121,7 @@ export default class SecurityCenter extends RNComponent {
         return (...paras) => {
             if (Date.now() - last < 1000) return;
             last = Date.now();
-            this.$router.push('AdditionalRewards')
+            // this.$router.push('AdditionalRewards')
         }
     })()
 

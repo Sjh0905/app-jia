@@ -147,7 +147,7 @@ export default class App extends RNComponent {
         return (...paras) => {
             if (Date.now() - last < 1000) return;
             last = Date.now();
-            this.$router.push('AdditionalRewards')
+            // this.$router.push('AdditionalRewards')
         }
     })()
 
@@ -636,12 +636,12 @@ export default class App extends RNComponent {
                     {/*线条*/}
                     <View style={styles.headerLine}/>
 
-                    {/*使用BDB支付交易手续费 begin*/}
+                    {/*使用支付交易手续费 begin*/}
                     {/*<View style={[styles.BDBFeeBox, styles.boxPadding, {*/}
                         {/*backgroundColor: '#141C25'*/}
                     {/*}]}>*/}
-                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.BDBFeeText]}>使用BDB支付交易手续费（7折）     </Text>*/}
-                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.BDBFeeText]}>使用BDB挖矿获得额外{this.$store.state.reward * 100}%BT奖励</Text>*/}
+                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.BDBFeeText]}>使用支付交易手续费（）     </Text>*/}
+                        {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.BDBFeeText]}>使用挖矿获得额外{this.$store.state.reward * 100}%奖励</Text>*/}
                         {/*<TouchableOpacity*/}
                             {/*onPress={this.goIncome}*/}
                             {/*activeOpacity={StyleConfigs.activeOpacity}*/}
@@ -657,7 +657,7 @@ export default class App extends RNComponent {
                             {/*circleSize={20}*/}
                         {/*/>*/}
                     {/*</View>*/}
-                    {/*使用BDB支付交易手续费 end*/}
+                    {/*使用支付交易手续费 end*/}
 
                     {/*各类 begin*/}
                     <View style={{backgroundColor:StyleConfigs.bgColor}}>
