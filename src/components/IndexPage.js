@@ -502,6 +502,9 @@ export default class App extends RNComponent {
     }
 
     clearGestureInterval = () => {
+
+        this.notify({key:'RE_FEE_BDB_STATE'});//及时更新抵扣状态
+
         let resume = Date.now();
         this.resumedTime = resume;
         console.log('shengmingzhouqi','RN进入到前台',this.resumedTime);
