@@ -143,7 +143,7 @@ export default class App extends RNComponent {
     keyboardVerticalOffset = 0;
 
     @observable
-    usdtChainType = 1;//1:OMNI 2:ERC20
+    usdtChainType = 1;//1:OMNI 2:ERC20 3:TRC20
 
     closeTips = '该币种暂未开放提现功能，敬请期待！'
 
@@ -164,18 +164,25 @@ export default class App extends RNComponent {
 
         let currencyObj = this.$store.state.currency.get(this.currency)
 
-        //能进入此页面说明至少有一个开放充值，当OMNI关闭时默认显示ERC20
+        //能进入此页面说明至少有一个开放提现，当OMNI关闭时默认显示ERC20
         if(this.currency == 'USDT'){
-            let currencyUSDT2 = this.$store.state.currency.get('USDT2')
-            this.withdrawEnabledUSDT = currencyObj && currencyObj.withdrawEnabled
-            this.withdrawEnabledUSDT2 = currencyUSDT2 && currencyUSDT2.withdrawEnabled
-            !this.withdrawEnabledUSDT && this.withdrawEnabledUSDT2 && (this.usdtChainType = 2)
 
-            //如果外边没拦住，提示并返回上一级路由，这种可能性比较小
-            if(!this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2){
-                this.$globalFunc.toast(this.closeTips);
-                this.goBack();
-            }
+            this.canUSDTWithdraw(currencyObj);
+
+            // let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+            // let currencyUSDT3 = this.$store.state.currency.get('USDT3')
+            // this.withdrawEnabledUSDT = currencyObj && currencyObj.withdrawEnabled
+            // this.withdrawEnabledUSDT2 = currencyUSDT2 && currencyUSDT2.withdrawEnabled
+            // this.withdrawEnabledUSDT3 = currencyUSDT3 && currencyUSDT3.withdrawEnabled
+            //
+            // !this.withdrawEnabledUSDT && this.withdrawEnabledUSDT2 && (this.usdtChainType = 2)
+            // !this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2 && (this.usdtChainType = 3)
+            //
+            // //如果外边没拦住，提示并返回上一级路由，这种可能性比较小
+            // if(!this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2 && !this.withdrawEnabledUSDT3){
+            //     this.$globalFunc.toast(this.closeTips);
+            //     this.goBack();
+            // }
         }
 
         this.isEOS = currencyObj && currencyObj.memo;
@@ -609,7 +616,9 @@ export default class App extends RNComponent {
 
     @action
     isERC20 = () => {
-        return (this.currency == "USDT" && this.usdtChainType == 2) ? "USDT2" : this.currency;
+        if(this.currency == "USDT" && this.usdtChainType == 2)return "USDT2";
+        if(this.currency == "USDT" && this.usdtChainType == 3)return "USDT3";
+        return this.currency;
     }
 
     // 点击提现
@@ -789,6 +798,25 @@ export default class App extends RNComponent {
         this.keyboardVerticalOffset = 0;
     }
 
+    //USDT系列能否提现
+    canUSDTWithdraw = (currencyObj) =>{
+
+        let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+        let currencyUSDT3 = this.$store.state.currency.get('USDT3')
+        this.withdrawEnabledUSDT = currencyObj && currencyObj.withdrawEnabled
+        this.withdrawEnabledUSDT2 = currencyUSDT2 && currencyUSDT2.withdrawEnabled
+        this.withdrawEnabledUSDT3 = currencyUSDT3 && currencyUSDT3.withdrawEnabled
+
+        !this.withdrawEnabledUSDT && this.withdrawEnabledUSDT2 && (this.usdtChainType = 2)
+        !this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2 && (this.usdtChainType = 3)
+
+        //如果外边没拦住，提示并返回上一级路由，这种可能性比较小
+        if(!this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2 && !this.withdrawEnabledUSDT3){
+            this.$globalFunc.toast(this.closeTips);
+            this.goBack();
+        }
+    }
+
     changeCurrency = (item)=>{
 
         this.currency = item.currency || 'BTC'
@@ -798,16 +826,19 @@ export default class App extends RNComponent {
 
         //能进入此页面说明至少有一个开放充值，当OMNI关闭时默认显示ERC20
         if(this.currency == 'USDT'){
-            let currencyUSDT2 = this.$store.state.currency.get('USDT2')
-            this.withdrawEnabledUSDT = currencyObj && currencyObj.withdrawEnabled
-            this.withdrawEnabledUSDT2 = currencyUSDT2 && currencyUSDT2.withdrawEnabled
-            !this.withdrawEnabledUSDT && this.withdrawEnabledUSDT2 && (this.usdtChainType = 2)
 
-            //如果外边没拦住，提示并返回上一级路由，这种可能性比较小
-            if(!this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2){
-                this.$globalFunc.toast(this.closeTips);
-                this.goBack();
-            }
+            this.canUSDTWithdraw(currencyObj);
+
+            // let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+            // this.withdrawEnabledUSDT = currencyObj && currencyObj.withdrawEnabled
+            // this.withdrawEnabledUSDT2 = currencyUSDT2 && currencyUSDT2.withdrawEnabled
+            // !this.withdrawEnabledUSDT && this.withdrawEnabledUSDT2 && (this.usdtChainType = 2)
+            //
+            // //如果外边没拦住，提示并返回上一级路由，这种可能性比较小
+            // if(!this.withdrawEnabledUSDT && !this.withdrawEnabledUSDT2){
+            //     this.$globalFunc.toast(this.closeTips);
+            //     this.goBack();
+            // }
         }
 
         this.isEOS = currencyObj && currencyObj.memo;
@@ -848,6 +879,11 @@ export default class App extends RNComponent {
 
         if(type == 2 && !this.withdrawEnabledUSDT2){
             this.$globalFunc.toast('ERC20暂未开放提现功能，敬请期待！')
+            return
+        }
+
+        if(type == 3 && !this.withdrawEnabledUSDT3){
+            this.$globalFunc.toast('TRC20暂未开放提现功能，敬请期待！')
             return
         }
 
@@ -907,12 +943,12 @@ export default class App extends RNComponent {
                         </TouchableOpacity>
 
                         {/*USDT专有区分链*/}
-                        {(this.currency == 'USDT' || this.currency == 'USDT2') &&
+                        {(this.currency == 'USDT' || this.currency == 'USDT2' || this.currency == 'USDT3') &&
                         <Text style={styles.chainNameText}>链名称</Text>
                         ||
                         null
                         }
-                        {(this.currency == 'USDT' || this.currency == 'USDT2') &&
+                        {(this.currency == 'USDT' || this.currency == 'USDT2' || this.currency == 'USDT3') &&
                             <View style={styles.chainNameBtnBox}>
                                 <TouchableOpacity style={[styles.chainNameBtn,this.usdtChainType == 1 && styles.chainNameBtnSel || null]}
                                                   activeOpacity={StyleConfigs.activeOpacity}
@@ -923,6 +959,11 @@ export default class App extends RNComponent {
                                                   activeOpacity={StyleConfigs.activeOpacity}
                                                   onPress={()=>this.setUsdtChainType(2)}>
                                     <Text style={[styles.usdtTypeText,this.usdtChainType ==2 && styles.usdtTypeTextSel]}>ERC20</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.chainNameBtn,this.usdtChainType == 3 && styles.chainNameBtnSel || null]}
+                                                  activeOpacity={StyleConfigs.activeOpacity}
+                                                  onPress={()=>this.setUsdtChainType(3)}>
+                                    <Text style={[styles.usdtTypeText,this.usdtChainType ==3 && styles.usdtTypeTextSel]}>TRC20</Text>
                                 </TouchableOpacity>
                             </View>
                             ||
