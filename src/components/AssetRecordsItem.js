@@ -129,9 +129,18 @@ export default class App extends RNComponent {
     }
 
     @action
-    formatCurrency = (currency) => {
-        if(currency == "USDT2" || currency == "USDT3")return "USDT";
-        return currency;
+    formatCurrency = (v) => {
+        if(v.currency == "USDT2"){
+            v.isUSDT2 = true
+            v.currency = "USDT"
+            return v
+        }
+        if(v.currency == "USDT3"){
+            v.isUSDT3 = true
+            v.currency = "USDT"
+            return v
+        }
+        return v;
     }
 
     // 获取提现记录
@@ -159,7 +168,7 @@ export default class App extends RNComponent {
         if(this.props.currency && this.withdrawalsRecords.length > 0){
             this.withdrawalsRecords = this.withdrawalsRecords.filter(v => {
 
-                v.currency = this.formatCurrency(v.currency);
+                v = this.formatCurrency(v);
 
                 return v.currency == this.props.currency
             })
@@ -167,7 +176,7 @@ export default class App extends RNComponent {
 
         if(!this.props.currency && this.withdrawalsRecords.length > 0){
             this.withdrawalsRecords.forEach(v=>{
-                v.currency = this.formatCurrency(v.currency);
+                v = this.formatCurrency(v);
             })
         }
 
@@ -207,7 +216,7 @@ export default class App extends RNComponent {
         if(this.props.currency && this.rechargeRecords.length > 0){
             this.rechargeRecords = this.rechargeRecords.filter(v => {
 
-                v.currency = this.formatCurrency(v.currency);
+                v = this.formatCurrency(v);
 
                 return v.currency == this.props.currency
             })
@@ -215,7 +224,7 @@ export default class App extends RNComponent {
 
         if(!this.props.currency && this.rechargeRecords.length > 0){
             this.rechargeRecords.forEach(v=>{
-                v.currency = this.formatCurrency(v.currency);
+                v = this.formatCurrency(v);
             })
         }
 

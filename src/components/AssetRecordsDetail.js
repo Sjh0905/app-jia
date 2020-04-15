@@ -134,6 +134,13 @@ export default class App extends RNComponent {
         this.$router.goBack()
     }
 
+    getCurrencyObj = (item) =>{
+        if(item.isUSDT2)return this.$store.state.currency.get('USDT2')
+        if(item.isUSDT3)return this.$store.state.currency.get('USDT3')
+
+        return this.$store.state.currency.get(item.currency)
+    }
+
     // 拷贝充值Txid
     @action
     copyRechargeTxid = (txid) => {
@@ -149,7 +156,7 @@ export default class App extends RNComponent {
 
         let url = ''
 
-        let currencyObj = item.isUSDT2 ? this.$store.state.currency.get('USDT2') : this.$store.state.currency.get(item.currency)
+        let currencyObj = this.getCurrencyObj(item);
 
         // 如果是ETH的
         if (item.currency === 'ETH' || (currencyObj && currencyObj.addressAliasTo === 'ETH')) {
@@ -296,7 +303,7 @@ export default class App extends RNComponent {
         let url = ''
 
 
-        let currencyObj = item.isUSDT2 ? this.$store.state.currency.get('USDT2') : this.$store.state.currency.get(item.currency)
+        let currencyObj = this.getCurrencyObj(item);
 
 
         // 如果是ETH的
