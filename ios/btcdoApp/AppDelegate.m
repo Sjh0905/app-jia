@@ -36,7 +36,7 @@
 
   //友盟初始化以及统计
   [MobClick setScenarioType:E_UM_NORMAL];
-  [RNUMConfigure initWithAppkey:@"5dae8048570df37d69000346" channel:@"H5"];
+  [RNUMConfigure initWithAppkey:@"5e8c4298570df31a69000196" channel:@"H5"];
 
 ////友盟推送
 //  UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
