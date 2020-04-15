@@ -362,12 +362,13 @@ export default class AssetPageSearch extends RNComponent {
 
                     let rechargeOpenTime = currencyObj && currencyObj.rechargeOpenTime
 
-                    //只有当USDT MONI类型未开放充值时才判断USDT2是否开放，当两个都未开放时才拦截
+                    //只有当USDT MONI类型未开放充值时才判断USDT2、3是否开放，当三个都未开放时才拦截
                     if(item.currency == 'USDT' && (currencyObj && !currencyObj.depositEnabled)){
 
                         let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+                        let currencyUSDT3 = this.$store.state.currency.get('USDT3')
 
-                        if(currencyUSDT2 && !currencyUSDT2.depositEnabled){
+                        if((currencyUSDT2 && !currencyUSDT2.depositEnabled) && (currencyUSDT3 && !currencyUSDT3.depositEnabled)){
                             this.$globalFunc.toast('该币种暂未开放充值功能，敬请期待！')
                             return
                         }
@@ -387,12 +388,13 @@ export default class AssetPageSearch extends RNComponent {
 
                     let withdrawOpenTime = currencyObj && currencyObj.withdrawOpenTime
 
-                    //只有当USDT MONI类型未开放提现时才判断USDT2是否开放，当两个都未开放时才拦截
+                    //只有当USDT MONI类型未开放提现时才判断USDT2、3是否开放，当三个都未开放时才拦截
                     if(item.currency == 'USDT' && (currencyObj && !currencyObj.withdrawEnabled)){
 
                         let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+                        let currencyUSDT3 = this.$store.state.currency.get('USDT3')
 
-                        if(currencyUSDT2 && !currencyUSDT2.withdrawEnabled){
+                        if((currencyUSDT2 && !currencyUSDT2.withdrawEnabled) && (currencyUSDT3 && !currencyUSDT3.withdrawEnabled)){
                             this.$globalFunc.toast('该币种暂未开放提现功能，敬请期待！')
                             return
                         }
@@ -463,7 +465,7 @@ export default class AssetPageSearch extends RNComponent {
     //组件会根据每一个section自动识别改组下边的数组，并对每一项渲染，所以就不用在写Flatlist
     _renderItem = ({item,index})=> {
         console.log('_renderRow',item);
-        if(item.currency == 'USDT2')return null//做个加强过滤
+        if(item.currency == 'USDT2' || item.currency == 'USDT3')return null//做个加强过滤
         return(
             <TouchableOpacity
                 activeOpacity={StyleConfigs.activeOpacity}

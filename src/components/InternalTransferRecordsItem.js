@@ -260,7 +260,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
         let transferType = item.fromUserId == this.userId ? "转出" : "收款"
 
-        item.currency == 'USDT2' && (item.currency = 'USDT')
+        (item.currency == 'USDT2' || item.currency == 'USDT3') && (item.currency = 'USDT')
 
         return (
             <TouchableOpacity
