@@ -458,7 +458,7 @@ export default class App extends RNComponent {
     onAppStateChange = (data)=>{
         console.log('appstate',data);
         // active 活动的 background 后台运行 inactive 中间状态 比如在任务列表中活着
-        this.notify({key: 'APP_STATE_CHANGE'},data);
+        // this.notify({key: 'APP_STATE_CHANGE'},data);
     }
 
 	// 卸载
