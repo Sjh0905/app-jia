@@ -451,12 +451,13 @@ export default class AssetPageDetail extends RNComponent {
 
             let rechargeOpenTime = currencyObj && currencyObj.rechargeOpenTime
 
-            //只有当USDT MONI类型未开放充值时才判断USDT2是否开放，当两个都未开放时才拦截
+            //只有当USDT MONI类型未开放充值时才判断USDT2、3是否开放，当三个都未开放时才拦截
             if(this.currency == 'USDT' && (currencyObj && !currencyObj.depositEnabled)){
 
                 let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+                let currencyUSDT3 = this.$store.state.currency.get('USDT3')
 
-                if(currencyUSDT2 && !currencyUSDT2.depositEnabled){
+                if((currencyUSDT2 && !currencyUSDT2.depositEnabled) || (currencyUSDT3 && !currencyUSDT3.depositEnabled)){
                     this.$globalFunc.toast('该币种暂未开放充值功能，敬请期待！')
                     return
                 }
@@ -505,12 +506,13 @@ export default class AssetPageDetail extends RNComponent {
 
             let withdrawOpenTime = currencyObj && currencyObj.withdrawOpenTime
 
-            //只有当USDT MONI类型未开放提现时才判断USDT2是否开放，当两个都未开放时才拦截
+            //只有当USDT MONI类型未开放提现时才判断USDT2、3是否开放，当三个都未开放时才拦截
             if(this.currency == 'USDT' && (currencyObj && !currencyObj.withdrawEnabled)){
 
                 let currencyUSDT2 = this.$store.state.currency.get('USDT2')
+                let currencyUSDT3 = this.$store.state.currency.get('USDT3')
 
-                if(currencyUSDT2 && !currencyUSDT2.withdrawEnabled){
+                if((currencyUSDT2 && !currencyUSDT2.withdrawEnabled) && (currencyUSDT3 && !currencyUSDT3.withdrawEnabled)){
                     this.$globalFunc.toast('该币种暂未开放提现功能，敬请期待！')
                     return
                 }
