@@ -721,6 +721,11 @@ export default class App extends RNComponent {
                 return false
             }
 
+            if (currencyObj && (currencyObj.addressAliasTo === 'TRX' || this.currency === 'TRX') && !this.$globalFunc.testTRXAddress(this.address)) {
+                this.$globalFunc.toast('请输入正确提现地址，以免造成资产损失！')
+                return false
+            }
+
             if(this.isWCG){
                 this.$router.push('WithdrawalsEmailVerify', {
                     amount: this.amount,

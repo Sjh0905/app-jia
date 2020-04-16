@@ -162,6 +162,11 @@ globalFunc.testWCGAddress = function (src) {
     return /^WCG-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{5}$/.test(src)
 }
 
+// 检测TRX地址
+globalFunc.testTRXAddress = function (src) {
+    return /^T[a-zA-Z0-9]{33}$/.test(src)
+}
+
 //格式化时间年-月-日  时：分：秒
 globalFunc.formatDateUitl = function (time, formatString = 'YYYY-MM-DD hh:mm:ss', offset = 8) {
 
