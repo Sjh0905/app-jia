@@ -169,6 +169,8 @@ export default class App extends RNComponent {
             url = `https://www.omniexplorer.info/tx/${item.uniqueId}`
         } else if (item.currency === 'EOSIO' || (currencyObj && currencyObj.addressAliasTo === 'EOSIO')) {
             url = `https://eosflare.io/tx/${item.uniqueId}`
+        } else if (item.currency === 'TRX' || (currencyObj && currencyObj.addressAliasTo === 'TRX')) {
+            url = `https://trx.tokenview.com/cn/tx/${item.uniqueId}`
         } else {
             url = `https://blockchain.info/zh-cn/tx/${item.uniqueId}`
         }
@@ -317,6 +319,8 @@ export default class App extends RNComponent {
             url = `https://www.omniexplorer.info/tx/${item.tx}`
         } else if (item.currency === 'EOSIO' || (currencyObj && currencyObj.addressAliasTo === 'EOSIO')) {
             url = `https://eosflare.io/tx/${item.tx}`
+        } else if (item.currency === 'TRX' || (currencyObj && currencyObj.addressAliasTo === 'TRX')) {
+            url = `https://trx.tokenview.com/cn/tx/${item.uniqueId}`
         } else {
             url = `https://blockchain.info/zh-cn/tx/${item.tx}`
         }
