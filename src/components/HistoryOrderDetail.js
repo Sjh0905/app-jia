@@ -229,23 +229,14 @@ export default class HistoryOrderDetail extends RNComponent {
 
 							{this.$params.order.type === 'BUY_LIMIT' &&
 							<Text  allowFontScaling={false} style={styles.tableTxt4}>
-								{this.$globalFunc.accFixed(this.$globalFunc.accMinus(this.amount, this.$globalFunc.accMinus(this.totalFee, this.refundedFee)), 8)}
+								{/*由于现在没有部分抵扣，所以需要单独处理TT*/}
+								{this.$globalFunc.accFixed(this.$globalFunc.accMinus(this.amount,this.$params.order.symbol.split('_')[0] == "TT" ? this.replacedFee : this.$globalFunc.accMinus(this.totalFee, this.refundedFee)), 8)}
 							</Text>
 							||
 							<Text  allowFontScaling={false} style={styles.tableTxt4}>
 								{this.$globalFunc.accFixed(this.$globalFunc.accMinus(this.filledPrice , this.$globalFunc.accMinus(this.totalFee , this.refundedFee)),8)}
 							</Text>
 							}
-
-
-
-
-
-
-
-
-
-
 
 
 						</View>
