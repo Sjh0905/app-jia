@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginBottom:getHeight(30)
+		marginBottom:getHeight(29)
 	},
 	inputBoxMiddle3: {
 		marginTop: getHeight(20),
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginBottom:getHeight(4)
+		marginBottom:getHeight(5)
 	},
 	input2: {
         padding:0,
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     	backgroundColor:'#f7f7fb',
 		paddingHorizontal:getWidth(36),
 		paddingTop:getHeight(36),
-		paddingBottom:getHeight(42),
+		paddingBottom:getHeight(36),
 
 	},
     currencyName:{

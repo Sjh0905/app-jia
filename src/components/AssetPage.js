@@ -402,7 +402,7 @@ export default class App extends RNComponent {
 
 
         return (
-            <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.bg172A4D},PlatformOS == 'ios' && styles.containerMargin || {}]}>
+            <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.bgAssetPageTop},PlatformOS == 'ios' && styles.containerMargin || {}]}>
                 <NavHeader
                     headerTitle={'资产'}
                     navStyle={{backgroundColor:StyleConfigs.bgAssetPageTop}}

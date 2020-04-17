@@ -148,6 +148,9 @@ export default class App extends RNComponent {
     closeTips = '该币种暂未开放提现功能，敬请期待！'
 
 
+    marginTopCurrency = ['USDT']
+
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -1103,7 +1106,8 @@ export default class App extends RNComponent {
 	                    </View>
 
 
-	                    <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:getHeight(104)}}>
+	                    <View style={[{flexDirection:'row',justifyContent:'space-between',marginTop:getHeight(108)},
+                            (this.marginTopCurrency.includes(this.currency) || this.isEOS) && {marginTop:getHeight(22)} || {}]}>
 		                    <Text style={{color:StyleConfigs.txt6B7DA2,fontSize:StyleConfigs.fontSize16}}>到账数量</Text>
 		                    <Text style={{color:StyleConfigs.txt172A4D,fontSize:StyleConfigs.fontSize16}}>{realAmount} {this.currency}</Text>
 	                    </View>
