@@ -1046,7 +1046,10 @@ export default class App extends RNComponent {
 
 
 	                    {/*memo 备注*/}
-	                    {this.isEOS && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>地址标签</Text></View>}
+	                    {this.isEOS && <View style={styles.tibidizhiWrap}>
+                            <Text allowFontScaling={false} style={styles.tibidizhiTxt}>地址标签</Text>
+                            <Text allowFontScaling={false} style={[styles.tibidizhiTxt,styles.tibidizhiTxtTips]}>（填写错误可能导致资产损失，请仔细核对）</Text>
+                        </View>}
 	                    {this.isEOS &&  <View style={styles.inputBoxMiddle2}>
 		                    <TextInput
 			                    allowFontScaling={false}

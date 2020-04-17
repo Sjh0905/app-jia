@@ -352,11 +352,14 @@ const styles = StyleSheet.create({
 	},
 
 	tibidizhiWrap:{
-
+        flexDirection:'row',
 	},
 	tibidizhiTxt:{
 		fontSize:12,
 		color:'#172A4D'
+	},
+    tibidizhiTxtTips:{
+		color:StyleConfigs.txtRed
 	},
 
 	inputBoxMiddle2: {
