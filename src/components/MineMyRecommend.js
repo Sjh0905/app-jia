@@ -182,7 +182,7 @@ export default class App extends RNComponent {
 
     render() {
 
-        let uid = this.$store.state.authMessage.uuid || this.$store.state.authMessage.userId.toString() || ''
+        let uid = this.$store.state.authMessage.userId.toString() || ''
 
         return (
             <View style={[styles.container, styles.container2]}>

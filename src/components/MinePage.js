@@ -581,7 +581,7 @@ export default class App extends RNComponent {
 
     render() {
         console.log('authMessage',this.$store.state.authMessage)
-        let UID = this.$store.state.authMessage.uuid || this.$store.state.authMessage.userId || ''
+        let UID = this.$store.state.authMessage.userId || ''
 
         let userName;
         if(this.$store.state.authMessage.province === 'mobile'){
