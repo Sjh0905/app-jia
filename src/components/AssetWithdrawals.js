@@ -661,10 +661,10 @@ export default class App extends RNComponent {
             }
 
             // 未输入备注
-            if ((/*!this.isWCG &&*/ this.description === '')) {
-                this.$globalFunc.toast('请输入提现备注')
-                return false
-            }
+            // if ((/*!this.isWCG &&*/ this.description === '')) {
+            //     this.$globalFunc.toast('请输入提现备注')
+            //     return false
+            // }
 
             if (this.address === '') {
                 this.$globalFunc.toast('请输入提现地址')
@@ -725,6 +725,8 @@ export default class App extends RNComponent {
                 this.$globalFunc.toast('请输入正确提现地址，以免造成资产损失！')
                 return false
             }
+
+            this.description = "地址备注"//由于地址备注不在页面显示，但是需要传值，默认为地址备注
 
             if(this.isWCG){
                 this.$router.push('WithdrawalsEmailVerify', {
@@ -1026,21 +1028,21 @@ export default class App extends RNComponent {
 	                    </View>
 	                    <View style={{marginBottom:getHeight(30)}}><Text style={{color:StyleConfigs.txtA2B5D9,fontSize:StyleConfigs.fontSize12}}>可用 {available+this.currency}</Text></View>
 						{/*备注*/}
-	                    <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>备注</Text></View>
-	                    <View style={styles.inputBoxMiddle2}>
-		                    <TextInput
-			                    allowFontScaling={false}
-			                    style={[styles.input2]}
-			                    placeholder={'输入备注'}
-			                    placeholderTextColor={'#A2B5D9'}
-			                    underlineColorAndroid={'transparent'}
-			                    onChangeText={(text) => {
-				                    this.description = text
-			                    }}
-			                    returnKeyType={'done'}
-			                    // onFocus = {this.onFocus_dizhi}
-		                    />
-	                    </View>
+                        {/*<View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>备注</Text></View>*/}
+                        {/*<View style={styles.inputBoxMiddle2}>*/}
+		                    {/*<TextInput*/}
+			                    {/*allowFontScaling={false}*/}
+			                    {/*style={[styles.input2]}*/}
+			                    {/*placeholder={'输入备注'}*/}
+			                    {/*placeholderTextColor={'#A2B5D9'}*/}
+			                    {/*underlineColorAndroid={'transparent'}*/}
+			                    {/*onChangeText={(text) => {*/}
+				                    {/*this.description = text*/}
+			                    {/*}}*/}
+			                    {/*returnKeyType={'done'}*/}
+			                    {/*// onFocus = {this.onFocus_dizhi}*/}
+		                    {/*/>*/}
+                        {/*</View>*/}
 
 
 	                    {/*memo 备注*/}
