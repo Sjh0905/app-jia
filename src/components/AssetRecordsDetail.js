@@ -223,7 +223,7 @@ export default class App extends RNComponent {
 
                 {/*memo begin*/}
                 {!!item.memoAddress && <View style={[styles.itemDetailBox]}>
-                    <Text allowFontScaling={false} style={[styles.itemTitle]}>充值备注</Text>
+                    <Text allowFontScaling={false} style={[styles.itemTitle]}>地址标签</Text>
                     <Text
                         allowFontScaling={false}
                         style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
@@ -462,7 +462,7 @@ export default class App extends RNComponent {
                 {/*memo begin*/}
                 {
                     !!item.memoAddress && <View style={[styles.itemDetailBox]}>
-                        <Text allowFontScaling={false} style={[styles.itemTitle]}>提现备注</Text>
+                        <Text allowFontScaling={false} style={[styles.itemTitle]}>地址标签</Text>
                         <Text allowFontScaling={false}
                           style={[styles.itemDetail, baseStyles.text0D0E23, styles.toAddress]}>{item.memoAddress}</Text>
                     </View>

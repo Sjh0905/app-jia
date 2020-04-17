@@ -95,8 +95,8 @@ export default class App extends RNComponent {
         this.showAlert = this.isEOS;
         this.isWCG = currencyObj && (currencyObj.addressAliasTo == 'WCG' || this.currency == 'WCG')
 
-        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址及' + '充值备注， 未填写充值备注将导致资产丢失。'))
-        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址、' + ' 充值备注、'+ this.currency +' publicKey, 未填写充值备注将导致资产丢失。'))
+        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址及' + '地址标签， 未填写地址标签将导致资产丢失。'))
+        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址、' + ' 地址标签、'+ this.currency +' publicKey, 未填写地址标签将导致资产丢失。'))
 
         this.getRecharge()
         this.changeCurrency1 = this.$beforeParams && this.$beforeParams.changeCurrency1
@@ -261,8 +261,8 @@ export default class App extends RNComponent {
         this.showAlert = this.isEOS;
         this.isWCG = currencyObj && (currencyObj.addressAliasTo == 'WCG' || this.currency == 'WCG')
 
-        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址及' + '充值备注， 未填写充值备注将导致资产丢失。'))
-        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址、' + ' 充值备注、'+ this.currency +' publicKey, 未填写充值备注将导致资产丢失。'))
+        this.isEOS && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址及' + '地址标签， 未填写地址标签将导致资产丢失。'))
+        this.isWCG && (this.myAlertContent = ('充值' + this.currency + '到二零二零须同时填写充值地址、' + ' 地址标签、'+ this.currency +' publicKey, 未填写地址标签将导致资产丢失。'))
         this.getRecharge()
 
         //调用资产详情页的方法
@@ -471,7 +471,7 @@ export default class App extends RNComponent {
                             </View>
                             {/*</View>*/}
 
-                            <Text allowFontScaling={false} style={[styles.rechargeAddressTitle]}>充值备注</Text>
+                            <Text allowFontScaling={false} style={[styles.rechargeAddressTitle]}>地址标签</Text>
                             <Text allowFontScaling={false} style={styles.rechargeAddress2}>{this.memoAddress}</Text>
                             <TouchableOpacity
                                 style={styles.copyBtnTouch}
@@ -480,7 +480,7 @@ export default class App extends RNComponent {
                                     this.copyAddress(this.memoAddress)
                                 }}
                             >
-                                <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, baseStyles.size12]}>复制充值备注</Text>
+                                <Text allowFontScaling={false} style={[baseStyles.text6B7DA2, baseStyles.size12]}>复制地址标签</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -521,7 +521,7 @@ export default class App extends RNComponent {
                             {/*<View style={[styles.line]} />*/}
                             {/*/!*充值地址 begin*!/*/}
                             {/*<View style={styles.rechargeAddressBox}>*/}
-                                {/*<Text allowFontScaling={false} style={[styles.rechargeAddressTitle]}>充值备注</Text>*/}
+                                {/*<Text allowFontScaling={false} style={[styles.rechargeAddressTitle]}>地址标签</Text>*/}
                                 {/*<TextInput*/}
                                     {/*allowFontScaling={false}*/}
                                     {/*style={[baseStyles.textColor, styles.rechargeAddress]}*/}

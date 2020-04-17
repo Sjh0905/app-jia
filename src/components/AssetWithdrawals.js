@@ -479,13 +479,13 @@ export default class App extends RNComponent {
                 {
                     this.isEOS &&
                     <View>
-                        <Text allowFontScaling={false} style={[styles.withdrawalsAddressTitle, baseStyles.textColor]}>提现备注</Text>
+                        <Text allowFontScaling={false} style={[styles.withdrawalsAddressTitle, baseStyles.textColor]}>地址标签</Text>
                         <View
                             style={[styles.addressInputItem, styles.addressInputItemMarginTop, styles.addNewAddressInputItem]}>
                             <TextInput
                                 allowFontScaling={false}
                                 style={[styles.addressInput]}
-                                placeholder={'添加提现备注'}
+                                placeholder={'输入地址标签'}
                                 placeholderTextColor={StyleConfigs.txtC5CFD5}
                                 underlineColorAndroid={'transparent'}
                                 // value={this.memoAddress}
@@ -662,7 +662,7 @@ export default class App extends RNComponent {
 
             // 未输入备注
             // if ((/*!this.isWCG &&*/ this.description === '')) {
-            //     this.$globalFunc.toast('请输入提现备注')
+            //     this.$globalFunc.toast('请输入地址备注')
             //     return false
             // }
 
@@ -677,7 +677,7 @@ export default class App extends RNComponent {
             }
 
             if ((!this.isWCG && this.isEOS) && this.memoAddress === ''){
-                this.$globalFunc.toast('请输入memo')
+                this.$globalFunc.toast('请输入地址标签')
                 return false
             }
 
@@ -1046,12 +1046,12 @@ export default class App extends RNComponent {
 
 
 	                    {/*memo 备注*/}
-	                    {this.isEOS && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>提现备注</Text></View>}
+	                    {this.isEOS && <View style={styles.tibidizhiWrap}><Text allowFontScaling={false} style={styles.tibidizhiTxt}>地址标签</Text></View>}
 	                    {this.isEOS &&  <View style={styles.inputBoxMiddle2}>
 		                    <TextInput
 			                    allowFontScaling={false}
 			                    style={[styles.input2]}
-			                    placeholder={'输入提现备注'}
+			                    placeholder={'输入地址标签'}
 			                    placeholderTextColor={'#A2B5D9'}
 			                    underlineColorAndroid={'transparent'}
 			                    onChangeText={(text) => {
