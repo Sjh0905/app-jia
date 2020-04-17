@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
 		justifyContent:'space-between',
 		alignItems:'center',
 		backgroundColor:'#f7f8fa',
-		marginBottom:getHeight(56)
+		marginBottom:getHeight(52)
 
 	},
 
