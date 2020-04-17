@@ -108,8 +108,8 @@ android {
         applicationId "com.twentytwenty.exchange"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "1.0.4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
