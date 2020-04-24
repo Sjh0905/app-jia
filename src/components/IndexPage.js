@@ -894,6 +894,7 @@ export default class App extends RNComponent {
 			// 整体
             let identityAuth = (data.dataMap.status.toString() === '2');
             let identityAuthInfo = data.dataMap.identityAuths;
+            let time = data.dataMap.time;
 
             // 整体的明细
             let identityAuthState = data.dataMap.status;
@@ -944,7 +945,8 @@ export default class App extends RNComponent {
                 living_body_url,
                 cardType,
                 cerificatePage,
-                identityAuthState
+                identityAuthState,
+                time
 			});
         }
     }

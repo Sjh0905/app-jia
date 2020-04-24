@@ -280,7 +280,8 @@ store.state.getIdentityInfo = {
     living_body_url: false,
     cardType: 0,
     cerificatePage:'RealNameCertification', //'IDCardA',
-    identityAuthState: '3'//APP只调用了/auth/getIdentityInfo，所以 0 或 3 都是未认证状态
+    identityAuthState: '3',//APP只调用了/auth/getIdentityInfo，所以 0 或 3 都是未认证状态
+    time:0
 }
 
 /**

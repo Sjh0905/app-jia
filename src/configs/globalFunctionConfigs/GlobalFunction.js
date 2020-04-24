@@ -183,7 +183,7 @@ globalFunc.formatDateUitl = function (time, formatString = 'YYYY-MM-DD hh:mm:ss'
 
     let myDate = new Date(time);
 
-    formatString = formatString.replace('yy', myDate.getYear())
+    formatString = formatString.replace('yy', myDate.getFullYear().toString().slice(2))
     console.log()
     formatString = formatString.replace('YYYY', myDate.getFullYear())
     formatString = formatString.replace('MM', pad0(myDate.getMonth() + 1, 2))

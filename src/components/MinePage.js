@@ -591,6 +591,8 @@ export default class App extends RNComponent {
             userName = this.$store.state.authMessage.email || '';
         }
         let identityAuthState = this.$store.state.getIdentityInfo.identityAuthState;
+        let time = this.$store.state.getIdentityInfo.time;
+        let identityAuthTime = " " + (time > 0 ? this.$globalFunc.formatDateUitl(time) : '')
         // let identityAuthStateStr = ['未认证','未认证','已通过','未认证','已过期','审核中'][identityAuthState];//face++状态
         // 后台:0未审核 1被驳回 2已通过 3人工失效 4系统失效
         // 最新的状态2019-11-04，APP只调用了/auth/getIdentityInfo，所以 0 或 3 都是未认证状态
@@ -741,7 +743,13 @@ export default class App extends RNComponent {
                                     <View style={[styles.itemRight]}>
                                         <Text  allowFontScaling={false}
                                             style={[baseStyles.textColor, styles.verifyText]}>{identityAuthStateStr}</Text>
-                                            <Image source={IntoIcon} style={styles.intoIcon}/>
+                                        {identityAuthState == 2 &&
+                                            <Text  allowFontScaling={false}
+                                            style={[baseStyles.textColor, styles.memberExpiresTime]}>{identityAuthTime}</Text>
+                                            ||
+                                            null
+                                        }
+                                        <Image source={IntoIcon} style={styles.intoIcon}/>
                                     </View>
                                 </View>
                             </TouchableOpacity>

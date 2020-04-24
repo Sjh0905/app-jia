@@ -120,6 +120,10 @@ const styles = StyleSheet.create({
         fontSize: 12,
         // color: StyleConfigs.txtC5CFD5
     },
+    verifyStateText: {
+        fontSize: 12,
+        color: StyleConfigs.txtA2B5D9
+    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
