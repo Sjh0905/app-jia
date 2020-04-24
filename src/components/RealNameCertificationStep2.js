@@ -489,41 +489,76 @@ export default class RealNameCertification extends RNComponent {
                     errorText = '图片过大'
                     break;
                 case 3:
-                    errorText = '您输入的证件信息有误，请重新填写！'
+                    errorText = '该证件信息已存在'
                     break;
-                case 4:
-                    errorText = '您的年龄不符合平台注册要求18岁以上！'
-                    break;
+                // case 4:
+                //     errorText = '您的年龄不符合平台注册要求18岁以上！'
+                //     break;
                 case 5:
-                    errorText = 'face++认证中'
+                    errorText = '认证处于进行中'
                     break;
                 case 6:
-                    errorText = 'face++用户认证已通过'
+                    errorText = '该用户信息认证已通过'
+                    break;
+                case 7:
+                    errorText = '请选择国籍'
                     break;
                 case 8:
                     errorText = '用户上传身份证照片不是人像面'
                     break;
-                case 9:
-                    errorText = '身份证号码输入与证件不符'
+                // case 9:
+                //     errorText = '身份证号码输入与证件不符'
+                //     break;
+                // case 10:
+                //     errorText = '姓名输入与证件不符'
+                //     break;
+                // case 11:
+                //     errorText = '性别输入与证件不符'
+                //     break;
+                // case 12:
+                //     errorText = '请上传包含身份证的照片'
+                //     break;
+                // case 13:
+                //     errorText = '身份证不在有效期内'
+                //     break;
+                // case 100:
+                //     errorText = '请上传身份证正面照片'
+                //     break;
+                // case 102:
+                //     errorText = '请上传身份证反面照片'
+                //     break;
+                case 201:
+                    errorText = '身份证号码错误'
                     break;
-                case 10:
-                    errorText = '姓名输入与证件不符'
+                case 202:
+                    errorText = '姓名错误'
                     break;
-                case 11:
-                    errorText = '性别输入与证件不符'
+                case 203:
+                    errorText = '姓名和身份证号码不匹配'
                     break;
-                case 12:
-                    errorText = '请上传包含身份证的照片'
+                case 204:
+                    errorText = '人像照片不清晰'
                     break;
-                case 13:
-                    errorText = '身份证不在有效期内'
+                case 205:
+                    errorText = '其他参数错误'
                     break;
-                case 100:
-                    errorText = '请上传身份证正面照片'
+                case 206:
+                    errorText = '手持照片人像和身份证不匹配'
                     break;
-                case 102:
-                    errorText = '请上传身份证反面照片'
+                case 207:
+                    errorText = '其他错误'
                     break;
+                case 208:
+                    errorText = '系统错误'
+                    break;
+                case 209:
+                    errorText = '返回结果为空'
+                    break;
+                case 210:
+                    errorText = '手持照片为空'
+                    break;
+                default:
+                    errorText = '暂不可用，请稍后再试'
             }
 
             Toast.show(errorText, {
