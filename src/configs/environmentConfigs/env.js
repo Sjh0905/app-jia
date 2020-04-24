@@ -5,10 +5,9 @@ env.networkConfigs = {}
 env.networkConfigs.baseUrl = process.env.URL || 'https://app.2020.exchange/'//生产环境
 // env.networkConfigs.baseUrl = process.env.URL || 'http://app.2020-ex.com/'//测试环境
 
+// env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.10.137:8000/'//柚子皮
 // env.networkConfigs.baseUrl = process.env.URL || 'http://18.163.24.239:8000/'//如果写IP地址，需要有专用的登录接口，否则不能set-cookie
 // env.networkConfigs.baseUrl = process.env.URL || 'http://app-zpy.highdefi.com:8000/'//测试环境
-// env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.11.89:8000/'//王琪s
-// env.networkConfigs.baseUrl = process.env.URL || 'http://10.113.11.20:8000/'//cuifan
 
 // env.networkConfigs.currencyLogoUrl = process.env.LOGOURL || 'http://logo.2020.exchange/'//币种logo地址
 env.networkConfigs.c2cUrl = process.env.C2CURL || 'https://otc.2020.exchange/'
