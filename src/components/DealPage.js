@@ -1684,6 +1684,16 @@ class DealItem extends RNComponent {
             return
         }
 
+        if (err.error == 'ORDER_GRANTER_THAN_MAXAMOUNT') {
+            Alert.alert("提示", "挂单数量大于最大值", [
+                {
+                    text: "我知道了", onPress: () => {
+                    }
+                }
+            ])
+            return
+        }
+
         if (err.error == 'Bad Request') {
             Alert.alert("提示", "请求错误", [
                 {
