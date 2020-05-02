@@ -1533,10 +1533,24 @@ class DealItem extends RNComponent {
             return;
 
         var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);
-
+        var bnum = tp.maxAmount;
         if (/*text2!= '' &&*/ Number(text2) < Number(num)) {
 
             Alert.alert("提示", '数量不能小于' + num, [
+                {
+                    text: "我知道了", onPress: () => {
+                        console.log("点了我知道了");
+                    }
+                }
+            ])
+            return
+
+        }
+
+
+        if (/*text2!= '' &&*/bnum > 0 && Number(text2) > Number(bnum)) {
+
+            Alert.alert("提示", '数量不能大于' + bnum, [
                 {
                     text: "我知道了", onPress: () => {
                         console.log("点了我知道了");
@@ -1918,7 +1932,7 @@ class DealItem extends RNComponent {
         if (Number(at)<Number(tp.miniVolume || '0')) {
             this.transAmount = 0;
             this.transFlag = false;
-            this.transCont = '交易额不能低于' + (tp.miniVolume || '0') + '!';
+            this.transCont = '交易额不能低于' + (tp.miniVolume || '0') ;
             return;
         }
         if (Number(at)>10000000) {
@@ -2003,7 +2017,7 @@ class DealItem extends RNComponent {
             }
 
             this.priceFlag = false;
-            this.priceCont = '价格不能低于' + minPrice + '!';
+            this.priceCont = '价格不能低于' + minPrice ;
             this.transAmount = 0;
 
             return false
@@ -2019,7 +2033,7 @@ class DealItem extends RNComponent {
             }
 
             this.priceFlag = false;
-            this.priceCont = '价格不能高于' + maxPrice + '!';
+            this.priceCont = '价格不能高于' + maxPrice ;
             this.transAmount = 0;
 
             return false
@@ -2125,7 +2139,7 @@ class DealItem extends RNComponent {
 
         if (text != '' && this.symbol !='KK_USDT' && Number(text) < Number(num)) {
             this.priceFlag = false;
-            this.priceCont = '价格不能低于' + num + '!';
+            this.priceCont = '价格不能低于' + num ;
             this.transAmount = 0;
             return;
         }
@@ -2186,12 +2200,12 @@ class DealItem extends RNComponent {
         var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);
         //买入时最大成交量,暂时不做，如果加上此句话，前面需要对tp.maxAmount做非法验证，否则有可能引起闪退BUG，如值为''时
         // bnum = this.$globalFunc.accFixed(tp.maxAmount, tp.baseScale);
-
+        var bnum = tp.maxAmount;
 
 
         // if (!this.props.type && Number(text) > Number(bnum)) {//买入时最大成交量,暂时不做
         //     this.amountFlag = false;
-        //     this.amountCont = '不能大于' + bnum + '!';
+        //     this.amountCont = '不能大于' + bnum ;
         //     this.transAmount = 0;
         //     return;
         //
@@ -2221,7 +2235,16 @@ class DealItem extends RNComponent {
         if (text != '' && Number(text) < Number(num)) {
             this.amountFlag = false;
             this.amountSellFlag = false;
-            this.amountCont = '数量不能小于' + num + '!';
+            this.amountCont = '数量不能小于' + num ;
+            this.transAmount = 0;
+            return;
+        }
+
+        //最大交易量限制，直接用bnum > 0 来判断就行，不用特定哪个币对，不需限制的为undefined，自然也不会大于0
+        if ((bnum > 0 && text != '') && Number(text) > Number(bnum)) {
+            this.amountFlag = false;
+            this.amountSellFlag = false;
+            this.amountCont = '数量不能大于' + bnum ;
             this.transAmount = 0;
             return;
         }
