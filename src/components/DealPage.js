@@ -1547,19 +1547,19 @@ class DealItem extends RNComponent {
 
         }
 
-
-        if (/*text2!= '' &&*/bnum > 0 && Number(text2) > Number(bnum)) {
-
-            Alert.alert("提示", '数量不能大于' + bnum, [
-                {
-                    text: "我知道了", onPress: () => {
-                        console.log("点了我知道了");
-                    }
-                }
-            ])
-            return
-
-        }
+        // 暂时屏蔽前端拦截，白名单有后端来配置
+        // if (/*text2!= '' &&*/bnum > 0 && Number(text2) > Number(bnum)) {
+        //
+        //     Alert.alert("提示", '数量不能大于' + bnum, [
+        //         {
+        //             text: "我知道了", onPress: () => {
+        //                 console.log("点了我知道了");
+        //             }
+        //         }
+        //     ])
+        //     return
+        //
+        // }
 
         if (!this.props.type && Number(this.price * this.amount) > Number(available)) {
 
@@ -1685,7 +1685,11 @@ class DealItem extends RNComponent {
         }
 
         if (err.error == 'ORDER_GRANTER_THAN_MAXAMOUNT') {
-            Alert.alert("提示", "挂单数量大于最大值", [
+
+            let bnum = err_type && err_type.split("|")[1] || "最大值"
+            bnum = this.$globalFunc.testTrim(bnum)
+            
+            Alert.alert("提示", "数量不能大于"+bnum, [
                 {
                     text: "我知道了", onPress: () => {
                     }
@@ -2250,14 +2254,15 @@ class DealItem extends RNComponent {
             return;
         }
 
-        //最大交易量限制，直接用bnum > 0 来判断就行，不用特定哪个币对，不需限制的为undefined，自然也不会大于0
-        if ((bnum > 0 && text != '') && Number(text) > Number(bnum)) {
-            this.amountFlag = false;
-            this.amountSellFlag = false;
-            this.amountCont = '数量不能大于' + bnum ;
-            this.transAmount = 0;
-            return;
-        }
+        // 暂时屏蔽前端拦截，白名单有后端来配置
+        // 最大交易量限制，直接用bnum > 0 来判断就行，不用特定哪个币对，不需限制的为undefined，自然也不会大于0
+        // if ((bnum > 0 && text != '') && Number(text) > Number(bnum)) {
+        //     this.amountFlag = false;
+        //     this.amountSellFlag = false;
+        //     this.amountCont = '数量不能大于' + bnum ;
+        //     this.transAmount = 0;
+        //     return;
+        // }
 
         // if(this.props.type){
             this.transFlag = true;

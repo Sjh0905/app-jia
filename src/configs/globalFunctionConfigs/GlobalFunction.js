@@ -455,6 +455,11 @@ globalFunc.lookForward = function(desc){
     globalFunc.toast('敬请期待')
 }
 
+// 去掉输入的所有空格
+globalFunc.testTrim = function (str) {
+    return str.replace(/\s+/g,"")
+}
+
 export default globalFunc
 
 
