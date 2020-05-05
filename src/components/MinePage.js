@@ -83,7 +83,13 @@ export default class App extends RNComponent {
     isMember = false
 
     @observable
-    memberExpiresTime = 0
+    expires = 0//服务器格式化后的过期时间
+
+    @observable
+    memberExpiresTime = 0//过期时间戳
+
+    @observable
+    memberCreatedAtHour = undefined
 
 
     /*----------------------- 生命周期 -------------------------*/
@@ -103,13 +109,13 @@ export default class App extends RNComponent {
         // 获取认证状态
         this.getAuthState()
 
-        // 获取会员状态
-        this.getCheckMember()
+        this.checkMemberState()
 
         // 获取BDB抵扣
         // this.getBDBInfo()
 
         // this.listen({key:'RE_FEE_BDB_STATE',func:this.getBDBInfo});
+        this.listen({key:'RE_MEMBER_STATE',func:this.checkMemberState});
 
         this.$event.listen({bind: this, key: 'NEW_LOGIN', func: this.getAuthState})
     }
@@ -332,6 +338,13 @@ export default class App extends RNComponent {
         this.verifyModalShow = false
     }
 
+    checkMemberState = () =>{
+        // 会员购买记录
+        this.getBuyRecords()
+
+        // 获取会员状态
+        this.getCheckMember()
+    }
 
     //是否是会员get (query:{})
     getCheckMember= function () {
@@ -350,14 +363,57 @@ export default class App extends RNComponent {
         //检测data数据是JSON字符串转换JS字符串
         typeof data === 'string' && (data = JSON.parse(data))
 
-        // this.expires = data.data.expires
+        this.expires = data.data.expires
         this.memberExpiresTime = data.data.expires_timestamp
         this.isMember = data.data.flag
-        console.log('是否是会员get-----',this.data)
+        console.log('是否是会员get-----',data)
 
+        setTimeout(()=>{
+            console.log("检查会员购买记录调用 this.memberCreatedAtHour",this.memberCreatedAtHour);
+            if(this.memberCreatedAtHour == undefined){
+                this.getBuyRecords();
+            }
+        },1000)
     }
     error_getCheck = function (err) {
         console.log("是否是会员get .err=====",err)
+    }
+
+    //会员购买记录get (query:{})
+    getBuyRecords= function () {
+
+        this.$http.send('GET_BUY_RECORDS', {
+            bind: this,
+            urlFragment: this.userId,
+            // query:{
+            //   gname: this.gname
+            // },
+            callBack: this.re_getBuyRecords,
+            errorHandler: this.error_getBuyRecords
+        })
+    }
+
+    re_getBuyRecords = function (data) {
+        //检测data数据是JSON字符串转换JS字符串
+        typeof data === 'string' && (data = JSON.parse(data))
+        if (!data) {return}
+
+        let records = data.data || []
+        console.log('会员购买记录get', records)
+
+        let firstItem = records[0] || {}
+        let createdAt =  firstItem.createdAt
+
+        if(createdAt > 0){
+            this.memberCreatedAtHour =  this.$globalFunc.formatDateUitl(Number(createdAt), 'hh')
+        }
+
+        console.info('this.memberCreatedAtHour',this.memberCreatedAtHour)
+
+    }
+
+    error_getBuyRecords = function (err) {
+        console.warn("会员购买记录get this.err=====",err)
     }
 
 
@@ -598,6 +654,8 @@ export default class App extends RNComponent {
         // 最新的状态2019-11-04，APP只调用了/auth/getIdentityInfo，所以 0 或 3 都是未认证状态
         let identityAuthStateStr = ['未认证','被驳回','已通过','未认证','已失效','审核中','审核中'][identityAuthState];
 
+        let memberExpires = this.memberCreatedAtHour < 16 ? this.expires : this.$globalFunc.formatDateUitl(this.memberExpiresTime, 'YYYY-MM-DD')
+
         return (
             <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.navBgColor0602}]}>
                 <NavHeader
@@ -624,10 +682,10 @@ export default class App extends RNComponent {
                     {/*头像部分 end*/}
 
                     {/*会员卡 begin*/}
-                    {this.isMember &&
+                    {(this.isMember && this.memberCreatedAtHour != undefined) &&
                         <View style={[styles.headerIconBox, styles.boxPadding, styles.memberBox]}>
                             <Text  allowFontScaling={false} style={[styles.memberTitle]}>我的2020会员</Text>
-                            <Text  allowFontScaling={false} style={[styles.memberExpiresTime ]}>{this.$globalFunc.formatDateUitl(this.memberExpiresTime, 'YYYY-MM-DD')}到期</Text>
+                            <Text  allowFontScaling={false} style={[styles.memberExpiresTime ]}>{memberExpires}到期</Text>
                         </View>
                         ||
                         null

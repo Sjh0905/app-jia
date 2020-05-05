@@ -218,6 +218,9 @@ requestAddress.GET_ASSEMBLE_GET = {url: '/assemble/getMem/', method: 'get'}
 // 是否是会员
 requestAddress.GET_CHECK_MEMBER = {url: '/memberCard/checkMember/', method: 'get'}
 
+// 会员购买记录
+requestAddress.GET_BUY_RECORDS = {url: '/memberCard/buyRecords/', method: 'get'}
+
 
 
 //---------------------------------------C2C接口部分----------------------------------------------

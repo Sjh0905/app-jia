@@ -393,6 +393,11 @@ export default class App extends RNComponent {
 
                 setTimeout(()=>{this.refreshFlag = true},5000)
 
+                //如果处于登录状态，刷新会员信息
+                if(this.$store.state.authMessage.userId){
+                    this.notify({key: 'RE_MEMBER_STATE'});
+                }
+
 			}
 
 
