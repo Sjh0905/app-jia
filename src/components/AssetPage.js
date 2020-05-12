@@ -67,6 +67,9 @@ export default class App extends RNComponent {
     @observable
     hide0AssetCurrency = false
 
+    @observable
+    assetAccountType = 'wallet'//当前账户类型,默认显示我的钱包
+
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -299,6 +302,13 @@ export default class App extends RNComponent {
     error_getAuthState = (err) => {
         console.warn("获取验证状态出错！", err)
     }
+
+    // 切换账户类型
+    changeAssetAccountType = function (type) {
+        if(this.assetAccountType == type)return
+        this.assetAccountType = type
+    };
+
     //隐藏零资产
     @action
     hideCurrency = ()=>{
@@ -532,6 +542,41 @@ export default class App extends RNComponent {
                     </View>
 
                 </ImageBackground>
+
+                {/*切换账户类型 begin*/}
+                <View style={[styles.assetCheckBox,baseStyles.flexRowAround]}>
+                    <TouchableOpacity
+                        style={[styles.assetCheckItem,this.assetAccountType == 'asset' && styles.assetCheckItemSelected || {}]}
+                        activeOpacity={StyleConfigs.activeOpacity}
+                        onPress={()=>{
+                            // this.$globalFunc.lookForward()
+                            // this.$router.push('AssetPageSearch')
+
+                            this.changeAssetAccountType('asset');
+                        }}
+                    >
+                        <Text
+                            style={[styles.assetCheckItemText,this.assetAccountType == 'asset' && styles.assetCheckItemTextSelected || {}]}
+                            allowFontScaling={false}
+                        >我的钱包</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.assetCheckItem,this.assetAccountType != 'asset' && styles.assetCheckItemSelected || {}]}
+                        activeOpacity={StyleConfigs.activeOpacity}
+                        onPress={()=>{
+                            // this.$globalFunc.lookForward()
+                            // this.$router.push('AssetPageSearch')
+                            this.changeAssetAccountType('currency');
+                        }}
+                    >
+                        <Text
+                            style={[styles.assetCheckItemText,this.assetAccountType != 'asset' && styles.assetCheckItemTextSelected || {}]}
+                            allowFontScaling={false}
+                        >法币账户</Text>
+                    </TouchableOpacity>
+                </View>
+                {/*切换账户类型 end*/}
+
                 {/*<View style={styles.totalAssetBox}>*/}
                     {/*<TouchableOpacity*/}
                         {/*activeOpacity={StyleConfigs.activeOpacity}*/}

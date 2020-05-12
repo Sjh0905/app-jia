@@ -35,6 +35,7 @@ root.txt1F3F59  = '#1F3F59'
 root.txtFFFB6A  = '#FFFB6A'
 root.txt0D0E23  = '#0D0E23'
 root.txtB9894A  = '#B9894A'
+root.txt9EA8B7  = '#9EA8B7'
 
 root.btnWhite = '#fff'
 root.txtWhite = '#fff'

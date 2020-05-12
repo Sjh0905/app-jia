@@ -96,6 +96,29 @@ const styles = StyleSheet.create({
         height:16,
         backgroundColor:StyleConfigs.lineAsset
     },
+    assetCheckBox:{
+        width: getWidth(DefaultWidth),
+        height:getHeight(80),
+        backgroundColor:StyleConfigs.bgColor,
+        borderBottomWidth:StyleSheet.hairlineWidth,
+        borderBottomColor:StyleConfigs.listSplitTitlelineColor
+    },
+    assetCheckItem:{
+        height:'100%',
+        borderBottomColor:'transparent',
+        justifyContent:'center',
+        borderBottomWidth:getHeight(4),
+    },
+    assetCheckItemSelected:{
+        borderBottomColor:StyleConfigs.txt0D0E23
+    },
+    assetCheckItemText:{
+        fontSize:StyleConfigs.fontSize13,
+        color:StyleConfigs.txt9EA8B7
+    },
+    assetCheckItemTextSelected:{
+        color:StyleConfigs.txt0D0E23
+    },
     listBox: {
         flex: 1,
         backgroundColor:StyleConfigs.bgColor
