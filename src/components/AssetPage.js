@@ -546,22 +546,22 @@ export default class App extends RNComponent {
                 {/*切换账户类型 begin*/}
                 <View style={[styles.assetCheckBox,baseStyles.flexRowAround]}>
                     <TouchableOpacity
-                        style={[styles.assetCheckItem,this.assetAccountType == 'asset' && styles.assetCheckItemSelected || {}]}
+                        style={[styles.assetCheckItem,this.assetAccountType == 'wallet' && styles.assetCheckItemSelected || {}]}
                         activeOpacity={StyleConfigs.activeOpacity}
                         onPress={()=>{
                             // this.$globalFunc.lookForward()
                             // this.$router.push('AssetPageSearch')
 
-                            this.changeAssetAccountType('asset');
+                            this.changeAssetAccountType('wallet');
                         }}
                     >
                         <Text
-                            style={[styles.assetCheckItemText,this.assetAccountType == 'asset' && styles.assetCheckItemTextSelected || {}]}
+                            style={[styles.assetCheckItemText,this.assetAccountType == 'wallet' && styles.assetCheckItemTextSelected || {}]}
                             allowFontScaling={false}
                         >我的钱包</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[styles.assetCheckItem,this.assetAccountType != 'asset' && styles.assetCheckItemSelected || {}]}
+                        style={[styles.assetCheckItem,this.assetAccountType != 'wallet' && styles.assetCheckItemSelected || {}]}
                         activeOpacity={StyleConfigs.activeOpacity}
                         onPress={()=>{
                             // this.$globalFunc.lookForward()
@@ -570,12 +570,22 @@ export default class App extends RNComponent {
                         }}
                     >
                         <Text
-                            style={[styles.assetCheckItemText,this.assetAccountType != 'asset' && styles.assetCheckItemTextSelected || {}]}
+                            style={[styles.assetCheckItemText,this.assetAccountType != 'wallet' && styles.assetCheckItemTextSelected || {}]}
                             allowFontScaling={false}
                         >法币账户</Text>
                     </TouchableOpacity>
                 </View>
                 {/*切换账户类型 end*/}
+
+                {/*单个账户资产 start*/}
+                <View style={styles.singleAccountBox}>
+                    <Text style={styles.singleAccountTitle}>{this.assetAccountType == 'wallet' ? "我的钱包" : "法币账户"}总资产折合(BTC)</Text>
+                    <View style={styles.singleAccountVal}>
+                        <Text style={styles.singleAccountTotal}>{this.$globalFunc.accFixed(total, 8)}</Text>
+                        <Text style={styles.singleAccountValuation}> ≈{this.totalAssetShow ? this.$globalFunc.accFixed2(exchangeRate, 2) : '----'}CNY</Text>
+                    </View>
+                </View>
+                {/*单个账户资产 end*/}
 
                 {/*<View style={styles.totalAssetBox}>*/}
                     {/*<TouchableOpacity*/}

@@ -114,10 +114,41 @@ const styles = StyleSheet.create({
     },
     assetCheckItemText:{
         fontSize:StyleConfigs.fontSize13,
-        color:StyleConfigs.txt9EA8B7
+        color:StyleConfigs.txt9EA8B7,
+        fontWeight:'500'
     },
     assetCheckItemTextSelected:{
         color:StyleConfigs.txt0D0E23
+    },
+    singleAccountBox:{
+        width: getWidth(DefaultWidth),
+        height:getHeight(72*2),
+        backgroundColor:StyleConfigs.bgColor,
+        padding:getWidth(30),
+        borderBottomColor:StyleConfigs.borderF7F8FA,
+        borderBottomWidth:getHeight(20),
+    },
+    singleAccountTitle:{
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txt6B7DA2,
+        fontWeight:'400',
+        marginBottom:getHeight(12),
+    },
+    singleAccountVal:{
+        flexDirection:'row',
+    },
+    singleAccountTotal:{
+        height:getHeight(38),
+        fontSize:StyleConfigs.fontSize16,
+        fontWeight:'500',
+        color:StyleConfigs.txt0D0E23,
+    },
+    singleAccountValuation:{
+        height:getHeight(38),
+        paddingTop:getHeight(6),
+        fontSize:StyleConfigs.fontSize12,
+        fontWeight:'400',
+        color:StyleConfigs.txt6B7DA2,
     },
     listBox: {
         flex: 1,
@@ -175,9 +206,9 @@ const styles = StyleSheet.create({
     assetsTitleBox:{
         width:'100%',
         paddingHorizontal:getWidth(30),
-        height:getHeight(100),
-        paddingTop:getHeight(50),
-        paddingBottom:getHeight(10),
+        height:getHeight(70),
+        // paddingTop:getHeight(50),
+        // paddingBottom:getHeight(10),
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
