@@ -21,6 +21,7 @@ import withdrawalsIcon from '../assets/AssetPageDetail/withdrawals-icon.png'
 import rechargeIcon from '../assets/AssetPageDetail/recharge-icon.png'
 import internalTransferIcon from '../assets/AssetPageDetail/internal-transfer-icon.png'
 import lockHouseIcon from '../assets/AssetPageDetail/lock-house-icon.png'
+import legalCurrencyIcon from '../assets/AssetPageDetail/legal-currency-icon.png'
 
 import MyConfirm from './baseComponent/MyConfirm'
 import Env from "../configs/environmentConfigs/env";
@@ -112,6 +113,9 @@ export default class AssetPageDetail extends RNComponent {
     fullName = ''
 
     @observable
+    assetAccountType = 'wallet'
+
+    @observable
     marketPrice = {}
 
     @observable
@@ -140,6 +144,8 @@ export default class AssetPageDetail extends RNComponent {
         this.currency = this.$params && this.$params.currency || 'BTC'
 
         this.fullName = this.$params && this.$params.fullName || ''
+
+        this.assetAccountType = this.$params && this.$params.assetAccountType || ''
 
         // 如果没有获取
         if (!this.$store.state.currency) {
@@ -668,13 +674,25 @@ export default class AssetPageDetail extends RNComponent {
 
     render() {
 
+        let totalType = 'total'
+        let availableType = 'available'
+        let frozenType = 'frozen'
+        let appraisementType = 'appraisement'
+
+        if(this.assetAccountType == 'currency'){
+            totalType = 'otcTotal'
+            availableType = 'otcAvailable'
+            frozenType = 'otcFrozen'
+            appraisementType = 'otcAppraisement'
+        }
+
         let currencyObj = this.$store.state.currency.get(this.currency)
 
-        let total = currencyObj.total
-        let available = currencyObj.available
-        let frozen = currencyObj.frozen
-        let appraisementToBTC = currencyObj.appraisement
-        let appraisementToRMB = this.$globalFunc.accMul(this.$globalFunc.accMul(currencyObj.appraisement, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
+        let total = currencyObj[totalType]
+        let available = currencyObj[availableType]
+        let frozen = currencyObj[frozenType]
+        let appraisementToBTC = currencyObj[appraisementType]
+        let appraisementToRMB = this.$globalFunc.accMul(this.$globalFunc.accMul(currencyObj[appraisementType], this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
 
         // console.warn('this is marketPrice', this.state.marketPrice)
 
@@ -855,49 +873,68 @@ export default class AssetPageDetail extends RNComponent {
                         {/*</View>*/}
                     {/*</View>*/}
 
-                    <View style={[styles.btnBox,baseStyles.flexRowAround]}>
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            style={styles.itembtnView}
-                            onPress={() => {this.goToRecharge(available)}}
-                        >
-                            <Image source={rechargeIcon} style={styles.itemIcon}/>
-                            <Text style={styles.itemIconTxt}>充币</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            style={styles.itembtnView}
-                            onPress={() => {this.goToWithdrawals(available)}}
-                        >
-                            <Image source={withdrawalsIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
-                            <Text style={styles.itemIconTxt}>提币</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            style={styles.itembtnView}
-                            onPress={this.$globalFunc.lookForward}
-                        >
-                            <Image source={internalTransferIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
-                            <Text style={styles.itemIconTxt}>内部转账</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            style={styles.itembtnView}
-                            onPress={this.$globalFunc.lookForward}
-                        >
-                            <Image source={lockHouseIcon} style={[styles.itemIcon]}/>
-                            <Text style={styles.itemIconTxt}>锁仓</Text>
-                        </TouchableOpacity>
-                        {/*<TouchableOpacity*/}
-                            {/*activeOpacity={StyleConfigs.activeOpacity}*/}
-                            {/*style={styles.itembtnView}*/}
-                            {/*onPress={() => this.gotoTrade(this.dataList[0])}//默认显示第一个*/}
-                        {/*>*/}
-                            {/*<Image source={dealIcon} style={[styles.itemIcon]}/>*/}
-                            {/*<Text style={[styles.itemIconTxt,baseStyles.textRed]}>交易</Text>*/}
-                        {/*</TouchableOpacity>*/}
-                    </View>
+                    {this.assetAccountType == 'wallet' &&
+                        <View style={[styles.btnBox,baseStyles.flexRowAround]}>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                style={styles.itembtnView}
+                                onPress={() => {this.goToRecharge(available)}}
+                            >
+                                <Image source={rechargeIcon} style={styles.itemIcon}/>
+                                <Text style={styles.itemIconTxt}>充币</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                style={styles.itembtnView}
+                                onPress={() => {this.goToWithdrawals(available)}}
+                            >
+                                <Image source={withdrawalsIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
+                                <Text style={styles.itemIconTxt}>提币</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                style={styles.itembtnView}
+                                onPress={this.$globalFunc.lookForward}
+                            >
+                                <Image source={internalTransferIcon} style={[styles.itemIcon,{width:getWidth(116)}]}/>
+                                <Text style={styles.itemIconTxt}>内部转账</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                style={styles.itembtnView}
+                                onPress={this.$globalFunc.lookForward}
+                            >
+                                <Image source={lockHouseIcon} style={[styles.itemIcon]}/>
+                                <Text style={styles.itemIconTxt}>锁仓</Text>
+                            </TouchableOpacity>
+                            {/*<TouchableOpacity*/}
+                                {/*activeOpacity={StyleConfigs.activeOpacity}*/}
+                                {/*style={styles.itembtnView}*/}
+                                {/*onPress={() => this.gotoTrade(this.dataList[0])}//默认显示第一个*/}
+                            {/*>*/}
+                                {/*<Image source={dealIcon} style={[styles.itemIcon]}/>*/}
+                                {/*<Text style={[styles.itemIconTxt,baseStyles.textRed]}>交易</Text>*/}
+                            {/*</TouchableOpacity>*/}
+                        </View>
+                        ||
+                        null
+                    }
                     {/*充值和提现按钮 end*/}
+                    {
+                        this.assetAccountType == 'currency' &&
+                        <View style={[styles.btnBox,baseStyles.flexRowAround]}>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                style={styles.itembtnView}
+                                onPress={() => {this.$globalFunc.lookForward()}}
+                            >
+                                <Image source={legalCurrencyIcon} style={styles.itemIcon}/>
+                                <Text style={styles.itemIconTxt}>划转</Text>
+                            </TouchableOpacity>
+                        </View>
+                        ||
+                            null
+                    }
 
                     {/*加载中*/}
                     {

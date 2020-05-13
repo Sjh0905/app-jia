@@ -314,7 +314,7 @@ export default class App extends RNComponent {
         return (item) => {
             if (Date.now() - last < 1000) return;
             last = Date.now();
-            this.$router.push('AssetDetail', {currency: item.currency, fullName: item.description})
+            this.$router.push('AssetDetail', {currency: item.currency, fullName: item.description,assetAccountType:this.assetAccountType})
         }
     })()
 
