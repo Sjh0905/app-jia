@@ -15,7 +15,7 @@ requestAddress.TEST = {
     urlFragment: ''
 }
 
-requestAddress.GET_CURRENCY = {url: '/user/currencys', method: 'get'} //获取币种
+// requestAddress.GET_CURRENCY = {url: '/user/currencys', method: 'get'} //获取币种
 
 requestAddress.LOGIN = {url: '/user/signin', method: 'post'}  // 登录
 // requestAddress.LOGIN = {url: '/user/signInForTest', method: 'post'}  // 登录，链接后台测试专用
@@ -80,6 +80,8 @@ requestAddress.GRC_PRICE_RANGE = {url: '/user/grc/symbol/priceRange', method: 'g
 requestAddress.KK_PRICE_RANGE = {url: '/user/kk/symbol/priceRange', method: 'get'} // 获取KKPriceRange 的接口
 
 requestAddress.GET_CURRENCY = {url: '/user/currencys', method: 'get'}   //获取币种
+
+requestAddress.GET_OTC_CURRENCY = {url: '/user/otc/currency', method: 'get'} //获取法币
 
 requestAddress.GET_ACCOUNTS = {url: '/v1/user/currency/accounts', method: 'get'}    // 获取账户信息
 // requestAddress.GET_ACCOUNTS = {url: '/v1/user/accounts', method: 'get'}    // 获取账户信息2

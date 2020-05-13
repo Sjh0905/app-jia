@@ -70,6 +70,8 @@ export default class App extends RNComponent {
     @observable
     assetAccountType = 'wallet'//当前账户类型,默认显示我的钱包
 
+    @observable
+    otcCurrencyList = ''//法币币种列表
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -82,6 +84,9 @@ export default class App extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
+        // 获取OTC账户信息
+        this.getOtcCurrency()
+
         // 获取账户信息
         this.getCurrency()
 
@@ -205,6 +210,36 @@ export default class App extends RNComponent {
     /*---------------------- 获取汇率end ---------------------*/
 
 
+    // 获取OTC币种
+    @action
+    getOtcCurrency = () => {
+        this.$http.send('GET_OTC_CURRENCY', {
+            bind: this,
+            callBack: this.re_getOtcCurrency,
+            errorHandler: this.error_getOtcCurrency,
+        })
+    }
+
+    // 获取OTC币种的状态
+    @action
+    re_getOtcCurrency = (data) => {
+        console.log(data)
+        typeof (data) === 'string' && (data = JSON.parse(data))
+        if (!data) {
+            return
+        }
+
+        let otcCurrencyList = []
+        data.map(v=>otcCurrencyList.push(v.currency))
+        this.otcCurrencyList = otcCurrencyList;
+    }
+
+    // 获取OTC币种失败
+    @action
+    error_getOtcCurrency = (err) => {
+        console.warn("获取OTC币种失败", err)
+    }
+
     // 获取币种
     @action
     getCurrency = () => {
@@ -227,6 +262,11 @@ export default class App extends RNComponent {
         // this.currencyReady = true
         // this.loading = !(this.currencyReady && this.accountReady)
         this.getAccounts()
+
+        if(this.otcCurrencyList.length == 0){
+            console.log('要开始调用了啊')
+          this.getOtcCurrency()
+        }
     }
 
     // 获取币种失败
@@ -318,8 +358,18 @@ export default class App extends RNComponent {
     @action
     _renderCurrencyItem = ({item, index, separators}) => {
 
+        let available = 'available'
+        let frozen = 'frozen'
+        let appraisement = 'appraisement'
+
+        if(this.assetAccountType == 'currency'){
+             available = 'otcAvailable'
+             frozen = 'otcFrozen'
+             appraisement = 'otcAppraisement'
+        }
+
         // let exchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(item.total, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
-        let appraisementToRMB = this.$globalFunc.accMul(this.$globalFunc.accMul(item.appraisement, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
+        let appraisementToRMB = this.$globalFunc.accMul(this.$globalFunc.accMul(item[appraisement], this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
 
         return (
             <View>
@@ -357,7 +407,7 @@ export default class App extends RNComponent {
                                 <Text style={styles.itemSectionTitle}>可用</Text>
                                 {
                                     this.totalAssetShow ?
-                                        <Text style={styles.itemSectionNum}>{item.available > 0 && this.$globalFunc.accFixed(item.available, this.currencyJingDU[item.currency] || 3) || '0'}</Text>
+                                        <Text style={styles.itemSectionNum}>{item[available] > 0 && this.$globalFunc.accFixed(item[available], this.currencyJingDU[item.currency] || 3) || '0'}</Text>
                                         :
                                         <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
                                 }
@@ -366,7 +416,7 @@ export default class App extends RNComponent {
                                 <Text style={styles.itemSectionTitle}>冻结</Text>
                                 {
                                     this.totalAssetShow ?
-                                        <Text style={styles.itemSectionNum}>{item.frozen > 0 && this.$globalFunc.accFixed(item.frozen, this.currencyJingDU[item.currency] || 3) || '0'}</Text>
+                                        <Text style={styles.itemSectionNum}>{item[frozen] > 0 && this.$globalFunc.accFixed(item[frozen], this.currencyJingDU[item.currency] || 3) || '0'}</Text>
                                         :
                                         <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
                                 }
@@ -382,7 +432,7 @@ export default class App extends RNComponent {
                                         :
                                         <Text
                                             allowFontScaling={false}
-                                            style={[baseStyles.textWhite, styles.itemSectionNum,styles.itemSectionNumToRMB,styles.totalAssetRMBHide]}>{''}</Text>
+                                            style={[baseStyles.textWhite, styles.itemSectionNum,styles.itemSectionNumToRMB,styles.totalAssetRMBHide]}>{'****'}</Text>
 
                                 }
                             </View>
@@ -405,7 +455,9 @@ export default class App extends RNComponent {
         let otcTotal = 0
         currencyArr.forEach((v, i) => {
             total = this.$globalFunc.accAdd(total, v.appraisement)
-            otcTotal = this.$globalFunc.accAdd(otcTotal, v.otcAppraisement)
+            if(this.otcCurrencyList.indexOf(v.currency) > -1){
+                otcTotal = this.$globalFunc.accAdd(otcTotal, v.otcAppraisement)
+            }
             // console.log('名称',v);
             // console.log('名称 估值 总和',v.currency,v.appraisement,total);
         })
@@ -432,8 +484,9 @@ export default class App extends RNComponent {
         let totalAssetsExchangeRateDisplay = this.$globalFunc.accFixed2(totalAssetsExchangeRate, 2)
 
         // console.log('totalDisplay otcTotalDisplay totalAssetsDisplay =',this.$globalFunc.accAdd(totalDisplay, otcTotalDisplay) == totalAssetsDisplay)
-        console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
+        // console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
 
+        console.log('this.otcCurrencyList',this.otcCurrencyList);
 
         return (
             <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.bgAssetPageTop},PlatformOS == 'ios' && styles.containerMargin || {}]}>
@@ -687,21 +740,40 @@ export default class App extends RNComponent {
                 <View
                     style={styles.listBox}
                 >
-                    <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
-                            return (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
-                        })}
-                        renderItem={this._renderCurrencyItem}
-                        keyExtractor={(item, index) => index.toString()}
-                        // getItemLayout={(data, index) => (//为了避免资产页只刷新一屏的BUG暂时注释
-                        //     {
-                        //         length: getHeight(106),
-                        //         offset: getHeight(106) * index,
-                        //         index
-                        //     }
-                        // )}
-                    />
+                    {this.assetAccountType == 'wallet' &&
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
+
+                                let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
+                                return isDisplay
+
+                            })}
+                            renderItem={this._renderCurrencyItem}
+                            keyExtractor={(item, index) => index.toString()}
+                            // getItemLayout={(data, index) => (//为了避免资产页只刷新一屏的BUG暂时注释
+                            //     {
+                            //         length: getHeight(106),
+                            //         offset: getHeight(106) * index,
+                            //         index
+                            //     }
+                            // )}
+                        />
+                    ||
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
+
+                                let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
+                                //法币币种
+                                let isOtcCurrency = this.otcCurrencyList.indexOf(item.currency) > -1
+                                return isDisplay && isOtcCurrency
+                            })}
+                            renderItem={this._renderCurrencyItem}
+                            keyExtractor={(item, index) => index.toString()}
+
+                        />
+                    }
                 </View>
                 {/*资产列表 end*/}
 
