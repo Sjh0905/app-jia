@@ -402,13 +402,37 @@ export default class App extends RNComponent {
 
         let currencyArr = [...this.$store.state.currency.values()]
         let total = 0
+        let otcTotal = 0
         currencyArr.forEach((v, i) => {
             total = this.$globalFunc.accAdd(total, v.appraisement)
+            otcTotal = this.$globalFunc.accAdd(otcTotal, v.otcAppraisement)
             // console.log('名称',v);
             // console.log('名称 估值 总和',v.currency,v.appraisement,total);
         })
 
-        let exchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(total, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
+        //我的钱包总资产
+        let totalDisplay = this.$globalFunc.accFixed(total, 8);
+        //币币账户总资产
+        let otcTotalDisplay = this.$globalFunc.accFixed(otcTotal, 8);
+        //需要截取后的数值相加，如果用接口返回真实的数据相加，截取后的总资产会出现 ≠ 多个账户相加的和
+        let totalAssets = this.$globalFunc.accAdd(totalDisplay, otcTotalDisplay)
+        let totalAssetsDisplay = this.$globalFunc.accFixed(totalAssets, 8);
+
+        //计算我的钱包估值
+        let exchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(totalDisplay, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
+        //计算币币账户估值
+        let otcExchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(otcTotalDisplay, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
+
+        //精度处理
+        let exchangeRateDisplay = this.$globalFunc.accFixed2(exchangeRate,2)
+        let otcExchangeRateDisplay = this.$globalFunc.accFixed2(otcExchangeRate,2)
+
+        //需要截取后的数值相加，如果用接口返回真实的数据相加，截取后的总估值会出现 ≠ 多个账户估值相加的和
+        let totalAssetsExchangeRate = this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay)
+        let totalAssetsExchangeRateDisplay = this.$globalFunc.accFixed2(totalAssetsExchangeRate, 2)
+
+        // console.log('totalDisplay otcTotalDisplay totalAssetsDisplay =',this.$globalFunc.accAdd(totalDisplay, otcTotalDisplay) == totalAssetsDisplay)
+        console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
 
 
         return (
@@ -448,7 +472,7 @@ export default class App extends RNComponent {
                             this.totalAssetShow ?
                                 <Text
                                     allowFontScaling={false}
-                                    style={[baseStyles.textWhite, styles.totalAssetBTC]}>{this.$globalFunc.accFixed(total, 8)} </Text>
+                                    style={[baseStyles.textWhite, styles.totalAssetBTC]}>{(totalAssetsDisplay || '-----')} </Text>
                                 :
                                 <Text
                                     allowFontScaling={false}
@@ -459,7 +483,7 @@ export default class App extends RNComponent {
                             this.totalAssetShow ?
                                 <Text
                                     allowFontScaling={false}
-                                    style={[baseStyles.textWhite, styles.totalAssetRMB,{opacity:0.8}]}>≈{this.totalAssetShow ? this.$globalFunc.accFixed2(exchangeRate, 2) : '----'}CNY</Text>
+                                    style={[baseStyles.textWhite, styles.totalAssetRMB,{opacity:0.8}]}>≈{(totalAssetsExchangeRateDisplay || '-----')}CNY</Text>
                                 :
                                 <Text
                                     allowFontScaling={false}
@@ -578,13 +602,23 @@ export default class App extends RNComponent {
                 {/*切换账户类型 end*/}
 
                 {/*单个账户资产 start*/}
-                <View style={styles.singleAccountBox}>
-                    <Text style={styles.singleAccountTitle}>{this.assetAccountType == 'wallet' ? "我的钱包" : "法币账户"}总资产折合(BTC)</Text>
-                    <View style={styles.singleAccountVal}>
-                        <Text style={styles.singleAccountTotal}>{this.$globalFunc.accFixed(total, 8)}</Text>
-                        <Text style={styles.singleAccountValuation}> ≈{this.totalAssetShow ? this.$globalFunc.accFixed2(exchangeRate, 2) : '----'}CNY</Text>
+                {this.assetAccountType == 'wallet' &&
+                    <View style={styles.singleAccountBox}>
+                        <Text style={styles.singleAccountTitle}>我的钱包总资产折合(BTC)</Text>
+                        <View style={styles.singleAccountVal}>
+                            <Text style={styles.singleAccountTotal}>{this.totalAssetShow ? (totalDisplay || '-----') : '*****'}</Text>
+                            <Text style={styles.singleAccountValuation}> {this.totalAssetShow ? ('≈' + (exchangeRateDisplay || '-----') + 'CNY') : ''}</Text>
+                        </View>
                     </View>
-                </View>
+                        ||
+                    <View style={styles.singleAccountBox}>
+                        <Text style={styles.singleAccountTitle}>法币账户总资产折合(BTC)</Text>
+                        <View style={styles.singleAccountVal}>
+                            <Text style={styles.singleAccountTotal}>{this.totalAssetShow ? (otcTotalDisplay || '-----') : '*****'}</Text>
+                            <Text style={styles.singleAccountValuation}> {this.totalAssetShow ? ('≈' + (otcExchangeRateDisplay || '-----') + 'CNY') :''}</Text>
+                        </View>
+                    </View>
+                }
                 {/*单个账户资产 end*/}
 
                 {/*<View style={styles.totalAssetBox}>*/}
