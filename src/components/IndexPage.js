@@ -645,18 +645,18 @@ export default class App extends RNComponent {
 
 	//获取美金汇率
     getExchangeRateDollar = ()=>{
-        AsyncStorage.getItem('exchangRateDollar').then((data)=>{
-            if(data && data >0){
-                // console.log('本地硬盘汇率',data);
-                this.$store.commit('SET_EXCHANGE_RATE_DOLLAR',data * 1)//* 1转化为number
-            }
-        })
-
-        this.$http.send('GET_HUOBI_MARKET_RATE',{
-            bind: this,
-            callBack: this.re_getExchangeRateDollar,
-            errorHandler: this.error_getExchangeRateDollar
-        })
+        // AsyncStorage.getItem('exchangRateDollar').then((data)=>{
+        //     if(data && data >0){
+        //         // console.log('本地硬盘汇率',data);
+        //         this.$store.commit('SET_EXCHANGE_RATE_DOLLAR',7.02 * 1)//* 1转化为number
+        //     }
+        // })
+        //
+        // this.$http.send('GET_HUOBI_MARKET_RATE',{
+        //     bind: this,
+        //     callBack: this.re_getExchangeRateDollar,
+        //     errorHandler: this.error_getExchangeRateDollar
+        // })
     }
 
     re_getExchangeRateDollar = (d)=>{

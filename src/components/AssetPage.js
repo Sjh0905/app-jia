@@ -483,7 +483,7 @@ export default class App extends RNComponent {
         let totalAssetsExchangeRate = this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay)
         let totalAssetsExchangeRateDisplay = this.$globalFunc.accFixed2(totalAssetsExchangeRate, 2)
 
-        // console.log('totalDisplay otcTotalDisplay totalAssetsDisplay =',this.$globalFunc.accAdd(totalDisplay, otcTotalDisplay) == totalAssetsDisplay)
+        // console.log('totalDisplay otcTotalDisplay totalAssetsDisplay =',totalDisplay, otcTotalDisplay, totalAssetsDisplay)
         // console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
 
         console.log('this.otcCurrencyList',this.otcCurrencyList);

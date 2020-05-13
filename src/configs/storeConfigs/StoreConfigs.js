@@ -44,7 +44,7 @@ store.state.baseCurrency = 'BTC'
 
 
 // 美金汇率 2019-07-25
-store.state.exchangRateDollar = 7
+store.state.exchangRateDollar = 7.02
 
 /**
  * 货币种类
@@ -632,6 +632,10 @@ store.mutations.CHANGE_PRICE_TO_BTC = (state, price) => {
     state.price = Object.assign(state.price, price)
     price = state.price
 
+    state.exchange_rate = {
+        btcExchangeRate : price['BTC_USDT'] && price['BTC_USDT'][4] || 1,
+        ethExchangeRate : price['ETH_USDT'] && price['ETH_USDT'][4] || 1,
+    }
 
     let baseSymbol = 'BTC', middleSymbol = ['ETH', 'USDT']
 
