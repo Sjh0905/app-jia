@@ -10,7 +10,7 @@ env.networkConfigs.baseUrl = process.env.URL || 'https://app.2020.exchange/'//�
 // env.networkConfigs.baseUrl = process.env.URL || 'http://app-zpy.highdefi.com:8000/'//测试环境
 
 // env.networkConfigs.currencyLogoUrl = process.env.LOGOURL || 'http://logo.2020.exchange/'//币种logo地址
-env.networkConfigs.c2cUrl = process.env.C2CURL || 'https://otc.2020.exchange/'
+// env.networkConfigs.c2cUrl = process.env.C2CURL || 'https://otc.2020.exchange/'
 env.networkConfigs.GRCURL = process.env.GRCURL || 'https://xxx'//活动页
 
 env.networkConfigs.port = process.env.PORT || ''
@@ -29,12 +29,14 @@ env.networkConfigs.downloadPageUrl  = '';
 if(env.networkConfigs.baseUrl.indexOf('app.2020.exchange') > -1){
     env.networkConfigs.downloadUrl = 'https://www.2020.exchange/';
     env.networkConfigs.downloadPageUrl  = 'https://download.2020.exchange/';
+    env.networkConfigs.c2cUrl = 'https://otc.2020.exchange/'
 }
 
 if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
     // env.networkConfigs.downloadUrl = 'http://zpy.2020-ex.com:8084/';
     env.networkConfigs.downloadUrl = 'http://www.2020-ex.com/';
     env.networkConfigs.downloadPageUrl  = 'http://download.2020-ex.com/';
+    env.networkConfigs.c2cUrl = 'http://otc.2020-ex.com/'
 }
 
 //跳转到app下载页面所需地址
