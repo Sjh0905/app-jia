@@ -29,6 +29,7 @@ import AssetPageDetailMarket from "./AssetPageDetailMarket";
 import BindMobile from "./MineBindMobile";
 import ModalClose from '../assets/BaseAssets/modal-close.png'
 import AssetRecordsItem from "./AssetRecordsItem";
+import IntoIcon from '../assets/MinePage/into-icon.png'
 
 @observer
 export default class AssetPageDetail extends RNComponent {
@@ -669,6 +670,19 @@ export default class AssetPageDetail extends RNComponent {
     })()
     /*----------------------- 跳转到交易页end -------------------------*/
 
+    /*----------------------- 跳转到财务记录 -------------------------*/
+    // 去历史记录
+    @action
+    goToHistoricalRecords = (() => {
+        let last = 0;
+        return (...paras) => {
+            if (Date.now() - last < 1000) return;
+            last = Date.now();
+            this.$router.push('RechargeAndWithdrawalsRecords');
+        }
+    })()
+    /*----------------------- 跳转到财务记录end -------------------------*/
+
 
     /*----------------------- 挂载 -------------------------*/
 
@@ -835,17 +849,23 @@ export default class AssetPageDetail extends RNComponent {
 
                     <View style={[baseStyles.flexRowBetween,styles.recordTitleBox]}>
                         <Text style={styles.recordTitle}>财务记录</Text>
-                        <TouchableOpacity style={styles.filterTouch} onPress={this.showRecordsModalFunc}>
-                            <Image source={filterDefault} style={styles.filterImg}/>
-                        </TouchableOpacity>
+                        {this.assetAccountType == 'wallet' &&
+                            <TouchableOpacity style={styles.filterTouch} onPress={this.showRecordsModalFunc}>
+                                <Image source={filterDefault} style={styles.filterImg}/>
+                            </TouchableOpacity>
+                            ||
+                            <TouchableOpacity style={styles.filterTouch} onPress={this.goToHistoricalRecords}>
+                                <Image source={IntoIcon} style={styles.intoIcon}/>
+                            </TouchableOpacity>
+                        }
                     </View>
 
                     {
-                        this.recordsType == 'recharge' &&
+                        (this.assetAccountType == 'wallet' && this.recordsType == 'recharge') &&
                         <AssetRecordsItem tabLabel={' 充值记录 '} type={'recharge'} currency={this.currency}/>
                     }
                     {
-                        this.recordsType == 'withdrawals' &&
+                        (this.assetAccountType == 'wallet' && this.recordsType == 'withdrawals') &&
                         <AssetRecordsItem tabLabel={' 提现记录 '} type={'withdrawals'} currency={this.currency}/>
                     }
 

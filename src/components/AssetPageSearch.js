@@ -414,7 +414,7 @@ export default class AssetPageSearch extends RNComponent {
             }
 
             //回到币种详情页
-            this.$router.push('AssetDetail', {currency: item.currency, fullName: item.description})
+            this.$router.push('AssetDetail', {currency: item.currency, fullName: item.description ,assetAccountType:'wallet'})
         }
     })()
 

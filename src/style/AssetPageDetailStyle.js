@@ -326,6 +326,11 @@ const styles = StyleSheet.create({
         width:getWidth(38),
         height:getWidth(34)
     },
+    intoIcon: {
+        marginLeft:getWidth(20),
+        width: getWidth(14),
+        height: getWidth(22),
+    },
     itemIcon:{
         width:getWidth(114),
         height:getWidth(114)
