@@ -173,7 +173,7 @@ export default class CapitalTransferRecordsDetail extends RNComponent {
 
     render() {
         // let headerTitle = this.recordsItem.currency
-        let headerTitle = '内部转账详情'
+        let headerTitle = '资金划转详情'
 
         return (
             <View style={[styles.container]}>
