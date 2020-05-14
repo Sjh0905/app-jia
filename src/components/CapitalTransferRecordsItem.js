@@ -24,7 +24,7 @@ const reachedThreshold = Platform.select({
 });
 
 @observer
-export default class InternalTransferRecordsItem extends RNComponent {
+export default class CapitalTransferRecordsItem extends RNComponent {
 
 
     static propTypes = {
@@ -71,19 +71,19 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
     // 获取多少条
     @observable
-    internalTransferLimit =  10
+    capitalTransferLimit =  10
     //分页加载步长
     @observable
-    internalTransferLimitNum =  10
+    capitalTransferLimitNum =  10
     //是否Transfer获取ajax结果 默认为false
     @observable
-    ajaxInternalTransferFlag = false
+    ajaxCapitalTransferFlag = false
     //转账记录
     @observable
-    internalTransferLists = []
+    capitalTransferLists = []
     // 是否显示转账记录加载更多
     @observable
-    isShowGetMoreInternalTransfer =  true
+    isShowGetMoreCapitalTransfer =  true
 
     //转账状态
     statusObj = {
@@ -102,7 +102,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
-        this.getInternalTransferList()
+        this.getCapitalTransferList()
             // this.$event.listen({bind: this, key: 'GET_WITHDRAWALS_RECORDS', func: this.getWithdrawalsRecord})
     }
 
@@ -131,25 +131,25 @@ export default class InternalTransferRecordsItem extends RNComponent {
     }
 
     // 获取内部转账记录
-    getInternalTransferList = function () {
-        if(this.ajaxInternalTransferFlag === true){
+    getCapitalTransferList = function () {
+        if(this.ajaxCapitalTransferFlag === true){
             return;
         }
-        this.ajaxInternalTransferFlag = true
+        this.ajaxCapitalTransferFlag = true
 
         this.$http.send("GET_TRANSFER_SPOT_LIST", {
             bind: this,
             query:{
                 status:0,//0全部，1 失败，2 成功
                 currency:'',
-                pageSize:this.internalTransferLimit
+                pageSize:this.capitalTransferLimit
             },
-            callBack: this.re_getInternalTransferList,
-            errorHandler: this.error_getInternalTransferList
+            callBack: this.re_getCapitalTransferList,
+            errorHandler: this.error_getCapitalTransferList
         })
     }
     // 获取内部转账记录返回，类型为{}
-    re_getInternalTransferList = function (data) {
+    re_getCapitalTransferList = function (data) {
         // data = {
         //   "dataMap": {
         //   "userTransferRecordList": [
@@ -197,40 +197,40 @@ export default class InternalTransferRecordsItem extends RNComponent {
         //   "result": "ut"
         // }
 
-        this.ajaxInternalTransferFlag = false
+        this.ajaxCapitalTransferFlag = false
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.dataMap) return
         console.log('获取内部转账记录', data)
-        this.internalTransferLists = data.dataMap.userTransferRecordList || []
+        this.capitalTransferLists = data.dataMap.userTransferRecordList || []
 
-        // if (this.internalTransferLists.length < this.internalTransferLimit){
-        //     this.isShowGetMoreInternalTransfer = false
+        // if (this.capitalTransferLists.length < this.capitalTransferLimit){
+        //     this.isShowGetMoreCapitalTransfer = false
         // } else {
         //
         // }
     }
     // 获取记录出错
-    error_getInternalTransferList = function (err) {
+    error_getCapitalTransferList = function (err) {
         console.warn("转账获取记录出错！", err)
     }
 
     // 渲染footer组件
     @action
-    _internalTransferFooterComponent = () => {
-        if (this.internalTransferLists.length == 0) {
+    _capitalTransferFooterComponent = () => {
+        if (this.capitalTransferLists.length == 0) {
             return null
         }
 
 
         let canLoadingMore = true
 
-        if (this.internalTransferLists.length < this.internalTransferLimit) {
+        if (this.capitalTransferLists.length < this.capitalTransferLimit) {
             canLoadingMore = false
         }
 
         return (
             <View style={styles.loadingMore}>
-                {this.ajaxInternalTransferFlag ?
+                {this.ajaxCapitalTransferFlag ?
                     <Text allowFontScaling={false} style={[styles.loadingMoreText]}>加载中</Text>
                     :
                     canLoadingMore ?
@@ -244,7 +244,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
     // 去转账记录详情页
     @action
-    goToInternalTransferDetail = (item,transferType) => {
+    goToCapitalTransferDetail = (item,transferType) => {
         let transferStatus = (this.statusObj[item.done] || "")
 
         this.$router.push('CapitalTransferRecordsDetail', {item, transferType,transferStatus})
@@ -253,7 +253,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
     // 转账记录item
     @action
-    _renderInternalTransferRecordsItem = ({item, index}) => {
+    _renderCapitalTransferRecordsItem = ({item, index}) => {
 
         let transferType = item.transferFrom == 'OTC' ? "从法币到钱包" : "从钱包到法币"
 
@@ -262,7 +262,7 @@ export default class InternalTransferRecordsItem extends RNComponent {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    this.goToInternalTransferDetail(item,transferType)
+                    this.goToCapitalTransferDetail(item,transferType)
                 }}
                 activeOpacity={StyleConfigs.activeOpacity}
             >
@@ -300,17 +300,17 @@ export default class InternalTransferRecordsItem extends RNComponent {
 
     // 加载更多
     @action
-    _internalTransferLoadingMore = () => {
-        if (this.ajaxInternalTransferFlag) return
-        if (this.internalTransferLists.length < this.internalTransferLimit) return
-        this.internalTransferLimit += this.internalTransferLimitNum
-        this.getInternalTransferList()
+    _capitalTransferLoadingMore = () => {
+        if (this.ajaxCapitalTransferFlag) return
+        if (this.capitalTransferLists.length < this.capitalTransferLimit) return
+        this.capitalTransferLimit += this.capitalTransferLimitNum
+        this.getCapitalTransferList()
         console.warn("转账记录触底啦")
     }
 
     // 渲染转账记录
     @action
-    _renderInternalTransfer = (records) => {
+    _renderCapitalTransfer = (records) => {
         // records = [
         //     {currency:100000000,amount:12012.1211,createdAt:1533532114758},
         //
@@ -320,11 +320,11 @@ export default class InternalTransferRecordsItem extends RNComponent {
                 <FlatList
                     style={styles.container}
                     data={records}
-                    renderItem={this._renderInternalTransferRecordsItem}
-                    ListFooterComponent={this._internalTransferFooterComponent}
+                    renderItem={this._renderCapitalTransferRecordsItem}
+                    ListFooterComponent={this._capitalTransferFooterComponent}
                     keyExtractor={(item, index) => index.toString()}
                     onEndReachedThreshold={reachedThreshold}
-                    onEndReached={this._internalTransferLoadingMore}
+                    onEndReached={this._capitalTransferLoadingMore}
                     ListEmptyComponent={this._renderEmptyComponent}
                 />
             </View>
@@ -340,12 +340,12 @@ export default class InternalTransferRecordsItem extends RNComponent {
             <View style={[styles.container, baseStyles.container]}>
 
                 {
-                 this._renderInternalTransfer(this.internalTransferLists)
+                 this._renderCapitalTransfer(this.capitalTransferLists)
                 }
 
                 {/*加载中*/}
                 {
-                    this.ajaxInternalTransferFlag && <Loading leaveNav={true}/>
+                    this.ajaxCapitalTransferFlag && <Loading leaveNav={true}/>
                 }
             </View>
         )

@@ -21,7 +21,7 @@ import CloseIcon from '../assets/Modal/close-icon.png'
 const typeArr = ['recharge', 'withdrawals']
 
 @observer
-export default class InternalTransferRecordsDetail extends RNComponent {
+export default class CapitalTransferRecordsDetail extends RNComponent {
 
 
     /*----------------------- data -------------------------*/
@@ -79,7 +79,7 @@ export default class InternalTransferRecordsDetail extends RNComponent {
 
     // 提现详情
     @action
-    _internalTransferDetail = (item, transferType, transferStatus) => {
+    _capitalTransferDetail = (item, transferType, transferStatus) => {
         let fromUserIsMe = item.fromUserId == this.$store.state.authMessage.userId
         // console.warn("item", item)
         return (
@@ -187,7 +187,7 @@ export default class InternalTransferRecordsDetail extends RNComponent {
                     {/*币种title end*/}
 
                     {
-                        this._internalTransferDetail(this.recordsItem,this.transferType, this.transferStatus)
+                        this._capitalTransferDetail(this.recordsItem,this.transferType, this.transferStatus)
                     }
                 </View>
                 {/*加载中*/}
