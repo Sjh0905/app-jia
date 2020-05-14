@@ -98,6 +98,8 @@ requestAddress.WITHDRAWS_LOG = {url: '/user/withdrawLog', method: 'post'}  //提
 
 requestAddress.GET_TRANSFER_LIST = {url: '/user/inner/transfer/list', method: 'get'}  //内部转账记录
 
+requestAddress.GET_TRANSFER_SPOT_LIST = {url: '/user/transfer/spot/list', method: 'get'}  //划转记录
+
 requestAddress.KK_ACTIVITY_REWARDS = {url: '/user/getKKActivityRewards', method: 'post'} // 获取KK 详情列表的接口
 
 requestAddress.INITIAL_REWARD = {url:'/user/initial/reward', method: 'get'} // 获取活动奖励的接口
