@@ -23,7 +23,7 @@ import CapitalTransferRecordsItem from "./CapitalTransferRecordsItem";
 import MiningRecordsItem from "./MiningRecordsItem";
 
 @observer
-export default class App extends RNComponent {
+export default class AssetRecords extends RNComponent {
 
 
     /*----------------------- data -------------------------*/
@@ -31,6 +31,10 @@ export default class App extends RNComponent {
     // 加载中
     @observable
     loading = false
+
+    // 加载中
+    @observable
+    initialPage = 0
 
 
     _renderScreen = ({route}) => {
@@ -63,6 +67,8 @@ export default class App extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
+
+        this.initialPage = this.$params && this.$params.initialPage || 0
     }
 
     // 卸载
@@ -111,7 +117,7 @@ export default class App extends RNComponent {
                         // tabInActiveColor={'#9FA7B8'}
                         />
                     }
-                    initialPage={0}
+                    initialPage={this.initialPage}
                     /*tabBarBackgroundColor='#FFFFFF'
                     tabBarActiveTextColor='#3576F5'
                     tabBarInactiveTextColor='#fff'

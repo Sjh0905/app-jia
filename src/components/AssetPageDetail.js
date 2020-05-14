@@ -678,7 +678,7 @@ export default class AssetPageDetail extends RNComponent {
         return (...paras) => {
             if (Date.now() - last < 1000) return;
             last = Date.now();
-            this.$router.push('RechargeAndWithdrawalsRecords');
+            this.$router.push('RechargeAndWithdrawalsRecords',{initialPage:2});
         }
     })()
     /*----------------------- 跳转到财务记录end -------------------------*/
