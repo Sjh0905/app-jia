@@ -452,6 +452,14 @@ const styles = StyleSheet.create({
         fontWeight:"400",
         color:StyleConfigs.txtWhite,
         lineHeight:17
+    },
+    treasureChestTouch:{
+        // paddingHorizontal:getWidth(30),
+        alignItems:'center'
+    },
+    treasureChestImg:{
+        width:getWidth(690),
+        height:getWidth(180)
     }
 
 });

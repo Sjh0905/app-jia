@@ -39,7 +39,8 @@ import moreIcon from '../assets/OneHome/more.png'
 import Modal from 'react-native-modal'
 import Toast from "react-native-root-toast";
 
-const groupBanner = require('../assets/OneHome/group_banner.png')
+// const groupBanner = require('../assets/OneHome/group_banner.png')
+const treasureChestBanner = require('../assets/OneHome/treasure_chest_banner.png')
 const WEBVIEWRESOURCE = Platform.select({
     ios: require('../assets/chart/customerservice/customerservice.html'),
     android: __DEV__ && require('../assets/chart/customerservice/customerservice.html') || {uri:"file:///android_asset/chart/customerservice/customerservice.html"},
@@ -137,15 +138,17 @@ export default class OneHome extends RNComponent {
 			}
 		},
 		{
-			text: '提币',
-			img: require('../assets/OneHome/withdrawals.png'),
+			text: '拼团',
+			img: require('../assets/OneHome/group_icon.png'),
             action: ()=>{
                 // this.notify({key: 'CHANGE_TAB'}, 3);
-                if(!this.$store.state.authMessage.userId) {
-                    this.$router.push('Login');
-                    return
-                }
-                this.$router.push('AssetPageSearch')
+                // if(!this.$store.state.authMessage.userId) {
+                //     this.$router.push('Login');
+                //     return
+                // }
+                // this.$router.push('AssetPageSearch')
+
+                this.getGroupLevel();
             }
 			// action: 'https://jinshuju.net/f/jhg65X'
 		},
@@ -344,6 +347,19 @@ export default class OneHome extends RNComponent {
             loading: false,
             navHide: false,
             title: '挖矿',
+            requireLogin:true,
+            rightCloseBtn:true
+        })
+    }
+
+    //跳转百宝箱
+    goToTreasureChest = (routerName) =>{
+        this.goWebView({
+            // url: this.moreNoticeUrl || '',
+            url: 'index/mobileNotice?isApp=true&isWhite=true',
+            loading: false,
+            navHide: false,
+            title: '百宝箱',
             requireLogin:true,
             rightCloseBtn:true
         })
@@ -762,15 +778,24 @@ export default class OneHome extends RNComponent {
 					{/*</View>*/}
 
                     {/*跳转拼团详情*/}
+                    {/*<TouchableOpacity*/}
+                        {/*onPress={this.getGroupLevel}*/}
+                        {/*activeOpacity={StyleConfigs.activeOpacity}*/}
+						{/*style={styles.joinGroupTouch}*/}
+                    {/*>*/}
+                        {/*<ImageBackground source={groupBanner} style={styles.joinGroupBox}>*/}
+                            {/*<Text style={styles.joinGroupTitle}>参与拼团</Text>*/}
+                            {/*<Text style={styles.joinGroupDesc}>拼团获取交易手续费折扣</Text>*/}
+                        {/*</ImageBackground>*/}
+                    {/*</TouchableOpacity>*/}
+
+                    {/*百宝箱入口*/}
                     <TouchableOpacity
-                        onPress={this.getGroupLevel}
+                        onPress={this.goToTreasureChest}
                         activeOpacity={StyleConfigs.activeOpacity}
-						style={styles.joinGroupTouch}
+						style={styles.treasureChestTouch}
                     >
-                        <ImageBackground source={groupBanner} style={styles.joinGroupBox}>
-                            <Text style={styles.joinGroupTitle}>参与拼团</Text>
-                            <Text style={styles.joinGroupDesc}>拼团获取交易手续费折扣</Text>
-                        </ImageBackground>
+                        <Image source={treasureChestBanner} style={styles.treasureChestImg}/>
                     </TouchableOpacity>
 
 
