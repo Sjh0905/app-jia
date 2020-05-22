@@ -97,6 +97,7 @@ export default class App extends RNComponent {
 
         this.$event.listen({
             bind: this, key: 'NEW_LOGIN', func: () => {
+                this.notify({key: 'RE_MEMBER_STATE'});
                 this.$store.commit('CLEAR_CURRENCY')
                 this.getCurrency()
                 this.getCookies()
