@@ -89,7 +89,7 @@ export default class App extends RNComponent {
     memberExpiresTime = 0//过期时间戳
 
     @observable
-    memberCreatedAtHour = undefined
+    memberCreatedAt = undefined
 
 
     /*----------------------- 生命周期 -------------------------*/
@@ -369,8 +369,8 @@ export default class App extends RNComponent {
         console.log('是否是会员get-----',data)
 
         setTimeout(()=>{
-            console.log("检查会员购买记录调用 this.memberCreatedAtHour",this.memberCreatedAtHour);
-            if(this.memberCreatedAtHour == undefined){
+            console.log("检查会员购买记录调用 this.memberCreatedAt",this.memberCreatedAt);
+            if(this.memberCreatedAt == undefined){
                 this.getBuyRecords();
             }
         },1000)
@@ -405,10 +405,10 @@ export default class App extends RNComponent {
         let createdAt =  firstItem.createdAt
 
         if(createdAt > 0){
-            this.memberCreatedAtHour =  this.$globalFunc.formatDateUitl(Number(createdAt), 'hh')
+            this.memberCreatedAt =  Number(createdAt)
         }
 
-        console.info('this.memberCreatedAtHour',this.memberCreatedAtHour)
+        console.info('this.memberCreatedAt',this.memberCreatedAt)
 
     }
 
@@ -654,7 +654,9 @@ export default class App extends RNComponent {
         // 最新的状态2019-11-04，APP只调用了/auth/getIdentityInfo，所以 0 或 3 都是未认证状态
         let identityAuthStateStr = ['未认证','被驳回','已通过','未认证','已失效','审核中','审核中'][identityAuthState];
 
-        let memberExpires = this.memberCreatedAtHour < 16 ? this.expires : this.$globalFunc.formatDateUitl(this.memberExpiresTime, 'YYYY-MM-DD')
+        //格式化到期时间戳
+        let mExpiresTime = this.$globalFunc.formatDateUitl(this.memberExpiresTime, 'YYYY-MM-DD')
+        let memberExpires = (this.memberCreatedAt != undefined && this.$globalFunc.comparedWithGreenwichTime(this.memberCreatedAt)) ? mExpiresTime : this.expires
 
         return (
             <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.navBgColor0602}]}>
@@ -682,7 +684,7 @@ export default class App extends RNComponent {
                     {/*头像部分 end*/}
 
                     {/*会员卡 begin*/}
-                    {(this.isMember && this.memberCreatedAtHour != undefined) &&
+                    {(this.isMember && this.memberCreatedAt != undefined) &&
                         <View style={[styles.headerIconBox, styles.boxPadding, styles.memberBox]}>
                             <Text  allowFontScaling={false} style={[styles.memberTitle]}>我的2020会员</Text>
                             <Text  allowFontScaling={false} style={[styles.memberExpiresTime ]}>{memberExpires}到期</Text>
