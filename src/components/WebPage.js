@@ -302,8 +302,10 @@ export default class App extends RNComponent {
 
         //显示头部
         revertHeader: function(...arg){
-            this.setColor();
+            let color = '#fff';
+            this.setColor(color);
             this.setHeight(false);
+            this.setWidth(false);
         },
 
         //去推荐
