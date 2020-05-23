@@ -356,7 +356,7 @@ export default class OneHome extends RNComponent {
     goToTreasureChest = (routerName) =>{
         this.goWebView({
             // url: this.moreNoticeUrl || '',
-            url: 'index/mobileNotice?isApp=true&isWhite=true',
+            url: 'index/treasureBox?isApp=true',
             loading: false,
             navHide: false,
             title: '百宝箱',
