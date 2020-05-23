@@ -1,7 +1,7 @@
 import {Platform} from 'react-native';
 
 const version = {
-    ios: '1.0.8',
+    ios: '1.0.9',
     android: '1.0.9'
 }
 
