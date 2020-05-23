@@ -56,6 +56,9 @@ export default class App extends RNComponent {
     headerWidth = DeviceWidth
 
     @observable
+    goBackIconHidden = false
+
+    @observable
     title = ''
 
     @observable
@@ -64,7 +67,10 @@ export default class App extends RNComponent {
     @observable
     navMarginTop = 0;
 
-    canGoBack = false;
+    canGoBack = false;//组件自带API的返回结果
+
+    @observable
+    canGoH5Back = false;//通过H5传过来的参数判断
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -107,6 +113,10 @@ export default class App extends RNComponent {
     goBack = () => {
 
         //webview内部H5页面的返回跳转
+        if(this.canGoH5Back){
+            this.refs.win.goBack();
+            return;
+        }
         // if(this.canGoBack){
         //     this.refs.win.goBack();
         //     return;
@@ -165,6 +175,7 @@ export default class App extends RNComponent {
 
     @action
     setColor = (color)=>{
+        if(!color)return
         this.refs.nav.setColor(color || null);
         //this.navColor = color;
     }
@@ -196,6 +207,7 @@ export default class App extends RNComponent {
     @action
     setWidth = (bl)=>{
         this.headerWidth = bl && getWidth(100) || DeviceWidth
+        this.goBackIconHidden = bl || false;
     }
 
     onNavigationStateChange = (data)=>{
@@ -316,6 +328,14 @@ export default class App extends RNComponent {
             // this.initAndroidStatusBar();
             this.$router.goBack();
         },
+        @action
+        setH5Back: function (...arg) {
+            let canGoH5Back = false
+            if(typeof arg[0] === 'object'){
+                arg[0]['canGoH5Back'] && (canGoH5Back = arg[0].canGoH5Back);
+            }
+            this.canGoH5Back = canGoH5Back
+        },
     }
 
 
@@ -377,6 +397,7 @@ export default class App extends RNComponent {
                                 navColor={this.navColor}
                                 ref={'nav'}
                                 headerTitle={this.title}
+                                goBackIconHidden={this.goBackIconHidden}
                                 goBack={this.goBack}
                             >
                                 <Text>{this.navColor}</Text>

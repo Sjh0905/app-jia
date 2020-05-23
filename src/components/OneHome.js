@@ -357,6 +357,8 @@ export default class OneHome extends RNComponent {
         this.goWebView({
             // url: this.moreNoticeUrl || '',
             url: 'index/treasureBox?isApp=true',
+            // url: 'index/LuckyDraw/Record?isApp=true',
+            // url: '/static/mobileForecastRewardRecord?isApp=true',
             loading: false,
             navHide: false,
             title: '百宝箱',

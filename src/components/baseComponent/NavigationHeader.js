@@ -23,7 +23,7 @@ const isIOS = Platform.OS == 'ios' ? true : false
 export default class NavHeader extends Component {
     static propTypes = {
         goBack: PropTypes.func,
-
+        goBackIconHidden:PropTypes.any,
 
 	    touchCompLeft:PropTypes.any,
 	    touchCompLeftClick:PropTypes.func,
@@ -174,7 +174,7 @@ export default class NavHeader extends Component {
                 >
                     <View style={[styles.goBack]}>
                         <Image
-                            source={goBackIcon}
+                            source={this.props.goBackIconHidden ? null : goBackIcon}
                             style={styles.goBackIcon}
                         />
                     </View>
