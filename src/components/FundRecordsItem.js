@@ -206,7 +206,7 @@ export default class FundRecordsItem extends RNComponent {
     goToFundDetail = (item,fundType) => {
         let fundStatus = (this.statusObj[item.done] || "")
 
-        this.$router.push('CapitalTransferRecordsDetail', {item, fundType,fundStatus})
+        this.$router.push('FundRecordsDetail', {item, fundType,fundStatus})
 
     }
 

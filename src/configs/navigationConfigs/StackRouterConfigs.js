@@ -24,6 +24,7 @@ import RechargeAndWithdrawalsRecordsDetail from '../../components/AssetRecordsDe
 import InternalTransferRecordsDetail from '../../components/InternalTransferRecordsDetail'
 import CapitalTransferRecordsDetail from '../../components/CapitalTransferRecordsDetail'
 import MiningRecordsDetail from '../../components/MiningRecordsDetail'
+import FundRecordsDetail from '../../components/FundRecordsDetail'
 import WebPage from '../../components/WebPage'
 import MyRecommend from '../../components/MineMyRecommend'
 import Demo from '../../components/Demo'
@@ -167,6 +168,11 @@ router.InternalTransferRecordsDetail = {
 // 钱包法币划转记录详情页
 router.CapitalTransferRecordsDetail = {
     screen: CapitalTransferRecordsDetail
+}
+
+// 基金财务记录详情页
+router.FundRecordsDetail = {
+    screen: FundRecordsDetail
 }
 
 // 挖矿记录详情页

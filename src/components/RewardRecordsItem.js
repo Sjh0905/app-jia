@@ -87,7 +87,7 @@ export default class App extends RNComponent {
 
     //奖励状态
     statusObj = {
-        "SUCCESS":"已发放",
+        "DONE":"已发放",
     }
 
 
