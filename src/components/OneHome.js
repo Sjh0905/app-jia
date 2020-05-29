@@ -126,15 +126,17 @@ export default class OneHome extends RNComponent {
         //     // })()
         // },
 		{
-			text: '充币',
-			img: require('../assets/OneHome/recharge.png'),
+			text: 'TKF基金',
+			img: require('../assets/OneHome/tkf_icon.png'),
 			action: ()=>{
 				// this.notify({key: 'CHANGE_TAB'}, 3);
-                if(!this.$store.state.authMessage.userId) {
-                	this.$router.push('Login');
-                	return
-                }
-                this.$router.push('AssetPageSearch')
+                // if(!this.$store.state.authMessage.userId) {
+                	// this.$router.push('Login');
+                	// return
+                // }
+                // this.$router.push('AssetPageSearch')
+
+                this.goToTKF()
 			}
 		},
 		{
@@ -362,6 +364,21 @@ export default class OneHome extends RNComponent {
             loading: false,
             navHide: false,
             title: '百宝箱',
+            requireLogin:true,
+            rightCloseBtn:true
+        })
+    }
+
+    //跳转TKF
+    goToTKF = () =>{
+        this.goWebView({
+            // url: this.moreNoticeUrl || '',
+            url: '/index/mobileFinancialFund/mobileFundProducts?isApp=true',
+            // url: 'index/LuckyDraw/Record?isApp=true',
+            // url: '/static/mobileForecastRewardRecord?isApp=true',
+            loading: false,
+            navHide: false,
+            title: 'TKF基金',
             requireLogin:true,
             rightCloseBtn:true
         })
