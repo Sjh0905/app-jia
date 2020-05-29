@@ -106,6 +106,8 @@ requestAddress.INITIAL_REWARD = {url:'/user/initial/reward', method: 'get'} // �
 
 requestAddress.REWARDS_LOG = {url: '/user/getGrcActivityRewards', method: 'post'}  //奖励记录
 
+requestAddress.GET_FUND_LIST = {url: '/user/transfer/spot/list', method: 'get'}  //基金划转记录
+
 requestAddress.POST_MY_RECOMMEND = {url: '/user/myinvitees', method: 'post'} // 获取我的推荐奖励
 
 
