@@ -85,22 +85,13 @@ export default class FundRecordsDetail extends RNComponent {
         return (
             <View style={[styles.itemBox]}>
                 {/*订单编号 begin*/}
-                <View style={[styles.itemDetailBox]}>
-                    <Text allowFontScaling={false} style={[styles.itemTitle]}>订单编号</Text>
-                    <Text
-                        allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{item.transferId}</Text>
-                </View>
+                {/*<View style={[styles.itemDetailBox]}>*/}
+                    {/*<Text allowFontScaling={false} style={[styles.itemTitle]}>订单编号</Text>*/}
+                    {/*<Text*/}
+                        {/*allowFontScaling={false}*/}
+                        {/*style={[styles.itemDetail, baseStyles.text0D0E23]}>{item.transferId}</Text>*/}
+                {/*</View>*/}
                 {/*订单编号 begin*/}
-
-                {/*类型 begin*/}
-                <View style={[styles.itemDetailBox]}>
-                    <Text allowFontScaling={false} style={[styles.itemTitle]}>类型</Text>
-                    <Text
-                        allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{fundType}</Text>
-                </View>
-                {/*类型 begin*/}
 
                 {/*分割线 begin*/}
                 {/*<View style={styles.line}/>*/}
@@ -142,7 +133,7 @@ export default class FundRecordsDetail extends RNComponent {
                 <View style={[styles.itemDetailBox]}>
                     <Text allowFontScaling={false} style={[styles.itemTitle]}>数量</Text>
                     <Text allowFontScaling={false}
-                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.accFixed(item.amount, 8)}</Text>
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.accFixed(item.amount, 4)}</Text>
                 </View>
                 {/*数量 end*/}
 
@@ -153,6 +144,15 @@ export default class FundRecordsDetail extends RNComponent {
                         style={[styles.itemDetail, baseStyles.text0D0E23]}>{this.$globalFunc.formatDateUitl(item.updatedAt, 'YYYY-MM-DD hh:mm:ss')}</Text>
                 </View>
                 {/*日期 end*/}
+
+                {/*类型 begin*/}
+                <View style={[styles.itemDetailBox]}>
+                    <Text allowFontScaling={false} style={[styles.itemTitle]}>类型</Text>
+                    <Text
+                        allowFontScaling={false}
+                        style={[styles.itemDetail, baseStyles.text0D0E23]}>{fundType}</Text>
+                </View>
+                {/*类型 begin*/}
 
                 {/*状态 begin*/}
                 <View style={[styles.itemDetailBox]}>
@@ -173,7 +173,7 @@ export default class FundRecordsDetail extends RNComponent {
 
     render() {
         // let headerTitle = this.recordsItem.currency
-        let headerTitle = '详情'
+        let headerTitle = '基金理财详情'
 
         return (
             <View style={[styles.container]}>
@@ -182,7 +182,7 @@ export default class FundRecordsDetail extends RNComponent {
                 <View style={[styles.boxPadding, styles.container,{backgroundColor:StyleConfigs.bgColor}]}>
                     {/*币种title begin*/}
                     <View style={styles.titleBox}>
-                        <Text allowFontScaling={false} style={[styles.currencyTitle]}>{this.$globalFunc.accFixed(this.recordsItem.amount, 8) + this.recordsItem.currency}</Text>
+                        <Text allowFontScaling={false} style={[styles.currencyTitle]}>{this.$globalFunc.accFixed(this.recordsItem.amount, 4) + this.recordsItem.currency}</Text>
                     </View>
                     {/*币种title end*/}
 

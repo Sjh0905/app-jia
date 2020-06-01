@@ -134,12 +134,12 @@ export default class FundRecordsItem extends RNComponent {
         }
         this.ajaxFundFlag = true
 
-        this.$http.send("GET_FUND_LIST", {
+        this.$http.send("GET_TKF_PAY_RECORD", {
             bind: this,
             query:{
-                status:0,//0全部，1 失败，2 成功
-                currency:'',
-                pageSize:this.fundLimit
+                // status:0,//0全部，1 失败，2 成功
+                // currency:'',
+                // pageSize:this.fundLimit
             },
             callBack: this.re_getFundList,
             errorHandler: this.error_getFundList
@@ -159,8 +159,8 @@ export default class FundRecordsItem extends RNComponent {
         this.ajaxFundFlag = false
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.dataMap) return
-        console.log('获取内部转账记录', data)
-        this.fundLists = data.dataMap.userTransferRecordList || []
+        console.log('获取基金理财记录', data)
+        this.fundLists = data.dataMap.list || []
 
         // if (this.fundLists.length < this.fundLimit){
         //     this.isShowGetMoreFund = false
@@ -176,6 +176,14 @@ export default class FundRecordsItem extends RNComponent {
     // 渲染footer组件
     @action
     _fundFooterComponent = () => {
+
+        return (
+            <View style={styles.loadingMore}>
+                <Text allowFontScaling={false} style={[styles.loadingMoreText]}>已经全部加载完毕</Text>
+            </View>
+        )
+
+
         if (this.fundLists.length == 0) {
             return null
         }
@@ -204,7 +212,7 @@ export default class FundRecordsItem extends RNComponent {
     // 去转账记录详情页
     @action
     goToFundDetail = (item,fundType) => {
-        let fundStatus = (this.statusObj[item.done] || "")
+        let fundStatus = (this.statusObj[item.orderStatus] || "")
 
         this.$router.push('FundRecordsDetail', {item, fundType,fundStatus})
 
@@ -214,7 +222,7 @@ export default class FundRecordsItem extends RNComponent {
     @action
     _renderFundRecordsItem = ({item, index}) => {
 
-        let fundType = item.transferFrom == 'OTC' ? "从法币到钱包" : "从钱包到法币"
+        let fundType = item.fromUserId == this.userId ? "从钱包到基金" : "从基金到钱包"
 
         if(item.currency == 'USDT2' || item.currency == 'USDT3')item.currency = 'USDT'
 
@@ -235,12 +243,12 @@ export default class FundRecordsItem extends RNComponent {
                         <View style={[styles.baseColumn1,{width:'40%'}]}>
                             <Text style={styles.itemSectionTitle}>数量</Text>
                             <Text style={styles.itemSectionNum}>
-                                {this.$globalFunc.accFixed(item.amount, this.currencyJingDU[item.currency] || 3)}
+                                {this.$globalFunc.accFixed(item.amount, 4)}
                             </Text>
                         </View>
                         <View style={[styles.baseColumn2,{width:'30%'}]}>
                             <Text style={styles.itemSectionTitle}>类型</Text>
-                            <Text style={styles.itemSectionNum}>{fundType}</Text>
+                            <Text style={styles.itemSectionNum}>{item.reason}</Text>
                         </View>
                         <View style={[styles.baseColumn3,{width:'30%'}]}>
                             <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>日期</Text>
@@ -282,8 +290,8 @@ export default class FundRecordsItem extends RNComponent {
                     renderItem={this._renderFundRecordsItem}
                     ListFooterComponent={this._fundFooterComponent}
                     keyExtractor={(item, index) => index.toString()}
-                    onEndReachedThreshold={reachedThreshold}
-                    onEndReached={this._fundLoadingMore}
+                    // onEndReachedThreshold={reachedThreshold}
+                    // onEndReached={this._fundLoadingMore}
                     ListEmptyComponent={this._renderEmptyComponent}
                 />
             </View>
