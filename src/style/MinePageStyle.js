@@ -25,18 +25,56 @@ const styles = StyleSheet.create({
     headerIcon: {
         height: getWidth(72),
         width: getWidth(60),
-        marginBottom:3
+        marginTop:-getWidth(20)
     },
     headerIconText: {
         marginLeft: getWidth(16),
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: StyleConfigs.fontSize16,
+    },
+    userNameBottom:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft: getWidth(16),
+        marginTop:getWidth(10),
+    },
+    userNameBottomItem:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        height:getWidth(36),
+        paddingHorizontal:getWidth(12),
+        borderRadius:getWidth(18),
+        borderColor:StyleConfigs.borderE0E1F4,
+        borderWidth:StyleSheet.hairlineWidth,
+        // backgroundColor:'#000'
+    },
+    userNameBottomTouch:{
+        marginLeft: getWidth(12),
+    },
+    flameIcon:{
+        width:getWidth(18),
+        marginRight:getWidth(10),
+        marginBottom:getWidth(2)
+    },
+    heatText:{
+        fontSize: 10,
+        marginRight:getWidth(10),
+    },
+    heatVal:{
+        fontSize: 10,
+        marginRight:getWidth(10),
+    },
+
+    heatTriangleIcon:{
+        width:getWidth(14),
     },
     headerUIDText: {
-        marginLeft: getWidth(16),
-        marginTop:getWidth(16),
+        // marginLeft: getWidth(16),
+        // marginTop:getWidth(16),
         // fontWeight: 'bold',
-        fontSize: 12,
+        fontSize: 10,
+        // backgroundColor:'green'
     },
     memberBox:{
         height:getHeight(80),
@@ -93,7 +131,7 @@ const styles = StyleSheet.create({
         // position: 'absolute',
     },
     textColor:{
-        color:StyleConfigs.txt172A4D
+        color:StyleConfigs.txt1F3F59
     },
     iconText: {
         paddingLeft: getWidth(20),
@@ -230,7 +268,7 @@ const styles = StyleSheet.create({
 
     },
     userNameBox: {
-        flex:1,
+        // flex:1,
         // backgroundColor:'#ccc'
     },
     splitSmall:{

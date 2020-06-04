@@ -29,6 +29,8 @@ import GoogleIcon from '../assets/MinePage/google-icon.png'
 import bankcard from '../assets/C2cAssets/bankcard.png'
 import HeaderIcon from '../assets/MinePage/header-icon.png'
 import HeaderMemberIcon from '../assets/MinePage/header-member-icon.png'
+import FlameIcon from '../assets/MinePage/flame-icon.png'
+import GoHeatIcon from '../assets/MinePage/go-heat-icon.png'
 import GestureIconOff from '../assets/MinePage/gesture-off.png';
 
 import BaseButton from './baseComponent/BaseButton'
@@ -633,6 +635,18 @@ export default class App extends RNComponent {
         },'customerService')
     }
 
+    //跳转H5热度
+    goH5HeatPage = () =>{
+        this.goWebView({
+            url: '/index/mobileFinancialFund/mobileFundProducts?isApp=true',
+            loading: false,
+            navHide: false,
+            title: '热度明细',
+            requireLogin:true,
+            rightCloseBtn:true
+        })
+    }
+
     /*----------------------- 挂载 -------------------------*/
 
     render() {
@@ -678,7 +692,21 @@ export default class App extends RNComponent {
                         }
                         <View style={styles.userNameBox}>
                             <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.headerIconText]}>{userName}</Text>
-                            <Text  allowFontScaling={false} style={[styles.headerUIDText,baseStyles.text9FA7B8 ]}>UID:{UID}</Text>
+                            <View style={[styles.userNameBottom]}>
+                                <View style={[styles.userNameBottomItem]}>
+                                    <Text allowFontScaling={false} style={[styles.headerUIDText,baseStyles.text6B7DA2]}>UID:{UID}</Text>
+                                </View>
+                                <TouchableOpacity
+                                    onPress={this.goH5HeatPage}
+                                    activeOpacity={StyleConfigs.activeOpacity}
+                                    style={[styles.userNameBottomItem,styles.userNameBottomTouch]}
+                                >
+                                    <Image source={FlameIcon} style={styles.flameIcon} resizeMode={'contain'}/>
+                                    <Text style={[styles.heatText,baseStyles.text6B7DA2]}>热度</Text>
+                                    <Text style={[styles.heatVal,baseStyles.textBlue]}>1.34</Text>
+                                    <Image source={GoHeatIcon} style={styles.heatTriangleIcon} resizeMode={'contain'}/>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                     {/*头像部分 end*/}

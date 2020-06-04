@@ -75,6 +75,7 @@ root.borderBottomColor = '#E7EBEE'
 root.borderColorLight = '#131316'
 root.borderShadowColor = '#EAECF2'
 root.borderA2B5D9  = '#A2B5D9'
+root.borderE0E1F4  = '#E0E1F4'
 
 root.lineColor = '#202126'
 // root.lineBlue = '#3576F5'
