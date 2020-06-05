@@ -5,7 +5,7 @@
 import React from 'react';
 import {View, WebView, Text, Image} from 'react-native';
 import {observer} from 'mobx-react'
-import {action, observable} from 'mobx'
+import {action, observable, computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
 import baseStyles from '../style/BaseStyle'
 import NavHeader from './baseComponent/NavigationHeader'
@@ -38,6 +38,9 @@ export default class App extends RNComponent {
 
 
     /*----------------------- data -------------------------*/
+    @computed get userId() {
+        return this.$store.state.authMessage.userId
+    }
 
     @observable
     renderUrl = '';
@@ -85,8 +88,8 @@ export default class App extends RNComponent {
         // this.url = 'http://192.168.2.173:8082/index/mobileCombinedVotePage';
         // this.url = 'http://zpy.2020.exchange:8084/index/mobileNotice';
         this.renderUrl = (this.url.indexOf('?') > -1)
-            && (this.url + '&isIOS=true&iosLogin=' + !!this.$store.state.authMessage.userId + '&isIPhoneX=' + isIPhoneX())
-            || (this.url + '?isIOS=true&iosLogin=' + !!this.$store.state.authMessage.userId + '&isIPhoneX=' + isIPhoneX());
+            && (this.url + '&isIOS=true&iosLogin=' + !!this.userId + '&userId=' + this.userId + '&isIPhoneX=' + isIPhoneX())
+            || (this.url + '?isIOS=true&iosLogin=' + !!this.userId + '&userId=' + this.userId + '&isIPhoneX=' + isIPhoneX());
         //this.url = 'http://localhost:8080/static/H5BiShiJieActivity'
         this.renderUrl = this.$globalFunc.unescapeUrl(this.renderUrl)
         console.log('this is renderUrl',this.renderUrl);

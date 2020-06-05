@@ -638,7 +638,7 @@ export default class App extends RNComponent {
     //跳转H5热度
     goH5HeatPage = () =>{
         this.goWebView({
-            url: '/index/mobileFinancialFund/mobileFundProducts?isApp=true',
+            url: '/index/mobileHeatList?isApp=true&isWhite=true',
             loading: false,
             navHide: false,
             title: '热度明细',

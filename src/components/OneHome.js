@@ -345,7 +345,7 @@ export default class OneHome extends RNComponent {
     goToMining = (routerName) =>{
         this.goWebView({
             // url: this.moreNoticeUrl || '',
-            url: 'index/'+routerName+'?isApp=true&isWhite=true',
+            url: 'index/'+routerName+'?isApp=true',
             loading: false,
             navHide: false,
             title: '挖矿',
@@ -425,7 +425,7 @@ export default class OneHome extends RNComponent {
 	//跳转拼团
     goToJoinGroup = (routerName) =>{
         this.goWebView({
-            url: 'index/'+routerName+'?isApp=true&isWhite=true',
+            url: 'index/'+routerName+'?isApp=true',
             loading: false,
             navHide: false,
             title: '拼团',
