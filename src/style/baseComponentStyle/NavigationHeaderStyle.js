@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
         fontSize: StyleConfigs.fontSize14,
     },
     goBackIcon: {
-        width: getWidth(32),
+        width:isIPhoneX() ? getWidth(34) : getWidth(32),
         height: getHeight(32),
-        marginLeft:-2
+        marginLeft:-2,
     },
 
 
