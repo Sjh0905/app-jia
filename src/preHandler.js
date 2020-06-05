@@ -16,6 +16,7 @@ export default async function ($http, $store) {
             }
 
             $store.commit('SET_AUTH_MESSAGE', data.dataMap.userProfile)
+            $store.commit('SET_HOT_VAL', data.dataMap && data.dataMap.hotVal || 0)
         },
         errorHandler: function (err) {
             console.warn("出错了！", err)

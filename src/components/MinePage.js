@@ -660,6 +660,9 @@ export default class App extends RNComponent {
         if(this.$store.state.authMessage.province === 'email'){
             userName = this.$store.state.authMessage.email || '';
         }
+
+        let hotVal = this.$store.state.hotVal;
+
         let identityAuthState = this.$store.state.getIdentityInfo.identityAuthState;
         let time = this.$store.state.getIdentityInfo.time;
         let identityAuthTime = " " + (time > 0 ? this.$globalFunc.formatDateUitl(time) : '')
@@ -703,7 +706,7 @@ export default class App extends RNComponent {
                                 >
                                     <Image source={FlameIcon} style={styles.flameIcon} resizeMode={'contain'}/>
                                     <Text style={[styles.heatText,baseStyles.text6B7DA2]}>热度</Text>
-                                    <Text style={[styles.heatVal,baseStyles.textBlue]}>1.34</Text>
+                                    <Text style={[styles.heatVal,baseStyles.textBlue]}>{hotVal}</Text>
                                     <Image source={GoHeatIcon} style={styles.heatTriangleIcon} resizeMode={'contain'}/>
                                 </TouchableOpacity>
                             </View>

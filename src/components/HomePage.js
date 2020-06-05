@@ -194,27 +194,38 @@ export default class App extends RNComponent {
         // })
     }
 
-    // // 登录一下回调
-    // re_checkLogin = (data) => {
-    //     typeof (data) === 'string' && (data = JSON.parse(data))
-    //
-    //     console.log('homepage checklogin',data);
-    //
-    //     // if (data.result === 'FAIL' || data.errorCode) {
-    //     //     return
-    //     // }
-    //     //
-    //     // this.$store.commit('SET_AUTH_MESSAGE', data.dataMap.userProfile)
-    //     //
-    //     // this.$event.notify({key:'NEW_LOGIN'})
-    //
-    //     // this.$router.popToTop()
-    //
-    // }
-    // // 登录一下出错
-    // error_checkLogin = (err) => {
-    //     console.warn("homepage checklogin error", err)
-    // }
+
+    //因为增加热度，通过接口检查登录
+    checkLoginByApi = () => {
+
+        this.$http.send('CHECK_LOGIN_IN', {
+            bind: this,
+            callBack: this.re_checkLogin,
+            errorHandler: this.error_checkLogin
+        })
+    }
+
+    // 通过接口检查登录回调
+    re_checkLogin = (data) => {
+        typeof (data) === 'string' && (data = JSON.parse(data))
+
+        console.log('homepage checkLoginByApi',data);
+
+        if (data.result === 'FAIL' || data.errorCode) {
+            return
+        }
+
+        this.$store.commit('SET_AUTH_MESSAGE', data.dataMap.userProfile)
+        this.$store.commit('SET_HOT_VAL', data.dataMap && data.dataMap.hotVal || 0)
+        // this.$event.notify({key:'NEW_LOGIN'})
+
+        // this.$router.popToTop()
+
+    }
+    // 通过接口检查登录出错
+    error_checkLogin = (err) => {
+        console.warn("homepage checkLoginByApi error", err)
+    }
 
 
     clearLoginInfo = ()=>{
@@ -292,6 +303,7 @@ export default class App extends RNComponent {
                 this.notify({key: 'GET_AUTH_STATE'});
                 // this.notify({key:'GET_FEE_DIVIDEND'});
                 this.notify({key: 'GET_IDENTITY_INFO'});
+                this.checkLoginByApi()
             }
 
             if(index == 3 && this.$store.state.authMessage.userId){

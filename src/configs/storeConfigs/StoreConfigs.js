@@ -182,6 +182,12 @@ store.state.authMessage = {
 }
 
 /**
+ * 热度值
+ * @type {number}
+ */
+store.state.hotVal = 0
+
+/**
  * 是否登录
  * @type {boolean}
  */
@@ -348,6 +354,16 @@ store.mutations.SET_SOURCE_TYPE = function (state, type) {
 store.mutations.SET_AUTH_MESSAGE = (state, info) => {
     state.authMessage = info
     state.isLogin = info.userId ? true : false
+}
+
+/**
+ * 热度值
+ * @param state
+ * @param info
+ * @constructor
+ */
+store.mutations.SET_HOT_VAL = (state, info) => {
+    state.hotVal = info
 }
 
 
