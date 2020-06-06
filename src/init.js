@@ -239,7 +239,7 @@ console.warn('this is height and width', global.DeviceHeight, global.DeviceWidth
 console.ignoredYellowBox = ['Setting a timer']
 
 global.__VERSION__ = {
-    ios: 10,
+    ios: 11,
     android: 11
 }
 
