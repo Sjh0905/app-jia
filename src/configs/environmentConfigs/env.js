@@ -28,12 +28,14 @@ env.networkConfigs.downloadPageUrl  = '';
 //注意拼接downloadUrl的时候最后一定要加"/"
 if(env.networkConfigs.baseUrl.indexOf('app.2020.exchange') > -1){
     env.networkConfigs.downloadUrl = 'https://www.2020.exchange/';
+    // env.networkConfigs.downloadUrl = 'https://transfer.2020.exchange/';
     env.networkConfigs.downloadPageUrl  = 'https://download.2020.exchange/';
     env.networkConfigs.c2cUrl = 'https://otc.2020.exchange/'
 }
 
 if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
     // env.networkConfigs.downloadUrl = 'http://zpy.2020-ex.com:8084/';
+    // env.networkConfigs.downloadUrl = 'http://transfer.2020-ex.com/';
     env.networkConfigs.downloadUrl = 'http://www.2020-ex.com/';
     env.networkConfigs.downloadPageUrl  = 'http://download.2020-ex.com/';
     env.networkConfigs.c2cUrl = 'http://otc.2020-ex.com/'
