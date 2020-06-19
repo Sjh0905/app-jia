@@ -126,7 +126,7 @@ export default class OneHome extends RNComponent {
         //     // })()
         // },
 		{
-			text: '区块恋',
+			text: '区块安',
 			img: require('../assets/OneHome/tkf_icon.png'),
 			action: ()=>{
 				// this.notify({key: 'CHANGE_TAB'}, 3);
@@ -378,7 +378,7 @@ export default class OneHome extends RNComponent {
             // url: '/static/mobileForecastRewardRecord?isApp=true',
             loading: false,
             navHide: false,
-            title: '区块恋',
+            title: '区块安',
             requireLogin:true,
             rightCloseBtn:true
         })
