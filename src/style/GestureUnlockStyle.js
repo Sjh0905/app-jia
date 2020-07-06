@@ -47,6 +47,11 @@ const styles = StyleSheet.create({
         // paddingRight: getWidth(15)
 
     },
+    statusText: {
+        marginRight:getWidth(15),
+        fontSize: 12,
+        color: StyleConfigs.txtA2B5D9,
+    },
     itemLeft: {
 
         // height:'100%',

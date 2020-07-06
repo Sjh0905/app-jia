@@ -313,7 +313,13 @@ export default class GestureUnlock extends RNComponent {
                             <Text style={[styles.descText]}>设置TT抵扣手续费，享受抵扣优惠</Text>
                         </View>
                         <View style={[styles.itemRight]}>
-                            <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.intoText]}></Text>
+                            {
+                                this.BDBInfo ?
+                                <Text  allowFontScaling={false} style={[styles.statusText, baseStyles.textBlue]}>已开启</Text>
+                                :
+                                <Text  allowFontScaling={false} style={[styles.statusText]}>已关闭</Text>
+                            }
+
                             <Switch
                                 value={this.BDBInfo}
                                 onValueChange={this.BDBFeeChange}
