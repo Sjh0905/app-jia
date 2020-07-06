@@ -56,6 +56,9 @@ export default class App extends RNComponent {
     navHide = false
 
     @observable
+    isTransparentNav= false
+
+    @observable
     headerWidth = DeviceWidth
 
     @observable
@@ -82,6 +85,7 @@ export default class App extends RNComponent {
         super()
         this.url = this.$beforeParams && this.$beforeParams.url || '';
         this.navHide = this.$beforeParams && this.$beforeParams.navHide || false
+        this.isTransparentNav = this.$beforeParams && this.$beforeParams.isTransparentNav || false
         this.title = this.$beforeParams && this.$beforeParams.title || ''
         this.rightCloseBtn = this.$beforeParams && this.$beforeParams.rightCloseBtn || false
         // this.url = 'http://192.168.2.173:8082/static/H5RechargeActivity';
@@ -99,6 +103,16 @@ export default class App extends RNComponent {
     componentWillMount() {
         super.componentWillMount()
     }
+
+    // componentDidMount() {
+    //     super.componentDidMount()
+    //     // if(this.isTransparentNav){
+    //     //     this.title = ''
+    //     //     this.offsetTop = PlatformOS == 'android' ? getHeight(-108) : getHeight(-128)
+    //     //     this.setColor('transparent')
+    //     //     this.setWidth(true)
+    //     // }
+    // }
 
     // 卸载
     componentWillUnmount() {
@@ -154,7 +168,16 @@ export default class App extends RNComponent {
         }
     }
 
-    sendCookies = ()=>{
+    sendCookies = (event)=>{
+        // console.log('this is WebView onLoad',event,new Date().getTime());
+        if(this.isTransparentNav){
+            this.title = ''
+            this.offsetTop = PlatformOS == 'android' ? getHeight(-108) : getHeight(-128)
+            this.setColor('transparent')
+            this.setWidth(true)
+            // this.headerWidth = 0
+            // this.goBackIconHidden = false;
+        }
         //是否登录
         this.promise_sendCookies = new Promise((resolve,reject)=>{
             console.log('判断条件',this.$store.state.authMessage.userId)
@@ -172,8 +195,19 @@ export default class App extends RNComponent {
         return this.promise_sendCookies;
     }
 
-    renderError = (e)=>{
 
+    onLoadEnd = (event)=>{
+        // console.log('this is WebView onLoadEnd',event,new Date().getTime());
+        // if(this.$route.query.isApp){
+        //     window.postMessage(JSON.stringify({
+        //         method: 'toHomePage'
+        //     }))
+        //     return
+        // }
+    }
+
+    renderError = (event)=>{
+        // console.log('this is WebView renderError',event,new Date());
     }
 
     @action
@@ -211,6 +245,13 @@ export default class App extends RNComponent {
     setWidth = (bl)=>{
         this.headerWidth = bl && getWidth(100) || DeviceWidth
         this.goBackIconHidden = bl || false;
+    }
+
+    @action
+    setWidthTo0 = ()=>{
+        console.log('send=========setWidthTo0');
+        this.headerWidth = 0
+        this.goBackIconHidden = false;
     }
 
     onNavigationStateChange = (data)=>{
@@ -303,6 +344,11 @@ export default class App extends RNComponent {
             this.setWidth(hiddenRight);
         },
 
+        //隐藏头部宽度为0
+        setHeaderWithTo0: function (...arg) {
+            this.setWidthTo0();
+        },
+
         //显示头部
         revertHeader: function(...arg){
             let color = '#fff';
@@ -364,6 +410,7 @@ export default class App extends RNComponent {
                     onMessage={this.onMessage}
                     //onLoadStart={this.initIOS}
                     onLoad={this.sendCookies}
+                    onLoadEnd={this.onLoadEnd}
                     renderError={this.renderError}
                     onNavigationStateChange={this.onNavigationStateChange}
                     mixedContentMode={'always'}
@@ -375,6 +422,7 @@ export default class App extends RNComponent {
                         // TODO: 这里不知道为什么 如果只有以上两个 会导致overflow在安卓失效 所以就有了这个东西 如果有影响 可以随便换成什么别的东西
                         borderWidth :0
                     }}>
+                        {/*右上角增加closeBtn*/}
                         {false &&
                             <NavHeader
                                 navStyle={{

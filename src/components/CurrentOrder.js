@@ -108,6 +108,7 @@ export default class CurrentOrder extends RNComponent {
         let rowData = item
         //价格精度显示
         let quoteScale = this.tradeLObj[rowData.symbol] ? (this.tradeLObj[rowData.symbol].quoteScale || 8) : 8
+        let followText = rowData.isFollow ? '跟单' : ''
 
         return (
             <View style={{
@@ -124,7 +125,7 @@ export default class CurrentOrder extends RNComponent {
                 <View style={[BaseStyles.flexRowBetween,styles.itemLineTop]}>
                     <View style={[BaseStyles.flexRowBetween,styles.itemLineTopLeft]}>
                         <Text style={[rowData.type === 'BUY_LIMIT' && styles.colorGreen || styles.colorRed, styles.size16]}>
-                            {rowData.type === 'BUY_LIMIT' && '买入' || '卖出'}</Text>
+                            {rowData.type === 'BUY_LIMIT' && (followText + '买入') || (followText + '卖出')}</Text>
                         <Text style={[styles.size12,styles.color6B7DA2,{marginLeft:5}]}>{this.$globalFunc.formatDateUitl(rowData.createdAt, 'MM-DD hh:mm')}</Text>
                     </View>
                     <TouchableOpacity  style={styles.chedanTouch} onPress={() => this.cancelOrder(rowData, index)}>

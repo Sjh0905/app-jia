@@ -177,8 +177,9 @@ export default class HistoryOrderDetail extends RNComponent {
 
 	render() {
 
+        let followText = this.$params.order.isFollow ? '跟单' : ''
 
-		return (
+        return (
 			<View style={styles.container}>
 				<NavHeader
 					headerTitle={''}
@@ -192,7 +193,7 @@ export default class HistoryOrderDetail extends RNComponent {
 
 					<View style={{flexDirection:'row',alignItems:'center'}}>
 						<Text  allowFontScaling={false} style={{color:this.$params.order.type === 'BUY_LIMIT' && StyleConfigs.txtGreen || StyleConfigs.txtRed,
-							fontSize:StyleConfigs.fontSize16}}>{this.$params.order.type === 'BUY_LIMIT' && '买入' || '卖出'}</Text>
+							fontSize:StyleConfigs.fontSize16}}>{this.$params.order.type === 'BUY_LIMIT' && (followText + '买入') || (followText + '卖出')}</Text>
 						<Text style={{color:StyleConfigs.txt172A4D, fontSize:StyleConfigs.fontSize16, fontWeight:'600',fontFamily:'System',marginLeft:getWidth(10)}}>{this.$params.order.symbol.split('_')[0] + ' / ' + this.$params.order.symbol.split('_')[1]}</Text>
 					</View>
 

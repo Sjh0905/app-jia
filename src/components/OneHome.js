@@ -155,19 +155,47 @@ export default class OneHome extends RNComponent {
 			// action: 'https://jinshuju.net/f/jhg65X'
 		},
         {
-            text: '交易挖矿',
-            img: require('../assets/OneHome/trade_mining.png'),
-            action: (() => {
-                let last = 0;
-                return () => {
-                    if (Date.now() - last < 1000) return;
-                    last = Date.now();
-                    this.$store.state.authMessage.userId || this.$router.push('Login');
+            text: '镜像交易',
+            img: require('../assets/OneHome/strategic_documentary.png'),
+            action: ()=>{
+                // this.notify({key: 'CHANGE_TAB'}, 3);
+                // if(!this.$store.state.authMessage.userId) {
+                //     this.$router.push('Login');
+                //     return
+                // }
+                // this.$router.push('AssetPageSearch')
 
-                    this.$store.state.authMessage.userId && this.getRegistrationRecord();
-                }
-            })()
+                this.goStrategicDocumentary();
+            }
+            // action: 'https://jinshuju.net/f/jhg65X'
         },
+        // {
+        //     text: '百宝箱',
+        //     img: require('../assets/OneHome/treasure_chest_icon.png'),
+        //     action: (() => {
+        //         let last = 0;
+        //         return () => {
+        //             if (Date.now() - last < 1000) return;
+        //             last = Date.now();
+        //
+        //             this.goToTreasureChest();
+        //         }
+        //     })()
+        // },
+        // {
+        //     text: '交易挖矿',
+        //     img: require('../assets/OneHome/trade_mining.png'),
+        //     action: (() => {
+        //         let last = 0;
+        //         return () => {
+        //             if (Date.now() - last < 1000) return;
+        //             last = Date.now();
+        //             this.$store.state.authMessage.userId || this.$router.push('Login');
+        //
+        //             this.$store.state.authMessage.userId && this.getRegistrationRecord();
+        //         }
+        //     })()
+        // },
         {
             text: '帮助中心',
             img: require('../assets/OneHome/help_center.png'),
@@ -351,6 +379,20 @@ export default class OneHome extends RNComponent {
             title: '挖矿',
             requireLogin:true,
             rightCloseBtn:true
+        })
+    }
+
+    //跳转镜像交易
+    goStrategicDocumentary = (routerName) =>{
+        this.goWebView({
+            // url: 'index/mobileDocumentaryGod?isApp=true&isWhite=true',
+            url: 'index/mobileFollowTrade?isApp=true&isWhite=true',
+            loading: false,
+            navHide: false,
+            title: '',
+            requireLogin:true,
+            rightCloseBtn:true,
+            isTransparentNav:true
         })
     }
 
