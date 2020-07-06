@@ -340,6 +340,9 @@ const styles = StyleSheet.create({
         paddingBottom:getWidth(26),
         // height: getHeight(140+10)
     },
+    activiteisBox2Item:{
+        width:'18%'
+    },
     activityText2:{
         color:StyleConfigs.txt6B7DA2,
         fontSize: StyleConfigs.fontSize13

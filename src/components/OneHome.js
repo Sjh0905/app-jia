@@ -182,20 +182,20 @@ export default class OneHome extends RNComponent {
         //         }
         //     })()
         // },
-        // {
-        //     text: '交易挖矿',
-        //     img: require('../assets/OneHome/trade_mining.png'),
-        //     action: (() => {
-        //         let last = 0;
-        //         return () => {
-        //             if (Date.now() - last < 1000) return;
-        //             last = Date.now();
-        //             this.$store.state.authMessage.userId || this.$router.push('Login');
-        //
-        //             this.$store.state.authMessage.userId && this.getRegistrationRecord();
-        //         }
-        //     })()
-        // },
+        {
+            text: '交易挖矿',
+            img: require('../assets/OneHome/trade_mining.png'),
+            action: (() => {
+                let last = 0;
+                return () => {
+                    if (Date.now() - last < 1000) return;
+                    last = Date.now();
+                    this.$store.state.authMessage.userId || this.$router.push('Login');
+
+                    this.$store.state.authMessage.userId && this.getRegistrationRecord();
+                }
+            })()
+        },
         {
             text: '帮助中心',
             img: require('../assets/OneHome/help_center.png'),
@@ -752,7 +752,7 @@ export default class OneHome extends RNComponent {
                     <View>
                         <View style={styles.activiteisBox2}>{
                             this.activiteisData.map((v,i)=>
-                                {return v && <View key={i}>
+                                {return v && <View style={styles.activiteisBox2Item} key={i}>
                                     <TouchableOpacity
                                         activeOpacity={0.85}
                                         // key={i}
