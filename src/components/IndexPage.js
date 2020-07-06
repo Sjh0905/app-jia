@@ -1252,13 +1252,20 @@ export default class App extends RNComponent {
 
 	//刷新全站成交
     refreshAllDealFunc = (message)=>{
+
+        if(this.$store.state.symbol == 'BTC_USDT'){
+            //为了避免页面刷新过快卡死，最新价格赋值放到定时器这里了
+            console.log('00000000000000 topic_tick======为了避免页面刷新过快卡死,最新价格赋值放到定时器这里了')
+            this.$store.commit("SET_NEW_PRICE", this.socket_tick)
+        }
+
         //全站交易数据
         if (message instanceof Array && message.length > 0) {
             message = message.filter(v => v.symbol === this.$store.state.symbol);
             // console.log('*************message',message);
 
 
-            this.allDealList = message.splice(0, 20);
+            this.allDealList = message.splice(0, 3);//由于APP没有了全站成交，为了快速筛选价格，将 20 改为了 3
 
             // console.log('*************this.allDealList01',this.allDealList);
 
@@ -1270,7 +1277,7 @@ export default class App extends RNComponent {
         if (!!message.symbol && message.symbol === this.$store.state.symbol) {
             let lists = this.allDealList.filter(v => v.symbol === this.$store.state.symbol);
             lists.unshift(message);
-            this.allDealList = lists.splice(0, 20);
+            this.allDealList = lists.splice(0, 3);//由于APP没有了全站成交，为了快速筛选价格，将 20 改为了 3
             // console.log('*************this.allDealList02',this.allDealList);
 
             // this.$store.commit('SET_ALL_DEAL_DATA',this.allDealList);
@@ -1285,7 +1292,7 @@ export default class App extends RNComponent {
         }
         this.allDealRefreshTime = this.allDealList[0] && this.allDealList[0].createdAt || 0;
         console.log('00000000000000 topic_tick======this.allDealList',this.allDealList,this.allDealRefreshTime)
-        this.$store.commit('SET_ALL_DEAL_DATA',this.allDealList);
+        // this.$store.commit('SET_ALL_DEAL_DATA',this.allDealList);
     }
 
 
@@ -1426,14 +1433,18 @@ export default class App extends RNComponent {
                 if(!this.socket_tick)return
 
                 this.socket_tick_temp = this.socket_tick;
-				this.$store.commit("SET_NEW_PRICE", this.socket_tick)
+				if(this.$store.state.symbol != 'BTC_USDT'){
+				    this.$store.commit("SET_NEW_PRICE", this.socket_tick)
+                    console.log('topic_tick======为了避免页面刷新过快卡死，BTC_USDT最新价格赋值放到定时器里去了')
+				}
 
 				// console.log('00000000000000-SET_NEW_PRICE',this.$store.state.newPrice,this.$store.state.symbol)
 
+                // console.log('00000000000000 topic_tick======this.$store.state.symbol',this.$store.state.symbol)
                 console.log('00000000000000 topic_tick======this.socket_tick 2',this.socket_tick)
                 // console.log('00000000000000 topic_tick======this.refreshAllDeal',this.refreshAllDeal)
 
-                if(!this.refreshAllDeal){
+                /*if(!this.refreshAllDeal){
                     console.log('00000000000000 topic_tick======准备延迟执行===',this.socket_tick.createdAt > this.allDealRefreshTime)
                     setTimeout(()=>{
 
@@ -1442,7 +1453,7 @@ export default class App extends RNComponent {
                             this.refreshAllDealFunc(message);
                             this.refreshAllDeal = true
                         }
-                    },250);
+                    },3500);
                     return;
                 }
 
@@ -1455,7 +1466,31 @@ export default class App extends RNComponent {
 
                 this.allDealInterval = setInterval(()=>{
                     this.refreshAllDeal = true
-                },500);
+                },5000);*/
+
+                //-----------------------间隔执行新思路分隔线-----------------------
+
+                let allDealRefreshStep = 1600
+
+                if (Number(this.socket_tick.createdAt) - Number(this.allDealRefreshTime) > allDealRefreshStep) {
+
+                    this.refreshAllDealFunc(message);
+                    if(this.socket_tick_timeout)clearInterval(this.socket_tick_timeout)
+
+                }else{
+
+                    console.log('00000000000000 topic_tick======准备延迟执行===',this.socket_tick.createdAt > this.allDealRefreshTime)
+                    this.socket_tick_timeout && clearTimeout(this.socket_tick_timeout);
+                    this.socket_tick_timeout = setTimeout(()=>{
+                        // 如果最后一次刷新时间小于最近一次时间间隔小于500ms深度图的时间，说明没有任何推送，主动刷新
+                        if(this.socket_tick_temp.createdAt > this.allDealRefreshTime){
+                            console.log('00000000000000 topic_tick======延迟了')
+                            this.refreshAllDealFunc(message);
+                            this.refreshAllDeal = true
+                        }
+
+                    },allDealRefreshStep)
+                }
 
 			}
 		})
