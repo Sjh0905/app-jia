@@ -141,7 +141,7 @@ export default class MarketItem extends RNComponent {
 	@action
 	listRenderRow = (item,inx) => {
 
-
+    	if(!item)return null
     	//价格精度显示
     	let quoteScale = this.tradeLObj[item.name+"_"+item.denominator] ? (this.tradeLObj[item.name+"_"+item.denominator].quoteScale || 8) : 8
 
