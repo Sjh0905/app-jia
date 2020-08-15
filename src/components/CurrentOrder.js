@@ -108,7 +108,13 @@ export default class CurrentOrder extends RNComponent {
         let rowData = item
         //价格精度显示
         let quoteScale = this.tradeLObj[rowData.symbol] ? (this.tradeLObj[rowData.symbol].quoteScale || 8) : 8
-        let followText = rowData.isFollow ? '跟单' : ''
+        // let followText = rowData.isFollow ? '跟单' : ''
+        // let orderTypeTextMap = {
+        //     'BUY_LIMIT':'限价买入',
+        //     'SELL_LIMIT':'限价卖出',
+        //     'BUY_MARKET':'市价买入',
+        //     'SELL_MARKET':'市价卖出'
+        // }
 
         return (
             <View style={{
@@ -124,8 +130,8 @@ export default class CurrentOrder extends RNComponent {
             >
                 <View style={[BaseStyles.flexRowBetween,styles.itemLineTop]}>
                     <View style={[BaseStyles.flexRowBetween,styles.itemLineTopLeft]}>
-                        <Text style={[rowData.type === 'BUY_LIMIT' && styles.colorGreen || styles.colorRed, styles.size16]}>
-                            {rowData.type === 'BUY_LIMIT' && (followText + '买入') || (followText + '卖出')}</Text>
+                        <Text style={[rowData.type.indexOf('BUY') > -1  && styles.colorGreen || styles.colorRed, styles.size16]}>
+                            {this.$globalFunc.getOrderTypeText(rowData)}</Text>
                         <Text style={[styles.size12,styles.color6B7DA2,{marginLeft:5}]}>{this.$globalFunc.formatDateUitl(rowData.createdAt, 'MM-DD hh:mm')}</Text>
                     </View>
                     <TouchableOpacity  style={styles.chedanTouch} onPress={() => this.cancelOrder(rowData, index)}>

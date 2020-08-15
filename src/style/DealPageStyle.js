@@ -163,11 +163,11 @@ const styles = StyleSheet.create({
     },
     iptDisabled:{
         paddingLeft:10,
-        backgroundColor:StyleConfigs.btnDisabled,
+        backgroundColor:StyleConfigs.bgF7F8FA,
         alignItems:'center',
     },
     iptDisabledTxt:{
-        color:StyleConfigs.txtWhite,
+        color:StyleConfigs.txt172A4D,
     },
     ipt: {
         padding:0,

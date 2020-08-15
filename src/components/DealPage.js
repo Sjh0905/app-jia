@@ -1383,6 +1383,11 @@ class DealItem extends RNComponent {
             return
         }
 
+        //如果选择的是市价，price直接取当前最新价格
+        if(this.dropdownIndex == 1){
+            this.price = this.priceNow.price && this.marketUseRate && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, this.tradeLObj.quoteScale || 8);
+        }
+
 
         let available = this.getCurrAsset.available || '0';
 
@@ -1608,15 +1613,19 @@ class DealItem extends RNComponent {
 
         }
 
-
-
+        //二维数组第一层 0限价 1市价，第二层 0买入 1卖出
+        let dealTypeMap = [
+            ['BUY_LIMIT','SELL_LIMIT'],
+            ['BUY_MARKET','SELL_MARKET']
+        ]
 
         let params = {
             symbol: this.$store.state.symbol,
             price: this.price,
             amount: this.amount,
-            type: this.props.type,
+            type: dealTypeMap[this.dropdownIndex][this.props.type],
             source :'iOS'
+            // type: this.props.type,
             // customFeatures: this.fee ? 65536 : 0
         }
 
@@ -2175,7 +2184,7 @@ class DealItem extends RNComponent {
 
 
         this.priceFlag = true;
-        if(this.priceFlag && this.amountFlag)
+        if(this.dropdownIndex == 0 && this.priceFlag && this.amountFlag)
             this.transactionAmount(tp);
 
     }
@@ -2274,7 +2283,7 @@ class DealItem extends RNComponent {
 
 
         this.amountFlag = true;
-        if(this.priceFlag && this.amountFlag)
+        if(this.dropdownIndex == 0 && this.priceFlag && this.amountFlag)
             this.transactionAmount(tp);
 
     }
@@ -2368,7 +2377,7 @@ class DealItem extends RNComponent {
             //交易买卖页面
             <View style={[styles.container2,{height:PlatformOS === 'ios'?(this.dealPageHeight || 'auto'):'auto',marginBottom:getHeight(15)}]}>
 
-                <View style={[styles.halfBox1,this.dropdownIndex == 1 && {marginBottom:getDealHeight(24)} || null]}>
+                <View style={[styles.halfBox1]}>
                     {/*切换买入卖出*/}
                     <View style={styles.changeDealTypeBox}>
                         <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.props.changeDealType}>
@@ -2499,7 +2508,8 @@ class DealItem extends RNComponent {
                         }}>
                             {this.dropdownIndex == 0 &&
                             <Text allowFontScaling={false} style={{'color': StyleConfigs.txtRed,fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
-                            || null
+                            ||
+                            <Text allowFontScaling={false} style={{height:getDealHeight(26)}}>{''}</Text>
                             }
                         </View>
 
@@ -2621,7 +2631,7 @@ class DealItem extends RNComponent {
 
                     {/*交易额*/}
                     {
-                        !this.transAmount &&
+                        (this.dropdownIndex == 0 && !this.transAmount) &&
                         <View style={styles.totalMoney}>
                             <Text allowFontScaling={false}
                                   style={[{color:StyleConfigs.txt6B7DA2}, styles.size14]}>交易额</Text>
@@ -2629,15 +2639,17 @@ class DealItem extends RNComponent {
                                   style={[{color:StyleConfigs.txt172A4D,marginLeft:4}, styles.size14]}>--</Text>
                         </View>
 
-                        ||
+                        || this.dropdownIndex == 0 &&
                         <View style={styles.totalMoney}>
                             <Text allowFontScaling={false}
                                   style={[{color:StyleConfigs.txt6B7DA2}, styles.size14]}>交易额</Text>
                             <Text allowFontScaling={false}
                                   style={[{color:StyleConfigs.txt172A4D,marginLeft:4}, styles.size14]}>{this.transAmount + this.$store.state.symbol.split('_')[1]}</Text>
                         </View>
+                        ||
+                        <View style={styles.totalMoney}/>
 
-                    }
+                        }
                     {/*交易额结束*/}
 
 

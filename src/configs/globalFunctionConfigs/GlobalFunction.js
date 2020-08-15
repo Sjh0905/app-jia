@@ -470,6 +470,21 @@ globalFunc.testTrim = function (str) {
     return str.replace(/\s+/g,"")
 }
 
+// 获取订单类型
+globalFunc.getOrderTypeText = function (rowData) {
+    let followText = rowData.isFollow ? '跟单' : ''
+    let orderTypeTextMap = {
+        'BUY_LIMIT':'限价买入',
+        'SELL_LIMIT':'限价卖出',
+        'BUY_MARKET':'市价买入',
+        'SELL_MARKET':'市价卖出'
+    }
+
+    // console.log('this is getOrderTypeText isFollow',rowData.isFollow);
+
+    return followText + orderTypeTextMap[rowData.type]
+}
+
 export default globalFunc
 
 

@@ -192,7 +192,7 @@ export default class HistoryOrder extends RNComponent {
 		let quoteScale = this.tradeLObj[rowData.symbol] ? (this.tradeLObj[rowData.symbol].quoteScale || 8) : 8
 		rowData.quoteScale = quoteScale;
 		// return(<Text  allowFontScaling={false} style={baseStyles.textColor}>{rowData.item}</Text>)
-        let followText = rowData.isFollow ? '跟单' : ''
+        // let followText = rowData.isFollow ? '跟单' : ''
 		return (
 			<TouchableOpacity
 				activeOpacity={StyleConfigs.activeOpacity}
@@ -208,7 +208,7 @@ export default class HistoryOrder extends RNComponent {
 				<View style={styles.itemLine1}>
 					<View style={styles.itemLine1Left}>
 
-						<Text style={[styles.itemLine1Txt1, {color:rowData.type === 'BUY_LIMIT'&&StyleConfigs.txtGreen||StyleConfigs.txtRed}]}>{rowData.type === 'BUY_LIMIT' && (followText + '买入') || (followText + '卖出')}</Text>
+						<Text style={[styles.itemLine1Txt1, {color:rowData.type.indexOf('BUY') > -1 && StyleConfigs.txtGreen || StyleConfigs.txtRed}]}>{this.$globalFunc.getOrderTypeText(rowData)}</Text>
 						<Text style={styles.itemLine1Txt2}>{rowData.symbol.split('_')[0]}/{rowData.symbol.split('_')[1]}</Text>
 					</View>
 					<View style={styles.itemLine1Right}><Text style={styles.itemLine1Txt3}>{ORDER_STATUS[rowData.status]}</Text></View>
