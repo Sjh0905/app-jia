@@ -43,6 +43,7 @@ root.txtWhiteOpacity = '#rgba(255,255,255,0.8)'
 root.txtWhiteLittleOpacity = '#rgba(255,255,255,0.6)'
 root.txtWhiteMoreOpacity = '#rgba(255,255,255,0.4)'
 
+root.parentOpacity0 = '#rgba(255,255,255,0)'
 root.bgColor = '#FFFFFF'
 root.bgWhite = '#FFFFFF'
 root.bgBlack = '#000000'

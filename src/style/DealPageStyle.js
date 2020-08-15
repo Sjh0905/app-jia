@@ -136,6 +136,18 @@ const styles = StyleSheet.create({
         flex: 1,
         // backgroundColor: 'yellow'
     },
+    modalDropdownBox:{
+        marginVertical:9,
+        height: getWidth(50),
+        // backgroundColor:'red'
+    },
+    dropdownImg:{
+        position:'absolute',
+        top:11,
+        right:10,
+        width:10,
+        height:7
+    },
     iptBox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -148,6 +160,14 @@ const styles = StyleSheet.create({
         borderColor: StyleConfigs.borderC8CFD5,
         overflow:'hidden',
         marginBottom:getHeight(6)
+    },
+    iptDisabled:{
+        paddingLeft:10,
+        backgroundColor:StyleConfigs.btnDisabled,
+        alignItems:'center',
+    },
+    iptDisabledTxt:{
+        color:StyleConfigs.txtWhite,
     },
     ipt: {
         padding:0,

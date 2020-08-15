@@ -1295,7 +1295,10 @@ class DealItem extends RNComponent {
     @observable    scrollClickFlag = true;
     @observable    priceStyle = {};
     @observable    amountStyle = {};
+    @observable    dropdownShow = false;
+    @observable    dropdownIndex = 0;//0限价单 1市价单
 
+    dealTypeTextArr = ['限价单','市价单']
     depthShowTypeObj = {'depth':'默认', 'buy':'买盘', 'sell':'卖盘'}
 
     clearInput = (flag,price) => {
@@ -2365,7 +2368,7 @@ class DealItem extends RNComponent {
             //交易买卖页面
             <View style={[styles.container2,{height:PlatformOS === 'ios'?(this.dealPageHeight || 'auto'):'auto',marginBottom:getHeight(15)}]}>
 
-                <View style={styles.halfBox1}>
+                <View style={[styles.halfBox1,this.dropdownIndex == 1 && {marginBottom:getDealHeight(24)} || null]}>
                     {/*切换买入卖出*/}
                     <View style={styles.changeDealTypeBox}>
                         <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.props.changeDealType}>
@@ -2386,63 +2389,95 @@ class DealItem extends RNComponent {
                     {/*切换买入卖出end*/}
 
                     {/*委托类型*/}
-                    <ModalDropdown
-                        {...DealPageDropDownStyle}
-                        options={['限价委托','市价委托(敬请期待)','止盈止损(敬请期待)']}
-                        defaultIndex={0}
-                        defaultValue={'限价委托'}
-                        onSelect={()=>false}
-                        renderSeparator={()=><View style={{width:200,height:0.5,backgroundColor:StyleConfigs.bgColor}}/>}
-                    />
+                    <View style={styles.modalDropdownBox}>
+                        {this.dropdownShow &&
+                            <Image source={triangleUp} style={styles.dropdownImg}/>
+                            ||
+                            <Image source={triangleDown} style={styles.dropdownImg}/>
+                        }
+                        <ModalDropdown
+                            {...DealPageDropDownStyle}
+                            animated={false}
+                            options={this.dealTypeTextArr}
+                            defaultIndex={0}
+                            defaultValue={this.dealTypeTextArr[0]}
+                            onDropdownWillShow={(d)=>{
+                                this.dropdownShow = true
+                                // console.log('this is DealPage onDropdownWillShow',);
+                            }}
+                            onDropdownWillHide={(d)=>{
+                                this.dropdownShow = false
+                                // console.log('this is DealPage onDropdownWillHide',);
+                            }}
+                            onSelect={(inx,val)=>{
+                                this.dropdownIndex = inx;
+                                console.log('this is DealPage onSelect',inx,val,'this.dropdownIndex',this.dropdownIndex);
+                            }}
+                            renderSeparator={()=><View style={{width:200,height:0.5,backgroundColor:StyleConfigs.bgColor}}/>}
+                        />
+                    </View>
                     {/*委托类型*/}
 
                     {/*<View style={{marginVertical:getDealHeight(20)}}><Text allowFontScaling={false}*/}
                                                                        {/*style={{fontSize: StyleConfigs.fontSize13, color: StyleConfigs.txt172A4D}}>限价单</Text></View>*/}
-                    <View style={[styles.iptBox]}>
-                        <TextInput
-                            allowFontScaling={false}
-                            ref={'ipt'}
-                            style={styles.ipt}
-                            placeholder={this.placeholderPrice}
-                            placeholderTextColor={StyleConfigs.txt6B7DA2}
-                            underlineColorAndroid={'transparent'}
-                            keyboardType="numeric"
-                            returnKeyType={'done'}
-                            onChangeText={(text) => {
+                    {/*限价价格框*/}
+                    {this.dropdownIndex == 0 &&
+                        <View style={[styles.iptBox]}>
+                            <TextInput
+                                allowFontScaling={false}
+                                ref={'ipt'}
+                                style={styles.ipt}
+                                placeholder={this.placeholderPrice}
+                                placeholderTextColor={StyleConfigs.txt6B7DA2}
+                                underlineColorAndroid={'transparent'}
+                                keyboardType="numeric"
+                                returnKeyType={'done'}
+                                onChangeText={(text) => {
 
-                                this.price = text;
-                                this.verifyPrice();
+                                    this.price = text;
+                                    this.verifyPrice();
 
-                            }}
+                                }}
 
-                            value={this.price}
+                                value={this.price}
 
-                        />
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            onPress={() => {
-                                this.calcuStep('price', 'minus')
+                            />
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                onPress={() => {
+                                    this.calcuStep('price', 'minus')
 
-                            }}
-                            style={[styles.imgBox,styles.imgBoxJianHao]}
-                        >
-                            <Image source={require('../assets/Deal/jianhao.png')} style={styles.img}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={StyleConfigs.activeOpacity}
-                            onPress={() => {
-                                this.calcuStep('price', 'add');
-                            }}
-                            style={[styles.imgBox,styles.imgBoxJiaHao]}
-                        >
-                            <View style={styles.imgBoxLine}/>
-                            <Image source={require('../assets/Deal/jiahao.png')} style={styles.img}/>
-                        </TouchableOpacity>
-                    </View>
-
-
+                                }}
+                                style={[styles.imgBox,styles.imgBoxJianHao]}
+                            >
+                                <Image source={require('../assets/Deal/jianhao.png')} style={styles.img}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                onPress={() => {
+                                    this.calcuStep('price', 'add');
+                                }}
+                                style={[styles.imgBox,styles.imgBoxJiaHao]}
+                            >
+                                <View style={styles.imgBoxLine}/>
+                                <Image source={require('../assets/Deal/jiahao.png')} style={styles.img}/>
+                            </TouchableOpacity>
+                        </View>
+                        ||
+                        null
+                    }
+                    {/*市价价格框*/}
                     {
-                        (this.priceFlag && this.priceNowFlag) &&
+                        this.dropdownIndex == 1 &&
+                        <View style={[styles.iptBox,styles.iptDisabled]}>
+                            <Text style={styles.iptDisabledTxt}>{'以市场最优价'+this.oper}</Text>
+                        </View>
+                        ||
+                        null
+                    }
+                    {/*限价估值*/}
+                    {
+                        (this.dropdownIndex == 0 && this.priceFlag && this.priceNowFlag) &&
                         <View style={{
                             flexDirection: 'row',
                             justifyContent: 'space-between',
@@ -2462,7 +2497,10 @@ class DealItem extends RNComponent {
                             marginBottom:getDealHeight(30),
                             // marginVertical:getDealHeight(15),
                         }}>
+                            {this.dropdownIndex == 0 &&
                             <Text allowFontScaling={false} style={{'color': StyleConfigs.txtRed,fontSize:StyleConfigs.fontSize12}}>{this.priceCont}</Text>
+                            || null
+                            }
                         </View>
 
                     }
@@ -2968,7 +3006,8 @@ class DealItem extends RNComponent {
                                 amountFlag:this.amountFlag,amountSellFlag:this.amountSellFlag,amountCont:this.amountCont,transFlag:this.transFlag,
                                 transCont:this.transCont,transAmount:this.transAmount,tradeFlag:this.tradeFlag,oper:this.oper,newPrice:this.newPrice,
                                 sellOrders:this.sellOrders.sellOrders,buyOrders:this.buyOrders.buyOrders,symbol:this.symbol,marketUseRate:this.marketUseRate,tradeLObj:this.tradeLObj,
-                                getCurrAsset:this.getCurrAsset,priceNow:this.priceNow,marketPriceMerge:this.marketPriceMerge,isLoading:this.isLoading
+                                getCurrAsset:this.getCurrAsset,priceNow:this.priceNow,marketPriceMerge:this.marketPriceMerge,isLoading:this.isLoading,dropdownShow:this.dropdownShow,
+                                dropdownIndex:this.dropdownIndex
                             }],key:'dealPage'},
                         {data:[{data:d}],key:'allDealData'}
                     ]}
