@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
     },
     statusText: {
-        marginRight:getWidth(15),
+        marginRight:getWidth(8),
         fontSize: 12,
         color: StyleConfigs.txtA2B5D9,
     },

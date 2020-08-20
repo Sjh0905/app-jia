@@ -307,26 +307,48 @@ export default class GestureUnlock extends RNComponent {
                     {/*</View>*/}
 
                     {/*使用TT支付手续费*/}
-                    <View style={[styles.itemBox,styles.itemBox2, styles.boxPadding]}>
+                    {/*<View style={[styles.itemBox,styles.itemBox2, styles.boxPadding]}>*/}
+                        {/*<View style={[styles.itemLeft]}>*/}
+                            {/*<Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>使用TT支付手续费</Text>*/}
+                            {/*<Text style={[styles.descText]}>设置TT抵扣手续费，享受抵扣优惠</Text>*/}
+                        {/*</View>*/}
+                        {/*<View style={[styles.itemRight]}>*/}
+                            {/*{*/}
+                                {/*this.BDBInfo ?*/}
+                                {/*<Text  allowFontScaling={false} style={[styles.statusText, baseStyles.textBlue]}>已开启</Text>*/}
+                                {/*:*/}
+                                {/*<Text  allowFontScaling={false} style={[styles.statusText]}>已关闭</Text>*/}
+                            {/*}*/}
+
+                            {/*<Switch*/}
+                                {/*value={this.BDBInfo}*/}
+                                {/*onValueChange={this.BDBFeeChange}*/}
+                                {/*circleBorderWidth={0}*/}
+                                {/*backgroundActive={StyleConfigs.btnBlue}*/}
+                                {/*backgroundInactive={StyleConfigs.borderC5CFD5}*/}
+                                {/*circleSize={20}*/}
+                            {/*/>*/}
+                        {/*</View>*/}
+
+                    {/*</View>*/}
+
+                    {/*TT锁仓返现手续费*/}
+                    <View style={[styles.itemBox,styles.itemBox2, styles.boxPadding,{height: getHeight(158),paddingBottom: getHeight(30),}]}>
                         <View style={[styles.itemLeft]}>
-                            <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>使用TT支付手续费</Text>
-                            <Text style={[styles.descText]}>设置TT抵扣手续费，享受抵扣优惠</Text>
+                            <Text  allowFontScaling={false} style={[baseStyles.textColor, styles.iconText]}>TT锁仓返现手续费</Text>
+                            <Text style={[styles.descText,{fontSize:12}]}>参与TT锁仓分红，同时享受非挖矿区</Text>
+                            <Text style={[styles.descText,{fontSize:12,marginTop:PlatformOS == 'android' && getHeight(4) || getHeight(8)}]}>交易手续费月度返现</Text>
                         </View>
                         <View style={[styles.itemRight]}>
-                            {
-                                this.BDBInfo ?
-                                <Text  allowFontScaling={false} style={[styles.statusText, baseStyles.textBlue]}>已开启</Text>
-                                :
-                                <Text  allowFontScaling={false} style={[styles.statusText]}>已关闭</Text>
-                            }
-
+                            <Text  allowFontScaling={false} style={[styles.statusText,{fontSize:12}]}>已关闭</Text>
                             <Switch
-                                value={this.BDBInfo}
-                                onValueChange={this.BDBFeeChange}
+                                value={false}
+                                disabled={true}
+                                onValueChange={()=>false}
                                 circleBorderWidth={0}
                                 backgroundActive={StyleConfigs.btnBlue}
                                 backgroundInactive={StyleConfigs.borderC5CFD5}
-                                circleSize={20}
+                                circleSize={15}
                             />
                         </View>
 
