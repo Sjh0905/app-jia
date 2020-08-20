@@ -2,7 +2,7 @@ import {Platform} from 'react-native';
 
 const version = {
     ios: '1.0.14',
-    android: '1.0.14'
+    android: '1.0.15'
 }
 
 const root = {
