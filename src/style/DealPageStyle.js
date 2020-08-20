@@ -141,6 +141,17 @@ const styles = StyleSheet.create({
         height: getWidth(50),
         // backgroundColor:'red'
     },
+    noDropdownText:{
+        marginVertical:9,
+        height: getWidth(50),
+        padding: 5,
+        paddingLeft:10,
+        includeFontPadding: false,
+        textAlignVertical: 'center',
+        fontSize: StyleConfigs.fontSize13,
+        color: StyleConfigs.txt172A4D,
+        fontWeight:'500',
+    },
     dropdownImg:{
         position:'absolute',
         top:11,

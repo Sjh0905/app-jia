@@ -1274,6 +1274,9 @@ class DealItem extends RNComponent {
         return this.$store.state.symbol.split('_')[0]
     }
 
+    @computed get pholderMarketTransIptSymbol() {
+        return this.$store.state.symbol.split('_')[1]
+    }
 
     @observable    price = this.priceNow.price && this.marketUseRate && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, this.tradeLObj.quoteScale || 8)
     // @observable    price = ''
@@ -1287,6 +1290,10 @@ class DealItem extends RNComponent {
     @observable    transFlag = true
     @observable    transCont = ''
     @observable    transAmount = 0
+    @observable    marketTransIpt = ''
+    @observable    marketTransIptFlag = true
+    @observable    marketTransIptCont = ''
+
     @observable    tradeFlag = false
     @observable    oper = this.props.type && '卖出 ' || '买入 '
     @observable    isLoading = true;
@@ -1299,6 +1306,17 @@ class DealItem extends RNComponent {
     @observable    dropdownIndex = 0;//0限价单 1市价单
 
     dealTypeTextArr = ['限价单','市价单']
+    //KK不做市价，暂时先放进来，symbol里的交易额不能低于1，其他不能低于10
+    marketTransMin = {
+        symbol: ['TT_USDT','KK_USDT'],
+        num:[1,10]
+    };
+    //二维数组第一层 0限价 1市价，第二层 0买入 1卖出
+    dealTypeMap = [
+        ['BUY_LIMIT','SELL_LIMIT'],
+        ['BUY_MARKET','SELL_MARKET']
+    ]
+    noMarketSymbol = ['KK_USDT']//没有市价单功能的币对
     depthShowTypeObj = {'depth':'默认', 'buy':'买盘', 'sell':'卖盘'}
 
     clearInput = (flag,price) => {
@@ -1306,13 +1324,16 @@ class DealItem extends RNComponent {
             // this.price = this.priceNow.price && this.marketUseRate && (this.priceNow.price * this.marketUseRate) && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, 2) || ''
             price > 0 && (this.price = price + '')
             this.amount = '';
+            this.marketTransIpt = ''
             this.priceCont = '';
             this.amountCont = '';
+            this.marketTransIptCont = '';
 
             this.priceFlag = true;
             this.priceNowFlag = true;
             this.amountFlag = true;
             this.amountSellFlag = false;
+            this.marketTransIptFlag = true
             this.transFlag = true;
             this.tradeFlag = false;
             this.transCont = '';
@@ -1320,6 +1341,11 @@ class DealItem extends RNComponent {
 
             Keyboard.dismiss();
 
+        }
+
+        if(this.noMarketSymbol.includes(this.symbol)){
+            console.log('this is symbol',this.symbol);
+            this.dropdownIndex = 0;//只有限价单的初始化为限价单
         }
 
         // let that = this;
@@ -1336,6 +1362,91 @@ class DealItem extends RNComponent {
         this.secScrollToLocation();
     }
 
+    //市价单买入下单
+    marketTradeOrder = async() => {
+        let text = this.marketTransIpt, tp = this.tradeLObj;
+        let tl = text.length, zp = text.indexOf('.'),sp = text.indexOf(' '),plus = text.indexOf('+');
+
+        let isOneSymbol = this.marketTransMin.symbol.includes(this.symbol)
+        let num = this.marketTransMin.num
+        let available = this.getCurrAsset.available || '0';
+
+        if (isNaN(text) || zp == 0 || text.indexOf('.', zp + 1) > -1 || text[text.length - 1] == '.' || sp>-1 || plus>-1) {
+            Alert.alert("提示", "请输入正确的交易额", [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        if (text.length > 1 && text[0] == '0' && text[1] != '.') {
+            Alert.alert("提示", "请输入正确的交易额", [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        if (zp > 0 && (tl - (zp + 1) - (tp.quoteScale || 8)) > 0) {
+            Alert.alert("提示", '交易额小数点后不能超过' + (tp.quoteScale || 8) + '位', [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        // console.log('************tp.quoteMinimum**********',tp.quoteMinimum);
+        // console.log('************最小金额******************',tp.quoteScale);
+
+        if (text != '' && isOneSymbol && Number(text) < num[0]) {
+            Alert.alert("提示", '交易额不能低于' + num[0], [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        if (text != '' && !isOneSymbol && Number(text) < num[1]) {
+            Alert.alert("提示", '交易额不能低于' + num[1], [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        if (text != '' && Number(text) > Number(available)) {
+            Alert.alert("提示", '您的余额不足,请充值', [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return;
+        }
+
+        let params = {
+            symbol: this.$store.state.symbol,
+            price: this.marketTransIpt,
+            amount: 0,
+            type: this.dealTypeMap[this.dropdownIndex][this.props.type],
+            source :'iOS'
+            // type: this.props.type,
+            // customFeatures: this.fee ? 65536 : 0
+        }
+
+        if (this.$store.state.feeBdbState) {
+            Object.assign(params, {customFeatures: 65536});
+        }
+
+        this.tradeFlag = true;
+        this.oper = '委托中';
+        console.log('trade_params====',params)
+        this.$http.send('TRADE_ORDERS',
+            {
+                bind: this,
+                timeout:3000,
+                params: params,
+                callBack: this.Callback,
+                errorHandler: this.RE_ERROR,
+                timeoutHandler:this.timeoutHandler
+            }
+        )
+
+    }
+
+    //市价卖出+限价单下单
     tradeOrder = async() => {
 
         // Alert.alert("提示", "已是最新版本--", [
@@ -1383,8 +1494,14 @@ class DealItem extends RNComponent {
             return
         }
 
-        //如果选择的是市价，price直接取当前最新价格
+        //如果选择的是市价
         if(this.dropdownIndex == 1){
+            if(!this.props.type){//如果是买入，调用marketTradeOrder，并中断此方法
+                this.marketTradeOrder()
+                return
+            }
+
+            //如果是卖出，APP price赋值时价，为了方便走验证逻辑，web赋值是0
             this.price = this.priceNow.price && this.marketUseRate && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, this.tradeLObj.quoteScale || 8);
         }
 
@@ -1613,17 +1730,12 @@ class DealItem extends RNComponent {
 
         }
 
-        //二维数组第一层 0限价 1市价，第二层 0买入 1卖出
-        let dealTypeMap = [
-            ['BUY_LIMIT','SELL_LIMIT'],
-            ['BUY_MARKET','SELL_MARKET']
-        ]
 
         let params = {
             symbol: this.$store.state.symbol,
             price: this.price,
             amount: this.amount,
-            type: dealTypeMap[this.dropdownIndex][this.props.type],
+            type: this.dealTypeMap[this.dropdownIndex][this.props.type],
             source :'iOS'
             // type: this.props.type,
             // customFeatures: this.fee ? 65536 : 0
@@ -1663,6 +1775,7 @@ class DealItem extends RNComponent {
         this.notify({key: 'RE_ACCOUNTS'})
         this.price = this.priceNow.price && this.marketUseRate && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, this.tradeLObj.quoteScale || 8);
         this.amount = '';
+        this.marketTransIpt = ''
         this.transAmount = '';
         this.tradeFlag = false;
         this.priceNowFlag = true;
@@ -1978,9 +2091,21 @@ class DealItem extends RNComponent {
 
     //按百分比计算买入卖出金额
     calculate = (point) => {
-        var myAsset = this.getCurrAsset.available;
+        var myAsset = this.getCurrAsset.available,tp = this.tradeLObj;
         console.log('=====================', myAsset);
         if ((Number(myAsset) !=0 && !Number(myAsset)) || Number(myAsset) < 0) return;
+
+        //如果选择的是市价
+        if(this.dropdownIndex == 1){
+            if(!this.props.type){//如果是买入
+                this.marketTransIpt = this.$globalFunc.accMul(myAsset, point);
+                this.marketTransIpt = this.$globalFunc.accFixed(this.marketTransIpt, tp.quoteScale || 0);//精度处理
+                this.verifyMarketTransIpt();
+                return
+            }
+            //如果是卖出，APP price赋值时价，为了方便走验证逻辑，web赋值是0
+            this.price = this.priceNow.price && this.marketUseRate && this.$globalFunc.accFixed2((this.priceNow.price * this.marketUseRate) || 0, this.tradeLObj.quoteScale || 8);
+        }
 
         let plus = this.price.indexOf('+');
 
@@ -1997,11 +2122,11 @@ class DealItem extends RNComponent {
             this.amount = this.$globalFunc.accMul(myAsset, point);
         }
 
-        var tp = this.tradeLObj;
         this.amount = this.$globalFunc.accFixed(this.amount, tp.baseScale || 0);//精度处理
         this.verifyAmount();
 
-        if(this.priceFlag && this.amountFlag)
+        //限价单需要继续计算交易额
+        if(this.dropdownIndex == 0 && this.priceFlag && this.amountFlag)
             this.transactionAmount(tp);
     }
 
@@ -2184,6 +2309,7 @@ class DealItem extends RNComponent {
 
 
         this.priceFlag = true;
+        //限价单需要继续计算交易额
         if(this.dropdownIndex == 0 && this.priceFlag && this.amountFlag)
             this.transactionAmount(tp);
 
@@ -2283,9 +2409,71 @@ class DealItem extends RNComponent {
 
 
         this.amountFlag = true;
+        //限价单需要继续计算交易额
         if(this.dropdownIndex == 0 && this.priceFlag && this.amountFlag)
             this.transactionAmount(tp);
 
+    }
+
+    //验证市价买入交易额限制
+    verifyMarketTransIpt = () => {
+        let text = this.marketTransIpt, tp = this.tradeLObj;
+        let tl = text.length, zp = text.indexOf('.'),sp = text.indexOf(' '),plus = text.indexOf('+');
+        this.marketTransIptCont = ''
+        this.marketTransIptFlag = true
+
+        let isOneSymbol = this.marketTransMin.symbol.includes(this.symbol)
+        let num = this.marketTransMin.num
+        let available = this.getCurrAsset.available || '0';
+
+        if (isNaN(text) || zp == 0 || text.indexOf('.', zp + 1) > -1 || text[text.length - 1] == '.' || sp>-1 || plus>-1) {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '请输入正确的交易额';
+            return;
+        }
+
+        if (text.length > 1 && text[0] == '0' && text[1] != '.') {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '请输入正确的交易额';
+            return;
+        }
+
+        if (zp > 0 && (tl - (zp + 1) - (tp.quoteScale || 8)) > 0) {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '交易额小数点后不能超过' + (tp.quoteScale || 8) + '位';
+            return;
+        }
+
+        // if (!tp.quoteMinimum || tp.quoteScale < 0)
+        //     return;
+
+        // console.log('************tp.quoteMinimum**********',tp.quoteMinimum);
+        // console.log('************最小金额******************',tp.quoteScale);
+
+        if (text != '' && isOneSymbol && Number(text) < num[0]) {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '交易额不能低于' + num[0] ;
+            return;
+        }
+
+        if (text != '' && !isOneSymbol && Number(text) < num[1]) {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '交易额不能低于' + num[1] ;
+            return;
+        }
+
+        if (text != '' && Number(text) > Number(available)) {
+            this.marketTransIptFlag = false;
+            this.marketTransIptCont = '您的余额不足,请充值' ;
+            return;
+        }
+
+        // if(!this.props.type && text === ''){
+        //     this.transCont = '';
+        //     this.transFlag = true;
+        // }
+
+        this.marketTransIptFlag = true;
     }
 
     checkTimeAndPos = (obj)=>{
@@ -2398,33 +2586,37 @@ class DealItem extends RNComponent {
                     {/*切换买入卖出end*/}
 
                     {/*委托类型*/}
-                    <View style={styles.modalDropdownBox}>
-                        {this.dropdownShow &&
-                            <Image source={triangleUp} style={styles.dropdownImg}/>
-                            ||
-                            <Image source={triangleDown} style={styles.dropdownImg}/>
-                        }
-                        <ModalDropdown
-                            {...DealPageDropDownStyle}
-                            animated={false}
-                            options={this.dealTypeTextArr}
-                            defaultIndex={0}
-                            defaultValue={this.dealTypeTextArr[0]}
-                            onDropdownWillShow={(d)=>{
-                                this.dropdownShow = true
-                                // console.log('this is DealPage onDropdownWillShow',);
-                            }}
-                            onDropdownWillHide={(d)=>{
-                                this.dropdownShow = false
-                                // console.log('this is DealPage onDropdownWillHide',);
-                            }}
-                            onSelect={(inx,val)=>{
-                                this.dropdownIndex = inx;
-                                console.log('this is DealPage onSelect',inx,val,'this.dropdownIndex',this.dropdownIndex);
-                            }}
-                            renderSeparator={()=><View style={{width:200,height:0.5,backgroundColor:StyleConfigs.bgColor}}/>}
-                        />
-                    </View>
+                    {this.noMarketSymbol.includes(this.symbol) &&
+                        <Text style={styles.noDropdownText}>{this.dealTypeTextArr[0]}</Text>
+                        ||
+                        <View style={styles.modalDropdownBox}>
+                            {this.dropdownShow &&
+                                <Image source={triangleUp} style={styles.dropdownImg}/>
+                                ||
+                                <Image source={triangleDown} style={styles.dropdownImg}/>
+                            }
+                            <ModalDropdown
+                                {...DealPageDropDownStyle}
+                                animated={false}
+                                options={this.dealTypeTextArr}
+                                defaultIndex={0}
+                                defaultValue={this.dealTypeTextArr[0]}
+                                onDropdownWillShow={(d)=>{
+                                    this.dropdownShow = true
+                                    // console.log('this is DealPage onDropdownWillShow',);
+                                }}
+                                onDropdownWillHide={(d)=>{
+                                    this.dropdownShow = false
+                                    // console.log('this is DealPage onDropdownWillHide',);
+                                }}
+                                onSelect={(inx,val)=>{
+                                    this.dropdownIndex = inx;
+                                    console.log('this is DealPage onSelect',inx,val,'this.dropdownIndex',this.dropdownIndex);
+                                }}
+                                renderSeparator={()=><View style={{width:200,height:0.5,backgroundColor:StyleConfigs.bgColor}}/>}
+                            />
+                        </View>
+                    }
                     {/*委托类型*/}
 
                     {/*<View style={{marginVertical:getDealHeight(20)}}><Text allowFontScaling={false}*/}
@@ -2514,48 +2706,54 @@ class DealItem extends RNComponent {
                         </View>
 
                     }
-                    <View style={styles.iptBox}>
-                        {/*<TouchableOpacity*/}
-                            {/*activeOpacity={StyleConfigs.activeOpacity}*/}
-                            {/*onPress={() => {*/}
-                                {/*this.calcuStep('amount', 'minus');*/}
-                            {/*}}*/}
-                            {/*style={styles.imgBox}*/}
-                        {/*>*/}
-                            {/*<Image source={require('../assets/Deal/jianhao.png')} style={styles.img}></Image>*/}
-                        {/*</TouchableOpacity>*/}
-                        <TextInput
-                            allowFontScaling={false}
 
-                            style={styles.ipt}
-                            placeholder={this.placeholderAmount}
-                            placeholderTextColor={StyleConfigs.txt6B7DA2}
-                            underlineColorAndroid={'transparent'}
-                            keyboardType={"numeric"}
-                            returnKeyType={'done'}
+                    {/*市价买入交易额*/}
+                    {(this.dropdownIndex == 1 && !this.props.type) &&
+                        <View style={styles.iptBox}>
+                            <TextInput
+                                allowFontScaling={false}
+                                style={styles.ipt}
+                                placeholder={'交易额'}
+                                placeholderTextColor={StyleConfigs.txt6B7DA2}
+                                underlineColorAndroid={'transparent'}
+                                keyboardType={"numeric"}
+                                returnKeyType={'done'}
 
-                            onChangeText={(text) => {
-                                this.amount = text;
-                                this.verifyAmount();
-                            }}
+                                onChangeText={(text) => {
+                                    this.marketTransIpt = text;
+                                    this.verifyMarketTransIpt();
+                                }}
 
-                            value={this.amount}
-                        />
-                        <Text style={styles.iptUnit}>{this.placeholderAmountSymbol}</Text>
-                        {/*<TouchableOpacity*/}
-                            {/*activeOpacity={StyleConfigs.activeOpacity}*/}
-                            {/*onPress={() => {*/}
-                                {/*this.calcuStep('amount', 'add');*/}
-                            {/*}}*/}
-                            {/*style={styles.imgBox}*/}
-                        {/*>*/}
-                            {/*<Image source={require('../assets/Deal/jiahao.png')} style={styles.img}></Image>*/}
-                        {/*</TouchableOpacity>*/}
-                    </View>
+                                value={this.marketTransIpt}
+                            />
+                            <Text style={styles.iptUnit}>{this.pholderMarketTransIptSymbol}</Text>
+                        </View>
+                        ||
+                        <View style={styles.iptBox}>
+                            <TextInput
+                                allowFontScaling={false}
 
+                                style={styles.ipt}
+                                placeholder={this.placeholderAmount}
+                                placeholderTextColor={StyleConfigs.txt6B7DA2}
+                                underlineColorAndroid={'transparent'}
+                                keyboardType={"numeric"}
+                                returnKeyType={'done'}
 
+                                onChangeText={(text) => {
+                                    this.amount = text;
+                                    this.verifyAmount();
+                                }}
+
+                                value={this.amount}
+                            />
+                            <Text style={styles.iptUnit}>{this.placeholderAmountSymbol}</Text>
+                        </View>
+                    }
+
+                    {/*市价卖出+限价单数量判断显示*/}
                     {
-                        (this.amountFlag || this.amountSellFlag) &&
+                        !(this.dropdownIndex == 1 && !this.props.type) && (this.amountFlag || this.amountSellFlag) &&
                         <View style={{
                             flexDirection: 'row',
                             // justifyContent: 'space-between',
@@ -2567,7 +2765,7 @@ class DealItem extends RNComponent {
                                 {(this.$store.state.authMessage.userId && this.getCurrAsset.available || '0') + ' ' + (this.props.type && this.symbol.split('_')[0] || this.symbol.split('_')[1])}
                             </Text>
                         </View>
-                        ||
+                        || !(this.dropdownIndex == 1 && !this.props.type) &&
                         <View style={{
                             // height:getDealHeight(70),
                             flexDirection: 'row',
@@ -2578,7 +2776,35 @@ class DealItem extends RNComponent {
                         }}>
                             <Text allowFontScaling={false} style={{'color': StyleConfigs.txtRed,fontSize:StyleConfigs.fontSize12}}>{this.amountCont}</Text>
                         </View>
+                        || null
+                    }
 
+                    {/*市价买入交易额判断显示*/}
+                    {
+                        (this.dropdownIndex == 1 && !this.props.type) && this.marketTransIptFlag &&
+                        <View style={{
+                            flexDirection: 'row',
+                            // justifyContent: 'space-between',
+                            marginTop:getDealHeight(4),
+                            marginBottom:getDealHeight(28)
+                        }}>
+                            <Text allowFontScaling={false} style={[styles.color6B7DA2, styles.size12]}>可用</Text>
+                            <Text allowFontScaling={false} style={[styles.color6B7DA2, styles.size12]}>
+                                {(this.$store.state.authMessage.userId && this.getCurrAsset.available || '0') + ' ' + (this.props.type && this.symbol.split('_')[0] || this.symbol.split('_')[1])}
+                            </Text>
+                        </View>
+                        || (this.dropdownIndex == 1 && !this.props.type) &&
+                        <View style={{
+                            // height:getDealHeight(70),
+                            flexDirection: 'row',
+                            marginTop:getDealHeight(4),
+                            marginBottom:getDealHeight(28),
+                            // paddingTop:(getDeviceTop() != 0) && getDealHeight(20) || getDealHeight(18),
+                            // paddingBottom:(getDeviceTop() != 0) && getDealHeight(24.5) || getDealHeight(23)
+                        }}>
+                            <Text allowFontScaling={false} style={{'color': StyleConfigs.txtRed,fontSize:StyleConfigs.fontSize12}}>{this.marketTransIptCont}</Text>
+                        </View>
+                        || null
                     }
 
 
@@ -2629,7 +2855,7 @@ class DealItem extends RNComponent {
                     }
 
 
-                    {/*交易额*/}
+                    {/*限价交易额*/}
                     {
                         (this.dropdownIndex == 0 && !this.transAmount) &&
                         <View style={styles.totalMoney}>
@@ -2650,7 +2876,7 @@ class DealItem extends RNComponent {
                         <View style={styles.totalMoney}/>
 
                         }
-                    {/*交易额结束*/}
+                    {/*限价交易额结束*/}
 
 
                     {/*买入卖出按钮*/}
@@ -3019,7 +3245,7 @@ class DealItem extends RNComponent {
                                 transCont:this.transCont,transAmount:this.transAmount,tradeFlag:this.tradeFlag,oper:this.oper,newPrice:this.newPrice,
                                 sellOrders:this.sellOrders.sellOrders,buyOrders:this.buyOrders.buyOrders,symbol:this.symbol,marketUseRate:this.marketUseRate,tradeLObj:this.tradeLObj,
                                 getCurrAsset:this.getCurrAsset,priceNow:this.priceNow,marketPriceMerge:this.marketPriceMerge,isLoading:this.isLoading,dropdownShow:this.dropdownShow,
-                                dropdownIndex:this.dropdownIndex
+                                dropdownIndex:this.dropdownIndex,marketTransIpt:this.marketTransIpt,marketTransIptFlag:this.marketTransIptFlag,marketTransIptCont:this.marketTransIptCont,
                             }],key:'dealPage'},
                         {data:[{data:d}],key:'allDealData'}
                     ]}
