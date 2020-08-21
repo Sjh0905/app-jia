@@ -114,7 +114,7 @@ export default class AssetRecords extends RNComponent {
                     renderTabBar={() =>
                         <BaseDefaultBar
                         tabLabels={['充币','提币','划转','转账','挖矿','奖励','基金','热度']}
-                        tabUnderlineWidth={[getWidth(50),getWidth(50),getWidth(50),getWidth(50),getWidth(50),getWidth(50),getWidth(50),getWidth(50)]}
+                        tabUnderlineWidth={[getWidth(48),getWidth(48),getWidth(48),getWidth(48),getWidth(48),getWidth(48),getWidth(48),getWidth(48)]}
                         tabBarBackgroundColor={StyleConfigs.navBgColor0602}
                         // tabInActiveColor={'#9FA7B8'}
                         />
