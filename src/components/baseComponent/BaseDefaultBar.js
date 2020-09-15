@@ -110,6 +110,8 @@ const styles = StyleSheet.create({
         // width:'50%',
         // height:50
         // borderBottomColor:"#3576F5"
+        // backgroundColor:'#ccc',
+        fontSize:StyleConfigs.fontSize13
     },
     tabImageStyle:{
         width:getWidth(44),
