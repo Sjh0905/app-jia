@@ -1,6 +1,3 @@
-/**
- * hjx 2018.4.16
- */
 
 import React from 'react';
 import {FlatList, Image, Platform, Text, TouchableOpacity, View} from 'react-native';
@@ -16,7 +13,6 @@ import StyleConfigs from '../style/styleConfigs/StyleConfigs'
 import EmptyIcon from '../assets/BaseAssets/no-record-icon.png'
 
 const typeArr = ['recharge', 'withdrawals']
-const typeTextObj = {'recharge':'充币', 'withdrawals':'提币'}
 
 //用来判断分页距离
 const reachedThreshold = Platform.select({
@@ -25,7 +21,7 @@ const reachedThreshold = Platform.select({
 });
 
 @observer
-export default class App extends RNComponent {
+export default class CashBackRecordsItem extends RNComponent {
 
 
     static propTypes = {
@@ -40,6 +36,10 @@ export default class App extends RNComponent {
         return this.$store.state.currencyJingDU
     }
 
+    @computed get userId(){
+        return this.$store.state.authMessage.userId
+    }
+
     /*----------------------- data -------------------------*/
 
     // 加载中
@@ -48,54 +48,44 @@ export default class App extends RNComponent {
 
     lastId = 0;
 
-    // 充值记录条数
+    // 转账记录条数
+    // @observable
+    // withdrawalsLimit = 20
+
+    // withdrawalsLimitNum = 10
+
+    // 转账记录正在加载更多
+    // @observable
+    // withdrawalsLoadingMore = false
+
+    // 转账记录
+    // @observable
+    // withdrawalsRecords = []
+
+    // 转账记录请求回来了
+    // @observable
+    // withdrawalsRecordsReady = false
+
+    // 获取多少条
     @observable
-    rechargeLimit = 10
-
-    rechargeLimitNum = 10
-
-    // 充值记录正在加载更多
+    fundLimit =  10
+    //分页加载步长
     @observable
-    rechargeLoadingMore = false
-
-    // 提现记录条数
+    fundLimitNum =  10
+    //是否Fund获取ajax结果 默认为false
     @observable
-    withdrawalsLimit = 20
-
-    withdrawalsLimitNum = 10
-
-    // 提现记录正在加载更多
+    ajaxFundFlag = false
+    //转账记录
     @observable
-    withdrawalsLoadingMore = false
-
-    // 充值记录
+    fundLists = []
+    // 是否显示转账记录加载更多
     @observable
-    rechargeRecords = []
+    isShowGetMoreFund =  true
 
-    // 充值记录请求回来了
-    @observable
-    rechargeRecordsReady = false
-
-    // 提现记录
-    @observable
-    withdrawalsRecords = []
-
-    // 提现记录请求回来了
-    @observable
-    withdrawalsRecordsReady = false
-
-
-    //奖励状态
+    //转账状态
     statusObj = {
-        "DONE":"已发放",
-    }
-
-    //奖励类型
-    sourceTypeMap = {
-        "EXCHANGE":"首次交易",
-        "REALNAME":"实名认证",
-        "GROUPWAGE":"团级工资",
-        "GROUPRETCOMM":"团级返佣"
+        "SUCCESS":"成功",
+        "FAILED":"失败"
     }
 
 
@@ -109,12 +99,8 @@ export default class App extends RNComponent {
     // 挂载
     componentWillMount() {
         super.componentWillMount()
-
-        // if (this.props.type === typeArr[1]) {
-            this.getWithdrawalsRecord()
+        this.getFundList()
             // this.$event.listen({bind: this, key: 'GET_WITHDRAWALS_RECORDS', func: this.getWithdrawalsRecord})
-
-        // }
     }
 
     // 卸载
@@ -141,65 +127,73 @@ export default class App extends RNComponent {
         )
     }
 
+    // 获取内部转账记录
+    getFundList = function () {
+        if(this.ajaxFundFlag === true){
+            return;
+        }
+        this.ajaxFundFlag = true
 
-    // 获取奖励记录
-    @action
-    getWithdrawalsRecord = () => {
-        this.withdrawalsLoadingMore = true
-        console.warn('----------记录参数',{
-            rewardId:this.lastId,
-            pageSize:this.withdrawalsLimit
-        })
-
-
-        this.$http.send("INITIAL_REWARD", {
+        this.$http.send("GET_MONTH_REWARD", {
             bind: this,
-            // params: {
-            //     rewardId:this.lastId,
-            //     pageSize:this.withdrawalsLimit
-            // },
-            callBack: this.re_getWithdrawalsRecord,
-            errorHandler: this.error_getWithdrawalsRecord
+            query:{},
+            callBack: this.re_getFundList,
+            errorHandler: this.error_getFundList
         })
     }
-    // 获取记录返回
-    @action
-    re_getWithdrawalsRecord = (data) => {
-        console.log('----------记录',data)
+    // 获取内部转账记录返回，类型为{}
+    re_getFundList = function (data) {
+        // data = {
+        //   "dataMap": {
+        //   "userTransferRecordList": [
+        //   ]
+        // },
+        //   "errorCode": -44435161.791536435,
+        //   "result": "ut"
+        // }
+
+        this.ajaxFundFlag = false
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.dataMap) return
-        this.withdrawalsRecords = data.dataMap.registerInviteRewards
+        console.log('获取月度发现奖励记录', data)
+        this.fundLists = data.dataMap.lists || []
 
-        this.lastId = this.withdrawalsRecords[this.withdrawalsRecords.length-1].id || 0
-
-
-        this.withdrawalsRecordsReady = true
-        this.withdrawalsLoadingMore = false
-        // console.warn('记录返回', data)
-        this.loading = false
+        // if (this.fundLists.length < this.fundLimit){
+        //     this.isShowGetMoreFund = false
+        // } else {
+        //
+        // }
     }
     // 获取记录出错
-    @action
-    error_getWithdrawalsRecord = (err) => {
-        console.warn("获取记录出错！", err)
+    error_getFundList = function (err) {
+        console.warn("获取月度发现奖励记录！", err)
     }
 
     // 渲染footer组件
     @action
-    _withdrawalsListFooterComponent = () => {
-        if (this.withdrawalsRecords.length == 0) {
+    _fundFooterComponent = () => {
+
+        return (
+            <View style={styles.loadingMore}>
+                <Text allowFontScaling={false} style={[styles.loadingMoreText]}>已经全部加载完毕</Text>
+            </View>
+        )
+
+
+        if (this.fundLists.length == 0) {
             return null
         }
 
+
         let canLoadingMore = true
 
-        if (this.withdrawalsLimit > this.withdrawalsRecords.length) {
+        if (this.fundLists.length < this.fundLimit) {
             canLoadingMore = false
         }
 
         return (
             <View style={styles.loadingMore}>
-                {this.withdrawalsLoadingMore ?
+                {this.ajaxFundFlag ?
                     <Text allowFontScaling={false} style={[styles.loadingMoreText]}>加载中</Text>
                     :
                     canLoadingMore ?
@@ -211,30 +205,28 @@ export default class App extends RNComponent {
         )
     }
 
-    // 去奖励记录详情页
+    // 去转账记录详情页
     @action
-    goToWithdrawalsDetail = (item,sourceType) => {
+    goToFundDetail = (item,fundType) => {
+        let fundStatus = item.status == 'DONE'? '已发放' : '未达标'
 
-        let transferStatus = (this.statusObj[item.status] || "")
-
-        this.$router.push('MiningRecordsDetail', {item ,transferType:sourceType ,transferStatus})
+        this.$router.push('CashBackRecordsDetail', {item,fundType,fundStatus})
 
     }
 
-    // 奖励记录item
+    // 转账记录item
     @action
-    _renderWithdrawalsRecordsItem = ({item, index}) => {
+    _renderFundRecordsItem = ({item, index}) => {
 
-        item.currency == 'USDT2' && (item.currency = 'USDT')
+        let fundType = item.rewType == 1 ? '月度交易返现' : '月度矿源返现'
 
-        // let sourceType = item.source =='EXCHANGE'?'首次交易':'实名认证'
-        let sourceType = this.sourceTypeMap[item.source] || ''
+        item.sendTime = Number(item.sendTime)
+        if(item.currency == 'USDT2' || item.currency == 'USDT3')item.currency = 'USDT'
 
         return (
             <TouchableOpacity
                 onPress={() => {
-                    // return
-                    this.goToWithdrawalsDetail(item,sourceType)
+                    this.goToFundDetail(item,fundType)
                 }}
                 activeOpacity={StyleConfigs.activeOpacity}
             >
@@ -248,19 +240,19 @@ export default class App extends RNComponent {
                         <View style={[styles.baseColumn1,{width:'40%'}]}>
                             <Text style={styles.itemSectionTitle}>数量</Text>
                             <Text style={styles.itemSectionNum}>
-                                {this.$globalFunc.accFixed(item.amount, this.currencyJingDU[item.currency] || 3)}
+                                {this.$globalFunc.accFixed(item.amount, 4)}
                             </Text>
                         </View>
                         <View style={[styles.baseColumn2,{width:'30%'}]}>
                             <Text style={styles.itemSectionTitle}>类型</Text>
-                            <Text style={styles.itemSectionNum}>{sourceType}</Text>
+                            <Text style={styles.itemSectionNum}>{fundType}</Text>
                         </View>
                         <View style={[styles.baseColumn3,{width:'30%'}]}>
-                            <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>发放日期</Text>
+                            <Text style={[styles.itemSectionTitle,{textAlign:'right'}]}>日期</Text>
                             <Text
                                 allowFontScaling={false}
                                 style={[baseStyles.textWhite, styles.itemSectionNum,{textAlign:'right'}]}>
-                                {this.$globalFunc.formatDateUitl(item.updatedAt, 'hh:mm MM/DD')}
+                                {this.$globalFunc.formatDateUitl(item.sendTime, 'hh:mm MM/DD')}
                             </Text>
                         </View>
                     </View>
@@ -272,17 +264,17 @@ export default class App extends RNComponent {
 
     // 加载更多
     @action
-    _withdrawalsLoadingMore = () => {
-        if (!this.withdrawalsRecordsReady) return
-        if (this.withdrawalsLimit > this.withdrawalsRecords.length) return
-        this.withdrawalsLimit += this.withdrawalsLimitNum
-        this.getWithdrawalsRecord()
-        console.warn("奖励记录触底啦")
+    _fundLoadingMore = () => {
+        if (this.ajaxFundFlag) return
+        if (this.fundLists.length < this.fundLimit) return
+        this.fundLimit += this.fundLimitNum
+        this.getFundList()
+        console.warn("转账记录触底啦")
     }
 
-    // 渲染奖励记录
+    // 渲染转账记录
     @action
-    _renderWithdrawals = (records) => {
+    _renderFund = (records) => {
         // records = [
         //     {currency:100000000,amount:12012.1211,createdAt:1533532114758},
         //
@@ -292,19 +284,16 @@ export default class App extends RNComponent {
                 <FlatList
                     style={styles.container}
                     data={records}
-                    renderItem={this._renderWithdrawalsRecordsItem}
-                    ListFooterComponent={this._withdrawalsListFooterComponent}
+                    renderItem={this._renderFundRecordsItem}
+                    ListFooterComponent={this._fundFooterComponent}
                     keyExtractor={(item, index) => index.toString()}
-                    onEndReachedThreshold={reachedThreshold}
-                    onEndReached={this._withdrawalsLoadingMore}
+                    // onEndReachedThreshold={reachedThreshold}
+                    // onEndReached={this._fundLoadingMore}
                     ListEmptyComponent={this._renderEmptyComponent}
                 />
             </View>
         )
     }
-
-
-
 
     /*----------------------- 挂载 -------------------------*/
 
@@ -314,16 +303,13 @@ export default class App extends RNComponent {
         return (
             <View style={[styles.container, baseStyles.container]}>
 
-                {/*渲染奖励记录 begin*/}
                 {
-                    this._renderWithdrawals(this.withdrawalsRecords)
+                 this._renderFund(this.fundLists)
                 }
-                {/*渲染奖励记录 end*/}
-
 
                 {/*加载中*/}
                 {
-                    this.loading && <Loading leaveNav={true}/>
+                    this.ajaxFundFlag && <Loading leaveNav={true}/>
                 }
             </View>
         )

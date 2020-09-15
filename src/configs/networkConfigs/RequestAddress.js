@@ -110,6 +110,8 @@ requestAddress.GET_TKF_PAY_RECORD = {url: '/tkf/tkfPayRecord', method: 'get'}  /
 
 requestAddress.GET_WEEK_REWARD = {url: '/user/getWeekReward', method: 'get'}  //周热度奖励接口
 
+requestAddress.GET_MONTH_REWARD = {url: '/user/getMonthReward', method: 'get'}  //月度返现接口
+
 requestAddress.POST_MY_RECOMMEND = {url: '/user/myinvitees', method: 'post'} // 获取我的推荐奖励
 
 

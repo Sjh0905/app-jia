@@ -26,6 +26,7 @@ import CapitalTransferRecordsDetail from '../../components/CapitalTransferRecord
 import MiningRecordsDetail from '../../components/MiningRecordsDetail'
 import FundRecordsDetail from '../../components/FundRecordsDetail'
 import HeatRecordsDetail from '../../components/HeatRecordsDetail'
+import CashBackRecordsDetail from '../../components/CashBackRecordsDetail'
 import WebPage from '../../components/WebPage'
 import MyRecommend from '../../components/MineMyRecommend'
 import Demo from '../../components/Demo'
@@ -177,6 +178,11 @@ router.FundRecordsDetail = {
 }
 
 // 财务记录热度记录详情页
+router.CashBackRecordsDetail = {
+    screen: CashBackRecordsDetail
+}
+
+// 返现记录详情页
 router.HeatRecordsDetail = {
     screen: HeatRecordsDetail
 }
