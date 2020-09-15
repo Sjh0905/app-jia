@@ -91,6 +91,20 @@ export default class CapitalTransferRecordsItem extends RNComponent {
         "FAILED":"失败"
     }
 
+    //划转类型 映射transferTo字段 WALLET, SPOTS, MARGIN, CONTRACTS,OTC, BINANCE;
+    transferTypeMap = {
+        'OTC_WALLET': '从法币到钱包',
+        'WALLET_OTC':'从钱包到法币',
+        'BINANCE_WALLET': '从现货到钱包',
+        'WALLET_BINANCE': '从钱包到现货',
+        'SPOTS_WALLET':'从现货到钱包',
+        'WALLET_SPOTS':'从钱包到现货',
+        'MARGIN_WALLET': '从杠杆到钱包',
+        'WALLET_MARGIN': '从钱包到杠杆',
+        'CONTRACTS_WALLET' : '从合约到钱包',
+        'WALLET_CONTRACTS': '从钱包到合约',
+        'PURCHASE': '申购',
+    }
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -200,7 +214,7 @@ export default class CapitalTransferRecordsItem extends RNComponent {
         this.ajaxCapitalTransferFlag = false
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.dataMap) return
-        console.log('获取内部转账记录', data)
+        console.log('获取划转记录', data)
         this.capitalTransferLists = data.dataMap.userTransferRecordList || []
 
         // if (this.capitalTransferLists.length < this.capitalTransferLimit){
@@ -255,7 +269,8 @@ export default class CapitalTransferRecordsItem extends RNComponent {
     @action
     _renderCapitalTransferRecordsItem = ({item, index}) => {
 
-        let transferType = item.transferFrom == 'OTC' ? "从法币到钱包" : "从钱包到法币"
+        // let transferType = item.transferFrom == 'OTC' ? "从法币到钱包" : "从钱包到法币"
+        let transferType = this.transferTypeMap[item.transferTo] || ''
 
         if(item.currency == 'USDT2' || item.currency == 'USDT3')item.currency = 'USDT'
 
