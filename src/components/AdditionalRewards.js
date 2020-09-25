@@ -20,6 +20,7 @@ import EmptyIcon from '../assets/BaseAssets/no-record-icon.png'
 const reachedThreshold = Platform.select({
     ios: -0.1,
     android: 0.1
+
 });
 
 @observer
