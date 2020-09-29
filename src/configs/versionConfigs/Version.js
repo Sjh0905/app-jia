@@ -1,7 +1,7 @@
 import {Platform} from 'react-native';
 
 const version = {
-    ios: '1.0.17',
+    ios: '1.0.18',
     android: '1.0.18'//版本号不能使用global里的值，否则会闪退
 }
 
