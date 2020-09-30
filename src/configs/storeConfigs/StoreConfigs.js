@@ -44,7 +44,7 @@ store.state.baseCurrency = 'BTC'
 
 
 // 美金汇率 2019-07-25
-store.state.exchangRateDollar = 7.02
+store.state.exchangRateDollar = 6.82
 
 /**
  * 货币种类
