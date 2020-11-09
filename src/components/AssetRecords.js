@@ -13,11 +13,12 @@ import Loading from './baseComponent/Loading'
 import styles from '../style/AssetRecordsStyle'
 
 import ScrollableTabView, { ScrollableTabBar, DefaultTabBar } from 'react-native-scrollable-tab-view';
-import BaseTabView from './baseComponent/BaseTabView'
+// import BaseTabView from './baseComponent/BaseTabView'
 import AssetRecordsItem from './AssetRecordsItem'
 import RewardRecordsItem from './RewardRecordsItem'
 import StyleConfigs from "../style/styleConfigs/StyleConfigs";
-import BaseDefaultBar from './baseComponent/BaseDefaultBar'
+// import BaseDefaultBar from './baseComponent/BaseDefaultBar'
+import BaseScrollableBar from './baseComponent/BaseScrollableBar'
 import InternalTransferRecordsItem from "./InternalTransferRecordsItem";
 import CapitalTransferRecordsItem from "./CapitalTransferRecordsItem";
 import MiningRecordsItem from "./MiningRecordsItem";
@@ -113,7 +114,7 @@ export default class AssetRecords extends RNComponent {
 
                 <ScrollableTabView
                     renderTabBar={() =>
-                        <BaseDefaultBar
+                        <BaseScrollableBar
                         tabLabels={['充币','提币','划转','转账','挖矿','奖励','基金','热度','返现']}
                         tabUnderlineWidth={[getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42)]}
                         tabBarBackgroundColor={StyleConfigs.navBgColor0602}
