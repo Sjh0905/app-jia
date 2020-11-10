@@ -56,7 +56,8 @@ export default class TabBar extends Component {
                 onPress={()=>
                     this.props.goToPage(i)
                 }
-                style={[styles.tabTouch,{width:(100/this.props.tabs.length)+'%'}]}
+                // style={[styles.tabTouch,{width:(100/this.props.tabs.length)+'%'}]}
+                style={[styles.tabTouch]}
                 key={"tab" + i}
             >
                 <View style={[styles.tabItem,{marginLeft:textMarginLeft}]}>
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
         // backgroundColor:'green',
     },
     contentContainer:{
+        paddingRight:getWidth(30),
         // alignItems: "center",
         // justifyContent: "space-around",
     },
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // backgroundColor:'yellow',
         paddingLeft:getWidth(30),
-        paddingRight:getWidth(30),
+        // paddingRight:getWidth(10),
     },
     tabItem:{
         // width:,
