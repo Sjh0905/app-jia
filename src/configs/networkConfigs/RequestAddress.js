@@ -112,6 +112,8 @@ requestAddress.GET_WEEK_REWARD = {url: '/user/getWeekReward', method: 'get'}  //
 
 requestAddress.GET_MONTH_REWARD = {url: '/user/getMonthReward', method: 'get'}  //月度返现接口
 
+requestAddress.GET_PURCHASE_RECORD = {url: '/user/transfer/spot/purchaseRecord', method: 'get'}  //资金往来
+
 requestAddress.POST_MY_RECOMMEND = {url: '/user/myinvitees', method: 'post'} // 获取我的推荐奖励
 
 

@@ -25,6 +25,7 @@ import MiningRecordsItem from "./MiningRecordsItem";
 import FundRecordsItem from "./FundRecordsItem";
 import HeatRecordsItem from "./HeatRecordsItem";
 import CashBackRecordsItem from "./CashBackRecordsItem";
+import CapitalExchangeItem from "./CapitalExchangeItem";
 
 @observer
 export default class AssetRecords extends RNComponent {
@@ -115,8 +116,8 @@ export default class AssetRecords extends RNComponent {
                 <ScrollableTabView
                     renderTabBar={() =>
                         <BaseScrollableBar
-                        tabLabels={['充币','提币','划转','转账','挖矿','奖励','基金','热度','返现']}
-                        tabUnderlineWidth={[getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42)]}
+                        tabLabels={['充币','提币','划转','转账','挖矿','奖励','基金','热度','返现','资金往来']}
+                        tabUnderlineWidth={[getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(42),getWidth(84)]}
                         tabBarBackgroundColor={StyleConfigs.navBgColor0602}
                         // tabInActiveColor={'#9FA7B8'}
                         />
@@ -146,6 +147,7 @@ export default class AssetRecords extends RNComponent {
                     <FundRecordsItem tabLabel={' 基金 '} type={'fund'}/>
                     <HeatRecordsItem tabLabel={' 热度 '} type={'heat'}/>
                     <CashBackRecordsItem tabLabel={' 返现 '} type={'cashback'}/>
+                    <CapitalExchangeItem tabLabel={' 资金往来 '} type={'capitalexchange'}/>
                 </ScrollableTabView>
 
 
