@@ -34,6 +34,7 @@ import LiteFace from "./LiteFace";
 import legalCurrencyTransaction from '../assets/OneHome/legal_currency_transaction.png'
 import HomeAdMarketItem from "./HomeAdMarketItem";
 import CustomerService from '../assets/OneHome/customer_service.png'
+import HeadPortrait from '../assets/OneHome/head_portrait.png'
 import styles from '../style/OneHomeStyle'
 import moreIcon from '../assets/OneHome/more.png'
 import Modal from 'react-native-modal'
@@ -368,6 +369,35 @@ export default class OneHome extends RNComponent {
     error_getRegistrationRecord = (err) =>{
         console.log("this.re_getRegistrationRecord查询报名记录err=====",err)
     }
+
+    //因为增加热度，通过接口检查登录
+    checkLoginByApi = () => {
+
+        this.$http.send('CHECK_LOGIN_IN', {
+            bind: this,
+            callBack: this.re_checkLogin,
+            errorHandler: this.error_checkLogin
+        })
+    }
+
+    // 通过接口检查登录回调
+    re_checkLogin = (data) => {
+        typeof (data) === 'string' && (data = JSON.parse(data))
+
+        console.log('onehome checkLoginByApi',data);
+
+        if (data.result === 'FAIL' || data.errorCode) {
+            return
+        }
+
+        this.$store.commit('SET_AUTH_MESSAGE', data.dataMap.userProfile)
+        this.$store.commit('SET_HOT_VAL', data.dataMap && data.dataMap.hotVal || 0)
+
+    }
+    // 通过接口检查登录出错
+    error_checkLogin = (err) => {
+        console.warn("onehome checkLoginByApi error", err)
+    }
     
     //跳转挖矿
     goToMining = (routerName) =>{
@@ -551,6 +581,23 @@ export default class OneHome extends RNComponent {
             navHide: false,
             title: '客服中心'
         },'customerService')
+    }
+
+    @action
+    goToPersonalCenter = ()=>{
+
+        if (!this.$store.state.authMessage.userId) {
+            this.$router.push('Login')
+            return
+        }
+
+        //循环检查登录信息的代码没从HomePage拷贝过来，暂时用不到
+        this.notify({key: 'GET_AUTH_STATE'});
+        // this.notify({key:'GET_FEE_DIVIDEND'});
+        this.notify({key: 'GET_IDENTITY_INFO'});
+        this.checkLoginByApi()
+
+        this.$router.push('Mine',{goBack:true});
     }
 
 
@@ -881,6 +928,22 @@ export default class OneHome extends RNComponent {
         )
     }
 
+    // 渲染头像
+    @action
+    renderHeadPortraitIcon = () => {
+        return (
+            <TouchableOpacity
+                onPress={this.goToPersonalCenter}
+                activeOpacity={StyleConfigs.activeOpacity}
+            >
+                <Image
+                    style={styles.headPortraitIcon}
+                    source={HeadPortrait}
+                />
+            </TouchableOpacity>
+        )
+    }
+
     //关闭法币交易弹窗
     closeLegalModal = ()=>{
         this.legalModalShow = false;
@@ -900,7 +963,7 @@ export default class OneHome extends RNComponent {
 							   />
 						   </View>
 				   		}
-                       // headerRight={this.renderCustomerServiceIcon()}
+                       headerRight={this.renderHeadPortraitIcon()}
 				/>
 				{/*<View style={styles.split}></View>*/}
 				{/*bannner公告*/}

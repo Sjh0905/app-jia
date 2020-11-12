@@ -357,6 +357,11 @@ const styles = StyleSheet.create({
         width:getWidth(40),
         height:getWidth(40)
     },
+    headPortraitIcon:{
+        marginRight:getWidth(2),
+        width:getWidth(48),
+        height:getWidth(48)
+    },
     moreBox:{
         height:'100%',
         flexDirection:'row',

@@ -408,6 +408,16 @@ export default class App extends RNComponent {
                         <DealPage/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
+                        selected={this.state.selectedTab === 5}
+                        title="合约"
+                        titleStyle={styles.textStyle}
+                        selectedTitleStyle={styles.selectedStyle}
+                        renderIcon={() => <Image source={require('../assets/HomePage/home-page-futures.png')} style={styles.iconStyle} resizeMode={'contain'}/> }
+                        renderSelectedIcon={() => <Image style={styles.iconStyle} source={require('../assets/HomePage/home-page-futures-selected.png')} resizeMode={'contain'}/>}
+                        onPress={() => this.setSelected(5)}>
+                        <DealPage/>
+                    </TabNavigator.Item>
+                    <TabNavigator.Item
                         selected={this.state.selectedTab === 3}
                         title="资产"
                         titleStyle={styles.textStyle}
@@ -417,16 +427,16 @@ export default class App extends RNComponent {
                         onPress={() => this.setSelected(3)}>
                         <Asset/>
                     </TabNavigator.Item>
-                    <TabNavigator.Item
-                        selected={this.state.selectedTab === 4}
-                        title="我的"
-                        titleStyle={styles.textStyle}
-                        selectedTitleStyle={styles.selectedStyle}
-                        renderIcon={() => <Image source={require('../assets/HomePage/home-page-mine.png')} style={styles.iconStyle} resizeMode={'contain'}/> }
-                        renderSelectedIcon={() => <Image style={styles.iconStyle} source={require('../assets/HomePage/home-page-mine-selected.png')} resizeMode={'contain'}/>}
-                        onPress={() => this.setSelected(4)}>
-                        <Mine/>
-                    </TabNavigator.Item>
+                    {/*<TabNavigator.Item*/}
+                        {/*selected={this.state.selectedTab === 4}*/}
+                        {/*title="我的"*/}
+                        {/*titleStyle={styles.textStyle}*/}
+                        {/*selectedTitleStyle={styles.selectedStyle}*/}
+                        {/*renderIcon={() => <Image source={require('../assets/HomePage/home-page-mine.png')} style={styles.iconStyle} resizeMode={'contain'}/> }*/}
+                        {/*renderSelectedIcon={() => <Image style={styles.iconStyle} source={require('../assets/HomePage/home-page-mine-selected.png')} resizeMode={'contain'}/>}*/}
+                        {/*onPress={() => this.setSelected(4)}>*/}
+                        {/*<Mine/>*/}
+                    {/*</TabNavigator.Item>*/}
                 </TabNavigator>
             </View>
         )
