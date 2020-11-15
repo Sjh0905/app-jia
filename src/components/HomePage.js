@@ -33,6 +33,8 @@ import env from "../configs/environmentConfigs/env";
 import MyRecommend from "./MineMyRecommend";
 import WebPage from './WebPage.js'
 import DealPage from "./DealPage";
+import FuturesWebPage from "./FuturesWebPage";
+
 // 首页图标
 const icon = [require("../assets/HomePage/home-page-home.png"), require("../assets/HomePage/home-page-market.png"), require("../assets/HomePage/home-page-trade.png"), require("../assets/HomePage/home-page-assets.png"), require("../assets/HomePage/home-page-mine.png")]
 const selectedIcon = [require("../assets/HomePage/home-page-home-selected.png"), require("../assets/HomePage/home-page-market-selected.png"), require("../assets/HomePage/home-page-trade-selected.png"), require("../assets/HomePage/home-page-assets-selected.png"), require("../assets/HomePage/home-page-mine-selected.png")]
@@ -415,7 +417,7 @@ export default class App extends RNComponent {
                         renderIcon={() => <Image source={require('../assets/HomePage/home-page-futures.png')} style={styles.iconStyle} resizeMode={'contain'}/> }
                         renderSelectedIcon={() => <Image style={styles.iconStyle} source={require('../assets/HomePage/home-page-futures-selected.png')} resizeMode={'contain'}/>}
                         onPress={() => this.setSelected(5)}>
-                        <DealPage/>
+                        <FuturesWebPage/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === 3}

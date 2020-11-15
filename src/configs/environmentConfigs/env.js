@@ -31,6 +31,7 @@ if(env.networkConfigs.baseUrl.indexOf('app.2020.exchange') > -1){
     // env.networkConfigs.downloadUrl = 'https://transfer.2020.exchange/';
     env.networkConfigs.downloadPageUrl  = 'https://download.2020.exchange/';
     env.networkConfigs.c2cUrl = 'https://otc.2020.exchange/'
+    env.networkConfigs.futuresUrl = 'https://futures.2020.exchange/'
 }
 
 if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
@@ -39,6 +40,7 @@ if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
     // env.networkConfigs.downloadUrl = 'http://www.2020-ex.com/';
     env.networkConfigs.downloadPageUrl  = 'http://download.2020-ex.com/';
     env.networkConfigs.c2cUrl = 'http://otc.2020-ex.com/'
+    env.networkConfigs.futuresUrl = 'http://future.2020-ex.com/'
 }
 
 //跳转到app下载页面所需地址

@@ -135,7 +135,10 @@ export default class GestureUnlock extends RNComponent {
 
         this.notify({key: 'CHANGE_TAB'}, 0);
         this.notify({key: 'SET_TAB_INDEX'},0);
-        this.goBack();
+        this.$router.popToTop()
+        // this.goBack();
+
+        this.notify({key:'LOG_OUT_RE__H5'})
 
     }
 
