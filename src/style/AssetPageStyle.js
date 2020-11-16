@@ -354,7 +354,8 @@ const styles = StyleSheet.create({
     fAssetTitleBox:{
         width:'100%',
         paddingHorizontal:getWidth(30),
-        paddingVertical:getHeight(26)
+        paddingTop:getHeight(26),
+        paddingBottom:getHeight(10)
     },
     fAssetTitleTouch:{
         // height:'100%'
@@ -389,6 +390,7 @@ const styles = StyleSheet.create({
         borderRightWidth:0,
         borderColor:StyleConfigs.borderF7F7FB
     },
+    itemPositionTitleBox:{},
     itemPosType:{
         width:getWidth(40),
         height:getWidth(40),
@@ -397,6 +399,10 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize:StyleConfigs.fontSize14,
         color:StyleConfigs.txtRed
+    },
+    itemPosTypeBuy:{
+        backgroundColor:StyleConfigs.bg34A7531A,
+        color:StyleConfigs.txtGreen
     },
     itemPosSymbol:{
         marginLeft:getWidth(12),

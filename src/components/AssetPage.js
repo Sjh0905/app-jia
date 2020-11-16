@@ -93,6 +93,9 @@ export default class App extends RNComponent {
     @observable
     isOpenFutures = true
 
+    @observable
+    positionArr = []
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -415,7 +418,10 @@ export default class App extends RNComponent {
     @action
     re_getFuturesPosition = (data) => {
         typeof data === 'string' && (data = JSON.parse(data))
-        if (!data) return
+        if (!data || !data.data) return
+        let pos = data.data
+        this.positionArr = pos.filter(v=>v.positionAmt != 0 && v.symbol == 'BTCUSDT')
+
     }
     // 获取合约仓位出错
     @action
@@ -434,12 +440,17 @@ export default class App extends RNComponent {
             return
         }
 
+        if(type == 'futures' && this.isOpenFutures){
+            this.getFuturesPosition();
+        }
+
         this.assetAccountType = type
     };
 
     // 切换合约账户列表显示类型
     changefuturesShowType = function (type) {
         if(this.futuresShowType == type)return
+
         this.futuresShowType = type
     };
 
@@ -951,31 +962,31 @@ export default class App extends RNComponent {
 
 
                         {this.futuresShowType == 'holdPosition' &&
-                            [{},{}].map((fv,i) => {
+                            this.positionArr.map((fv,i) => {
                                 return <View key={i} style={styles.itemPositionBox}>
                                     <View style={[baseStyles.flexRow,styles.itemPositionTitleBox]}>
-                                        <Text style={styles.itemPosType}>卖</Text>
-                                        <Text style={styles.itemPosSymbol}>BTCUSDT</Text>
+                                        <Text style={[styles.itemPosType,fv.positionAmt > 0 && styles.itemPosTypeBuy || {}]}>{fv.positionAmt > 0 ? '买' : '卖'}</Text>
+                                        <Text style={styles.itemPosSymbol}>{fv.symbol}</Text>
                                     </View>
-                                    <Text style={styles.itemPosTitleBox}>全仓 20X</Text>
+                                    {/*<Text style={styles.itemPosTitleBox}>全仓 20X</Text>*/}
                                     <View style={[baseStyles.flexRow,styles.itemPosDetailBox]}>
                                         <View style={styles.itemPosDetailOne}>
                                             <Text style={styles.itemPosDetailTitle}>持仓数量(BTC)</Text>
-                                            <Text style={styles.itemPosDetailVal}>32125.4224</Text>
+                                            <Text style={styles.itemPosDetailVal}>{fv.positionAmt}</Text>
                                         </View>
                                         <View style={styles.itemPosDetailOne}>
-                                            <Text style={styles.itemPosDetailTitle}>PNL(ROE%)</Text>
-                                            <Text style={styles.itemPosDetailVal}>90.09(+10.98%)</Text>
+                                            <Text style={styles.itemPosDetailTitle}>未实现盈亏</Text>
+                                            <Text style={[styles.itemPosDetailVal,fv.unrealizedProfit > 0 && baseStyles.textGreen || baseStyles.textRed]}>{fv.unrealizedProfit}</Text>
                                         </View>
                                     </View>
                                     <View style={[baseStyles.flexRow,styles.itemPosDetailBox,styles.itemPosDetailBox2]}>
                                         <View style={styles.itemPosDetailOne}>
                                             <Text style={styles.itemPosDetailTitle}>开仓价格</Text>
-                                            <Text style={styles.itemPosDetailVal}>32125.4224</Text>
+                                            <Text style={styles.itemPosDetailVal}>{this.$globalFunc.accFixed(fv.entryPrice,2)}</Text>
                                         </View>
                                         <View style={styles.itemPosDetailOne}>
                                             <Text style={styles.itemPosDetailTitle}>标记价格</Text>
-                                            <Text style={styles.itemPosDetailVal}>2125.4224</Text>
+                                            <Text style={styles.itemPosDetailVal}>{this.$globalFunc.accFixed(fv.markPrice,2)}</Text>
                                         </View>
                                     </View>
                                 </View>

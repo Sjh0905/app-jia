@@ -39,7 +39,7 @@ root.txt9EA8B7  = '#9EA8B7'
 root.txt09092C  = '#09092C'
 root.txt7688AC  = '#7688AC'
 root.txt183057  = '#183057'
-root.txt39b496  = '#39b496'
+root.TXT39B496  = '#39B496'
 root.txt8994A5  = '#8994A5'
 
 root.btnWhite = '#fff'
@@ -62,6 +62,7 @@ root.bgA2B5D9 = '#A2B5D9'
 root.bg172A4D  = '#172A4D'
 root.bgEF56561A  = '#EF56561A'//透明度10%
 root.bg39B4961A  = '#39B4961A'//透明度10%
+root.bg34A7531A  = '#34A7531A'//透明度10%
 root.modalBg = '#rgba(0,0,0,0.5)'
 root.modalBgWhite = '#fff'
 root.navBgColor = '#202126'
