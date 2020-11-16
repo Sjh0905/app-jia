@@ -89,8 +89,9 @@ export default class App extends RNComponent {
         this.isTransparentNav = this.$beforeParams && this.$beforeParams.isTransparentNav || false
         this.title = this.$beforeParams && this.$beforeParams.title || '合约'
         this.rightCloseBtn = this.$beforeParams && this.$beforeParams.rightCloseBtn || false
-        // this.url = env.networkConfigs.futuresUrl;
-        this.url = 'http://zpy.2020-ex.com:8085?isApp=true&isWhite=true';
+        this.url = env.networkConfigs.futuresUrl + '?isApp=true&isWhite=true';
+        // this.url = 'http://zpy.2020-ex.com:8085?isApp=true&isWhite=true';
+        // this.url = 'http://192.168.1.19:8085/index/mobileTradingHallDetail?isApp=true&isWhite=true';
         this.renderUrl = (this.url.indexOf('?') > -1)
             && (this.url + '&isIOS=true&iosLogin=' + !!this.userId + '&userId=' + this.userId + '&isIPhoneX=' + isIPhoneX())
             || (this.url + '?isIOS=true&iosLogin=' + !!this.userId + '&userId=' + this.userId + '&isIPhoneX=' + isIPhoneX());

@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
         lineHeight:getHeight(17*2),
         fontSize:StyleConfigs.fontSize12,
         color:StyleConfigs.txt172A4D,
-        borderBottomWidth:StyleSheet.hairlineWidth,
-        borderBottomColor:StyleConfigs.txt172A4D
+        // borderBottomWidth:StyleSheet.hairlineWidth,
+        // borderBottomColor:StyleConfigs.txt172A4D
     },
     itemBalanceVal:{
         marginTop:getHeight(8),
@@ -390,7 +390,9 @@ const styles = StyleSheet.create({
         borderRightWidth:0,
         borderColor:StyleConfigs.borderF7F7FB
     },
-    itemPositionTitleBox:{},
+    itemPositionTitleBox:{
+        marginBottom:getHeight(12)
+    },
     itemPosType:{
         width:getWidth(40),
         height:getWidth(40),
