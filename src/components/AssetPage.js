@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View, ImageBackground, ScrollView} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View, ImageBackground, ScrollView, Alert} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable,computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -78,6 +78,21 @@ export default class App extends RNComponent {
 
     futuresCurrency = 'USDT';
 
+    @observable
+    balance = {}
+
+    @observable
+    totalWalletBalance = 0
+
+    @observable
+    totalUnrealizedProfit = 0
+
+    @observable
+    totalMarginBalance = 0
+
+    @observable
+    isOpenFutures = true
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -106,7 +121,8 @@ export default class App extends RNComponent {
         // 获取认证状态
         this.getAuthState()
 
-
+        //获取合约资产
+        this.getFuturesAccount()
     }
 
     // 卸载
@@ -348,9 +364,76 @@ export default class App extends RNComponent {
         console.warn("获取验证状态出错！", err)
     }
 
+    // 获取合约资产
+    @action
+    getFuturesAccount = () => {
+        this.$http.send('GET_USER_ACCOUNT_V2', {
+            bind: this,
+            query: {
+                timestamp: new Date().getTime()
+            },
+            callBack: this.re_getFuturesAccount,
+            errorHandler: this.error_getFuturesAccount
+        })
+    }
+    // 获取合约资产回调
+    @action
+    re_getFuturesAccount = (data) => {
+        typeof data === 'string' && (data = JSON.parse(data))
+        if (!data) return
+
+        if (data.code == 1000) {
+            this.isOpenFutures = false;
+            return;
+        }
+
+        this.isOpenFutures = true;
+        // console.info('币安接口账户余额',data)
+        this.totalWalletBalance = data.data.totalWalletBalance
+        this.totalUnrealizedProfit = data.data.totalUnrealizedProfit
+        this.totalMarginBalance = data.data.totalMarginBalance
+        this.balance = data.data.assets[0]
+        // console.info('this.$store.state.exchange_rate_dollar',this.totalMarginBalance)
+
+    }
+    // 获取合约资产出错
+    @action
+    error_getFuturesAccount = (err) => {
+        console.warn("获取合约资产出错！", err)
+    }
+
+    // 获取合约仓位
+    @action
+    getFuturesPosition = () => {
+        this.$http.send('GET_POSITION_RISK_V2', {
+            bind: this,
+            callBack: this.re_getFuturesPosition,
+            errorHandler: this.error_getFuturesPosition
+        })
+    }
+    // 获取合约仓位回调
+    @action
+    re_getFuturesPosition = (data) => {
+        typeof data === 'string' && (data = JSON.parse(data))
+        if (!data) return
+    }
+    // 获取合约仓位出错
+    @action
+    error_getFuturesPosition = (err) => {
+        console.warn("获取合约资产出错！", err)
+    }
+
     // 切换账户类型
     changeAssetAccountType = function (type) {
         if(this.assetAccountType == type)return
+
+        if(type == 'futures' && !this.isOpenFutures){
+            Alert.alert("提示", "您暂未开通合约账户", [{
+                text: "我知道了", onPress: () => {console.log("点了我知道了");}
+            }])
+            return
+        }
+
         this.assetAccountType = type
     };
 
@@ -498,6 +581,18 @@ export default class App extends RNComponent {
         // console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
 
         console.log('this.otcCurrencyList',this.otcCurrencyList);
+
+        let totalMarginBalanceDisplay = this.$globalFunc.accFixed(this.totalMarginBalance, 8);
+        let totalWalletBalanceDisplay = this.$globalFunc.accFixed(this.totalWalletBalance, 8);
+        let totalUnrealizedProfitDisplay = this.$globalFunc.accFixed(this.totalUnrealizedProfit, 8);
+
+        let totalMarginBalanceRate = this.$globalFunc.accMul(totalMarginBalanceDisplay, this.exchangRateDollar)
+        let totalMarginBalanceRDis = this.$globalFunc.accFixed2(totalMarginBalanceRate,2)
+        let totalWalletBalanceRate = this.$globalFunc.accMul(totalWalletBalanceDisplay, this.exchangRateDollar)
+        let totalWalletBalanceRDis = this.$globalFunc.accFixed2(totalWalletBalanceRate,2)
+        let totalUnrealizedProfitRate = this.$globalFunc.accMul(totalUnrealizedProfitDisplay, this.exchangRateDollar)
+        let totalUnrealizedProfitRDis = this.$globalFunc.accFixed2(totalUnrealizedProfitRate,2)
+
 
         return (
             <View style={[styles.container, baseStyles.bgColor,{backgroundColor:StyleConfigs.bgAssetPageTop},PlatformOS == 'ios' && styles.containerMargin || {}]}>
@@ -699,18 +794,18 @@ export default class App extends RNComponent {
                         ||
                     <View style={[styles.singleAccountBox,styles.accountBoxFutures]}>
                         <Text style={styles.marginBalanceTitle}>保证金余额</Text>
-                        <Text style={styles.marginBalanceVal}>{this.totalAssetShow ? ('1538.13898987' || '-----') : '*****'} USDT</Text>
-                        <Text style={styles.marginBalanceCNY}>{this.totalAssetShow ? ('≈' + (otcExchangeRateDisplay || '-----') + 'CNY') :''}</Text>
+                        <Text style={styles.marginBalanceVal}>{this.totalAssetShow ? (totalMarginBalanceDisplay || '-----') : '*****'} USDT</Text>
+                        <Text style={styles.marginBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalMarginBalanceRDis || '-----') + 'CNY') :''}</Text>
                         <View style={[baseStyles.flexRow,styles.marginBalanceBot]}>
                             <View style={styles.itemBalanceBox}>
                                 <Text style={styles.itemBalanceTitle}>账户余额</Text>
-                                <Text style={styles.itemBalanceVal}>365.29381583</Text>
-                                <Text style={styles.itemBalanceCNY}>≈ 0.0000 CNY </Text>
+                                <Text style={styles.itemBalanceVal}>{this.totalAssetShow ? (totalWalletBalanceDisplay || '-----') : '*****'}</Text>
+                                <Text style={styles.itemBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalWalletBalanceRDis || '-----') + 'CNY') :''}</Text>
                             </View>
                             <View style={styles.itemBalanceBox}>
                                 <Text style={styles.itemBalanceTitle}>未实现盈亏</Text>
-                                <Text style={styles.itemBalanceVal}>365.29381583</Text>
-                                <Text style={styles.itemBalanceCNY}>≈ 0.0000 CNY </Text>
+                                <Text style={styles.itemBalanceVal}>{this.totalAssetShow ? (totalUnrealizedProfitDisplay || '-----') : '*****'}</Text>
+                                <Text style={styles.itemBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalUnrealizedProfitRDis || '-----') + 'CNY') :''}</Text>
                             </View>
                         </View>
                     </View>
@@ -900,16 +995,16 @@ export default class App extends RNComponent {
                                         <Text style={styles.itemSectionTitle}>账户余额</Text>
                                         {
                                             this.totalAssetShow ?
-                                                <Text style={styles.itemSectionNum}>{1000 > 0 && this.$globalFunc.accFixed(1000, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
+                                                <Text style={styles.itemSectionNum}>{this.balance.walletBalance > 0 && this.$globalFunc.accFixed(this.balance.walletBalance, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
                                                 :
                                                 <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
                                         }
                                     </View>
                                     <View style={styles.futuresAssetColumn1}>
-                                        <Text style={styles.itemSectionTitle}>冻结</Text>
+                                        <Text style={styles.itemSectionTitle}>可用划转余额</Text>
                                         {
                                             this.totalAssetShow ?
-                                                <Text style={styles.itemSectionNum}>{10 > 0 && this.$globalFunc.accFixed(10, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
+                                                <Text style={styles.itemSectionNum}>{this.balance.availableBalance > 0 && this.$globalFunc.accFixed(this.balance.availableBalance, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
                                                 :
                                                 <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
                                         }

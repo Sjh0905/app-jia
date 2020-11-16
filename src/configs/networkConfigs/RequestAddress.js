@@ -237,6 +237,11 @@ requestAddress.GET_BUY_RECORDS = {url: '/memberCard/buyRecords/', method: 'get'}
 
 //---------------------------------------C2C接口部分----------------------------------------------
 
+requestAddress.GET_USER_ACCOUNT_V2 = {url: '/future/account/userAccountv2', method: 'get'}  //账户余额
+requestAddress.GET_POSITION_RISK_V2 = {url: '/future/account/positionRiskv2', method: 'get'}  //仓位
+
+//---------------------------------------C2C接口部分----------------------------------------------
+
 
 requestAddress.PUT_COOKIES_C2C = {url: '/user/putUserCookies', method: 'get',baseUrl:c2cUrl}
 

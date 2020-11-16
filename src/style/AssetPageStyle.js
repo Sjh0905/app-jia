@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         marginTop:getHeight(8),
         height:getHeight(25*2),
         lineHeight:getHeight(25*2),
-        fontSize:StyleConfigs.fontSize22,
+        fontSize:StyleConfigs.fontSize18,
         color:StyleConfigs.txt09092C,
     },
     marginBalanceCNY:{
