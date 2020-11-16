@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View,ImageBackground} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View, ImageBackground, ScrollView} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable,computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -68,10 +68,15 @@ export default class App extends RNComponent {
     hide0AssetCurrency = false
 
     @observable
-    assetAccountType = 'wallet'//当前账户类型,默认显示我的钱包
+    assetAccountType = 'wallet'//当前账户类型,默认显示我的钱包wallet，法币currency，合约futures
 
     @observable
     otcCurrencyList = ''//法币币种列表
+
+    @observable
+    futuresShowType = 'holdPosition'//持有仓位holdPosition 全部合约资产allFuturesAsset
+
+    futuresCurrency = 'USDT';
 
     /*----------------------- 生命周期 -------------------------*/
 
@@ -347,6 +352,12 @@ export default class App extends RNComponent {
     changeAssetAccountType = function (type) {
         if(this.assetAccountType == type)return
         this.assetAccountType = type
+    };
+
+    // 切换合约账户列表显示类型
+    changefuturesShowType = function (type) {
+        if(this.futuresShowType == type)return
+        this.futuresShowType = type
     };
 
     //隐藏零资产
@@ -638,7 +649,7 @@ export default class App extends RNComponent {
                         >我的钱包</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[styles.assetCheckItem,this.assetAccountType != 'wallet' && styles.assetCheckItemSelected || {}]}
+                        style={[styles.assetCheckItem,this.assetAccountType == 'currency' && styles.assetCheckItemSelected || {}]}
                         activeOpacity={StyleConfigs.activeOpacity}
                         onPress={()=>{
                             // this.$globalFunc.lookForward()
@@ -647,9 +658,23 @@ export default class App extends RNComponent {
                         }}
                     >
                         <Text
-                            style={[styles.assetCheckItemText,this.assetAccountType != 'wallet' && styles.assetCheckItemTextSelected || {}]}
+                            style={[styles.assetCheckItemText,this.assetAccountType == 'currency' && styles.assetCheckItemTextSelected || {}]}
                             allowFontScaling={false}
                         >法币账户</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.assetCheckItem,this.assetAccountType == 'futures' && styles.assetCheckItemSelected || {}]}
+                        activeOpacity={StyleConfigs.activeOpacity}
+                        onPress={()=>{
+                            // this.$globalFunc.lookForward()
+                            // this.$router.push('AssetPageSearch')
+                            this.changeAssetAccountType('futures');
+                        }}
+                    >
+                        <Text
+                            style={[styles.assetCheckItemText,this.assetAccountType == 'futures' && styles.assetCheckItemTextSelected || {}]}
+                            allowFontScaling={false}
+                        >合约账户</Text>
                     </TouchableOpacity>
                 </View>
                 {/*切换账户类型 end*/}
@@ -663,7 +688,7 @@ export default class App extends RNComponent {
                             <Text style={styles.singleAccountValuation}> {this.totalAssetShow ? ('≈' + (exchangeRateDisplay || '-----') + 'CNY') : ''}</Text>
                         </View>
                     </View>
-                        ||
+                        || this.assetAccountType == 'currency' &&
                     <View style={styles.singleAccountBox}>
                         <Text style={styles.singleAccountTitle}>法币账户总资产折合(BTC)</Text>
                         <View style={styles.singleAccountVal}>
@@ -671,6 +696,25 @@ export default class App extends RNComponent {
                             <Text style={styles.singleAccountValuation}> {this.totalAssetShow ? ('≈' + (otcExchangeRateDisplay || '-----') + 'CNY') :''}</Text>
                         </View>
                     </View>
+                        ||
+                    <View style={[styles.singleAccountBox,styles.accountBoxFutures]}>
+                        <Text style={styles.marginBalanceTitle}>保证金余额</Text>
+                        <Text style={styles.marginBalanceVal}>{this.totalAssetShow ? ('1538.13898987' || '-----') : '*****'} USDT</Text>
+                        <Text style={styles.marginBalanceCNY}>{this.totalAssetShow ? ('≈' + (otcExchangeRateDisplay || '-----') + 'CNY') :''}</Text>
+                        <View style={[baseStyles.flexRow,styles.marginBalanceBot]}>
+                            <View style={styles.itemBalanceBox}>
+                                <Text style={styles.itemBalanceTitle}>账户余额</Text>
+                                <Text style={styles.itemBalanceVal}>365.29381583</Text>
+                                <Text style={styles.itemBalanceCNY}>≈ 0.0000 CNY </Text>
+                            </View>
+                            <View style={styles.itemBalanceBox}>
+                                <Text style={styles.itemBalanceTitle}>未实现盈亏</Text>
+                                <Text style={styles.itemBalanceVal}>365.29381583</Text>
+                                <Text style={styles.itemBalanceCNY}>≈ 0.0000 CNY </Text>
+                            </View>
+                        </View>
+                    </View>
+
                 }
                 {/*单个账户资产 end*/}
 
@@ -720,7 +764,8 @@ export default class App extends RNComponent {
 
                 {/*</View>*/}
                 {/*总资产 end*/}
-                <View style={styles.assetsTitleBox}>
+                {this.assetAccountType != 'futures' &&
+                    <View style={styles.assetsTitleBox}>
                     {/*<Text style={styles.assetsTitle}>资产明细</Text>*/}
                     <TouchableOpacity
                         activeOpacity={StyleConfigs.activeOpacity}
@@ -735,46 +780,154 @@ export default class App extends RNComponent {
                         }
                         <Text style={styles.hideText}>隐藏小额币种</Text>
                     </TouchableOpacity>
-                </View>
+                </View>}
                 {/*资产列表 begin*/}
-                <View
-                    style={styles.listBox}
-                >
-                    {this.assetAccountType == 'wallet' &&
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
+                {this.assetAccountType != 'futures' &&
+                    <View
+                        style={styles.listBox}
+                    >
+                        {this.assetAccountType == 'wallet' &&
+                            <FlatList
+                                showsVerticalScrollIndicator={false}
+                                data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
 
-                                let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
-                                return isDisplay
+                                    let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
+                                    return isDisplay
 
-                            })}
-                            renderItem={this._renderCurrencyItem}
-                            keyExtractor={(item, index) => index.toString()}
-                            // getItemLayout={(data, index) => (//为了避免资产页只刷新一屏的BUG暂时注释
-                            //     {
-                            //         length: getHeight(106),
-                            //         offset: getHeight(106) * index,
-                            //         index
-                            //     }
-                            // )}
-                        />
-                    ||
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
+                                })}
+                                renderItem={this._renderCurrencyItem}
+                                keyExtractor={(item, index) => index.toString()}
+                                // getItemLayout={(data, index) => (//为了避免资产页只刷新一屏的BUG暂时注释
+                                //     {
+                                //         length: getHeight(106),
+                                //         offset: getHeight(106) * index,
+                                //         index
+                                //     }
+                                // )}
+                            />
+                        ||
+                            <FlatList
+                                showsVerticalScrollIndicator={false}
+                                data={[...this.$store.state.currency.values()].filter((item,i,arr)=>{
 
-                                let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
-                                //法币币种
-                                let isOtcCurrency = this.otcCurrencyList.indexOf(item.currency) > -1
-                                return isDisplay && isOtcCurrency
-                            })}
-                            renderItem={this._renderCurrencyItem}
-                            keyExtractor={(item, index) => index.toString()}
+                                    let isDisplay = (Number(item.displayTime) < Number(this.$store.state.serverTime)/1000);
+                                    //法币币种
+                                    let isOtcCurrency = this.otcCurrencyList.indexOf(item.currency) > -1
+                                    return isDisplay && isOtcCurrency
+                                })}
+                                renderItem={this._renderCurrencyItem}
+                                keyExtractor={(item, index) => index.toString()}
 
-                        />
-                    }
-                </View>
+                            />
+                        }
+                    </View>
+                    || null
+                }
+
+                {this.assetAccountType == 'futures' &&
+                    <ScrollView
+                        style={styles.listBox}
+                        showsVerticalScrollIndicator={false}
+                        // onMomentumScrollEnd={this.scrollEnd}
+                        // canCancelContentTouches={false}
+                        ref={'scrollBox'}
+                    >
+                        <View style={[baseStyles.flexRow,styles.fAssetTitleBox]}>
+                            <TouchableOpacity
+                                style={[styles.fAssetTitleTouch]}
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                onPress={()=>{
+                                    this.changefuturesShowType('holdPosition');
+                                }}
+                            >
+                                <Text style={[styles.fAssetTitle,this.futuresShowType == 'holdPosition' && styles.fAssetTitleSelected || null]}>持有仓位</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={[styles.fAssetTitleTouch,styles.fAssetTitleTouch2]}
+                                activeOpacity={StyleConfigs.activeOpacity}
+                                onPress={()=>{
+                                    this.changefuturesShowType('allFuturesAsset');
+                                }}
+                            >
+                                <Text style={[styles.fAssetTitle,this.futuresShowType == 'allFuturesAsset' && styles.fAssetTitleSelected || null]}>全部资产</Text>
+                            </TouchableOpacity>
+                        </View>
+
+
+                        {this.futuresShowType == 'holdPosition' &&
+                            [{},{}].map((fv,i) => {
+                                return <View key={i} style={styles.itemPositionBox}>
+                                    <View style={[baseStyles.flexRow,styles.itemPositionTitleBox]}>
+                                        <Text style={styles.itemPosType}>卖</Text>
+                                        <Text style={styles.itemPosSymbol}>BTCUSDT</Text>
+                                    </View>
+                                    <Text style={styles.itemPosTitleBox}>全仓 20X</Text>
+                                    <View style={[baseStyles.flexRow,styles.itemPosDetailBox]}>
+                                        <View style={styles.itemPosDetailOne}>
+                                            <Text style={styles.itemPosDetailTitle}>持仓数量(BTC)</Text>
+                                            <Text style={styles.itemPosDetailVal}>32125.4224</Text>
+                                        </View>
+                                        <View style={styles.itemPosDetailOne}>
+                                            <Text style={styles.itemPosDetailTitle}>PNL(ROE%)</Text>
+                                            <Text style={styles.itemPosDetailVal}>90.09(+10.98%)</Text>
+                                        </View>
+                                    </View>
+                                    <View style={[baseStyles.flexRow,styles.itemPosDetailBox,styles.itemPosDetailBox2]}>
+                                        <View style={styles.itemPosDetailOne}>
+                                            <Text style={styles.itemPosDetailTitle}>开仓价格</Text>
+                                            <Text style={styles.itemPosDetailVal}>32125.4224</Text>
+                                        </View>
+                                        <View style={styles.itemPosDetailOne}>
+                                            <Text style={styles.itemPosDetailTitle}>标记价格</Text>
+                                            <Text style={styles.itemPosDetailVal}>2125.4224</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            })
+                            ||
+                            <View stlye={styles.currencyItemBoxTouch}>
+                                <View style={[styles.currencyItemBox,styles.currencyItemFirstBox]}>
+                                    <View style={styles.currencyItemLeft}>
+                                        <Text allowFontScaling={false} style={[baseStyles.textCurrencyTitle, styles.currencyText]}>{this.futuresCurrency}</Text>
+                                    </View>
+                                    <View style={styles.currencyItemRight}>
+                                        {/*<Image source={IntoIcon} style={styles.intoIcon}/>*/}
+                                    </View>
+                                </View>
+                                <View style={[baseStyles.flexRow,styles.itemLineBot]}>
+                                    <View style={styles.futuresAssetColumn1}>
+                                        <Text style={styles.itemSectionTitle}>账户余额</Text>
+                                        {
+                                            this.totalAssetShow ?
+                                                <Text style={styles.itemSectionNum}>{1000 > 0 && this.$globalFunc.accFixed(1000, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
+                                                :
+                                                <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
+                                        }
+                                    </View>
+                                    <View style={styles.futuresAssetColumn1}>
+                                        <Text style={styles.itemSectionTitle}>冻结</Text>
+                                        {
+                                            this.totalAssetShow ?
+                                                <Text style={styles.itemSectionNum}>{10 > 0 && this.$globalFunc.accFixed(10, this.currencyJingDU[this.futuresCurrency] || 3) || '0'}</Text>
+                                                :
+                                                <Text allowFontScaling={false} style={[baseStyles.textColor, styles.currencyTotal]}>****</Text>
+                                        }
+                                    </View>
+                                </View>
+
+                            </View>
+
+                        }
+
+
+
+
+
+                    </ScrollView>
+                    || null
+                }
+
                 {/*资产列表 end*/}
 
 

@@ -120,7 +120,11 @@ const styles = StyleSheet.create({
         paddingLeft: getWidth(30),
         paddingRight: getWidth(30),
     },
-    flexRowBetween:{
+    flexRow:{
+        flexDirection:'row',
+        alignItems:'center',
+    }
+    ,flexRowBetween:{
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',

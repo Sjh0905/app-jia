@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
     },
     singleAccountBox:{
         width: getWidth(DefaultWidth),
-        height:getHeight(72*2),
+        height:getHeight(72*2)+getWidth(30*2),
         backgroundColor:StyleConfigs.bgColor,
         padding:getWidth(30),
-        borderBottomColor:StyleConfigs.borderF7F8FA,
-        borderBottomWidth:getHeight(20),
+        borderColor:StyleConfigs.borderF7F8FA,
+        borderWidth:getWidth(30),
     },
     singleAccountTitle:{
         fontSize:StyleConfigs.fontSize12,
@@ -149,6 +149,55 @@ const styles = StyleSheet.create({
         fontSize:StyleConfigs.fontSize12,
         fontWeight:'400',
         color:StyleConfigs.txt6B7DA2,
+    },
+    accountBoxFutures:{
+        height:getHeight(163*2+30*2)
+    },
+    marginBalanceTitle:{
+        height:getHeight(18*2),
+        lineHeight:getHeight(18*2),
+        fontSize:StyleConfigs.fontSize13,
+        color:StyleConfigs.txt172A4D,
+    },
+    marginBalanceVal:{
+        marginTop:getHeight(8),
+        height:getHeight(25*2),
+        lineHeight:getHeight(25*2),
+        fontSize:StyleConfigs.fontSize22,
+        color:StyleConfigs.txt09092C,
+    },
+    marginBalanceCNY:{
+        height:getHeight(16*2),
+        lineHeight:getHeight(16*2),
+        fontSize:StyleConfigs.fontSize14,
+        color:StyleConfigs.txtA2B5D9,
+    },
+    marginBalanceBot:{
+        marginTop:getHeight(30)
+    },
+    itemBalanceBox:{
+        width:'50%'
+    },
+    itemBalanceTitle:{
+        height:getHeight(17*2),
+        lineHeight:getHeight(17*2),
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txt172A4D,
+        borderBottomWidth:StyleSheet.hairlineWidth,
+        borderBottomColor:StyleConfigs.txt172A4D
+    },
+    itemBalanceVal:{
+        marginTop:getHeight(8),
+        height:getHeight(16*2),
+        lineHeight:getHeight(16*2),
+        fontSize:StyleConfigs.fontSize14,
+        color:StyleConfigs.txt0D0E23,
+    },
+    itemBalanceCNY:{
+        height:getHeight(14*2),
+        lineHeight:getHeight(14*2),
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txtA2B5D9,
     },
     listBox: {
         flex: 1,
@@ -302,7 +351,90 @@ const styles = StyleSheet.create({
     baseColumn3:{
         width:'34%'
     },
-
+    fAssetTitleBox:{
+        width:'100%',
+        paddingHorizontal:getWidth(30),
+        paddingVertical:getHeight(26)
+    },
+    fAssetTitleTouch:{
+        // height:'100%'
+    },
+    fAssetTitleTouch2:{
+        marginLeft:getWidth(40)
+        // height:'100%'
+    },
+    fAssetTitle:{
+        height:getHeight(24*2),
+        lineHeight:getHeight(24*2),
+        fontSize:StyleConfigs.fontSize16,
+        color:StyleConfigs.txt7688AC,
+    },
+    fAssetTitleSelected:{
+        height:getHeight(24*2),
+        lineHeight:getHeight(24*2),
+        fontSize:StyleConfigs.fontSize20,
+        color:StyleConfigs.txt183057,
+    },
+    futuresAssetColumn1:{
+        width:'50%'
+    },
+    futuresAssetColumn2:{
+        width:'50%'
+    },
+    itemPositionBox:{
+        width:'100%',
+        padding:getWidth(30),
+        borderWidth:StyleSheet.hairlineWidth,
+        borderLeftWidth:0,
+        borderRightWidth:0,
+        borderColor:StyleConfigs.borderF7F7FB
+    },
+    itemPosType:{
+        width:getWidth(40),
+        height:getWidth(40),
+        lineHeight:getWidth(40),
+        backgroundColor:StyleConfigs.bgEF56561A,
+        textAlign:'center',
+        fontSize:StyleConfigs.fontSize14,
+        color:StyleConfigs.txtRed
+    },
+    itemPosSymbol:{
+        marginLeft:getWidth(12),
+        height:getWidth(32),
+        lineHeight:getWidth(32),
+        fontSize:StyleConfigs.fontSize14,
+        color:StyleConfigs.txt172A4D
+    },
+    itemPosTitleBox:{
+        marginTop:getWidth(16),
+        marginBottom:getWidth(40),
+        height:getWidth(34),
+        lineHeight:getWidth(34),
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txtA2B5D9
+    },
+    itemPosDetailBox:{
+        width:'100%',
+    },
+    itemPosDetailBox2:{
+        marginTop:getWidth(36)
+    },
+    itemPosDetailOne:{
+        width:'50%',
+    },
+    itemPosDetailTitle:{
+        height:getWidth(32),
+        lineHeight:getWidth(32),
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txt8994A5
+    },
+    itemPosDetailVal:{
+        marginTop:getWidth(10),
+        height:getWidth(28),
+        lineHeight:getWidth(28),
+        fontSize:StyleConfigs.fontSize12,
+        color:StyleConfigs.txt172A4D
+    },
 })
 
 export default styles
