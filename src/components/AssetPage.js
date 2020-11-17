@@ -383,7 +383,7 @@ export default class App extends RNComponent {
     @action
     re_getFuturesAccount = (data) => {
         typeof data === 'string' && (data = JSON.parse(data))
-        if (!data) return
+        if (!data || !data.data) return
 
         if (data.code == 1000) {
             this.isOpenFutures = false;
@@ -395,7 +395,7 @@ export default class App extends RNComponent {
         this.totalWalletBalance = data.data.totalWalletBalance
         this.totalUnrealizedProfit = data.data.totalUnrealizedProfit
         this.totalMarginBalance = data.data.totalMarginBalance
-        this.balance = data.data.assets[0]
+        this.balance = (data.data.assets || []).find(v=>this.futuresCurrency == v.asset) || {}
         // console.info('this.$store.state.exchange_rate_dollar',this.totalMarginBalance)
 
     }
@@ -557,52 +557,70 @@ export default class App extends RNComponent {
 
         let currencyArr = [...this.$store.state.currency.values()]
         let total = 0
-        let otcTotal = 0
+        let otcTotal = 0, futuresTotal = 0
+
         currencyArr.forEach((v, i) => {
             total = this.$globalFunc.accAdd(total, v.appraisement)
             if(this.otcCurrencyList.indexOf(v.currency) > -1){
                 otcTotal = this.$globalFunc.accAdd(otcTotal, v.otcAppraisement)
             }
+            if(this.futuresCurrency == v.currency){
+                //合约目前只有USDT，直接在这里算BTC估值
+                futuresTotal = this.$globalFunc.accMul(v.rate,(this.balance.walletBalance || 0))
+            }
             // console.log('名称',v);
             // console.log('名称 估值 总和',v.currency,v.appraisement,total);
+            // console.log('名称 汇率',v.currency,v.rate);
         })
 
         //我的钱包总资产
         let totalDisplay = this.$globalFunc.accFixed(total, 8);
-        //币币账户总资产
+        //法币账户总资产
         let otcTotalDisplay = this.$globalFunc.accFixed(otcTotal, 8);
+        //合约账户总资产，目前只有USDT
+        let futuresTotalDisplay = this.$globalFunc.accFixed(futuresTotal, 8);
+
         //需要截取后的数值相加，如果用接口返回真实的数据相加，截取后的总资产会出现 ≠ 多个账户相加的和
         let totalAssets = this.$globalFunc.accAdd(totalDisplay, otcTotalDisplay)
+            totalAssets = this.$globalFunc.accAdd(totalAssets, futuresTotalDisplay)
         let totalAssetsDisplay = this.$globalFunc.accFixed(totalAssets, 8);
 
         //计算我的钱包估值
         let exchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(totalDisplay, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
-        //计算币币账户估值
+        //计算法币账户估值
         let otcExchangeRate = this.$globalFunc.accMul(this.$globalFunc.accMul(otcTotalDisplay, this.$store.state.exchange_rate.btcExchangeRate || 0), this.exchangRateDollar)
 
         //精度处理
         let exchangeRateDisplay = this.$globalFunc.accFixed2(exchangeRate,2)
         let otcExchangeRateDisplay = this.$globalFunc.accFixed2(otcExchangeRate,2)
 
+        //合约保证金
+        let totalMarginBalanceDisplay = this.$globalFunc.accFixed(this.totalMarginBalance, 8);
+        //合约账户余额
+        let totalWalletBalanceDisplay = this.$globalFunc.accFixed(this.totalWalletBalance, 8);
+        //合约账户未实现盈亏
+        let totalUnrealizedProfitDisplay = this.$globalFunc.accFixed(this.totalUnrealizedProfit, 8);
+
+        //合约保证金余额估值
+        let totalMarginBalanceRate = this.$globalFunc.accMul(totalMarginBalanceDisplay, this.exchangRateDollar)
+        let totalMarginBalanceRDis = this.$globalFunc.accFixed2(totalMarginBalanceRate,2)
+        //合约账户余额估值
+        let totalWalletBalanceRate = this.$globalFunc.accMul(totalWalletBalanceDisplay, this.exchangRateDollar)
+        let totalWalletBalanceRDis = this.$globalFunc.accFixed2(totalWalletBalanceRate,2)
+        //合约账户未实现盈亏估值
+        let totalUnrealizedProfitRate = this.$globalFunc.accMul(totalUnrealizedProfitDisplay, this.exchangRateDollar)
+        let totalUnrealizedProfitRDis = this.$globalFunc.accFixed2(totalUnrealizedProfitRate,2)
+
+
         //需要截取后的数值相加，如果用接口返回真实的数据相加，截取后的总估值会出现 ≠ 多个账户估值相加的和
         let totalAssetsExchangeRate = this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay)
+            totalAssetsExchangeRate = this.$globalFunc.accAdd(totalAssetsExchangeRate, totalWalletBalanceRDis)
         let totalAssetsExchangeRateDisplay = this.$globalFunc.accFixed2(totalAssetsExchangeRate, 2)
 
         // console.log('totalDisplay otcTotalDisplay totalAssetsDisplay =',totalDisplay, otcTotalDisplay, totalAssetsDisplay)
         // console.log('exchangeRateDisplay otcExchangeRateDisplay totalAssetsExchangeRateDisplay =',this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) , totalAssetsExchangeRate,this.$globalFunc.accFixed(this.$globalFunc.accAdd(exchangeRateDisplay, otcExchangeRateDisplay),2) == totalAssetsExchangeRate)
 
-        console.log('this.otcCurrencyList',this.otcCurrencyList);
-
-        let totalMarginBalanceDisplay = this.$globalFunc.accFixed(this.totalMarginBalance, 8);
-        let totalWalletBalanceDisplay = this.$globalFunc.accFixed(this.totalWalletBalance, 8);
-        let totalUnrealizedProfitDisplay = this.$globalFunc.accFixed(this.totalUnrealizedProfit, 8);
-
-        let totalMarginBalanceRate = this.$globalFunc.accMul(totalMarginBalanceDisplay, this.exchangRateDollar)
-        let totalMarginBalanceRDis = this.$globalFunc.accFixed2(totalMarginBalanceRate,2)
-        let totalWalletBalanceRate = this.$globalFunc.accMul(totalWalletBalanceDisplay, this.exchangRateDollar)
-        let totalWalletBalanceRDis = this.$globalFunc.accFixed2(totalWalletBalanceRate,2)
-        let totalUnrealizedProfitRate = this.$globalFunc.accMul(totalUnrealizedProfitDisplay, this.exchangRateDollar)
-        let totalUnrealizedProfitRDis = this.$globalFunc.accFixed2(totalUnrealizedProfitRate,2)
+        // console.log('this.otcCurrencyList',this.otcCurrencyList);
 
 
         return (
