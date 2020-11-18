@@ -318,7 +318,7 @@ export default class App extends RNComponent {
         toLogin: function(...arg){
             this.initAndroidStatusBar();
             this.$router.push('Login',{
-                backTo: 'WebPage',
+                backTo: 'Home',
                 closeCallback: function () {
                     let me = this;
                     this.sendCookies().then((res)=>{
