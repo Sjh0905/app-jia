@@ -103,6 +103,15 @@ export default class App extends RNComponent {
     constructor() {
         super()
 
+        //切换到资产页及时更新合约账户信息
+        this.listen({key: 'RE_CURRENCY', func:()=>{
+            //及时更新合约账户开通状态以及获取合约资产
+            this.getFuturesAccount()
+            if(this.assetAccountType == 'futures'){
+                //获取合约仓位
+                this.getFuturesPosition()
+            }
+        }})
     }
 
     // 挂载
