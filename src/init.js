@@ -240,7 +240,7 @@ console.ignoredYellowBox = ['Setting a timer']
 
 global.__VERSION__ = {
     ios: 18,
-    android: 20
+    android: 21
 }
 
 // 全局控制是否显示引导页
