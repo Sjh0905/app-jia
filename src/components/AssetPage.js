@@ -92,7 +92,7 @@ export default class App extends RNComponent {
     totalMarginBalance = 0
 
     @observable
-    isOpenFutures = true
+    isOpenFutures = false//默认如果为true的话会导致调用仓位接口闪退
 
     @observable
     positionArr = []
@@ -107,10 +107,11 @@ export default class App extends RNComponent {
         this.listen({key: 'RE_CURRENCY', func:()=>{
             //及时更新合约账户开通状态以及获取合约资产
             this.getFuturesAccount()
-            if(this.assetAccountType == 'futures'){
-                //获取合约仓位
-                this.getFuturesPosition()
-            }
+            // 暂时不在这里调用了，仓位接口调用放到getFuturesAccount回调了
+            // if(this.assetAccountType == 'futures' && this.isOpenFutures){
+            //     //获取合约仓位
+            //     this.getFuturesPosition()
+            // }
         }})
     }
 
@@ -393,12 +394,14 @@ export default class App extends RNComponent {
     @action
     re_getFuturesAccount = (data) => {
         typeof data === 'string' && (data = JSON.parse(data))
-        if (!data || !data.data) return
+        if (!data) return
 
         if (data.code == 1000) {
             this.isOpenFutures = false;
             return;
         }
+
+        if (!data.data)return
 
         this.isOpenFutures = true;
         // console.info('币安接口账户余额',data)
@@ -408,6 +411,8 @@ export default class App extends RNComponent {
         this.balance = (data.data.assets || []).find(v=>this.futuresCurrency == v.asset) || {}
         // console.info('this.$store.state.exchange_rate_dollar',this.totalMarginBalance)
 
+        //获取合约仓位
+        this.getFuturesPosition()
     }
     // 获取合约资产出错
     @action
@@ -415,7 +420,7 @@ export default class App extends RNComponent {
         console.warn("获取合约资产出错！", err)
     }
 
-    // 获取合约仓位
+    // 获取合约仓位，只有开通合约的情况下才能调用此接口
     @action
     getFuturesPosition = () => {
         this.$http.send('GET_POSITION_RISK_V2', {
