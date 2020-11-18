@@ -24,6 +24,7 @@ import HistoricalRecordsIcon from '../assets/AssetPage/historical-records.png'
 import device from "../configs/device/device";
 import Env from  '../configs/environmentConfigs/env.js'
 import IntoIcon from '../assets/MinePage/into-icon.png'
+import EmptyIcon from '../assets/BaseAssets/no-record-icon.png'
 
 @observer
 export default class App extends RNComponent {
@@ -550,6 +551,16 @@ export default class App extends RNComponent {
         )
     }
 
+    // 仓位为空时渲染的组件
+    @action
+    _renderEmptyComponent = () => {
+        return (
+            <View style={[styles.emptyBox]}>
+                <Image source={EmptyIcon} style={styles.emptyIcon}/>
+                <Text allowFontScaling={false} style={[styles.emptyText]}>暂时没有记录</Text>
+            </View>
+        )
+    }
 
     /*----------------------- 挂载 -------------------------*/
 
@@ -979,7 +990,7 @@ export default class App extends RNComponent {
                         </View>
 
 
-                        {this.futuresShowType == 'holdPosition' &&
+                        {(this.futuresShowType == 'holdPosition' && this.positionArr.length > 0) &&
                             this.positionArr.map((fv,i) => {
                                 return <View key={i} style={styles.itemPositionBox}>
                                     <View style={[baseStyles.flexRow,styles.itemPositionTitleBox]}>
@@ -1009,7 +1020,7 @@ export default class App extends RNComponent {
                                     </View>
                                 </View>
                             })
-                            ||
+                            || (this.futuresShowType == 'holdPosition' && this.positionArr.length <= 0) && this._renderEmptyComponent() ||
                             <View stlye={styles.currencyItemBoxTouch}>
                                 <View style={[styles.currencyItemBox,styles.currencyItemFirstBox]}>
                                     <View style={styles.currencyItemLeft}>

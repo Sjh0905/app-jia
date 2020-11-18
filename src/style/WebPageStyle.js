@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
     webView: {
         flex: 1,
         // backgroundColor: '#10151B'
+    },
+    headRefreshIcon:{
+        marginRight:getWidth(2),
+        width:getWidth(32),
+        height:getWidth(32)
     }
 })
 

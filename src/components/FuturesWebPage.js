@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {View, WebView, Text, Image, Alert} from 'react-native';
+import {View, WebView, Text, Image, Alert, TouchableOpacity} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable, computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -17,7 +17,7 @@ import StyleConfigs from "../style/styleConfigs/StyleConfigs";
 import router from "../configs/navigationConfigs/StackRouterConfigs";
 import NavHeaderCloseIcon from '../assets/BaseAssets/navheader-close.png'
 import env from "../configs/environmentConfigs/env";
-
+import RefreshIcon from "../../src/assets/BaseAssets/refresh-icon.png"
 
 const patchPostMessageFunction = function() {
     var originalPostMessage = window.postMessage;
@@ -442,7 +442,32 @@ export default class App extends RNComponent {
 
     }
 
+    //限制点击刷新频率
+    clickReloadPage = (()=>{
+        let last = 0;
+        return () => {
+            if (Date.now() - last < 1500) return;
+            last = Date.now();
+            this.reloadPage();
+        }
+    })()
 
+
+    // 渲染刷新按钮
+    @action
+    renderRefreshIcon = () => {
+        return (
+            <TouchableOpacity
+                onPress={this.clickReloadPage}
+                activeOpacity={StyleConfigs.activeOpacity}
+            >
+                <Image
+                    style={styles.headRefreshIcon}
+                    source={RefreshIcon}
+                />
+            </TouchableOpacity>
+        )
+    }
     /*----------------------- 挂载 -------------------------*/
 
     render() {
@@ -505,6 +530,7 @@ export default class App extends RNComponent {
                             headerTitle={this.title}
                             goBackIconHidden={this.goBackIconHidden}
                             // goBack={this.goBack}
+                            headerRight={this.renderRefreshIcon()}
                         >
                             <Text>{this.navColor}</Text>
                         </NavHeader>

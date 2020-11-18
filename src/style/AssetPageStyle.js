@@ -443,6 +443,19 @@ const styles = StyleSheet.create({
         fontSize:StyleConfigs.fontSize12,
         color:StyleConfigs.txt172A4D
     },
+    emptyIcon: {
+        width:getWidth(204),
+        height:getWidth(188)
+    },
+    emptyBox: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop:getHeight(60),
+        paddingBottom:getHeight(80)
+    },
+    emptyText: {
+        color:StyleConfigs.txtC5CFD5
+    },
 })
 
 export default styles
