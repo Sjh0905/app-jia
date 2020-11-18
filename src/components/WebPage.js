@@ -139,6 +139,8 @@ export default class App extends RNComponent {
         //     return;
         // }
         // this.initAndroidStatusBar();
+
+        this.notify({key: 'WEBPAGE_BACK'},this.renderUrl);
         this.$router.goBack()
     }
 

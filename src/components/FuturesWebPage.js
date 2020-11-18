@@ -98,6 +98,13 @@ export default class App extends RNComponent {
         //this.url = 'http://localhost:8080/static/H5BiShiJieActivity'
         this.renderUrl = this.$globalFunc.unescapeUrl(this.renderUrl)
         console.log('this is renderUrl',this.renderUrl);
+
+
+        this.listen({key:'WEBPAGE_BACK',func:(url)=>{
+            if(url.indexOf('mobileWebTransferContract') > -1){
+                this.reloadPage();
+            }
+        }});
     }
 
     // 挂载
