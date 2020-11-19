@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
         color:StyleConfigs.txtRed
     },
     itemPosTypeBuy:{
-        backgroundColor:StyleConfigs.bg34A7531A,
+        backgroundColor:StyleConfigs.bg86CB121A,
         color:StyleConfigs.txtGreen
     },
     itemPosSymbol:{

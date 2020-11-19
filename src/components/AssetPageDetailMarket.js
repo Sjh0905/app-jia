@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
 	colorC5CFD5: {color: StyleConfigs.txtC5CFD5},
 	colorGreen: {color: StyleConfigs.btnGreen},
 	colorRed: {color: StyleConfigs.btnRed},
-	bgGreen: {color: '#34A753'},
+	bgGreen: {color: '#86CB12'},
 	bgRed: {color: '#EF5656'},
 	row3Btn: {
 		width: getWidth(156),
