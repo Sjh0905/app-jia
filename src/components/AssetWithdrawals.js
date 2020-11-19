@@ -1348,7 +1348,7 @@ export default class App extends RNComponent {
                     {/*// content={'提现' + this.currency + '原力上的合约币须同时具备提现地址及' + this.currency + ' memo (备注) , 未遵守' + this.currency + '提现规则将导致资产无法找回。'}*/}
                     {/*content={this.myAlertContent}*/}
                     {/*contentStyle={{*/}
-                        {/*color: '#e13b3b'*/}
+                        {/*color: '#F60076'*/}
                     {/*}}*/}
                     {/*checkboxText={'我已知晓'+this.currency+'提现规则'}*/}
                     {/*onClose={this.onCloseAlert}*/}

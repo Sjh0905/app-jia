@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
         width:getWidth(40),
         height:getWidth(40),
         lineHeight:getWidth(40),
-        backgroundColor:StyleConfigs.bgEF56561A,
+        backgroundColor:StyleConfigs.bgF600761A,
         textAlign:'center',
         fontSize:StyleConfigs.fontSize14,
         color:StyleConfigs.txtRed

@@ -563,7 +563,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     textRed:{
-        color: '#E13B3B'
+        color: '#F60076'
     },
     rowText:{
         flexDirection: 'row'

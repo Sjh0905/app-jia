@@ -6,8 +6,8 @@ root.btnGreen = '#00A62A'
 root.txtGreen = '#00A62A'
 root.btnRed = '#D83838'
 root.txtRed = '#D83838'
-root.btnRed2 = '#E13B3B'
-root.txtRed2 = '#E13B3B'
+root.btnRed2 = '#F60076'
+root.txtRed2 = '#F60076'
 root.btnDisabled = '#BFBFBF';
 root.txtDisabled = '#BFBFBF';
 

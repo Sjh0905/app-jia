@@ -296,9 +296,9 @@ const styles = StyleSheet.create({
 	color80: {color: 'rgba(255,255,255,0.8)'},
 	color40: {color: 'rgba(255,255,255,0.4)'},
 	colorGreen: {color: '#86CB12'},
-	colorRed: {color: '#EF5656'},
+	colorRed: {color: '#F60076'},
 	bgGreen: {backgroundColor: '#86CB12'},
-	bgRed: {backgroundColor: '#EF5656'},
+	bgRed: {backgroundColor: '#F60076'},
 	row3Btn: {
 		width: getWidth(156),
 		height: getHeight(58),

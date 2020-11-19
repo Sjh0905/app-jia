@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
     colorGreen: {color: StyleConfigs.btnGreen},
     colorRed: {color: StyleConfigs.btnRed},
     bgGreen: {backgroundColor: '#86CB12'},
-    bgRed: {backgroundColor: '#EF5656'},
+    bgRed: {backgroundColor: '#F60076'},
     row3Btn: {
         width: getWidth(160),
         height: getHeight(66),

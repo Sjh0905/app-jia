@@ -1096,7 +1096,7 @@ const styles = StyleSheet.create({
     colorGreen: {color: StyleConfigs.txtGreen},
     colorRed: {color: StyleConfigs.txtRed},
     bgGreen: {backgroundColor: '#86CB12'},
-    bgRed: {backgroundColor: '#EF5656'},
+    bgRed: {backgroundColor: '#F60076'},
     xbox: {
         flex: 1
     },

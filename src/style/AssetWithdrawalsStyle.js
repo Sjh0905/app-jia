@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
         // marginTop: getHeight(34),
         marginTop:getHeight(10),
         marginBottom:getHeight(10),
-        color: '#EF5656',
+        color: '#F60076',
         fontSize: 12,
         lineHeight: 20
     },
