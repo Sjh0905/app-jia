@@ -1395,7 +1395,7 @@ class DealItem extends RNComponent {
         // console.log('************tp.quoteMinimum**********',tp.quoteMinimum);
         // console.log('************最小金额******************',tp.quoteScale);
 
-        if (text != '' && isOneSymbol && Number(text) < num[0]) {
+        /*if (text != '' && isOneSymbol && Number(text) < num[0]) {
             Alert.alert("提示", '交易额不能低于' + num[0], [{
                 text: "我知道了", onPress: () => {console.log("点了我知道了");}
             }])
@@ -1407,7 +1407,7 @@ class DealItem extends RNComponent {
                 text: "我知道了", onPress: () => {console.log("点了我知道了");}
             }])
             return;
-        }
+        }*/
 
         if (text != '' && Number(text) > Number(available)) {
             Alert.alert("提示", '您的余额不足,请充值', [{
@@ -1700,10 +1700,10 @@ class DealItem extends RNComponent {
 
 
         if (Number(this.price) > 0 && Number(this.amount) > 0) {
-            if (Number(this.price) * Number(this.amount) < (this.tradeLObj.miniVolume || '0')) {
+            /*if (Number(this.price) * Number(this.amount) < (this.tradeLObj.quoteMinimum || '0')) {
                 this.transFlag = false;
 
-                Alert.alert("提示", "交易额不能低于" + (this.tradeLObj.miniVolume || '0'), [
+                Alert.alert("提示", "交易额不能低于" + (this.tradeLObj.quoteMinimum || '0'), [
                     {
                         text: "我知道了", onPress: () => {
                             console.log("点了我知道了");
@@ -1712,7 +1712,7 @@ class DealItem extends RNComponent {
                 ])
 
                 return;
-            }
+            }*/
 
             if (Number(this.price) * Number(this.amount) > 10000000) {
                 this.transFlag = false;
@@ -1857,6 +1857,13 @@ class DealItem extends RNComponent {
                     {
                         text: "我知道了", onPress: () => {
                         }
+                    }
+                ])
+                break;
+            case 'amount*price':
+                Alert.alert("提示", '交易额不能低于'+message.split("than")[1] + "\xa0" + 'USDT', [
+                    {
+                        text: "我知道了", onPress: () => {}
                     }
                 ])
                 break;
@@ -2068,12 +2075,13 @@ class DealItem extends RNComponent {
             return;
 
         }
-        if (Number(at)<Number(tp.miniVolume || '0')) {
+        //最新 quoteMinimum 用来做交易额判断
+        /*if (Number(at)<Number(tp.quoteMinimum || '0')) {
             this.transAmount = 0;
             this.transFlag = false;
-            this.transCont = '交易额不能低于' + (tp.miniVolume || '0') ;
+            this.transCont = '交易额不能低于' + (tp.quoteMinimum || '0') ;
             return;
-        }
+        }*/
         if (Number(at)>10000000) {
             this.transAmount = 0;
             this.transFlag = false;
@@ -2450,7 +2458,7 @@ class DealItem extends RNComponent {
         // console.log('************tp.quoteMinimum**********',tp.quoteMinimum);
         // console.log('************最小金额******************',tp.quoteScale);
 
-        if (text != '' && isOneSymbol && Number(text) < num[0]) {
+        /*if (text != '' && isOneSymbol && Number(text) < num[0]) {
             this.marketTransIptFlag = false;
             this.marketTransIptCont = '交易额不能低于' + num[0] ;
             return;
@@ -2460,7 +2468,7 @@ class DealItem extends RNComponent {
             this.marketTransIptFlag = false;
             this.marketTransIptCont = '交易额不能低于' + num[1] ;
             return;
-        }
+        }*/
 
         if (text != '' && Number(text) > Number(available)) {
             this.marketTransIptFlag = false;
