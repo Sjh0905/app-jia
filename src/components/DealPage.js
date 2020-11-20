@@ -1569,11 +1569,12 @@ class DealItem extends RNComponent {
             return;
         }
 
-        if (!tp.quoteMinimum || tp.quoteScale < 0)
+        /*if (!tp.quoteMinimum || tp.quoteScale < 0)
             return;
 
 
-        var pnum = this.$globalFunc.accFixed(1*Math.pow(10,-tp.quoteScale), tp.quoteScale);
+        var pnum = this.$globalFunc.accFixed(1*Math.pow(10,-tp.quoteScale), tp.quoteScale);*/
+        var pnum = 0;
 
         if (/*text != '' &&*/this.symbol !='KK_USDT' && Number(text) < Number(pnum)) {
             Alert.alert("提示", '价格不能低于' + pnum, [
@@ -1654,10 +1655,11 @@ class DealItem extends RNComponent {
         }
 
 
-        if (!tp.baseMinimum || tp.baseScale < 0)
+        /*if (!tp.baseMinimum || tp.baseScale < 0)
             return;
 
-        var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);
+        var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);*/
+        var num = 0;
         var bnum = tp.maxAmount;
         if (/*text2!= '' &&*/ Number(text2) < Number(num)) {
 
@@ -1845,7 +1847,7 @@ class DealItem extends RNComponent {
 
         switch (err_type) {
             case 'amount':
-                Alert.alert("提示", "最多交易10000000个", [
+                Alert.alert("提示", "请输入正确的数量", [
                     {
                         text: "我知道了", onPress: () => {
                         }
@@ -1853,7 +1855,7 @@ class DealItem extends RNComponent {
                 ])
                 break;
             case 'price':
-                Alert.alert("提示", "价格不能超过10000000", [
+                Alert.alert("提示", "请输入正确的价格", [
                     {
                         text: "我知道了", onPress: () => {
                         }
@@ -2286,12 +2288,13 @@ class DealItem extends RNComponent {
             return;
         }
 
-        if (!tp.quoteMinimum || tp.quoteScale < 0)
+        /*if (!tp.quoteMinimum || tp.quoteScale < 0)
             return;
 
 
 
-        var num = this.$globalFunc.accFixed(1*Math.pow(10,-tp.quoteScale), tp.quoteScale);
+        var num = this.$globalFunc.accFixed(1*Math.pow(10,-tp.quoteScale), tp.quoteScale);*/
+        var num = 0;
         // console.log('************tp.quoteMinimum**********',tp.quoteMinimum);
         // console.log('************最小金额******************',tp.quoteScale);
 
@@ -2354,10 +2357,11 @@ class DealItem extends RNComponent {
         }
 
 
-        if (!tp.baseMinimum || tp.baseScale < 0)
+        /*if (!tp.baseMinimum || tp.baseScale < 0)
             return;
 
-        var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);
+        var num = this.$globalFunc.accFixed(tp.baseMinimum, tp.baseScale);*/
+        var num = 0;
         //买入时最大成交量,暂时不做，如果加上此句话，前面需要对tp.maxAmount做非法验证，否则有可能引起闪退BUG，如值为''时
         // bnum = this.$globalFunc.accFixed(tp.maxAmount, tp.baseScale);
         var bnum = tp.maxAmount;
