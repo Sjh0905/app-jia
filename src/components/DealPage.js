@@ -1863,7 +1863,9 @@ class DealItem extends RNComponent {
                 ])
                 break;
             case 'amount*price':
-                Alert.alert("提示", '交易额不能低于'+message.split("than")[1] + "\xa0" + 'USDT', [
+                let minPrice = message && message.split("than") && message.split("than")[1] || 0
+                    minPrice = this.$globalFunc.accFixed(Number(minPrice),0)
+                Alert.alert("提示", '交易额不能低于'+ "\xa0" +minPrice + "\xa0" + 'USDT', [
                     {
                         text: "我知道了", onPress: () => {}
                     }
