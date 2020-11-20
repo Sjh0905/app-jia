@@ -1371,7 +1371,8 @@ class DealItem extends RNComponent {
         let num = this.marketTransMin.num
         let available = this.getCurrAsset.available || '0';
 
-        if (isNaN(text) || zp == 0 || text.indexOf('.', zp + 1) > -1 || text[text.length - 1] == '.' || sp>-1 || plus>-1) {
+        //input框那先不加text == '' 非空判断，否则用户输入并删除值后提示不消失
+        if (text == '' || isNaN(text) || zp == 0 || text.indexOf('.', zp + 1) > -1 || text[text.length - 1] == '.' || sp>-1 || plus>-1) {
             Alert.alert("提示", "请输入正确的交易额", [{
                 text: "我知道了", onPress: () => {console.log("点了我知道了");}
             }])
