@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {View, WebView, Text, Image, Alert, TouchableOpacity} from 'react-native';
+import {View, WebView, Text, Image, Alert, TouchableOpacity, Platform, CameraRoll} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable, computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -18,6 +18,9 @@ import router from "../configs/navigationConfigs/StackRouterConfigs";
 import NavHeaderCloseIcon from '../assets/BaseAssets/navheader-close.png'
 import env from "../configs/environmentConfigs/env";
 import RefreshIcon from "../../src/assets/BaseAssets/refresh-icon.png"
+import AndroidModule from "../../native/AndroidUtil";
+import GetAndroidUpdate from "../../native/GetAndroidUpdate";
+import globalFunc from "../configs/globalFunctionConfigs/GlobalFunction";
 
 const patchPostMessageFunction = function() {
     var originalPostMessage = window.postMessage;
@@ -175,6 +178,64 @@ export default class App extends RNComponent {
     @action
     goHome = () => {
         this.$router.goBack()
+    }
+
+    saveImageIOS = (imgUrl)=>{
+        let me = this;
+        let img = imgUrl;
+
+        if(!img){
+            me.$globalFunc.toast('请重试');
+            return;
+        }
+        var promise = CameraRoll.saveToCameraRoll(img,'photo');
+        promise.then(function(result) {
+            me.$globalFunc.toast('保存成功')
+        }).catch(function(error) {
+            console.log(error)
+            if(error.message == 'User denied access'){
+                Alert.alert('无法保存','请在iPhone的“设置-隐私-照片”选项中，允许二零二零访问您的照片。')
+                return;
+            }
+            me.$globalFunc.toast('请重试');
+            return;
+        });
+    }
+
+    saveImageAndroid = (imgUrl)=>{
+        globalFunc.downloadImage(imgUrl,(img,res)=>{
+            if(res && res.code === 'ENOENT'){
+                Alert.alert(
+                    '无法保存',
+                    '当前状态无法保存图片，请在设置中打开存储权限。'  ,
+                    [
+                        {text: '下次吧', style: 'cancel'},
+                        {text: '去设置', onPress: this.androidSetting}
+                    ],
+                    { cancelable: false });
+                return;
+            }
+            if(!img){
+                this.$globalFunc.toast('请重试');
+                return;
+            }
+            GetAndroidUpdate.UpdateCamera(img);
+            this.$globalFunc.toast('保存成功');
+        });
+    }
+
+    saveImage = async (imgUrl)=>{
+        Platform.OS === 'android' && this.saveImageAndroid(imgUrl);
+        Platform.OS === 'ios' && this.saveImageIOS(imgUrl);
+    }
+
+    @action
+    androidSetting = ()=>{
+        try{
+            AndroidModule.openAndroidPermission();
+        }catch(ex){
+            console.log('跳转设置失败',ex);
+        }
     }
 
     onMessage = (event)=>{
@@ -445,6 +506,19 @@ export default class App extends RNComponent {
                 }])
             }
             this.goWebView(paras);
+        },
+        //H5指定跳转对应的路由
+        toSaveImage:function (...arg) {
+            console.log(arg);
+
+            let paras = arg && arg[0] || null
+            if(!paras){
+                Alert.alert("提示", "H5传参错误，请刷新后重试", [{
+                    text: "我知道了", onPress: () => {console.log("点了我知道了");}
+                }])
+            }
+
+            this.saveImage(paras);
         }
 
     }
