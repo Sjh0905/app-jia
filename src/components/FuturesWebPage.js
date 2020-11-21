@@ -205,14 +205,19 @@ export default class App extends RNComponent {
     saveImageAndroid = (imgUrl)=>{
         globalFunc.downloadImage(imgUrl,(img,res)=>{
             if(res && res.code === 'ENOENT'){
-                Alert.alert(
+                /*Alert.alert(
                     '无法保存',
                     '当前状态无法保存图片，请在设置中打开存储权限。'  ,
                     [
                         {text: '下次吧', style: 'cancel'},
                         {text: '去设置', onPress: this.androidSetting}
                     ],
-                    { cancelable: false });
+                    { cancelable: false });*/
+
+                Alert.alert("提示", "当前状态无法保存图片，请在设置中打开存储权限。", [{
+                    text: "我知道了", onPress: () => {console.log("点了我知道了");}
+                }])
+
                 return;
             }
             if(!img){
