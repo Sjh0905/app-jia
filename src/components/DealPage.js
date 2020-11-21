@@ -399,6 +399,8 @@ export default class DealPage extends RNComponent {
 
         // console.log('设置后this.tab==========',this.tab);
 
+        this.changeDealType(index);
+
         try{
             this.componentUpdate = true;
             // if(this.scrollTabView)
@@ -542,8 +544,10 @@ export default class DealPage extends RNComponent {
     }
 
     @action
-    changeDealType = ()=>{
-        this.dealType = this.dealType == 0 ? 1 : 0;
+    changeDealType = (type)=>{
+        if(this.dealType == type)return
+
+        this.dealType = type;
     }
 
     @action
@@ -2583,13 +2587,13 @@ class DealItem extends RNComponent {
                 <View style={[styles.halfBox1]}>
                     {/*切换买入卖出*/}
                     <View style={styles.changeDealTypeBox}>
-                        <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={this.props.changeDealType}>
+                        <TouchableOpacity activeOpacity={StyleConfigs.activeOpacity} onPress={()=>{this.props.changeDealType(0)}}>
                             <ImageBackground source={this.props.type == 0 && buySelected || buyGray} style={styles.buyTypeBtn}>
                                 <Text style={[styles.buyTypeBtnText,this.props.type == 0 ? styles.btnTextSelected  : {}]}>买入</Text>
                             </ImageBackground>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={this.props.changeDealType}
+                            onPress={()=>{this.props.changeDealType(1)}}
                             activeOpacity={StyleConfigs.activeOpacity}
                             // style={styles.sellTypeTouch}
                         >
