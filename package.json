@@ -5,7 +5,13 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "android":"react-native run-android"
+    "android":"react-native run-android",
+    "67":"rm -rf ./android/app/build/* && rm -rf ./android/app/src/main/assets/*",
+    "8d":"react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cp -Rf ./src/assets/chart ./android/app/src/main/assets/ && cd android && ./gradlew assembleDebug",
+    "8r":"react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cp -Rf ./src/assets/chart ./android/app/src/main/assets/ && cd android && ./gradlew assembleRelease",
+    "6d":"npm run 67 && npm run 8d",
+    "6r":"npm run 67 && npm run 8r",
+    "delRes":"rm -rf android/app/src/main/res/drawable-hdpi && rm -rf android/app/src/main/res/drawable-mdpi && rm -rf android/app/src/main/res/drawable-xhdpi && rm -rf android/app/src/main/res/drawable-xxhdpi && rm -rf android/app/src/main/res/drawable-xxxhdpi"
   },
   "dependencies": {
     "big.js": "^5.0.3",
