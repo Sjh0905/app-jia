@@ -90,7 +90,7 @@ export default class App extends RNComponent {
 
 	// 是否同意用户协议
 	@observable
-	agreement = false
+	agreement = true
 	// 用户协议出错
 	@observable
 	agreementWA = ''
@@ -492,6 +492,9 @@ export default class App extends RNComponent {
 		console.log('注册结果', data);
 		this.sending = false
 
+		//清空验证码
+        this.verificationCode = ''
+
 		if (data.result === 'FAIL' || data.errorCode) {
 			//手机注册，data.result != 'FAIL' && errorCode为3的时候好像是需要跳转二次验证页面
 			if (this.selectedTab == 'mobile' && data.errorCode != 3) {
@@ -595,7 +598,7 @@ export default class App extends RNComponent {
 		// 推荐人出错
 		this.refereeWA = ''
 		// 是否同意用户协议
-		this.agreement = false
+		this.agreement = true
 		// 用户协议出错
 		this.agreementWA = ''
 	}
@@ -704,98 +707,6 @@ export default class App extends RNComponent {
 					{/*邮箱 end*/}
 
 
-					{/*获取验证码 begin*/}
-					{
-						this.selectedTab === "mobile" &&
-						<View style={[signBaseStyles.inputItemBox, signBaseStyles.inputItemBoxPaddingTop]}>
-
-							<View style={[signBaseStyles.inputLeftBox]}>
-								{/*<View style={[signBaseStyles.inputLeftIconBox]}>*/}
-								{/*<Image source={emailVerifyIcon}*/}
-								{/*style={[styles.inputBoxIcon, styles.emailVerifyIcon]}></Image>*/}
-								{/*</View>*/}
-								<TextInput
-									allowFontScaling={false}
-									style={[signBaseStyles.inputLeftInput]}
-									value={this.verificationCode}
-									placeholder={this.placeholderText[this.selectedTab]}
-									placeholderTextColor={StyleConfigs.placeholderTextColor}
-									underlineColorAndroid={'transparent'}
-									onBlur={this.testVerificationCode}
-									onChangeText={(text) => {
-										this.verificationCode = text
-									}}
-									returnKeyType={'done'}
-									keyboardType={'numeric'}
-
-								/>
-							</View>
-
-							<CountDownMobile
-								onPress={this.getVerificationCode}
-								time={60}
-								text={'发送验证码'}
-								boxStyle={[signBaseStyles.inputRightBox]}
-								textStyle={[signBaseStyles.inputRightText, {color: StyleConfigs.txtBlue}]}
-								delay={true}
-								ref={'CountDownMobile'}
-							/>
-
-
-						</View>
-					}
-					{this.selectedTab === 'email' &&
-					<View style={[signBaseStyles.inputItemBox, signBaseStyles.inputItemBoxPaddingTop]}>
-
-						<View style={[signBaseStyles.inputLeftBox]}>
-							{/*<View style={[signBaseStyles.inputLeftIconBox]}>*/}
-							{/*<Image source={emailVerifyIcon}*/}
-							{/*style={[styles.inputBoxIcon, styles.emailVerifyIcon]}></Image>*/}
-							{/*</View>*/}
-							<TextInput
-								allowFontScaling={false}
-								style={[signBaseStyles.inputLeftInput]}
-								value={this.verificationCode}
-								placeholder={this.placeholderText[this.selectedTab]}
-								placeholderTextColor={StyleConfigs.placeholderTextColor}
-								underlineColorAndroid={'transparent'}
-								onBlur={this.testVerificationCode}
-								onChangeText={(text) => {
-									this.verificationCode = text
-								}}
-								returnKeyType={'done'}
-								keyboardType={'numeric'}
-
-							/>
-						</View>
-
-						<CountDown
-							onPress={this.getVerificationCode}
-							time={60}
-							text={'发送验证码'}
-							boxStyle={[signBaseStyles.inputRightBox]}
-							textStyle={[signBaseStyles.inputRightText, {color: StyleConfigs.txtBlue}]}
-							delay={true}
-							ref={'CountDownEmail'}
-						/>
-
-					</View>
-					}
-
-
-					{/*获取验证码 end*/}
-
-
-					{/*获取验的错误提示*/}
-					{!!this.verificationCodeWA &&
-					<View style={signBaseStyles.wrongAnsBox}>
-						<View style={signBaseStyles.wrongAnsPadding}></View>
-						<Text allowFontScaling={false}
-						      style={[signBaseStyles.wrongAns]}>{this.verificationCodeWA}</Text>
-					</View>
-					}
-
-
 					{/*设置密码 begin*/}
 					<View style={[signBaseStyles.inputItemBox, signBaseStyles.inputItemBoxPaddingTop]}>
 						{/*<View style={signBaseStyles.iconBox}>*/}
@@ -893,10 +804,109 @@ export default class App extends RNComponent {
 					}
 
 
+
+                    {/*获取验证码 begin*/}
+                    {
+                        this.selectedTab === "mobile" &&
+                        <View style={[signBaseStyles.inputItemBox, signBaseStyles.inputItemBoxPaddingTop]}>
+
+                            <View style={[signBaseStyles.inputLeftBox]}>
+                                {/*<View style={[signBaseStyles.inputLeftIconBox]}>*/}
+                                {/*<Image source={emailVerifyIcon}*/}
+                                {/*style={[styles.inputBoxIcon, styles.emailVerifyIcon]}></Image>*/}
+                                {/*</View>*/}
+                                <TextInput
+                                    allowFontScaling={false}
+                                    style={[signBaseStyles.inputLeftInput]}
+                                    value={this.verificationCode}
+                                    placeholder={this.placeholderText[this.selectedTab]}
+                                    placeholderTextColor={StyleConfigs.placeholderTextColor}
+                                    underlineColorAndroid={'transparent'}
+                                    onBlur={this.testVerificationCode}
+                                    onChangeText={(text) => {
+                                        this.verificationCode = text
+
+                                        this.$globalFunc.testVerificationCode(text,this.commit)
+                                    }}
+                                    returnKeyType={'done'}
+                                    keyboardType={'numeric'}
+
+                                />
+                            </View>
+
+                            <CountDownMobile
+                                onPress={this.getVerificationCode}
+                                time={60}
+                                text={'发送验证码'}
+                                boxStyle={[signBaseStyles.inputRightBox]}
+                                textStyle={[signBaseStyles.inputRightText, {color: StyleConfigs.txtBlue}]}
+                                delay={true}
+                                ref={'CountDownMobile'}
+                            />
+
+
+                        </View>
+                    }
+                    {this.selectedTab === 'email' &&
+                    <View style={[signBaseStyles.inputItemBox, signBaseStyles.inputItemBoxPaddingTop]}>
+
+                        <View style={[signBaseStyles.inputLeftBox]}>
+                            {/*<View style={[signBaseStyles.inputLeftIconBox]}>*/}
+                            {/*<Image source={emailVerifyIcon}*/}
+                            {/*style={[styles.inputBoxIcon, styles.emailVerifyIcon]}></Image>*/}
+                            {/*</View>*/}
+                            <TextInput
+                                allowFontScaling={false}
+                                style={[signBaseStyles.inputLeftInput]}
+                                value={this.verificationCode}
+                                placeholder={this.placeholderText[this.selectedTab]}
+                                placeholderTextColor={StyleConfigs.placeholderTextColor}
+                                underlineColorAndroid={'transparent'}
+                                onBlur={this.testVerificationCode}
+                                onChangeText={(text) => {
+                                    this.verificationCode = text
+
+                                    this.$globalFunc.testVerificationCode(text,this.commit)
+                                }}
+                                returnKeyType={'done'}
+                                keyboardType={'numeric'}
+
+                            />
+                        </View>
+
+                        <CountDown
+                            onPress={this.getVerificationCode}
+                            time={60}
+                            text={'发送验证码'}
+                            boxStyle={[signBaseStyles.inputRightBox]}
+                            textStyle={[signBaseStyles.inputRightText, {color: StyleConfigs.txtBlue}]}
+                            delay={true}
+                            ref={'CountDownEmail'}
+                        />
+
+                    </View>
+                    }
+
+
+                    {/*获取验证码 end*/}
+
+
+                    {/*获取验的错误提示*/}
+                    {!!this.verificationCodeWA &&
+                    <View style={signBaseStyles.wrongAnsBox}>
+                        <View style={signBaseStyles.wrongAnsPadding}></View>
+                        <Text allowFontScaling={false}
+                              style={[signBaseStyles.wrongAns]}>{this.verificationCodeWA}</Text>
+                    </View>
+                    }
+
+
+
 					{/*已阅读并同意二零二零用户协议*/}
 					<View style={[styles.agreementBox, signBaseStyles.inputItemBoxPaddingTop]}>
 						<CheckBox
 							style={{width: 14, height: 14}}
+                            timeDuring={0}
 							checked={this.agreement}
 							keys={1}
 							onPress={this.clickAgreement}

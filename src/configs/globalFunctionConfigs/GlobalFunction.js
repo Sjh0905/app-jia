@@ -112,7 +112,7 @@ globalFunc.testVerificationCode = function (code,callback) {
 
     console.log('this is code',code,result,callback.toString());
 
-    if(result){
+    if(result && callback){
         setTimeout(()=>{ callback() },200)
     }
 }
