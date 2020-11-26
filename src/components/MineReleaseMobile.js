@@ -237,6 +237,10 @@ export default class App extends RNComponent {
     re_commit = (data) => {
         typeof data === 'string' && (data = JSON.parse(data))
         this.loading = false
+
+        //清空验证码
+        this.verificationCode = '';
+
         if (!data) return
         if (data.errorCode) {
             let msg = ''
@@ -343,6 +347,8 @@ export default class App extends RNComponent {
                             value={this.verificationCode}
                             onChangeText={(text) => {
                                 this.verificationCode = text
+
+                                this.$globalFunc.testVerificationCode(text,this.commit)
                             }}
                             returnKeyType={'done'}
                             keyboardType={'numeric'}
