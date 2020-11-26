@@ -132,6 +132,8 @@ export default class App extends RNComponent {
                         underlineColorAndroid={'transparent'}
                         onChangeText={(text) => {
                             this.GACode = text
+
+                            this.$globalFunc.testVerificationCode(text,this.commit)
                         }}
                         returnKeyType={'done'}
                         keyboardType={'numeric'}
@@ -301,6 +303,9 @@ export default class App extends RNComponent {
         console.log('here1')
         typeof data === 'string' && (data = JSON.parse(data))
         this.sending = false
+        //接口返回后清空输入框
+        this.GACode = ''
+        this.verificationCode = ''
 
         if (data.errorCode || data.result === 'FAIL') {
             if (this.props.type == typeArr[0]) {
@@ -402,6 +407,8 @@ console.log('here2')
                             underlineColorAndroid={'transparent'}
                             onChangeText={(text) => {
                                 this.verificationCode = text
+
+                                this.$globalFunc.testVerificationCode(text,this.commit)
                             }}
                             returnKeyType={'done'}
                             keyboardType={'numeric'}
