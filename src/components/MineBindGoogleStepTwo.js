@@ -123,6 +123,10 @@ export default class App extends RNComponent {
         console.log('result',data);
         typeof data === 'string' && (data = JSON.parse(data))
         this.loading = false
+
+        //清空验证码
+        this.gaCode = ''
+
         if (data.errorCode) {
             let msg = ''
             switch (data.errorCode) {
@@ -211,6 +215,8 @@ export default class App extends RNComponent {
                             value={this.gaCode}
                             onChangeText={(text) => {
                                 this.gaCode = text
+
+                                this.$globalFunc.testVerificationCode(text,this.commit)
                             }}
                             returnKeyType={'done'}
                             keyboardType={'numeric'}
