@@ -130,6 +130,7 @@ export default class App extends RNComponent {
                         placeholder={'请输入谷歌验证码'}
                         placeholderTextColor={StyleConfigs.placeholderTextColor}
                         underlineColorAndroid={'transparent'}
+                        value={this.GACode}
                         onChangeText={(text) => {
                             this.GACode = text
 
@@ -405,6 +406,7 @@ console.log('here2')
                             placeholder={'请输入手机验证码'}
                             placeholderTextColor={StyleConfigs.placeholderTextColor}
                             underlineColorAndroid={'transparent'}
+                            value={this.verificationCode}
                             onChangeText={(text) => {
                                 this.verificationCode = text
 
