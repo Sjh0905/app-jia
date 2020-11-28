@@ -11,7 +11,9 @@
     "8r":"react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cp -Rf ./src/assets/chart ./android/app/src/main/assets/ && cd android && ./gradlew assembleRelease",
     "6d":"npm run 67 && npm run 8d",
     "6r":"npm run 67 && npm run 8r",
-    "delRes":"rm -rf android/app/src/main/res/drawable-hdpi && rm -rf android/app/src/main/res/drawable-mdpi && rm -rf android/app/src/main/res/drawable-xhdpi && rm -rf android/app/src/main/res/drawable-xxhdpi && rm -rf android/app/src/main/res/drawable-xxxhdpi"
+    "del-res":"rm -rf android/app/src/main/res/drawable-hdpi && rm -rf android/app/src/main/res/drawable-mdpi && rm -rf android/app/src/main/res/drawable-xhdpi && rm -rf android/app/src/main/res/drawable-xxhdpi && rm -rf android/app/src/main/res/drawable-xxxhdpi",
+    "push-d":"cp -Rf ./android/app/build/outputs/apk/debug/*.apk ../../Desktop/2020.Exchange/Android内测包",
+    "push-r":"cp -Rf ./android/app/build/outputs/apk/debug/*.apk ../../Desktop/2020.Exchange/Android生产包"
   },
   "dependencies": {
     "big.js": "^5.0.3",
