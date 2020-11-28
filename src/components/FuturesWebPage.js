@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {View, WebView, Text, Image, Alert, TouchableOpacity, Platform, CameraRoll} from 'react-native';
+import {View, WebView, Text, Image, Alert, TouchableOpacity, Keyboard, Platform, CameraRoll} from 'react-native';
 import {observer} from 'mobx-react'
 import {action, observable, computed} from 'mobx'
 import RNComponent from '../configs/classConfigs/ReactNativeComponent'
@@ -82,6 +82,9 @@ export default class App extends RNComponent {
     @observable
     canGoH5Back = false;//通过H5传过来的参数判断
 
+    @observable
+    WebViewMarginBottom = 0
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -133,22 +136,41 @@ export default class App extends RNComponent {
 
     }
 
-    // componentDidMount() {
-    //     super.componentDidMount()
-    //     // if(this.isTransparentNav){
-    //     //     this.title = ''
-    //     //     this.offsetTop = PlatformOS == 'android' ? getHeight(-108) : getHeight(-128)
-    //     //     this.setColor('transparent')
-    //     //     this.setWidth(true)
-    //     // }
-    // }
+    componentDidMount() {
+        super.componentDidMount()
+        if(PlatformOS == 'android'){
+            this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
+            this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+        }
+        // if(this.isTransparentNav){
+        //     this.title = ''
+        //     this.offsetTop = PlatformOS == 'android' ? getHeight(-108) : getHeight(-128)
+        //     this.setColor('transparent')
+        //     this.setWidth(true)
+        // }
+    }
 
     // 卸载
     componentWillUnmount() {
         super.componentWillUnmount()
+        if(PlatformOS == 'android') {
+            this.keyboardDidShowListener.remove();
+            this.keyboardDidHideListener.remove();
+        }
     }
 
     /*----------------------- 函数 -------------------------*/
+
+
+    _keyboardDidShow (e) {
+
+        this.WebViewMarginBottom = e.endCoordinates && (e.endCoordinates.height-48) || 0
+    }
+
+    _keyboardDidHide (e) {
+
+        this.WebViewMarginBottom = 0
+    }
 
     initAndroidStatusBar = ()=>{
         // (PlatformOS == 'android' && this.navMarginTop > 0) && this.notify({key:'CHANGE_ANDROID_STATUS_BAR'},'init');
@@ -558,7 +580,12 @@ export default class App extends RNComponent {
 
     render() {
         return (
-            <View style={[styles.container, {flexDirection: 'column-reverse',backgroundColor:StyleConfigs.navBgColor0602,paddingTop: getDeviceTop()}]}>
+            <View style={[styles.container, {
+                flexDirection: 'column-reverse',
+                backgroundColor:StyleConfigs.navBgColor0602,
+                paddingTop: getDeviceTop(),
+                marginBottom:this.WebViewMarginBottom
+                }]}>
                 {/*加载中*/}
                 {
                     this.loading && <Loading leaveNav={false}/>
