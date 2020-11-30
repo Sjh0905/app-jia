@@ -164,7 +164,7 @@ export default class App extends RNComponent {
 
     _keyboardDidShow (e) {
 
-        this.WebViewMarginBottom = e.endCoordinates && (e.endCoordinates.height-48) || 0
+        this.WebViewMarginBottom = e.endCoordinates && (e.endCoordinates.height-30) || 0
     }
 
     _keyboardDidHide (e) {
@@ -584,7 +584,7 @@ export default class App extends RNComponent {
                 flexDirection: 'column-reverse',
                 backgroundColor:StyleConfigs.navBgColor0602,
                 paddingTop: getDeviceTop(),
-                marginBottom:this.WebViewMarginBottom
+                paddingBottom:this.WebViewMarginBottom
                 }]}>
                 {/*加载中*/}
                 {
