@@ -13,7 +13,7 @@
     "6r":"npm run 67 && npm run 8r",
     "del-res":"rm -rf android/app/src/main/res/drawable-hdpi && rm -rf android/app/src/main/res/drawable-mdpi && rm -rf android/app/src/main/res/drawable-xhdpi && rm -rf android/app/src/main/res/drawable-xxhdpi && rm -rf android/app/src/main/res/drawable-xxxhdpi",
     "push-d":"cp -Rf ./android/app/build/outputs/apk/debug/*.apk ../../Desktop/2020.Exchange/Android内测包",
-    "push-r":"cp -Rf ./android/app/build/outputs/apk/debug/*.apk ../../Desktop/2020.Exchange/Android生产包"
+    "push-r":"cp -Rf ./android/app/build/outputs/apk/release/*.apk ../../Desktop/2020.Exchange/Android生产包"
   },
   "dependencies": {
     "big.js": "^5.0.3",
