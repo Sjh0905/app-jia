@@ -653,16 +653,19 @@ export default class App extends RNComponent {
         //     }
         // })
         //
-        // this.$http.send('GET_HUOBI_MARKET_RATE',{
-        //     bind: this,
-        //     callBack: this.re_getExchangeRateDollar,
-        //     errorHandler: this.error_getExchangeRateDollar
-        // })
+        this.$http.send('GET_EXCHANGE_RATE',{
+            bind: this,
+            callBack: this.re_getExchangeRateDollar,
+            errorHandler: this.error_getExchangeRateDollar
+        })
     }
 
     re_getExchangeRateDollar = (d)=>{
-        if(!d || !d.data)return;
-        let detail = d.data.detail || [];
+        if(!d)return;
+        // console.log('获取美金汇率',d);
+        (d * 1) > 0 && this.$store.commit('SET_EXCHANGE_RATE_DOLLAR',d * 1)
+
+        /*let detail = d.data.detail || [];
         detail.map(v=>{
             if(v.coinName == 'USDT'){
                 let rate = v.buy
@@ -670,10 +673,10 @@ export default class App extends RNComponent {
                 // console.log('插入本地硬盘汇率',rate);
                 AsyncStorage.setItem('exchangRateDollar',rate)
             }
-        })
+        })*/
     }
     error_getExchangeRateDollar = (err)=>{
-        console.log("获取火币汇率出错！", err)
+        console.log("获取美金汇率出错！", err)
     }
 
     // 获取最新版本号

@@ -212,8 +212,8 @@ requestAddress.UPLOADA_AGAIN = {url: '/auth/uploadaAgain', method: 'post'}
 // 获取c2c需要cookie的接口
 requestAddress.GET_COOKIES_C2C = {url: '/user/getCookies', method: 'get'}
 
-// 调用火币汇率的接口
-requestAddress.GET_HUOBI_MARKET_RATE = {url: 'https://otc-api.huobi.co/v1/data/market/detail', method: 'get',baseUrl:''}
+// 调用美金汇率
+requestAddress.GET_EXCHANGE_RATE = {url: '/user/exchange/rate', method: 'get',baseUrl:''}
 
 // 获取自选区
 requestAddress.GET_COLLECTION_SYMBOL = {url: '/user/getCollectionSymbol', method: 'get'}

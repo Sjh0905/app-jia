@@ -755,10 +755,11 @@ export default class OneHome extends RNComponent {
 								itemWidth={itemWidth}
 								activeSlideAlignment={'center'}
 								onSnapToItem={(inx)=>{
-									console.log('this is ',inx%this.imgData.length);
+									// console.log('this is ',inx%this.imgData.length);
 								}}
 								loopClonesPerSide={5}
 								loop={true}
+                                autoplay
 							/>
 						</View>
 						{/*公告列表*/}
