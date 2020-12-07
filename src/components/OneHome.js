@@ -41,7 +41,7 @@ import Modal from 'react-native-modal'
 import Toast from "react-native-root-toast";
 
 // const groupBanner = require('../assets/OneHome/group_banner.png')
-const treasureChestBanner = require('../assets/OneHome/treasure_chest_banner.png')
+const treasureChestBanner = require('../assets/OneHome/strategic_documentary.png')
 const WEBVIEWRESOURCE = Platform.select({
     ios: require('../assets/chart/customerservice/customerservice.html'),
     android: __DEV__ && require('../assets/chart/customerservice/customerservice.html') || {uri:"file:///android_asset/chart/customerservice/customerservice.html"},
@@ -155,7 +155,7 @@ export default class OneHome extends RNComponent {
             }
 			// action: 'https://jinshuju.net/f/jhg65X'
 		},
-        {
+        /*{
             text: '镜像交易',
             img: require('../assets/OneHome/strategic_documentary.png'),
             action: ()=>{
@@ -169,20 +169,20 @@ export default class OneHome extends RNComponent {
                 this.goStrategicDocumentary();
             }
             // action: 'https://jinshuju.net/f/jhg65X'
-        },
-        // {
-        //     text: '百宝箱',
-        //     img: require('../assets/OneHome/treasure_chest_icon.png'),
-        //     action: (() => {
-        //         let last = 0;
-        //         return () => {
-        //             if (Date.now() - last < 1000) return;
-        //             last = Date.now();
-        //
-        //             this.goToTreasureChest();
-        //         }
-        //     })()
-        // },
+        },*/
+        /*{
+            text: '百宝箱',
+            img: require('../assets/OneHome/treasure_chest.png'),
+            action: (() => {
+                let last = 0;
+                return () => {
+                    if (Date.now() - last < 1000) return;
+                    last = Date.now();
+
+                    this.goToTreasureChest();
+                }
+            })()
+        },*/
         {
             text: '交易挖矿',
             img: require('../assets/OneHome/trade_mining.png'),
@@ -898,9 +898,9 @@ export default class OneHome extends RNComponent {
                         {/*</ImageBackground>*/}
                     {/*</TouchableOpacity>*/}
 
-                    {/*百宝箱入口*/}
+                    {/*镜像交易入口*/}
                     <TouchableOpacity
-                        onPress={this.goToTreasureChest}
+                        onPress={this.goStrategicDocumentary}
                         activeOpacity={StyleConfigs.activeOpacity}
 						style={styles.treasureChestTouch}
                     >

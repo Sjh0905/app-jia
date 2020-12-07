@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     treasureChestImg:{
-        width:getWidth(684),
+        width:getWidth(750),
         height:getWidth(180)
     }
 
