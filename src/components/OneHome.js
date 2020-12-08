@@ -170,7 +170,7 @@ export default class OneHome extends RNComponent {
             }
             // action: 'https://jinshuju.net/f/jhg65X'
         },*/
-        /*{
+        {
             text: '百宝箱',
             img: require('../assets/OneHome/treasure_chest.png'),
             action: (() => {
@@ -182,7 +182,7 @@ export default class OneHome extends RNComponent {
                     this.goToTreasureChest();
                 }
             })()
-        },*/
+        },
         {
             text: '交易挖矿',
             img: require('../assets/OneHome/trade_mining.png'),
