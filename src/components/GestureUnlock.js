@@ -132,6 +132,7 @@ export default class GestureUnlock extends RNComponent {
         console.warn('data', data)
 
         this.$store.commit('SET_AUTH_MESSAGE', {})
+        this.$store.commit('CLEAR_CURRENCY')
 
         this.notify({key: 'CHANGE_TAB'}, 0);
         this.notify({key: 'SET_TAB_INDEX'},0);
@@ -139,6 +140,7 @@ export default class GestureUnlock extends RNComponent {
         // this.goBack();
 
         this.notify({key:'LOG_OUT_RE__H5'})
+        this.notify({key:'LOG_OUT'})
 
     }
 

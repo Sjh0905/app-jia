@@ -137,6 +137,8 @@ export default class App extends RNComponent {
 
         //获取合约资产
         this.getFuturesAccount()
+
+        this.listen({key:'LOG_OUT',func:this.clearfuturesAssets});
     }
 
     // 卸载
@@ -162,6 +164,12 @@ export default class App extends RNComponent {
             this.$router.push('RechargeAndWithdrawalsRecords');
         }
     })()
+
+    //清空合约资产
+    clearfuturesAssets = ()=>{
+        this.balance = {}
+        this.totalWalletBalance = this.totalUnrealizedProfit = this.totalMarginBalance = 0
+    }
 
     // 改变图标
     @action

@@ -583,7 +583,7 @@ export default class App extends RNComponent {
             <View style={[styles.container, {
                 flexDirection: 'column-reverse',
                 backgroundColor:StyleConfigs.navBgColor0602,
-                paddingTop: getDeviceTop(),
+                paddingTop: 0,
                 paddingBottom:this.WebViewMarginBottom
                 }]}>
                 {/*加载中*/}
