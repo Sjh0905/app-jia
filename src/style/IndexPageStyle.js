@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         // height:getHeight(40),
         borderRadius:33/2,
         marginTop:128/2,
-        width:91/2,
+        width:100/2,
         height:33/2,
         // borderRadius:StyleConfigs.borderRadius1o5,
         // backgroundColor:'#rgba(255,255,255,0.22)',
@@ -150,6 +150,15 @@ const styles = StyleSheet.create({
     },
     updateBtnRight:{
         backgroundColor:StyleConfigs.btnWhite
+    },
+    updateCloseTouch:{
+        width:36.5,//146/2/2,
+        height:66,//264/2/2,
+        // backgroundColor:'green'
+    },
+    updateCloseIcon:{
+        width:36.5,//146/2/2,
+        height:66,//264/2/2
     }
 });
 

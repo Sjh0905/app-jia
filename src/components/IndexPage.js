@@ -45,6 +45,7 @@ const MyApp = DrawerNavigator(RouterConfigs, RouterOptions);
 const loadingImage = require('../assets/IndexPage/loading.gif');
 // const loadingFinish = require('../assets/IndexPage/loadingfinish.gif');
 const updateBackImg = require('../assets/IndexPage/updateBackImg.png');
+const updateCloseImg = require('../assets/IndexPage/updateClose.png');
 var didReceiveMessage;
 
 //TODO:上线应该是10分钟,测试需要临时改为1分
@@ -310,7 +311,8 @@ export default class App extends RNComponent {
 		loading: true,
 		showApproach: false,
         androidNavBgColor:StyleConfigs.navBgColor0602,
-        androidTranslucent:false
+        androidTranslucent:false,
+        showUpdateModal:false
 	}
 
 	//循环获取美金汇率
@@ -350,6 +352,8 @@ export default class App extends RNComponent {
     updateInfoCN = ['','','','']
     @observable
     updateVersionName = '';
+    @observable
+    updateVersionType = 1;//升级类型：0 静默升级，1 强制升级，2 提示升级
 
     klineData = {};
 
@@ -710,9 +714,11 @@ export default class App extends RNComponent {
                 let updateInfoCNArr = updateInfoCN.split('+');
                 this.updateInfoCN = updateInfoCNArr.concat(this.updateInfoCN.splice(updateInfoCNArr.length))
                 this.updateVersionName = iosUpdate.versionName && ('V'+iosUpdate.versionName) || ''
+                this.updateVersionType = (iosUpdate.versionType >= 0) ? iosUpdate.versionType : this.updateVersionType
                 // console.log('this is iosUpdate',this.updateInfoCN);
 
                 this.modalShow = true;
+                this.setState({showUpdateModal:true})
 			}
 		}
 		if(Platform.OS === 'android'){
@@ -727,13 +733,14 @@ export default class App extends RNComponent {
                 let updateInfoCNArr = updateInfoCN.split('+');
                 this.updateInfoCN = updateInfoCNArr.concat(this.updateInfoCN.splice(updateInfoCNArr.length))
                 this.updateVersionName = androindUpdate.versionName && ('V'+androindUpdate.versionName) || ''
-
+                this.updateVersionType = (androindUpdate.versionType >= 0) ? androindUpdate.versionType : this.updateVersionType
                 console.log('this is androindUpdate',androindUpdate);
 
             	this.androidUpdateUrl = androindUpdate.downloadUrl;
             	this.androidInternationalUrl = androindUpdate.downInternationalUrl;
                 this.modalShow = true;
-			}
+                this.setState({showUpdateModal:true})
+            }
 		}
 
 
@@ -1748,6 +1755,10 @@ export default class App extends RNComponent {
         this.$router.push('GesturePasswordSet');
     }
 
+    closeUpdateModal = () => {
+        this.setState({showUpdateModal:false})
+    }
+
 	render() {
 		return (
 			<View style={styles.root} onLayout={this.onLayout}>
@@ -1809,11 +1820,11 @@ export default class App extends RNComponent {
                     screenProps={{}}
                 />}
 				{
-                    this.modalShow &&
+                    this.state.showUpdateModal &&
                     <Modal
                         animationIn={'fadeIn'}
                         animationOut={'fadeOut'}
-                        isVisible={this.modalShow}
+                        isVisible={this.state.showUpdateModal}
                         backdropColor={'black'}
                         backdropOpacity={0.5}
                     >
@@ -1855,6 +1866,17 @@ export default class App extends RNComponent {
                                     </View>
 
                                 </ImageBackground>
+                            }
+                            {/*非强制升级时才显示关闭按钮*/}
+                            {(this.updateVersionType != 1) &&
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    onPress={this.closeUpdateModal}
+                                    style={[styles.updateBox,styles.updateCloseTouch]}
+                                >
+                                    <Image source={updateCloseImg} style={[styles.updateCloseIcon]}/>
+                                </TouchableOpacity>
+                                || null
                             }
 
                     </Modal>
