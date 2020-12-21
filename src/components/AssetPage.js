@@ -97,6 +97,8 @@ export default class App extends RNComponent {
     @observable
     positionArr = []
 
+    positionSymbols = ['BTCUSDT','ETHUSDT']
+
     /*----------------------- 生命周期 -------------------------*/
 
     // 创建，请求可以写在这里
@@ -443,7 +445,7 @@ export default class App extends RNComponent {
         typeof data === 'string' && (data = JSON.parse(data))
         if (!data || !data.data) return
         let pos = data.data
-        this.positionArr = pos.filter(v=>v.positionAmt != 0 && v.symbol == 'BTCUSDT')
+        this.positionArr = pos.filter(v=>v.positionAmt != 0 && this.positionSymbols.includes(v.symbol))
 
     }
     // 获取合约仓位出错
@@ -853,7 +855,8 @@ export default class App extends RNComponent {
                             <Text style={styles.singleAccountValuation}> {this.totalAssetShow ? ('≈' + (otcExchangeRateDisplay || '-----') + 'CNY') :''}</Text>
                         </View>
                     </View>
-                        ||
+                        || null
+                    /*&&
                     <View style={[styles.singleAccountBox,styles.accountBoxFutures]}>
                         <Text style={styles.marginBalanceTitle}>保证金余额</Text>
                         <Text style={styles.marginBalanceVal}>{this.totalAssetShow ? (totalMarginBalanceDisplay || '-----') : '*****'} USDT</Text>
@@ -870,7 +873,7 @@ export default class App extends RNComponent {
                                 <Text style={styles.itemBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalUnrealizedProfitRDis || '-----') + 'CNY') :''}</Text>
                             </View>
                         </View>
-                    </View>
+                    </View>*/
 
                 }
                 {/*单个账户资产 end*/}
@@ -989,6 +992,23 @@ export default class App extends RNComponent {
                         // canCancelContentTouches={false}
                         ref={'scrollBox'}
                     >
+                        <View style={[styles.singleAccountBox,styles.accountBoxFutures]}>
+                            <Text style={styles.marginBalanceTitle}>保证金余额</Text>
+                            <Text style={styles.marginBalanceVal}>{this.totalAssetShow ? (totalMarginBalanceDisplay || '-----') : '*****'} USDT</Text>
+                            <Text style={styles.marginBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalMarginBalanceRDis || '-----') + 'CNY') :''}</Text>
+                            <View style={[baseStyles.flexRow,styles.marginBalanceBot]}>
+                                <View style={styles.itemBalanceBox}>
+                                    <Text style={styles.itemBalanceTitle}>账户余额</Text>
+                                    <Text style={styles.itemBalanceVal}>{this.totalAssetShow ? (totalWalletBalanceDisplay || '-----') : '*****'}</Text>
+                                    <Text style={styles.itemBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalWalletBalanceRDis || '-----') + 'CNY') :''}</Text>
+                                </View>
+                                <View style={styles.itemBalanceBox}>
+                                    <Text style={styles.itemBalanceTitle}>未实现盈亏</Text>
+                                    <Text style={styles.itemBalanceVal}>{this.totalAssetShow ? (totalUnrealizedProfitDisplay || '-----') : '*****'}</Text>
+                                    <Text style={styles.itemBalanceCNY}>{this.totalAssetShow ? ('≈' + (totalUnrealizedProfitRDis || '-----') + 'CNY') :''}</Text>
+                                </View>
+                            </View>
+                        </View>
                         <View style={[baseStyles.flexRow,styles.fAssetTitleBox]}>
                             <TouchableOpacity
                                 style={[styles.fAssetTitleTouch]}
@@ -1027,7 +1047,7 @@ export default class App extends RNComponent {
                                         </View>
                                         <View style={styles.itemPosDetailOne}>
                                             <Text style={styles.itemPosDetailTitle}>未实现盈亏</Text>
-                                            <Text style={[styles.itemPosDetailVal,fv.unrealizedProfit > 0 && baseStyles.textGreen || baseStyles.textRed]}>{fv.unrealizedProfit}</Text>
+                                            <Text style={[styles.itemPosDetailVal,fv.unrealizedProfit > 0 && baseStyles.textGreen || baseStyles.textRed]}>{Number(fv.unrealizedProfit || 0).toFixed(2)}</Text>
                                         </View>
                                     </View>
                                     <View style={[baseStyles.flexRow,styles.itemPosDetailBox,styles.itemPosDetailBox2]}>
