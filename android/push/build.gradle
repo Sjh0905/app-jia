@@ -59,5 +59,6 @@ android {
 }
 
 dependencies {
+//    此处只能用compile，不能换成implementation，否则会报错
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
