@@ -41,6 +41,7 @@ if(env.networkConfigs.baseUrl.indexOf('app.2020-ex.com') > -1){
     env.networkConfigs.downloadPageUrl  = 'http://download.2020-ex.com/';
     env.networkConfigs.c2cUrl = 'http://otc.2020-ex.com/'
     env.networkConfigs.futuresUrl = 'http://future.2020-ex.com/'
+    // env.networkConfigs.futuresUrl = 'http://zpy.2020-ex.com:8085/'
 }
 
 //跳转到app下载页面所需地址
