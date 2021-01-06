@@ -97,7 +97,7 @@ export default class App extends RNComponent {
     @observable
     positionArr = []
 
-    positionSymbols = ['BTCUSDT','ETHUSDT']
+    positionSymbols = ['BTCUSDT','ETHUSDT','LTCUSDT']
 
     /*----------------------- 生命周期 -------------------------*/
 
