@@ -22,6 +22,7 @@ const reachedThreshold = Platform.select({
     android: 0.1
 });
 
+
 @observer
 export default class App extends RNComponent {
 
